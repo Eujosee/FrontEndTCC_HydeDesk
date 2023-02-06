@@ -9,6 +9,9 @@ module.exports = {
         'Poppins': ['Poppins', 'sans-serif']
       }
     },
+    colors: {
+      'azul-hyde': '#23AFFF'
+  }
   },
   plugins: [],
 }
