@@ -1,0 +1,78 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,400;0,500;1,200&display=swap");
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+.header {
+  padding: 2rem;
+  height: 80px;
+  align-items: center;
+}
+.hyde {
+  text-decoration-line: none;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 48px;
+  line-height: 58px;
+  color: #23afff;
+}
+.link1 {
+  text-decoration: none;
+  align-items: center;
+}
+.desk {
+  text-decoration: none;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 48px;
+  line-height: 58px;
+  color: #000000;
+}
+
+.sobre,
+.informacoes {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 200;
+  font-size: 30px;
+  line-height: 58px;
+  color: #a9a3a3;
+}
+.login {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 26px;
+  line-height: 58px;
+  color: #fff;
+  height: 60px;
+  width: 110px;
+  background-color: #23afff;
+  text-align: center;
+  border-radius: 20px;
+}
+.login :hover {
+  color: #23afff;
+  background-color: #000000;
+}
+.sobre :hover {
+  color: #000000;
+}
+
+.informacoes :hover {
+  color: #000000;
+}
+@media (max-width: 667px) {
+  .sobre{
+    display: flex;
+    flex-direction: row;
+    font-size: 15px;
+  }
+  .logo{
+    margin-left: 90px;
+  }
+}
