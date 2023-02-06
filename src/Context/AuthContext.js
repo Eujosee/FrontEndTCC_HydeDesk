@@ -21,8 +21,9 @@ function AuthProvider({ children }){
     },[])
 
     const handleLogin = async (user, label) => {
+      
         switch (label) {
-            case "CPF":
+            case "cpf":
                 try {
                     const {data} = await api.post('/tecnicos/login', user)
 
@@ -31,25 +32,29 @@ function AuthProvider({ children }){
                     setToken(data.token)
                     if(token){
                         localStorage.setItem("Token", JSON.stringify(token))
+                        api.defaults.headers.Authorization = `Bearer ${token}`
                     }
         
-                    api.defaults.headers.Authorization = `Bearer ${token}`
                     setAuthenticated(true)
+                    
         
                 } catch (error) {
                     setStatus(error.response.data.message);
                 }
                 break;
-            case "CNPJ":
+            case "cnpj":
                 try {
                     const {data} = await api.post('/empresas/login', user)
-        
+                    console.log(data)
                     setToken(data.token)
-                    localStorage.setItem("Token", JSON.stringify(token))
-        
-                    api.defaults.headers.Authorization = `Bearer ${token}`
+                    if(token){
+                        localStorage.setItem("Token", JSON.stringify(token))
+                        api.defaults.headers.Authorization = `Bearer ${token}`
+                        
+                    }
                     setAuthenticated(true)
-        
+                    
+                    
                 } catch (error) {
                     setStatus(error.response.data.message);
                 }
@@ -58,12 +63,14 @@ function AuthProvider({ children }){
             case "Mátricula":
                 try {
                     const {data} = await api.post('/funcionarios/login', user)
-        
+                    console.log(data)
                     setToken(data.token)
-                    localStorage.setItem("Token", JSON.stringify(token))
-        
-                    api.defaults.headers.Authorization = `Bearer ${token}`
+                    if(token){
+                        localStorage.setItem("Token", JSON.stringify(token))
+                        api.defaults.headers.Authorization = `Bearer ${token}`
+                    }
                     setAuthenticated(true)
+                    
         
                 } catch (error) {
                     setStatus(error.response.data.message);

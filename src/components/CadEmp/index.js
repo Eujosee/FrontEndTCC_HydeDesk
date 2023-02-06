@@ -4,6 +4,7 @@ import { useState } from "react";
 
 function CadEmp () {
     const [status, setStatus] = useState('');
+    const [statusErro, setStatusErro] = useState('');
     const [user,setUser] = useState({
         nome: "",
         cnpj: "",
@@ -27,26 +28,17 @@ function CadEmp () {
 
 
     const config = {
-        headers: { "content-type": "multipart/form-data" },
+        headers: { "content-type": "application/json" },
       };
     
-    const handleCad = async() => {
-        // try {
-        //     let formData = new FormData();
-        //     formData.append("nome", user.nome);
-        //     formData.append("cpf", user.cpf);
-        //     formData.append("email", user.email);
-        //     formData.append("telefone", user.telefone);
-        //     formData.append("especialidade", user.especialidade);
-        //     formData.append("foto", imagem);
-        //     formData.append("senha", user.senha);
-        //     formData.append("confirmsenha", user.confirmsenha);
+      const handleCad = async(e) => {
 
-        //     const {data} = await api.post('/tecnicos/cadastro', formData, config)
-        //     console.log(data)
-        // } catch (error) {
-        //     setStatus(error.response.data.message);
-        // }
+        try {
+            const { data } = await api.post('/empresas/cadastro', user, config)
+            setStatus(data.message)
+        } catch (error) {
+            setStatusErro(error.response.data.message);
+        }
 
 
     }
@@ -55,8 +47,6 @@ function CadEmp () {
         <div className="bg-white px-10 py-10 rounded">
             <h1 className="font-bold text-2xl">Cadastro para empresas</h1>
             <div>
-                <form encType="multipart/form">
-
                     <div className="mt-8">
                     <label className="text-lg font-medium text-gray-900 dark:text-white">Nome da empresa</label>
                         <input
@@ -136,9 +126,8 @@ function CadEmp () {
                     <button className="hover:bg-cyan-600 mb-6 bg-cyan-500 p-2 rounded-3xl text-white font-bold text-lg"
                     onClick={() => handleCad()}
                     >Cadastre-se</button>
-                    <p>{status}</p>
+                     <p className={status ? "text-green-500" : "text-red-500"}>{status ? status : statusErro}</p>
                 </div>
-                </form>
                 <div>
                     <Link className="no-underline flex items-center " to='/login'>
                         <p className="text-black font-medium mb-1">Já possui uma conta?</p>
