@@ -9,11 +9,13 @@ function Form() {
   const [senha, setSenha] = useState("");
   const { authenticated, handleLogin, status } = useContext(Context);
 
-
+  
   const user = {
-    cpf: cpf,
+    [label]: cpf,
     senha: senha,
-  };
+  }
+ 
+  
 
   const handleChange = (event) => {
     setLabel(event.target.value);
@@ -28,7 +30,7 @@ function Form() {
           <input
             type="radio"
             name="escolhalogin"
-            value="CPF"
+            value="cpf"
             onChange={handleChange}
           />
           <label className="mr-4 ml-2 font-medium">Técnico</label>
@@ -36,7 +38,7 @@ function Form() {
           <input
             type="radio"
             name="escolhalogin"
-            value="CNPJ"
+            value="cnpj"
             onChange={handleChange}
           />
           <label className="mr-4 ml-2 font-medium">Empresa</label>
@@ -82,7 +84,9 @@ function Form() {
           </Link>
           <button
             className="hover:bg-cyan-600 mb-6 bg-cyan-500 p-2 rounded-3xl text-white font-bold text-lg"
-            onClick={() => handleLogin(user, label)}>Login</button>
+            onClick={() => {
+              handleLogin(user, label)
+              }}>Login</button>
           <p className="text-red-500 flex justify-center">{status}</p>
           <Link
             className="no-underline flex items-center "
