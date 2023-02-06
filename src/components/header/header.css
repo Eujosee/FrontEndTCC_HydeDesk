@@ -1,5 +1,150 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,400;0,500;1,200&display=swap");
 
+.navigation {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 80px;
+  width: 100%;
+  padding: 0.5rem 0rem;
+  background-color: #fff;
+  color: black;
+  padding-top: 2.5rem;
+}
+
+.brand-name {
+  display: flex;
+  flex-direction: row;
+  text-decoration: none;
+  color: black;
+  font-size: 1.3rem;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 35px;
+  color: #23afff;
+  margin-left: 70px;
+}
+.brand-name:hover{
+  color: #23afff;
+}
+
+.preto{
+  color: #000000;
+}
+
+.navigation-menu {
+  margin-left: auto;
+  margin-right: 30px;
+}
+
+.navigation-menu ul {
+  display: flex;
+  padding: 0;
+}
+
+.navigation-menu li {
+  list-style-type: none;
+  margin: 0 1rem;
+}
+
+.navigation-menu li a {
+  color: #a9a3a3;
+  text-decoration: none;
+  display: flex;
+  width: 100%;
+  font-size: 25px;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  margin-right: 20px;
+  align-items: center;
+  justify-content: center;
+}
+.navigation-menu li a:hover {
+  color: #000000;
+}
+
+.hamburger {
+  border: 0;
+  height: 40px;
+  width: 40px;
+  padding: 0.5rem;
+  border-radius: 50%;
+  background-color: #283b8b;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+  position: absolute;
+  top: 50%;
+  right: 25px;
+  transform: translateY(-50%);
+  display: none;
+}
+
+.hamburger:hover {
+  background-color: #2642af;
+}
+.login{
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  color: #ffffff !important ;
+  width: 40px;
+  height: 40px;
+  background-color: #23afff;
+  text-align: center;
+  border-radius: 10px;
+  display: flex;
+
+}
+.login:hover{
+  color: #23afff !important;
+  background-color: #000000;
+
+}
+
+@media screen and (max-width: 550px) {
+  .hamburger {
+    display: block;
+  }
+
+  .navigation-menu ul {
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    height: calc(100vh - 60px);
+    background-color: white;
+    border-top: 1px solid black;
+    display: none;
+  }
+
+  .navigation-menu li {
+    text-align: center;
+    margin: 0;
+  }
+
+  .navigation-menu li a {
+    color: black;
+    width: 100%;
+    padding: 1.5rem 0;
+  }
+
+  .navigation-menu li:hover {
+    background-color: #eee;
+  }
+
+  .navigation-menu.expanded ul {
+    display: block;
+  }
+  .login{
+    background-color: #fff;
+    color: #000000 !important;
+  }
+}
+/* @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,400;0,500;1,200&display=swap");
+
 * {
   padding: 0;
   margin: 0;
@@ -75,4 +220,4 @@
   .logo{
     margin-left: 90px;
   }
-}
+} */
