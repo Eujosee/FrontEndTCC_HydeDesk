@@ -132,11 +132,7 @@ function CadEmp () {
                     <Link className="no-underline flex items-center " to='/login'>
                         <p className="text-black font-medium mb-1">Já possui uma conta?</p>
                         <p className="ml-2 text-cyan-500 font-medium mb-1">Login</p>
-                    </Link>                  
-                    <Link className="no-underline flex items-center " to='/cadastro-tecnico'>
-                        <p className="text-black font-medium mb-1">Cadastrar como</p>
-                        <p className="ml-1 text-cyan-500 font-medium mb-1">técnico</p>
-                    </Link>                  
+                    </Link>                                   
                 </div>
             </div>
         </div>
