@@ -53,7 +53,7 @@ function CadTec () {
     }
 
     return (
-        <div className="bg-white px-10 py-10 rounded">
+        <div className="bg-white px-10 py-10">
             <h1 className="font-bold text-2xl">Cadastro para técnicos</h1>
             <div>
                 <form encType="multipart/form">
@@ -155,11 +155,7 @@ function CadTec () {
                     <Link className="no-underline flex items-center " to='/login'>
                         <p className="text-black font-medium mb-1">Já possui uma conta?</p>
                         <p className="ml-2 text-cyan-500 font-medium mb-1">Login</p>
-                    </Link>                  
-                    <Link className="no-underline flex items-center " to='/cadastro-empresarial'>
-                        <p className="text-black font-medium mb-1">Cadastrar como</p>
-                        <p className="ml-1 text-cyan-500 font-medium mb-1">empresa</p>
-                    </Link>                  
+                    </Link>                                  
                 </div>
             </div>
         </div>

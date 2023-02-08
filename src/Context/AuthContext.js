@@ -5,6 +5,8 @@ const Context = createContext();
 
 function AuthProvider({ children }){
     const [token, setToken] = useState('')
+    const [id, setID] = useState('')
+    const [tipo, setTipo] = useState('')
     const [status, setStatus] = useState('')
     const [authenticated, setAuthenticated] = useState(false)
     const [loading, setLoading] = useState(true)
@@ -26,12 +28,16 @@ function AuthProvider({ children }){
             case "cpf":
                 try {
                     const {data} = await api.post('/tecnicos/login', user)
-
-                    console.log(data)
         
                     setToken(data.token)
-                    if(token){
+                    setID(data.id)
+                    setTipo(data.tipo)
+                    
+
+                    if(token && id && tipo){
                         localStorage.setItem("Token", JSON.stringify(token))
+                        localStorage.setItem("Id", JSON.stringify(id))
+                        localStorage.setItem("Tipo", JSON.stringify(tipo))
                         api.defaults.headers.Authorization = `Bearer ${token}`
                     }
         
@@ -39,16 +45,22 @@ function AuthProvider({ children }){
                     
         
                 } catch (error) {
+                    console.log(error)
                     setStatus(error.response.data.message);
                 }
                 break;
             case "cnpj":
                 try {
                     const {data} = await api.post('/empresas/login', user)
-                    console.log(data)
+                    
                     setToken(data.token)
-                    if(token){
+                    setID(data.id)
+                    setTipo(data.tipo)
+
+                    if(token && id && tipo){
                         localStorage.setItem("Token", JSON.stringify(token))
+                        localStorage.setItem("Id", JSON.stringify(id))
+                        localStorage.setItem("Tipo", JSON.stringify(tipo))
                         api.defaults.headers.Authorization = `Bearer ${token}`
                         
                     }
@@ -63,10 +75,15 @@ function AuthProvider({ children }){
             case "Mátricula":
                 try {
                     const {data} = await api.post('/funcionarios/login', user)
-                    console.log(data)
+                    
                     setToken(data.token)
-                    if(token){
+                    setID(data.id)
+                    setTipo(data.tipo)
+
+                    if(token && id && tipo){
                         localStorage.setItem("Token", JSON.stringify(token))
+                        localStorage.setItem("Id", JSON.stringify(id))
+                        localStorage.setItem("Tipo", JSON.stringify(tipo))
                         api.defaults.headers.Authorization = `Bearer ${token}`
                     }
                     setAuthenticated(true)
@@ -86,6 +103,8 @@ function AuthProvider({ children }){
     function handleLogout (){
         setAuthenticated(false)
         localStorage.removeItem("Token")
+        localStorage.removeItem("Id")
+        localStorage.removeItem("Tipo")
         api.defaults.headers.Authorization = undefined
     }
 

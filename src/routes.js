@@ -1,11 +1,11 @@
 import { BrowserRouter, Route, Routes} from "react-router-dom";
 
 import { AuthProvider } from './Context/AuthContext'
-import Home from './pages/home'
+import Home from './pages/Home'
 import Login from './pages/Login'
-import CadastroTec from './pages/CadastroTecnico'
-import CadastroEmp from "./pages/CadastroEmpresa";
+import Cadastro from './pages/Cadastro'
 import CadastroFunc from "./pages/CadastroFunc";
+import Perfil from "./pages/Perfil";
 
 const Rotas = () => {
     return (
@@ -15,9 +15,9 @@ const Rotas = () => {
         <Routes>
             <Route path="/" element={<Home/>}/>
             <Route path="/login" element={<Login/>}/>
-            <Route path="/cadastro-tecnico" element={<CadastroTec/>}/>
-            <Route path="/cadastro-empresarial" element={<CadastroEmp/>}/>
+            <Route path="/cadastro" element={<Cadastro/>}/>
             <Route path="/cadastro-funcionario" element={<CadastroFunc/>}/>
+            <Route path="/perfil" element={<Perfil/>}/>
         </Routes>
         </BrowserRouter>
     </AuthProvider>

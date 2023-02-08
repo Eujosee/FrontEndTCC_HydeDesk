@@ -4,7 +4,7 @@ import { useState, useContext } from "react";
 import { Context } from "../../Context/AuthContext";
 
 function Form() {
-  const [label, setLabel] = useState("");
+  const [label, setLabel] = useState("cpf");
   const [cpf, setCPF] = useState("");
   const [senha, setSenha] = useState("");
   const { authenticated, handleLogin, status } = useContext(Context);
@@ -32,6 +32,7 @@ function Form() {
             name="escolhalogin"
             value="cpf"
             onChange={handleChange}
+            defaultChecked
           />
           <label className="mr-4 ml-2 font-medium">Técnico</label>
 
@@ -53,7 +54,7 @@ function Form() {
         </div>
         <div className="mt-8">
           <label className="text-lg font-medium text-gray-900 dark:text-white">
-            {!label ? "Login" : label}
+            Login
           </label>
           <input
             className="border-2 w-full rounded p-2"
@@ -83,14 +84,14 @@ function Form() {
             <p className="ml-2 text-cyan-500 font-medium">Recuperar</p>
           </Link>
           <button
-            className="hover:bg-cyan-600 mb-6 bg-cyan-500 p-2 rounded-3xl text-white font-bold text-lg"
+            className="hover:bg-cyan-600 mb-6 bg-azul-hyde p-2 rounded-3xl text-white font-bold text-lg"
             onClick={() => {
               handleLogin(user, label)
               }}>Login</button>
           <p className="text-red-500 flex justify-center">{status}</p>
           <Link
             className="no-underline flex items-center "
-            to="/cadastro-tecnico"
+            to="/cadastro"
           >
             <p className="text-black font-medium mb-1">Não possui uma conta?</p>
             <p className="ml-2 text-cyan-500 font-medium mb-1">Cadastrar</p>
