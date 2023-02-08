@@ -1,21 +1,41 @@
-import { useContext } from 'react';
-import Header from '../../components/header';
-import { Context } from '../../Context/AuthContext';
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
+import Header from "../../components/header";
+import ImagemLogin from "../../images/suporte.svg"
 
 function Home() {
-    const { handleLogout } = useContext(Context)
-          return (
-           <div>
-            <Header/>
-            <button
-            className="hover:bg-cyan-600 mb-6 bg-cyan-500 p-2 rounded-3xl text-white font-bold text-lg"
-            onClick={() => handleLogout()}>Sair</button>
-            <Link className="no-underline flex items-center " to='/cadastro-funcionario'>
-                        <p className="text-black font-medium mb-1">Cadastrar funcionario</p>
-            </Link>   
-           </div>
-          )
+  return (
+    <div className="font-Poppins">
+      <Header />
+      <div className="flex w-full h-screen items-center justify-center ">
+            <div className="flex items-center justify-center">
+                <div className="max-w-sm">
+                    <h1 className="font-bold">Suporte</h1>
+                    <h1 className="font-bold">Help Desk</h1>
+                        
+                    <p className="semi-bold">Aliquam laoreet commodo laoreet. Aenean luctus neque ut risus volutpat interdum.
+                    Phasellus tristique sem vel odio sollicitudin facilisis. Aliquam erat volutpat.</p>
+
+                    {/* botao redirecionando */}
+                    {/* atualização do nome Home */}
+                <div className="mt-8 flex flex-col">
+                  <Link to="/perfil">
+                    <button className="hover:bg-cyan-600 mb-6 bg-azul-hyde p-2 rounded-3xl text-white font-bold text-lg"            
+                    >Conheça mais</button>
+                  </Link>
+                </div>
+                </div>
+                    
+                <div className="hidden lg:flex justify-center items-center">
+                    <div className="ml-40 mr-10 w-85 h-85">
+                        <img src={ImagemLogin} alt='Homem segurando uma ferramenta'/>
+                        {/* <a href="https://storyset.com/internet">Internet illustrations by Storyset</a> */}
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+  );
 }
 
 export default Home;
