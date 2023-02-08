@@ -53,7 +53,7 @@ function Form() {
           <label className="ml-2 font-medium">Funcionário</label>
         </div>
         <div className="mt-8">
-          <label className="text-lg font-medium text-gray-900 dark:text-white">
+          <label className="text-lg font-medium text-gray-900">
             Login
           </label>
           <input
@@ -64,7 +64,7 @@ function Form() {
           />
         </div>
         <div>
-          <label className="text-lg mt-2 font-medium text-gray-900 dark:text-white">
+          <label className="text-lg mt-2 font-medium text-gray-900">
             Senha
           </label>
           <input
