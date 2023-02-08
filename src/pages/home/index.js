@@ -16,6 +16,7 @@ function Home() {
                     Phasellus tristique sem vel odio sollicitudin facilisis. Aliquam erat volutpat.</p>
 
                     {/* botao redirecionando */}
+                    {/* atualização do nome Home */}
                 <div className="mt-8 flex flex-col">
                   <Link to="/perfil">
                     <button className="hover:bg-cyan-600 mb-6 bg-azul-hyde p-2 rounded-3xl text-white font-bold text-lg"            
