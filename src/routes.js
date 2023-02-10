@@ -7,6 +7,7 @@ import Cadastro from './pages/Cadastro'
 import CadastroFunc from "./pages/CadastroFunc";
 import Perfil from "./pages/Perfil";
 import RecuperarSenha from "./pages/RecuperaSenha";
+import Detalhes from "./pages/Detalhes";
 
 const Rotas = () => {
     return (
@@ -16,6 +17,8 @@ const Rotas = () => {
         <Routes>
             <Route path="/" element={<Home/>}/>
             <Route path="/login" element={<Login/>}/>
+            <Route path="/detalhes" element={<Detalhes/>}/>
+
             <Route path="/cadastro" element={<Cadastro/>}/>
             <Route path="/cadastro-funcionario" element={<CadastroFunc/>}/>
             <Route path="/perfil" element={<Perfil/>}/>
