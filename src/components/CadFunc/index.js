@@ -3,6 +3,8 @@ import { useState } from "react";
 
 function CadFunc () {
     const [status, setStatus] = useState('');
+    const id = JSON.parse(localStorage.getItem("Id"));
+
     const [user,setUser] = useState({
         nome: "",
         nome_empresa: "",
@@ -50,7 +52,7 @@ function CadFunc () {
 
     return (
         <div className="bg-white px-10 py-10 rounded">
-            <h1 className="font-bold text-2xl">Cadastro para funcionários</h1>
+            <h1 className="font-bold text-2xl">Cadastro de funcionários</h1>
             <div>
                 <form encType="multipart/form">
 

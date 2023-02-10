@@ -16,7 +16,6 @@ function CadEmp () {
         confirmarsenha: "",
     })
 
-
     const handleUser = (e) => {
         setUser({
             ...user,
@@ -44,11 +43,11 @@ function CadEmp () {
     }
 
     return (
-        <div className="bg-white px-10 py-10 rounded">
-            <h1 className="font-bold text-2xl">Cadastro para empresas</h1>
+        <div className="bg-white px-10 pb-10 pt-3">
+            <h1 className="font-bold text-2xl">Preencha o formulário</h1>
             <div>
                     <div className="mt-8">
-                    <label className="text-lg font-medium text-gray-900">Nome da empresa</label>
+                    <label className="text-lg font-medium text-gray-900">Nome da empresa *</label>
                         <input
                             className="border-2 w-full rounded p-2"
                             placeholder= "Nome da empresa"
@@ -57,7 +56,7 @@ function CadEmp () {
                             />
                     </div>
                     <div className="mt-2">
-                    <label className="text-lg font-medium text-gray-900">CNPJ</label>
+                    <label className="text-lg font-medium text-gray-900">CNPJ *</label>
                         <input
                             className="border-2 w-full rounded p-2"
                             placeholder= "CNPJ"
@@ -66,7 +65,7 @@ function CadEmp () {
                             />
                     </div>
                     <div className="mt-2">
-                    <label className="text-lg font-medium text-gray-900">Email</label>
+                    <label className="text-lg font-medium text-gray-900">Email *</label>
                         <input
                             type="email"
                             className="border-2 w-full rounded p-2"
@@ -76,7 +75,7 @@ function CadEmp () {
                             />
                     </div>
                     <div className="mt-2">
-                    <label className="text-lg font-medium text-gray-900">Telefone</label>
+                    <label className="text-lg font-medium text-gray-900">Telefone *</label>
                         <input
                             className="border-2 w-full rounded p-2"
                             placeholder= "Telefone"
@@ -85,7 +84,7 @@ function CadEmp () {
                             />
                     </div>
                     <div className="mt-2">
-                    <label className="text-lg font-medium text-gray-900">CEP</label>
+                    <label className="text-lg font-medium text-gray-900">CEP *</label>
                         <input
                             className="border-2 w-full rounded p-2"
                             placeholder= "CEP"
@@ -94,7 +93,7 @@ function CadEmp () {
                             />
                     </div>
                     <div className="mt-2">
-                    <label className="text-lg font-medium text-gray-900">Endereço completo</label>
+                    <label className="text-lg font-medium text-gray-900">Endereço completo *</label>
                         <input
                             className="border-2 w-full rounded p-2"
                             placeholder= "Endereço Completo"
@@ -103,7 +102,7 @@ function CadEmp () {
                             />
                     </div>
                     <div className="mt-2">
-                    <label className="text-lg font-medium text-gray-900">Senha</label>
+                    <label className="text-lg font-medium text-gray-900">Senha *</label>
                         <input
                             type="password"
                             className="border-2 w-full rounded p-2"
@@ -113,7 +112,7 @@ function CadEmp () {
                             />
                     </div>
                     <div className="mt-2">
-                    <label className="text-lg font-medium text-gray-900">Confirme sua senha</label>
+                    <label className="text-lg font-medium text-gray-900">Confirme sua senha *</label>
                         <input
                             type="password"
                             className="border-2 w-full rounded p-2"
