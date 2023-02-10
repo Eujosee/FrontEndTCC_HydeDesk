@@ -11,7 +11,7 @@ function Home() {
                     <h1 className="font-bold">Suporte</h1>
                     <h1 className="font-bold">Help Desk</h1>
                     
-                    <p clasName="semi-bold">Aliquam laoreet commodo laoreet. Aenean luctus neque ut risus volutpat interdum.
+                    <p className="semi-bold">Aliquam laoreet commodo laoreet. Aenean luctus neque ut risus volutpat interdum.
                     Phasellus tristique sem vel odio sollicitudin facilisis. Aliquam erat volutpat.</p>
 
                     <div className="mt-8 flex flex-col">
