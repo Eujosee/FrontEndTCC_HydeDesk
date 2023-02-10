@@ -1,0 +1,11 @@
+@media (max-width: 768px) {
+    .media{
+        flex-direction: column !important;
+    }
+    .data2{
+        margin-top: 2rem;
+    }
+    .data1, .data2{
+        width: 100%;
+    }
+}
