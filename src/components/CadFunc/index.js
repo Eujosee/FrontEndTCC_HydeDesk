@@ -1,17 +1,20 @@
 import api from "../../api"
 import { useState } from "react";
+import { AiOutlineArrowLeft } from 'react-icons/ai'
+import { Link } from "react-router-dom";
 
 function CadFunc () {
     const [status, setStatus] = useState('');
+    const [statusErro, setStatusErro] = useState('');
     const id = JSON.parse(localStorage.getItem("Id"));
 
     const [user,setUser] = useState({
         nome: "",
-        nome_empresa: "",
+        id_empresa: id,
         matricula: "",
         usuario: "",
         senha: "",
-        confirmarsenha: "",
+        confirmsenha: "",
     })
 
 
@@ -26,38 +29,28 @@ function CadFunc () {
 
 
     const config = {
-        headers: { "content-type": "multipart/form-data" },
+        headers: { "content-type": "application/json" },
       };
     
-    const handleCad = async() => {
-        // try {
-        //     let formData = new FormData();
-        //     formData.append("nome", user.nome);
-        //     formData.append("cpf", user.cpf);
-        //     formData.append("email", user.email);
-        //     formData.append("telefone", user.telefone);
-        //     formData.append("especialidade", user.especialidade);
-        //     formData.append("foto", imagem);
-        //     formData.append("senha", user.senha);
-        //     formData.append("confirmsenha", user.confirmsenha);
-
-        //     const {data} = await api.post('/tecnicos/cadastro', formData, config)
-        //     console.log(data)
-        // } catch (error) {
-        //     setStatus(error.response.data.message);
-        // }
-
+    const handleCad = async(e) => {
+      try {
+        const { data } = await api.post('/funcionarios/cadastro', user, config)
+        setStatus(data.message)
+      } catch (error) {
+        setStatusErro(error.response.data.message)
+      }
 
     }
 
     return (
-        <div className="bg-white px-10 py-10 rounded">
-            <h1 className="font-bold text-2xl">Cadastro de funcionários</h1>
+        <div className="bg-white px-10 py-4 ">
+            <Link className="no-underline text-black" to={'/lista-funcionarios'}>
+                <AiOutlineArrowLeft size={20} />
+            </Link>
+            <h1 className="font-bold text-2xl mt-4">Cadastro de funcionários</h1>
             <div>
-                <form encType="multipart/form">
-
-                    <div className="mt-8">
-                    <label className="text-lg font-medium text-gray-900 dark:text-white">Nome completo</label>
+                    <div className="mt-2">
+                    <label className="text-lg font-medium text-gray-900">Nome completo</label>
                         <input
                             className="border-2 w-full rounded p-2"
                             placeholder= "Nome completo"
@@ -65,17 +58,9 @@ function CadFunc () {
                             onChange={handleUser}
                             />
                     </div>
+                    
                     <div className="mt-2">
-                    <label className="text-lg font-medium text-gray-900 dark:text-white">Nome da empresa</label>
-                        <input
-                            className="border-2 w-full rounded p-2"
-                            placeholder= "Nome da empresa"
-                            name="nome_empresa"
-                            onChange={handleUser}
-                            />
-                    </div>
-                    <div className="mt-2">
-                    <label className="text-lg font-medium text-gray-900 dark:text-white">Matrícula</label>
+                    <label className="text-lg font-medium text-gray-900">Matrícula</label>
                         <input
                             className="border-2 w-full rounded p-2"
                             placeholder= "Matrícula"
@@ -84,7 +69,7 @@ function CadFunc () {
                             />
                     </div>
                     <div className="mt-2">
-                    <label className="text-lg font-medium text-gray-900 dark:text-white">Nome de usuário</label>
+                    <label className="text-lg font-medium text-gray-900">Nome de usuário</label>
                         <input
                             className="border-2 w-full rounded p-2"
                             placeholder= "Usuário"
@@ -93,7 +78,7 @@ function CadFunc () {
                             />
                     </div>
                     <div className="mt-2">
-                    <label className="text-lg font-medium text-gray-900 dark:text-white">Senha</label>
+                    <label className="text-lg font-medium text-gray-900">Senha</label>
                         <input
                             type="password"
                             className="border-2 w-full rounded p-2"
@@ -103,7 +88,7 @@ function CadFunc () {
                             />
                     </div>
                     <div className="mt-2">
-                    <label className="text-lg font-medium text-gray-900 dark:text-white">Confirme sua senha</label>
+                    <label className="text-lg font-medium text-gray-900">Confirme sua senha</label>
                         <input
                             type="password"
                             className="border-2 w-full rounded p-2"
@@ -113,12 +98,11 @@ function CadFunc () {
                             />
                     </div>
                 <div className="mt-8 flex flex-col">
+                    <p className={status ? "text-green-500" : "text-red-500"}>{status ? status : statusErro}</p>
                     <button className="hover:bg-cyan-600 mb-6 bg-cyan-500 p-2 rounded-3xl text-white font-bold text-lg"
                     onClick={() => handleCad()}
                     >Cadastrar</button>
-                    <p>{status}</p>
                 </div>
-                </form>
             </div>
         </div>
     );

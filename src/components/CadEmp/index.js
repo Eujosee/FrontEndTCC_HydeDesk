@@ -31,7 +31,7 @@ function CadEmp () {
       };
     
       const handleCad = async(e) => {
-
+        
         try {
             const { data } = await api.post('/empresas/cadastro', user, config)
             setStatus(data.message)

@@ -7,7 +7,6 @@ function ListaFunc() {
 	return (
 		<div className="font-Poppins">
 			<Header />
-
 			<main>
 				<div class="relative px-6 lg:px-8">
 					<div class=" max-w-2xl py-5 sm:py-48 lg:py-56">
