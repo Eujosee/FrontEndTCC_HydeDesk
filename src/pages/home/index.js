@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Header from "../../components/header";
 import ImagemLogin from "../../images/suporte.svg"
 
@@ -10,13 +11,17 @@ function Home() {
                 <div className="max-w-sm">
                     <h1 className="font-bold">Suporte</h1>
                     <h1 className="font-bold">Help Desk</h1>
-                    
-                    <p clasName="semi-bold">Aliquam laoreet commodo laoreet. Aenean luctus neque ut risus volutpat interdum.
+                        
+                    <p className="semi-bold">Aliquam laoreet commodo laoreet. Aenean luctus neque ut risus volutpat interdum.
                     Phasellus tristique sem vel odio sollicitudin facilisis. Aliquam erat volutpat.</p>
 
-                    <div className="mt-8 flex flex-col">
+                    {/* botao redirecionando */}
+                    {/* atualização do nome Home */}
+                <div className="mt-8 flex flex-col">
+                  <Link to="/perfil">
                     <button className="hover:bg-cyan-600 mb-6 bg-azul-hyde p-2 rounded-3xl text-white font-bold text-lg"            
                     >Conheça mais</button>
+                  </Link>
                 </div>
                 </div>
                     

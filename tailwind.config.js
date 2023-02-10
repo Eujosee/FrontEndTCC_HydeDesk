@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+
 module.exports = {
   content: [
     "./src/**/*.{html,js}"
@@ -7,11 +8,11 @@ module.exports = {
     extend: {
       fontFamily: {
         'Poppins': ['Poppins', 'sans-serif']
+      },
+      colors: {
+        'azul-hyde': '#23AFFF'
       }
     },
-    colors: {
-      'azul-hyde': '#23AFFF'
-  }
   },
   plugins: [],
 }

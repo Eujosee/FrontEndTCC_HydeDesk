@@ -4,16 +4,18 @@ import { useState, useContext } from "react";
 import { Context } from "../../Context/AuthContext";
 
 function Form() {
-  const [label, setLabel] = useState("");
+  const [label, setLabel] = useState("cpf");
   const [cpf, setCPF] = useState("");
   const [senha, setSenha] = useState("");
   const { authenticated, handleLogin, status } = useContext(Context);
 
-
+  
   const user = {
-    cpf: cpf,
+    [label]: cpf,
     senha: senha,
-  };
+  }
+ 
+  
 
   const handleChange = (event) => {
     setLabel(event.target.value);
@@ -28,15 +30,16 @@ function Form() {
           <input
             type="radio"
             name="escolhalogin"
-            value="CPF"
+            value="cpf"
             onChange={handleChange}
+            defaultChecked
           />
           <label className="mr-4 ml-2 font-medium">Técnico</label>
 
           <input
             type="radio"
             name="escolhalogin"
-            value="CNPJ"
+            value="cnpj"
             onChange={handleChange}
           />
           <label className="mr-4 ml-2 font-medium">Empresa</label>
@@ -50,8 +53,8 @@ function Form() {
           <label className="ml-2 font-medium">Funcionário</label>
         </div>
         <div className="mt-8">
-          <label className="text-lg font-medium text-gray-900 dark:text-white">
-            {!label ? "Login" : label}
+          <label className="text-lg font-medium text-gray-900">
+            Login
           </label>
           <input
             className="border-2 w-full rounded p-2"
@@ -61,7 +64,7 @@ function Form() {
           />
         </div>
         <div>
-          <label className="text-lg mt-2 font-medium text-gray-900 dark:text-white">
+          <label className="text-lg mt-2 font-medium text-gray-900">
             Senha
           </label>
           <input
@@ -81,12 +84,14 @@ function Form() {
             <p className="ml-2 text-cyan-500 font-medium">Recuperar</p>
           </Link>
           <button
-            className="hover:bg-cyan-600 mb-6 bg-cyan-500 p-2 rounded-3xl text-white font-bold text-lg"
-            onClick={() => handleLogin(user, label)}>Login</button>
+            className="hover:bg-cyan-600 mb-6 bg-azul-hyde p-2 rounded-3xl text-white font-bold text-lg"
+            onClick={() => {
+              handleLogin(user, label)
+              }}>Login</button>
           <p className="text-red-500 flex justify-center">{status}</p>
           <Link
             className="no-underline flex items-center "
-            to="/cadastro-tecnico"
+            to="/cadastro"
           >
             <p className="text-black font-medium mb-1">Não possui uma conta?</p>
             <p className="ml-2 text-cyan-500 font-medium mb-1">Cadastrar</p>
