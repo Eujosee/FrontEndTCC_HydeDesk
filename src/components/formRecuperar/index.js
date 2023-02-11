@@ -6,7 +6,7 @@ import { Context } from "../../Context/AuthContext";
 export default function Form(){
     const [label, setLabel] = useState("email");
     const [email, setEmail] = useState("");
-    const { authenticated, handleLogin, status } = useContext(Context);
+    const { handleLogin, status } = useContext(Context);
 
   
     const user = {
@@ -19,7 +19,7 @@ export default function Form(){
     return(
         <div className="bg-white px-10 py-10 rounded">
       <h1 className="font-bold">Recuperar senha</h1>
-      <p className="font-medium text-lg mt-8 text-xl">Recuperar como:</p>
+      <p className="font-medium mt-8 text-xl">Recuperar como:</p>
       <div>
         <div>
           <input

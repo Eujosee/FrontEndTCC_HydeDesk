@@ -44,7 +44,7 @@ export default function Header() {
 						<a href="/about">Informações</a>
 					</li>
 					<li>
-						<a className="login" href="/contact">
+						<a className="login" href="/login">
 							Login
 						</a>
 					</li>

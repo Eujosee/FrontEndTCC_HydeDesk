@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import Header from "../../components/header";
 
 import ImagemLogin from "../../images/loginamico.svg"

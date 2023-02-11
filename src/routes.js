@@ -11,6 +11,7 @@ import Detalhes from "./pages/Detalhes";
 import ListaFunc from "./pages/ListaFunc";
 import MudaSenha from "./pages/MudaSenha";
 
+
 const Rotas = () => {
     return (
 
@@ -25,7 +26,7 @@ const Rotas = () => {
             <Route path="/perfil" element={<Perfil/>}/>
             <Route path="/recuperar" element={<RecuperarSenha/>}/>
             <Route path="/lista-funcionarios" element={<ListaFunc/>}/>
-            <Route path="/mudarsenha" element={<MudaSenha/>}/>
+            <Route path="/mudar-senha" element={<MudaSenha/>}/>
 
         </Routes>
         </BrowserRouter>
