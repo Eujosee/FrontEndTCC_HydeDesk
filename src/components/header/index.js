@@ -8,8 +8,8 @@ export default function Header() {
   return (
 		<nav className="navigation">
 			<a href="/" className="brand-name">
-        <p>HYDE</p>
-        <p className="preto">DESK</p>
+        <p>Hyde</p>
+        <p className="preto">Desk</p>
 			</a>
 			<button
 				className="hamburger"
