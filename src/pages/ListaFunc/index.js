@@ -34,42 +34,42 @@ function ListaFunc() {
 							<div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
 								<div class="overflow-hidden">
 									<table class="min-w-full">
-										<thead class="border-b-2">
+										<thead align="center" class="border-b-2">
 											<tr>
 												<th
 													scope="col"
-													class="text-lg font-medium text-gray-900 px-6 py-4 text-left"
+													class="text-lg font-medium text-gray-900 px-6 py-4"
 												>
 													Nome
 												</th>
 												<th
 													scope="col"
-													class="text-lg font-medium text-gray-900 px-6 py-4 text-left"
+													class="text-lg font-medium text-gray-900 px-6 py-4"
 												>
 													Matrícula
 												</th>
 												<th
 													scope="col"
-													class="text-lg font-medium text-gray-900 px-6 py-4 text-left"
+													class="text-lg font-medium text-gray-900 px-6 py-4"
 												>
 													Usuário
 												</th>
 												<th
 													scope="col"
-													class="text-lg font-medium text-gray-900 px-6 py-4 text-left"
+													class="text-lg font-medium text-gray-900 px-6 py-4"
 												>
 													Editar
 												</th>
 												<th
 													scope="col"
-													class="text-lg font-medium text-gray-900 px-6 py-4 text-left"
+													class="text-lg font-medium text-gray-900 px-6 py-4"
 												>
 													Excluir
 												</th>
 											</tr>
 										</thead>
 										<tbody>
-											<tr class="border-b">
+											<tr align="center" class="border-b">
 												<td class="text-lg text-gray-900 font-light px-6 py-4 whitespace-nowrap">
 													Fulano da Silva
 												</td>

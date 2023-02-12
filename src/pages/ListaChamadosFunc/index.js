@@ -42,54 +42,54 @@ function ListaChamadosFunc() {
 							<div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
 								<div class="overflow-hidden">
 									<table class="min-w-full">
-										<thead class="border-b-2">
+										<thead align="center" class="border-b-2">
 											<tr>
 												<th
 													scope="col"
-													class="text-lg font-medium text-gray-900 px-6 py-4 text-left"
+													class="text-lg font-medium text-gray-900 px-6 py-4"
 												>
 													Nome
 												</th>
 												<th
 													scope="col"
-													class="text-lg font-medium text-gray-900 px-6 py-4 text-left"
+													class="text-lg font-medium text-gray-900 px-6 py-4"
 												>
 													Problema
 												</th>
 												<th
 													scope="col"
-													class="text-lg font-medium text-gray-900 px-6 py-4 text-left"
+													class="text-lg font-medium text-gray-900 px-6 py-4"
 												>
 													Protocolo
 												</th>
 												<th
 													scope="col"
-													class="text-lg font-medium text-gray-900 px-6 py-4 text-left"
+													class="text-lg font-medium text-gray-900 px-6 py-4"
 												>
 													Status
 												</th>
 												<th
 													scope="col"
-													class="text-lg font-medium text-gray-900 px-6 py-4 text-left"
+													class="text-lg font-medium text-gray-900 px-6 py-4"
 												>
 													Detalhes
 												</th>
 												<th
 													scope="col"
-													class="text-lg font-medium text-gray-900 px-6 py-4 text-left"
+													class="text-lg font-medium text-gray-900 px-6 py-4"
 												>
 													Conclusão
 												</th>
 												<th
 													scope="col"
-													class="text-lg font-medium text-gray-900 px-6 py-4 text-left"
+													class="text-lg font-medium text-gray-900 px-6 py-4"
 												>
 													Excluir
 												</th>
 											</tr>
 										</thead>
 										<tbody>
-											<tr class="border-b">
+											<tr align="center" class="border-b">
 												<td class="text-lg text-gray-900 font-light px-6 py-4 whitespace-nowrap">
 													Fulano da Silva
 												</td>
@@ -119,7 +119,7 @@ function ListaChamadosFunc() {
 												</td>
 											</tr>
 
-                                            <tr class="border-c">
+                                            <tr align="center" class="border-c">
 												<td class="text-lg text-gray-900 font-light px-6 py-4 whitespace-nowrap">
 													Fulano da Silva
 												</td>
@@ -148,7 +148,7 @@ function ListaChamadosFunc() {
 													</a>
 												</td>
 											</tr>
-                                            <tr class="border-d">
+                                            <tr align="center" class="border-d">
 												<td class="text-lg text-gray-900 font-light px-6 py-4 whitespace-nowrap">
 													Fulano da Silva
 												</td>
