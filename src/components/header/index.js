@@ -1,7 +1,6 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
-import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 
 export default function HeaderEmpresa({ fixed }) {
   const [navbarOpen, setNavbarOpen] = React.useState(false);
@@ -39,16 +38,7 @@ export default function HeaderEmpresa({ fixed }) {
                   href="#pablo"
                 >
                   <i className="fab fa-facebook-square text-lg leading-lg text-black opacity-75"></i>
-                  <span className="ml-2">Chamados</span>
-                </a>
-              </li>
-              <li className="nav-item">
-                <a
-                  className="px-3 py-2 flex items-center text-2xl uppercase font-bold leading-snug text-black hover:opacity-75"
-                  href="#pablo"
-                >
-                  <i className="fab fa-facebook-square text-lg leading-lg text-black opacity-75"></i>
-                  <span className="ml-2">Funcionarios</span>
+                  <span className="ml-2">Sobre nós</span>
                 </a>
               </li>
               <li className="nav-item">
@@ -57,20 +47,8 @@ export default function HeaderEmpresa({ fixed }) {
                   href="#pablo"
                 >
                   <i className="fab fa-twitter text-lg leading-lg text-black opacity-75 "></i>
-                  <span className="text-white">Perfil</span>
+                  <span className="text-white">Login</span>
                 </a>
-              </li>
-              <li className="nav-item">
-                <button
-                  className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug"
-                  type="button"
-                  onClick={() => ""}
-                >
-                  <FontAwesomeIcon
-                    icon={faRightFromBracket}
-                    className="h-10 w-10 ml-4 hover:text-azul-hyde"
-                  />
-                </button>
               </li>
             </ul>
           </div>
