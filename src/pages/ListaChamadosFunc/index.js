@@ -10,7 +10,7 @@ function ListaChamadosFunc() {
 			<Header />
 			<main>
 				<div class="relative px-6 lg:px-8">
-					<div class=" max-w-2xl py-5 sm:py-48 lg:py-56">
+					<div class=" max-w-2xl py-5 sm:py-16 lg:py-16">
 						<div class="text-center flex flex-row">
 							<h1 class="text-2xl font-semi-bold  text-gray-900 sm:text-4xl">
 								Lista de chamados
@@ -46,43 +46,43 @@ function ListaChamadosFunc() {
 											<tr>
 												<th
 													scope="col"
-													class="text-lg font-medium text-gray-900 px-6 py-4"
+													class="text-lg font-bold text-gray-900 px-6 py-4"
 												>
 													Nome
 												</th>
 												<th
 													scope="col"
-													class="text-lg font-medium text-gray-900 px-6 py-4"
+													class="text-lg font-bold text-gray-900 px-6 py-4"
 												>
 													Problema
 												</th>
 												<th
 													scope="col"
-													class="text-lg font-medium text-gray-900 px-6 py-4"
+													class="text-lg font-bold text-gray-900 px-6 py-4"
 												>
 													Protocolo
 												</th>
 												<th
 													scope="col"
-													class="text-lg font-medium text-gray-900 px-6 py-4"
+													class="text-lg font-bold text-gray-900 px-6 py-4"
 												>
 													Status
 												</th>
 												<th
 													scope="col"
-													class="text-lg font-medium text-gray-900 px-6 py-4"
+													class="text-lg font-bold text-gray-900 px-6 py-4"
 												>
 													Detalhes
 												</th>
 												<th
 													scope="col"
-													class="text-lg font-medium text-gray-900 px-6 py-4"
+													class="text-lg font-bold text-gray-900 px-6 py-4"
 												>
 													Conclusão
 												</th>
 												<th
 													scope="col"
-													class="text-lg font-medium text-gray-900 px-6 py-4"
+													class="text-lg font-bold text-gray-900 px-6 py-4"
 												>
 													Excluir
 												</th>
@@ -103,17 +103,17 @@ function ListaChamadosFunc() {
                                                     Em aberto
 												</td>
 												<td class="text-lg text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-													<a href="/">
+													<a href="/" className="text-azul-hyde">
 														<FontAwesomeIcon icon={faEye} />
 													</a>
 												</td>
 												<td class="text-lg text-gray-900 font-light px-6 py-4 whitespace-nowrap ">
-													<a href="/">
+													<a href="/" className="text-azul-hyde">
 														<FontAwesomeIcon icon={faEllipsis} />
 													</a>
 												</td>
 												<td class="text-lg text-gray-900 font-light px-6 py-4 whitespace-nowrap ">
-													<a href="/">
+													<a href="/" className="text-azul-hyde">
 														<FontAwesomeIcon icon={faTrash} />
 													</a>
 												</td>
@@ -133,17 +133,17 @@ function ListaChamadosFunc() {
                                                     Em andamento
 												</td>
 												<td class="text-lg text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-													<a href="/">
+													<a href="/" className="text-azul-hyde">
 														<FontAwesomeIcon icon={faEye} />
 													</a>
 												</td>
 												<td class="text-lg text-gray-900 font-light px-6 py-4 whitespace-nowrap ">
-													<a href="/">
+													<a href="/" className="text-azul-hyde">
 														<FontAwesomeIcon icon={faEllipsis} />
 													</a>
 												</td>
 												<td class="text-lg text-gray-900 font-light px-6 py-4 whitespace-nowrap ">
-													<a href="/">
+													<a href="/" className="text-azul-hyde">
 														<FontAwesomeIcon icon={faTrash} />
 													</a>
 												</td>
@@ -162,17 +162,17 @@ function ListaChamadosFunc() {
                                                     Concluído
 												</td>
 												<td class="text-lg text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-													<a href="/">
+													<a href="/" className="text-azul-hyde">
 														<FontAwesomeIcon icon={faEye} />
 													</a>
 												</td>
 												<td class="text-lg text-gray-900 font-light px-6 py-4 whitespace-nowrap ">
-													<a href="/">
+													<a href="/" className="text-azul-hyde">
 														<FontAwesomeIcon icon={faEllipsis} />
 													</a>
 												</td>
 												<td class="text-lg text-gray-900 font-light px-6 py-4 whitespace-nowrap ">
-													<a href="/">
+													<a href="/" className="text-azul-hyde">
 														<FontAwesomeIcon icon={faTrash} />
 													</a>
 												</td>
