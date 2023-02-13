@@ -44,15 +44,6 @@ export default function HeaderEmpresa({ fixed }) {
               </li>
               <li className="nav-item">
                 <a
-                  className="px-3 py-2 flex items-center text-2xl uppercase font-bold leading-snug text-black hover:opacity-75"
-                  href="#pablo"
-                >
-                  <i className="fab fa-facebook-square text-lg leading-lg text-black opacity-75"></i>
-                  <span className="ml-2">Funcionarios</span>
-                </a>
-              </li>
-              <li className="nav-item">
-                <a
                   className="ml-5 px-3 py-2 flex items-center content-center text-2xl uppercase font-bold leading-snug rounded-2xl bg-azul-hyde hover:bg-black text-azul-hyde"
                   href="#pablo"
                 >
