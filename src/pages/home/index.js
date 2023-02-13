@@ -10,8 +10,7 @@ function Home() {
             <div className="flex items-center justify-center">
                 <div className="max-w-sm">
                     <h1 className="font-bold">Suporte</h1>
-                    <h1 className="font-bold">Help Desk</h1>
-                        
+                    <h1 className="font-bold">Help Desk</h1>               
                     <p className="semi-bold">Aliquam laoreet commodo laoreet. Aenean luctus neque ut risus volutpat interdum.
                     Phasellus tristique sem vel odio sollicitudin facilisis. Aliquam erat volutpat.</p>
                 <div className="mt-8 flex flex-col">
@@ -20,15 +19,13 @@ function Home() {
                     >Conheça mais</button>
                   </Link>
                 </div>
-                </div>
-                    
+                </div>           
                 <div className="hidden lg:flex justify-center items-center">
                     <div className="ml-40 mr-10 w-85 h-85">
                         <img src={ImagemLogin} alt='Homem segurando uma ferramenta'/>
                         {/* <a href="https://storyset.com/internet">Internet illustrations by Storyset</a> */}
                     </div>
-                </div>
-                
+                </div>       
             </div>
         </div>
     </div>
