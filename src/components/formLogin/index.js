@@ -78,7 +78,7 @@ function Form() {
         <div className="mt-8 flex flex-col">
           <Link
             className="no-underline flex justify-center items-center"
-            to="/"
+            to="/recuperar"
           >
             <p className="text-black font-medium">Esqueceu a senha?</p>
             <p className="ml-2 text-cyan-500 font-medium">Recuperar</p>
