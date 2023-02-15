@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 import { useState, useContext } from "react";
-
+import "./index.css"
 import { Context } from "../../Context/AuthContext";
+import { AiOutlineLoading3Quarters } from 'react-icons/ai'
 
 function Form() {
   const [label, setLabel] = useState("cpf");
@@ -84,10 +85,11 @@ function Form() {
             <p className="ml-2 text-cyan-500 font-medium">Recuperar</p>
           </Link>
           <button
-            className="hover:bg-cyan-600 mb-6 bg-azul-hyde p-2 rounded-3xl text-white font-bold text-lg"
+            className="hover:bg-cyan-600 mb-6 bg-azul-hyde p-2 rounded-3xl text-white font-bold text-lg "
             onClick={() => {
               handleLogin(user, label)
-              }}>Login</button>
+            }}> Login</button>
+            
           <p className="text-red-500 flex justify-center">{status}</p>
           <Link
             className="no-underline flex items-center "

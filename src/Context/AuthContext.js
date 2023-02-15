@@ -1,4 +1,5 @@
 import React, {createContext, useEffect, useState} from "react";
+import { useNavigate } from "react-router-dom";
 import api from "../api"
 
 const Context = createContext();
@@ -10,10 +11,9 @@ function AuthProvider({ children }){
     const [status, setStatus] = useState('')
     const [authenticated, setAuthenticated] = useState(false)
     const [loading, setLoading] = useState(true)
-
     useEffect(() =>{
         const activeToken = localStorage.getItem("Token")
-
+        
         if(activeToken){
             api.defaults.headers.Authorization = `Bearer ${JSON.parse(activeToken)}`
             setAuthenticated(true)
@@ -21,7 +21,7 @@ function AuthProvider({ children }){
 
         setLoading(false)
     },[])
-
+    // const navigate = useNavigate()
     const handleLogin = async (user, label) => {
       
         switch (label) {
@@ -39,10 +39,10 @@ function AuthProvider({ children }){
                         localStorage.setItem("Id", JSON.stringify(id))
                         localStorage.setItem("Tipo", JSON.stringify(tipo))
                         api.defaults.headers.Authorization = `Bearer ${token}`
+                        setAuthenticated(true)
+                        // navigate("/")
                     }
         
-                    setAuthenticated(true)
-                    
         
                 } catch (error) {
                     console.log(error)
@@ -61,10 +61,9 @@ function AuthProvider({ children }){
                         localStorage.setItem("Token", JSON.stringify(token))
                         localStorage.setItem("Id", JSON.stringify(id))
                         localStorage.setItem("Tipo", JSON.stringify(tipo))
-                        api.defaults.headers.Authorization = `Bearer ${token}`
-                        
+                        api.defaults.headers.Authorization = `Bearer ${token}`                    
+                        setAuthenticated(true)
                     }
-                    setAuthenticated(true)
                     
                     
                 } catch (error) {
@@ -85,8 +84,9 @@ function AuthProvider({ children }){
                         localStorage.setItem("Id", JSON.stringify(id))
                         localStorage.setItem("Tipo", JSON.stringify(tipo))
                         api.defaults.headers.Authorization = `Bearer ${token}`
+                        setAuthenticated(true)
+                        
                     }
-                    setAuthenticated(true)
                     
         
                 } catch (error) {
