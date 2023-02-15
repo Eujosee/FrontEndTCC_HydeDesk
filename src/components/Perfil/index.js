@@ -14,7 +14,7 @@ export default function CardPerfil(props) {
         <div className="bg-white px-10 py-10 rounded-3xl">
           <div className="flex mb-10 ">
             <div className="w-40 h-40 flex items-center justify-center">
-              <img className="rounded-full" src={"http://localhost:8080/" + props.foto} alt='sua foto de perfil'></img>
+              <img className="rounded-full" src={"https://hdteste.azurewebsites.net/" + props.foto} alt='sua foto de perfil'></img>
             </div>
             <div className="flex flex-col px-4 justify-between">
               <h1 className="font-black">Meu perfil</h1>

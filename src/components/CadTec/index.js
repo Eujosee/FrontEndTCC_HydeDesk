@@ -22,10 +22,10 @@ function CadTec () {
             [e.target.name]:e.target.value
         })
     }
-
+    console.log(user)
     const config = {
         headers: { "content-type": "multipart/form-data" },
-      };
+    };
     
     const handleCad = async(e) => {
         e.preventDefault()
@@ -41,7 +41,7 @@ function CadTec () {
             formData.append("senha", user.senha);
             formData.append("confirmsenha", user.confirmsenha);
 
-            console.log(formData.get("foto"))
+            console.log(formData.get("nome"))
             const { data } = await api.post('/tecnicos/cadastro', formData, config)
             console.log(data)
             setStatus(data.message)
