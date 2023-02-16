@@ -43,7 +43,7 @@ function CadEmp () {
 
     }
 
-    return (
+    return ( 
         <div className="bg-white px-10 pb-10 pt-3">
                     <div className="flex flex-col justify-center items-center mt-5">
                         <label className="text-lg font-medium text-gray-900">Foto de perfil</label>
