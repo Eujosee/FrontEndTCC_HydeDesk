@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 import { Context } from "../../Context/AuthContext";
 import { FiLogOut } from "react-icons/fi"
 
-
 export default function HeaderEmpresa({ fixed }) {
   const [navbarOpen, setNavbarOpen] = React.useState(false);
 
@@ -97,7 +96,6 @@ export default function HeaderEmpresa({ fixed }) {
                   />
                 </button>
               </li>}
-              
             </ul>
           </div>
         </div>
