@@ -1,4 +1,3 @@
-import Header from "../../components/header";
 import FormTec from "../../components/CadTec"
 import FormEmp from "../../components/CadEmp"
 import Imagemcad from "../../images/mobile.svg"
@@ -14,13 +13,13 @@ function Cadastro() {
     
     return (
         <>
-        <div className="flex w-screen h-screen items-center  ">
-            <div className="flex w-full  items-center">
+        <div className="flex w-screen h-fit items-center  ">
+            <div className="flex w-full items-center">
                     <div className="hidden w-2/6 h-screen lg:flex bg-azul-claro-hyde justify-center items-center">
                             <img className="w-3/4 h-3/4" src={Imagemcad} alt='Mulher mexendo no celular para fazer login'/>
                             {/* <a href="https://storyset.com/internet">Internet illustrations by Storyset</a> */}
                     </div>
-                <div className="flex flex-col w-full h-screen justify-center items-center">
+                <div className="flex flex-col w-full h-screen justify-center items-center overflow-y-auto">
                     <div className="lg:mt-10 lg:px-10 flex flex-col w-full">
                         <div className="flex flex-row">
                             <h1 className="font-extrabold mr-2 text-3xl">Bem vindo a</h1>
@@ -29,7 +28,7 @@ function Cadastro() {
                         </div>
                         <div className="flex mt-8 flex-col">
                             <h1 className="font-bold text-xl">Registrar uma conta como:</h1>
-                            <div className="">
+                            <div>
                             <input
                                 type="radio"
                                 name="escolhalogin"
