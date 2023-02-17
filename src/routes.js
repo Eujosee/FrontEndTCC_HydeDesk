@@ -35,7 +35,7 @@ const Rotas = () => {
             <Route path="/cadastro-funcionario" element={<CadastroFunc/>}/>
             <Route path="/perfil" element={<PrivateRoutes><Perfil/></PrivateRoutes>}/>
             <Route path="/recuperar" element={<RecuperarSenha/>}/>
-            <Route path="/lista-funcionarios" element={<PrivateRoutes><ListaFunc/></PrivateRoutes>}/>
+            <Route path="/lista-funcionarios" element={<ListaFunc/>}/>
             <Route path="/lista-chamados-empresa" element={<ListaChamados/>}/>
             <Route path="/lista-chamados-funcionarios" element={<ListaChamadosFunc/>}/>
             <Route path="/mudar-senha" element={<MudaSenha/>}/>
