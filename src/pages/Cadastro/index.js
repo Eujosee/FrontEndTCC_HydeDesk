@@ -5,7 +5,7 @@ import Imagemcad from "../../images/mobile.svg"
 import { useState } from "react";
 
 
-function CadastroTec() {
+function Cadastro() {
     const [escolha, setEscolha] = useState('tecnico')
     
     const handleChange = (event) => {
@@ -15,10 +15,10 @@ function CadastroTec() {
     return (
         <div className="font-Poppins">
             <Header/>
-        <div className="flex w-full h-full flex-col  justify-center ">
-            <div className="w-1/2">
-                <h1>Cadastrar como:</h1>
-                <div>
+        <div className="flex w-full h-full flex-col justify-center items-center ">
+            <div className="flex flex-col px-10 pt-6">
+                <h1 className="font-bold text-2xl">Cadastrar como:</h1>
+                <div className="">
                 <input
                     type="radio"
                     name="escolhalogin"
@@ -26,7 +26,7 @@ function CadastroTec() {
                     onChange={handleChange}
                     defaultChecked
                 />
-                <label className="mr-4 ml-2 font-medium">Técnico</label>
+                <label className="mr-4 ml-2 font-medium text-xl">Técnico</label>
 
                 <input
                     type="radio"
@@ -34,7 +34,7 @@ function CadastroTec() {
                     value="empresa"
                     onChange={handleChange}
                 />
-                <label className="mr-4 ml-2 font-medium">Empresa</label>
+                <label className="mr-4 ml-2 font-medium text-xl">Empresa</label>
                 </div>
             </div>
             <div className="flex items-center justify-center bg-white">
@@ -51,4 +51,4 @@ function CadastroTec() {
     );
 }
 
-export default CadastroTec;
+export default Cadastro;

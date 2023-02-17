@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 import { useState, useContext } from "react";
-
+import "./index.css"
 import { Context } from "../../Context/AuthContext";
+import { AiOutlineLoading3Quarters } from 'react-icons/ai'
 
 function Form() {
   const [label, setLabel] = useState("cpf");
@@ -53,7 +54,7 @@ function Form() {
           <label className="ml-2 font-medium">Funcionário</label>
         </div>
         <div className="mt-8">
-          <label className="text-lg font-medium text-gray-900 dark:text-white">
+          <label className="text-lg font-medium text-gray-900">
             Login
           </label>
           <input
@@ -64,7 +65,7 @@ function Form() {
           />
         </div>
         <div>
-          <label className="text-lg mt-2 font-medium text-gray-900 dark:text-white">
+          <label className="text-lg mt-2 font-medium text-gray-900">
             Senha
           </label>
           <input
@@ -78,16 +79,17 @@ function Form() {
         <div className="mt-8 flex flex-col">
           <Link
             className="no-underline flex justify-center items-center"
-            to="/"
+            to="/recuperar"
           >
             <p className="text-black font-medium">Esqueceu a senha?</p>
             <p className="ml-2 text-cyan-500 font-medium">Recuperar</p>
           </Link>
           <button
-            className="hover:bg-cyan-600 mb-6 bg-azul-hyde p-2 rounded-3xl text-white font-bold text-lg"
+            className="hover:bg-cyan-600 mb-6 bg-azul-hyde p-2 rounded-3xl text-white font-bold text-lg "
             onClick={() => {
               handleLogin(user, label)
-              }}>Login</button>
+            }}> Login</button>
+            
           <p className="text-red-500 flex justify-center">{status}</p>
           <Link
             className="no-underline flex items-center "

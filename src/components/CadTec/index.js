@@ -22,10 +22,10 @@ function CadTec () {
             [e.target.name]:e.target.value
         })
     }
-
+    console.log(user)
     const config = {
         headers: { "content-type": "multipart/form-data" },
-      };
+    };
     
     const handleCad = async(e) => {
         e.preventDefault()
@@ -41,7 +41,7 @@ function CadTec () {
             formData.append("senha", user.senha);
             formData.append("confirmsenha", user.confirmsenha);
 
-            console.log(formData.get("foto"))
+            console.log(formData.get("nome"))
             const { data } = await api.post('/tecnicos/cadastro', formData, config)
             console.log(data)
             setStatus(data.message)
@@ -53,13 +53,13 @@ function CadTec () {
     }
 
     return (
-        <div className="bg-white px-10 py-10">
-            <h1 className="font-bold text-2xl">Cadastro para técnicos</h1>
+        <div className="bg-white px-10 pb-10 pt-3">
+            <h1 className="font-bold text-2xl">Preencha o formulário</h1>
             <div>
                 <form encType="multipart/form">
 
                     <div className="mt-8">
-                    <label className="text-lg font-medium text-gray-900 dark:text-white">Nome completo</label>
+                    <label className="text-lg font-medium text-gray-900">Nome completo *</label>
                         <input
                             className="border-2 w-full rounded p-2"
                             placeholder= "Nome completo"
@@ -69,7 +69,7 @@ function CadTec () {
                             />
                     </div>
                     <div className="mt-2">
-                    <label className="text-lg font-medium text-gray-900 dark:text-white">CPF</label>
+                    <label className="text-lg font-medium text-gray-900">CPF *</label>
                         <input
                             className="border-2 w-full rounded p-2"
                             placeholder= "CPF"
@@ -79,7 +79,7 @@ function CadTec () {
                             />
                     </div>
                     <div className="mt-2">
-                    <label className="text-lg font-medium text-gray-900 dark:text-white">Email</label>
+                    <label className="text-lg font-medium text-gray-900">Email *</label>
                         <input
                             type="email"
                             className="border-2 w-full rounded p-2"
@@ -90,7 +90,7 @@ function CadTec () {
                             />
                     </div>
                     <div className="mt-2">
-                    <label className="text-lg font-medium text-gray-900 dark:text-white">Telefone</label>
+                    <label className="text-lg font-medium text-gray-900">Telefone *</label>
                         <input
                             className="border-2 w-full rounded p-2"
                             placeholder= "Telefone"
@@ -101,7 +101,7 @@ function CadTec () {
                             />
                     </div>
                     <div className="mt-2">
-                        <label className="text-lg font-medium text-gray-900 dark:text-white">Especialidade</label>
+                        <label className="text-lg font-medium text-gray-900">Especialidade *</label>
                         <select className="border-2 w-full rounded p-2" name="especialidade" onChange={handleUser} required>
                             <option selected disabled>Selecione uma opção</option>
                             <option value="Desenvolvedor">Desenvolvedor</option>
@@ -110,7 +110,7 @@ function CadTec () {
                         </select>
                     </div>
                     <div className="mt-2">
-                    <label className="text-lg font-medium text-gray-900 dark:text-white">Senha</label>
+                    <label className="text-lg font-medium text-gray-900">Senha *</label>
                         <input
                             type="password"
                             className="border-2 w-full rounded p-2"
@@ -121,7 +121,7 @@ function CadTec () {
                             />
                     </div>
                     <div className="mt-2">
-                    <label className="text-lg font-medium text-gray-900 dark:text-white">Confirme sua senha</label>
+                    <label className="text-lg font-medium text-gray-900">Confirme sua senha *</label>
                         <input
                             type="password"
                             className="border-2 w-full rounded p-2"
@@ -132,7 +132,7 @@ function CadTec () {
                             />
                     </div>
                     <div className="mt-2">
-                    <label className="text-sm font-medium text-gray-900 dark:text-white">Selecione uma foto de perfil</label>
+                    <label className="text-lg font-medium text-gray-900">Foto de perfil *</label>
                         <input
                             type="file"
                             className="border-2 w-full rounded p-2"
