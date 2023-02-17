@@ -28,13 +28,13 @@ function ListaChamados() {
   }, []);
 
   return (
-    <div className="font-Poppins">
-      <Header />
+    <div className="font-Poppins teste">
+      <Header />  
       <main>
         <div class="relative px-6 lg:px-8">
-          <div class=" max-w-2xl py-5 sm:py-16 lg:py-16">
+          <div class=" max-w-2xl py-5 :py-16 lg:py-16">
             <div class="text-center flex flex-row">
-              <h1 class="text-2xl font-semibold  text-gray-900 sm:text-4xl">
+              <h1 class=" texto text-2xl ml-6 first-letter:font-semibold sm:ml-0 text-gray-900 sm:text-4xl">
                 Lista de chamados
               </h1>
             </div>
@@ -42,8 +42,8 @@ function ListaChamados() {
         </div>
       </main>
 
-      <section className="flex w-full px-5 lg:flex-row ">
-        <div className="w-1/3 flex items-center relative">
+      <section className="response ml-6 sm:ml-0 flex w-full p-4 lg:flex-row ">
+        <div className=" pesquisa w-1/3 flex items-center relative">
           <input
             className="focus:outline-none focus:border-b-azul-hyde border-b-2 w-full  p-2"
             placeholder="Nome completo"
@@ -72,20 +72,20 @@ function ListaChamados() {
         </div>
         <button
           type="submit"
-          className="hover:bg-cyan-600  bg-azul-hyde p-2 rounded-xl text-white font-bold text-lg    "
+          className=" botao hover:bg-cyan-600  bg-azul-hyde p-2 rounded-xl text-white font-bold text-lg    "
         >
           Pesquisar
         </button>
       </section>
 
       <body>
-        <div className=" w-full mr-10 ml-10 ">
+        <div className=" w-full  sm:ml-0 sm:mr-0">
           <div class="flex  flex-col ">
-            <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
-              <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
+            <div class="overflow-x-auto  lg:-mx-8">
+              <div class="py-8 inline-block min-w-full sm:px-2 lg:px-">
                 <div class="overflow-hidden">
                   <table class="min-w-full">
-                    <thead align="center" class="border-b-2">
+                    <thead align="center" class="border-b-2 w-full">
                       <tr>
                         <th
                           scope="col"
