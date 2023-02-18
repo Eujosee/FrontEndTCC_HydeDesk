@@ -10,7 +10,6 @@ import RecuperarSenha from "./pages/RecuperaSenha";
 import Detalhes from "./pages/Detalhes";
 import ListaFunc from "./pages/ListaFunc";
 import ListaChamados from "./pages/ListaChamados";
-import ListaChamadosFunc from "./pages/ListaChamadosFunc";
 import MudaSenha from "./pages/MudaSenha";
 import AbrirChamado from "./pages/AbrirChamado";
 import { Context } from "./Context/AuthContext";
@@ -36,8 +35,7 @@ const Rotas = () => {
             <Route path="/perfil" element={<PrivateRoutes><Perfil/></PrivateRoutes>}/>
             <Route path="/recuperar" element={<RecuperarSenha/>}/>
             <Route path="/lista-funcionarios" element={<PrivateRoutes><ListaFunc/></PrivateRoutes>}/>
-            <Route path="/lista-chamados-empresa" element={<PrivateRoutes><ListaChamados/></PrivateRoutes>}/>
-            <Route path="/lista-chamados-funcionarios" element={<PrivateRoutes><ListaChamadosFunc/></PrivateRoutes>}/>
+            <Route path="/lista-chamados" element={<PrivateRoutes><ListaChamados/></PrivateRoutes>}/>
             <Route path="/mudar-senha" element={<MudaSenha/>}/>
             <Route path="/abrir-chamado" element={<PrivateRoutes><AbrirChamado/></PrivateRoutes>}/>
 
