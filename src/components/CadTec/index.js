@@ -45,23 +45,23 @@ function CadTec () {
         if(cpf == '') return false;	
         // Elimina CPFs invalidos conhecidos	
         if (cpf.length != 11 || 
-            cpf == "00000000000" || 
-            cpf == "11111111111" || 
-            cpf == "22222222222" || 
-            cpf == "33333333333" || 
-            cpf == "44444444444" || 
-            cpf == "55555555555" || 
-            cpf == "66666666666" || 
-            cpf == "77777777777" || 
-            cpf == "88888888888" || 
-            cpf == "99999999999")
+            cpf === "00000000000" || 
+            cpf === "11111111111" || 
+            cpf === "22222222222" || 
+            cpf === "33333333333" || 
+            cpf === "44444444444" || 
+            cpf === "55555555555" || 
+            cpf === "66666666666" || 
+            cpf === "77777777777" || 
+            cpf === "88888888888" || 
+            cpf === "99999999999")
                 return false;		
         // Valida 1o digito	
         let add = 0;	
         for (let i=0; i < 9; i ++)		
             add += parseInt(cpf.charAt(i)) * (10 - i);	
             let rev = 11 - (add % 11);	
-            if (rev == 10 || rev == 11)		
+            if (rev === 10 || rev === 11)		
                 rev = 0;	
             if (rev != parseInt(cpf.charAt(9)))		
                 return false;		
@@ -70,7 +70,7 @@ function CadTec () {
         for (let i = 0; i < 10; i ++)		
             add += parseInt(cpf.charAt(i)) * (11 - i);	
         rev = 11 - (add % 11);	
-        if (rev == 10 || rev == 11)	
+        if (rev === 10 || rev === 11)	
             rev = 0;	
         if (rev != parseInt(cpf.charAt(10)))
             return false;		
@@ -90,7 +90,6 @@ function CadTec () {
         } 
 
         try {
-            
             let formData = new FormData();
             formData.append("nome", user.nome);
             formData.append("cpf", user.cpf.replace(/[^0-9]+/g,''));
@@ -100,6 +99,8 @@ function CadTec () {
             formData.append("foto", imagem);
             formData.append("senha", user.senha);
             formData.append("confirmsenha", user.confirmsenha);
+
+            console.log(formData)
 
             const { data } = await api.post('/tecnicos/cadastro', formData, config)
             setStatus(data.message)
@@ -114,8 +115,8 @@ function CadTec () {
                 <form encType="multipart/form">
                     <div className="flex flex-col justify-center items-center mt-5">
                         <label className="text-lg font-medium text-gray-900">Foto de perfil</label>
-                        {imagem ? <img className="w-40 h-40 rounded-full" src={URL.createObjectURL(imagem)} /> :
-                        <CgProfile size={160}/>
+                        {imagem ? <img className="w-40 h-40 rounded-full" src={URL.createObjectURL(imagem)} alt="sua foto" /> :
+                        <CgProfile className="text-gray-900" size={160}/>
                         }
                     </div>
                 <div className="sm:flex sm:flex-col lg:grid lg:grid-cols-2 lg:gap-x-10 lg:gap-y-2">
@@ -179,8 +180,8 @@ function CadTec () {
                     </div>
                     <div className="mt-1">
                         <div className="flex flex-row">
-                    <label className="text-lg font-medium text-gray-900">Foto de perfil *</label>
-                    <p className="ml-3 mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">PNG, JPG ou JPEG.</p>
+                            <label className="text-lg font-medium text-gray-900">Foto de perfil *</label>
+                            <p className="ml-3 mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">PNG, JPG ou JPEG.</p>
                         </div>
                         <input
                             type="file"

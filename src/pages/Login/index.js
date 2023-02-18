@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 function Login() {
     return (
         <>
-        <div className=" flex w-screen h-screen items-center">
+        <div className=" flex w-screen h-screen items-center overflow-hidden">
             <div className="flex w-full items-center ">
                 <div className="hidden w-3/4 h-screen lg:flex bg-azul-claro-hyde  justify-center items-center">
                         <img className="w-3/4 h-3/4" src={ImagemLogin} alt='Homem abrindo um cadeado virtual com uma chave'/>

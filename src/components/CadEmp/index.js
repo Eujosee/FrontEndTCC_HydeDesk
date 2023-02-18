@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { useState, useRef } from "react";
 import { CgProfile } from "react-icons/cg";
 import InputMask from "react-input-mask"
-import axios from "axios";
 
 
 function CadEmp () {
@@ -55,28 +54,28 @@ function CadEmp () {
  
         cnpj = cnpj.replace(/[^\d]+/g,'');
      
-        if(cnpj == '') return false;
-         
-        if (cnpj.length != 14)
-            return false;
-     
+        if(cnpj === '') return false;
+        
+        if (cnpj.length !== 14)
+        return false;
+        
         // Elimina CNPJs invalidos conhecidos
-        if (cnpj == "00000000000000" || 
-            cnpj == "11111111111111" || 
-            cnpj == "22222222222222" || 
-            cnpj == "33333333333333" || 
-            cnpj == "44444444444444" || 
-            cnpj == "55555555555555" || 
-            cnpj == "66666666666666" || 
-            cnpj == "77777777777777" || 
-            cnpj == "88888888888888" || 
-            cnpj == "99999999999999")
+        if (cnpj === "00000000000000" || 
+            cnpj === "11111111111111" || 
+            cnpj === "22222222222222" || 
+            cnpj === "33333333333333" || 
+            cnpj === "44444444444444" || 
+            cnpj === "55555555555555" || 
+            cnpj === "66666666666666" || 
+            cnpj === "77777777777777" || 
+            cnpj === "88888888888888" || 
+            cnpj === "99999999999999")
             return false;
-             
-        // Valida DVs
-        let tamanho = cnpj.length - 2
-        let numeros = cnpj.substring(0,tamanho);
-        let digitos = cnpj.substring(tamanho);
+            
+            // Valida DVs
+            let tamanho = cnpj.length - 2
+            let numeros = cnpj.substring(0,tamanho);
+            let digitos = cnpj.substring(tamanho);
         let soma = 0;
         let pos = tamanho - 7;
         for (let i = tamanho; i >= 1; i--) {
@@ -87,7 +86,7 @@ function CadEmp () {
         let resultado = soma % 11 < 2 ? 0 : 11 - soma % 11;
         if (resultado != digitos.charAt(0))
             return false;
-             
+
         tamanho = tamanho + 1;
         numeros = cnpj.substring(0,tamanho);
         soma = 0;
@@ -142,7 +141,7 @@ function CadEmp () {
 
         let res = validarCNPJ(user.cnpj)
         if (!res) {
-            return setStatusErro("CNPJ inválido!")
+            return setStatusErro("CNPJ inválido!") 
         } 
 
         try {
@@ -172,7 +171,7 @@ function CadEmp () {
             <form encType="multipart/form">
                     <div className="flex flex-col justify-center items-center mt-5">
                         <label className="text-lg font-medium text-gray-900">Foto de perfil</label>
-                        {imagem ? <img className="w-40 h-40 rounded-full" src={URL.createObjectURL(imagem)} /> :
+                        {imagem ? <img className="w-40 h-40 rounded-full" src={URL.createObjectURL(imagem)} alt="sua foto"/> :
                         <CgProfile size={160}/>}
                     </div>
             <div className="sm:flex sm:flex-col lg:grid lg:grid-cols-4 lg:gap-x-10 lg:gap-y-2">
@@ -325,7 +324,7 @@ function CadEmp () {
                     </div>
                 </div>
                 <div className="mt-8 flex justify-center items-center flex-col">
-                    <button className="hover:bg-cyan-600 mb-6 bg-azul-hyde p-2 rounded-3xl text-white font-bold text-lg w-80"
+                    <button type="submit" className="hover:bg-cyan-600 mb-6 bg-azul-hyde p-2 rounded-3xl text-white font-bold text-lg w-80"
                     onClick={handleCad}
                     >Cadastrar</button>
                      <p className={status ? "text-green-500" : "text-red-500"}>{status ? status : statusErro}</p>
