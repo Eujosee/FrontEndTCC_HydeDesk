@@ -1,12 +1,14 @@
 import api from "../../api"
 import { Link } from "react-router-dom";
-import { useState } from "react";
-import Imagemcad from "../../images/mobile.svg"
+import { useState, useRef } from "react";
+import {CgProfile} from  'react-icons/cg'
+import InputMask from 'react-input-mask'
 
 function CadTec () {
     const [status, setStatus] = useState('');
     const [statusErro, setStatusErro] = useState('');
-    const [imagem, setImagem] = useState("")
+    const [imagem, setImagem] = useState('')
+    const fileInput = useRef(null)
     const [user,setUser] = useState({
         nome: "",
         cpf: "",
@@ -17,40 +19,94 @@ function CadTec () {
         confirmsenha: "",
     })
 
+    const resetForm = () => {
+        setUser({
+            nome: "",
+            cpf: "",
+            email: "",
+            telefone: "",
+            especialidade: "",
+            senha: "",
+            confirmsenha: "", 
+        })
+        fileInput.current.value = ""
+        setImagem('')
+    }
+
     const handleUser = (e) => {
         setUser({
             ...user,
             [e.target.name]:e.target.value
         })
     }
-    console.log(user)
+
+    const validarCPF = (cpfs) => {	
+        let cpf = cpfs.replace(/[^\d]+/g,'');	
+        if(cpf == '') return false;	
+        // Elimina CPFs invalidos conhecidos	
+        if (cpf.length != 11 || 
+            cpf == "00000000000" || 
+            cpf == "11111111111" || 
+            cpf == "22222222222" || 
+            cpf == "33333333333" || 
+            cpf == "44444444444" || 
+            cpf == "55555555555" || 
+            cpf == "66666666666" || 
+            cpf == "77777777777" || 
+            cpf == "88888888888" || 
+            cpf == "99999999999")
+                return false;		
+        // Valida 1o digito	
+        let add = 0;	
+        for (let i=0; i < 9; i ++)		
+            add += parseInt(cpf.charAt(i)) * (10 - i);	
+            let rev = 11 - (add % 11);	
+            if (rev == 10 || rev == 11)		
+                rev = 0;	
+            if (rev != parseInt(cpf.charAt(9)))		
+                return false;		
+        // Valida 2o digito	
+        add = 0;	
+        for (let i = 0; i < 10; i ++)		
+            add += parseInt(cpf.charAt(i)) * (11 - i);	
+        rev = 11 - (add % 11);	
+        if (rev == 10 || rev == 11)	
+            rev = 0;	
+        if (rev != parseInt(cpf.charAt(10)))
+            return false;		
+        return true;   
+    }
+
     const config = {
         headers: { "content-type": "multipart/form-data" },
     };
     
     const handleCad = async(e) => {
         e.preventDefault()
+        
+        let res = validarCPF(user.cpf)
+        if (!res) {
+            return setStatusErro("CPF inválido!")
+        } 
 
         try {
+            
             let formData = new FormData();
             formData.append("nome", user.nome);
-            formData.append("cpf", user.cpf);
+            formData.append("cpf", user.cpf.replace(/[^0-9]+/g,''));
             formData.append("email", user.email);
-            formData.append("telefone", user.telefone);
+            formData.append("telefone", user.telefone.replace(/[^0-9]+/g,''));
             formData.append("especialidade", user.especialidade);
             formData.append("foto", imagem);
             formData.append("senha", user.senha);
             formData.append("confirmsenha", user.confirmsenha);
 
-            console.log(formData.get("nome"))
             const { data } = await api.post('/tecnicos/cadastro', formData, config)
-            console.log(data)
             setStatus(data.message)
+            resetForm()
         } catch (error) {
             setStatusErro(error.response.data.message);
         }
-
-
     }
 
     return (
@@ -58,7 +114,9 @@ function CadTec () {
                 <form encType="multipart/form">
                     <div className="flex flex-col justify-center items-center mt-5">
                         <label className="text-lg font-medium text-gray-900">Foto de perfil</label>
-                        <img className="w-40 rounded-full" src={Imagemcad} />
+                        {imagem ? <img className="w-40 h-40 rounded-full" src={URL.createObjectURL(imagem)} /> :
+                        <CgProfile size={160}/>
+                        }
                     </div>
                 <div className="sm:flex sm:flex-col lg:grid lg:grid-cols-2 lg:gap-x-10 lg:gap-y-2">
                         <div className="mt-2">
@@ -67,19 +125,22 @@ function CadTec () {
                                 className="focus:outline-none focus:border-azul-hyde border-b-2 w-full  p-2"
                                 placeholder= "Nome completo"
                                 name="nome"
-                                onChange={handleUser}
+                                value={user.nome}
+                                onChange={(e) => [handleUser(e), setStatusErro('')]}
                                 required
                                 />
                         </div>
                         <div className="mt-2">
                         <label className="text-lg font-medium text-gray-900">CPF *</label>
-                            <input
+                            <InputMask
                                 className="focus:outline-none focus:border-azul-hyde border-b-2 w-full  p-2"
-                                placeholder= "CPF"
+                                placeholder="CPF"
                                 name="cpf"
-                                onChange={handleUser}
+                                value={user.cpf}
+                                mask="999.999.999-99"
+                                onChange={(e) => [handleUser(e), setStatusErro('')]}
                                 required
-                                />
+                            />
                         </div>
 
                     <div className="mt-2">
@@ -89,24 +150,27 @@ function CadTec () {
                                 className="focus:outline-none focus:border-azul-hyde border-b-2 w-full  p-2"
                                 placeholder= "Email"
                                 name="email"
-                                onChange={handleUser}
+                                value={user.email}
+                                onChange={(e) => [handleUser(e), setStatusErro('')]}
                                 required
                                 />
                         </div>
                         <div className="mt-2">
                         <label className="text-lg font-medium text-gray-900">Telefone *</label>
-                            <input
+                                <InputMask
                                 className="focus:outline-none focus:border-azul-hyde border-b-2 w-full  p-2"
-                                placeholder= "Telefone"
+                                placeholder="Telefone"
                                 type="tel"
                                 name="telefone"
-                                onChange={handleUser}
+                                value={user.telefone}
+                                mask="(99) 99999-9999"
+                                onChange={(e) => [handleUser(e), setStatusErro('')]}
                                 required
-                                />
+                            />
                         </div>
                     <div className="mt-2">
                         <label className="text-lg font-medium text-gray-900">Especialidade *</label>
-                        <select className="focus:outline-none focus:border-azul-hyde border-b-2 w-full  p-2" name="especialidade" onChange={handleUser} required>
+                        <select className="focus:outline-none focus:border-azul-hyde border-b-2 w-full  p-2" name="especialidade" onChange={(e) => [handleUser(e), setStatusErro('')]} value={user.especialidade} required>
                             <option selected disabled>Selecione uma opção</option>
                             <option value="Desenvolvedor">Desenvolvedor</option>
                             <option value="Infraestrutura">Infraestrutura</option>
@@ -114,16 +178,16 @@ function CadTec () {
                         </select>
                     </div>
                     <div className="mt-1">
-                    <div className="flex flex-row">
-
+                        <div className="flex flex-row">
                     <label className="text-lg font-medium text-gray-900">Foto de perfil *</label>
                     <p className="ml-3 mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">PNG, JPG ou JPEG.</p>
-                    </div>
+                        </div>
                         <input
                             type="file"
                             className="focus:outline-none focus:border-azul-hyde border-b-2 w-full  p-2"
                             placeholder="Selecione uma foto"
                             name="anexo"
+                            ref={fileInput}
                             accept=".png, .jpg, .jpeg"
                             onChange={(e) => setImagem(e.target.files[0])}
                             required
@@ -136,7 +200,8 @@ function CadTec () {
                             className="focus:outline-none focus:border-azul-hyde border-b-2 w-full  p-2"
                             placeholder="Senha"
                             name="senha"
-                            onChange={handleUser}
+                            value={user.senha}
+                            onChange={(e) => [handleUser(e), setStatusErro('')]}
                             required
                             />
                     </div>
@@ -147,7 +212,8 @@ function CadTec () {
                             className="focus:outline-none focus:border-azul-hyde border-b-2 w-full  p-2"
                             placeholder="Confirme sua senha"
                             name="confirmsenha"
-                            onChange={handleUser}
+                            value={user.confirmsenha}
+                            onChange={(e) => [handleUser(e), setStatusErro('')]}
                             required
                             />
                     </div>
