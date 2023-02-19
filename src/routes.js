@@ -30,7 +30,6 @@ const Rotas = () => {
         <Routes>
             <Route path="/" element={<Home/>}/>
             <Route path="/404" element={<Pag404/>}/>
-            <Route path="*" element={<Navigate to="/404"/>}/>
             <Route path="/login" element={<Login/>}/>
             <Route path="/detalhes/:id" element={ <PrivateRoutes><Detalhes/></PrivateRoutes> }/>
             <Route path="/cadastro" element={<Cadastro/>}/>
@@ -41,6 +40,7 @@ const Rotas = () => {
             <Route path="/lista-chamados" element={<PrivateRoutes><ListaChamados/></PrivateRoutes>}/>
             <Route path="/mudar-senha" element={<MudaSenha/>}/>
             <Route path="/abrir-chamado" element={<PrivateRoutes><AbrirChamado/></PrivateRoutes>}/>
+            <Route path="*" element={<Navigate to="/404"/>}/>
 
         </Routes>
         </BrowserRouter>

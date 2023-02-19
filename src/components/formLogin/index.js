@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useState, useContext } from "react";
 import { Context } from "../../Context/AuthContext";
+import InputMask from "react-input-mask"
 
 
 function Form() {
@@ -8,14 +9,18 @@ function Form() {
   const [cpf, setCPF] = useState("");
   const [senha, setSenha] = useState("");
   const { authenticated, handleLogin, status } = useContext(Context);
+  var user = {}
 
-  
-  const user = {
-    [label]: cpf,
+  if (label === "matricula") {
+      user = {
+      [label]: cpf,
+      senha: senha,
+    }
+  }
+    user = {
+    [label]: cpf.replace(/[^0-9]+/g,''),
     senha: senha,
   }
- 
-  
 
   const handleChange = (event) => {
     setLabel(event.target.value);
@@ -25,7 +30,7 @@ function Form() {
     <div className="bg-white px-10 py-10">
       <div>
         <div className="sm:px-0 sm:shrink lg:px-8">
-        <p className="font-semibold text-lg">Entrar como:</p>
+          <p className="font-semibold text-lg">Entrar como:</p>
           <input
             type="radio"
             name="escolhalogin"
@@ -46,7 +51,7 @@ function Form() {
           <input
             type="radio"
             name="escolhalogin"
-            value="Matrícula"
+            value="matricula"
             onChange={handleChange}
           />
           <label className="ml-2 font-semibold ">Funcionário</label>
@@ -55,11 +60,13 @@ function Form() {
           <label className="text-lg font-semibold  text-gray-900">
             Login
           </label>
-          <input
+          <InputMask
             className="focus:outline-none focus:border-azul-hyde border-b-2 w-full p-2"
-            placeholder={!label ? "CPF" : label.toUpperCase()}
-            value={cpf}
-            onChange={(e) => [setCPF(e.target.value), ]}
+            placeholder={label === "cpf" || label === "cnpj" ? label.toUpperCase() : "Matrícula"}
+            name="cpf"
+            mask={label === "cpf" ? "999.999.999-99" : label === "cnpj" ? "99.999.999/9999-99" : label === "matricula" ? "" : ""}
+            onChange={(e) => [setCPF(e.target.value)]}
+            required
           />
         </div>
         <div>
@@ -70,7 +77,6 @@ function Form() {
             type="password"
             className="focus:outline-none focus:border-azul-hyde border-b-2 w-full p-2"
             placeholder="Senha"
-            value={senha}
             onChange={(e) => [setSenha(e.target.value)]}
           />
         </div>
@@ -81,7 +87,7 @@ function Form() {
               handleLogin(user, label)
             }}> Login</button>
           <p className="text-red-500 flex justify-center">{status}</p>
-            
+
           <Link
             className="no-underline flex "
             to="/recuperar"
