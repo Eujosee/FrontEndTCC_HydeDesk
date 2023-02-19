@@ -39,9 +39,9 @@ function AuthProvider({ children }){
                         localStorage.setItem("Id", JSON.stringify(id))
                         localStorage.setItem("Tipo", JSON.stringify(tipo))
                         api.defaults.headers.Authorization = `Bearer ${token}`
-                        setAuthenticated(true)
                         // navigate("/")
                     }
+                    setAuthenticated(true)
         
         
                 } catch (error) {
@@ -62,9 +62,8 @@ function AuthProvider({ children }){
                         localStorage.setItem("Id", JSON.stringify(id))
                         localStorage.setItem("Tipo", JSON.stringify(tipo))
                         api.defaults.headers.Authorization = `Bearer ${token}`                    
-                        setAuthenticated(true)
                     }
-                    
+                    setAuthenticated(true)
                     
                 } catch (error) {
                     setStatus(error.response.data.message);

@@ -12,6 +12,7 @@ import ListaFunc from "./pages/ListaFunc";
 import ListaChamados from "./pages/ListaChamados";
 import MudaSenha from "./pages/MudaSenha";
 import AbrirChamado from "./pages/AbrirChamado";
+import Pag404 from "./pages/NotFound";
 import { Context } from "./Context/AuthContext";
 
 
@@ -28,6 +29,8 @@ const Rotas = () => {
         <BrowserRouter>
         <Routes>
             <Route path="/" element={<Home/>}/>
+            <Route path="/404" element={<Pag404/>}/>
+            <Route path="*" element={<Navigate to="/404"/>}/>
             <Route path="/login" element={<Login/>}/>
             <Route path="/detalhes/:id" element={ <PrivateRoutes><Detalhes/></PrivateRoutes> }/>
             <Route path="/cadastro" element={<Cadastro/>}/>

@@ -47,10 +47,11 @@ function CadFunc () {
       };
     
     const handleCad = async(e) => {
+        e.preventDefault()
       try {
         let formData = new FormData();
         formData.append("nome", user.nome)
-        formData.append("matricla", user.matricula)
+        formData.append("matricula", user.matricula)
         formData.append("usuario", user.usuario)
         formData.append("senha", user.senha)
         formData.append("confirmsenha", user.confirmsenha)
@@ -84,6 +85,7 @@ function CadFunc () {
                             className="focus:outline-none focus:border-azul-hyde border-b-2 w-full  p-2"
                             placeholder= "Nome completo"
                             name="nome"
+                            value={user.nome}
                             onChange={(e) => [handleUser(e), setStatusErro('')]}
                             />
                     </div>
@@ -94,6 +96,7 @@ function CadFunc () {
                             className="focus:outline-none focus:border-azul-hyde border-b-2 w-full  p-2"
                             placeholder= "Matrícula"
                             name="matricula"
+                            value={user.matricula}
                             onChange={(e) => [handleUser(e), setStatusErro('')]}
                             />
                     </div>
@@ -103,6 +106,7 @@ function CadFunc () {
                             className="focus:outline-none focus:border-azul-hyde border-b-2 w-full  p-2"
                             placeholder= "Usuário"
                             name="usuario"
+                            value={user.usuario}
                             onChange={(e) => [handleUser(e), setStatusErro('')]}
                             />
                     </div>
@@ -129,6 +133,7 @@ function CadFunc () {
                             className="focus:outline-none focus:border-azul-hyde border-b-2 w-full  p-2"
                             placeholder="Senha"
                             name="senha"
+                            value={user.senha}
                             onChange={(e) => [handleUser(e), setStatusErro('')]}
                             />
                     </div>
@@ -139,6 +144,7 @@ function CadFunc () {
                             className="focus:outline-none focus:border-azul-hyde border-b-2 w-full  p-2"
                             placeholder="Confirme sua senha"
                             name="confirmsenha"
+                            value={user.confirmsenha}
                             onChange={handleUser}
                             />
                     </div>

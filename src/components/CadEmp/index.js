@@ -39,6 +39,12 @@ function CadEmp () {
             senha: "",
             confirmarsenha: "",
         })
+        setAdress({
+            rua: "",
+            estado: "",
+            cidade: "",
+            bairro: "",
+        })
         fileInput.current.value = ""
         setImagem('')
     }
@@ -154,7 +160,7 @@ function CadEmp () {
             formData.append("numero_endereco", user.numero_endereco);
             formData.append("foto", imagem);
             formData.append("senha", user.senha);
-            formData.append("confirmsenha", user.confirmarsenha);
+            formData.append("confirmarsenha", user.confirmarsenha);
 
             const { data } = await api.post('/empresas/cadastro', formData, config)
             setStatus(data.message)

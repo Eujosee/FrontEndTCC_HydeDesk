@@ -100,8 +100,6 @@ function CadTec () {
             formData.append("senha", user.senha);
             formData.append("confirmsenha", user.confirmsenha);
 
-            console.log(formData)
-
             const { data } = await api.post('/tecnicos/cadastro', formData, config)
             setStatus(data.message)
             resetForm()
