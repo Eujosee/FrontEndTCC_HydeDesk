@@ -10,7 +10,8 @@ module.exports = {
         'Poppins': ['Poppins', 'sans-serif']
       },
       colors: {
-        'azul-hyde': '#23AFFF'
+        'azul-hyde': '#23AFFF',
+        'azul-claro-hyde': '#55CCEF'
       }
     },
   },
