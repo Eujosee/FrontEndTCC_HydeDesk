@@ -8,7 +8,7 @@ module.exports = {
     extend: {
       colors: {
         'azul-hyde': '#23AFFF', 
-        'azul-claro-hyde': '#55CCEF',
+        'azul-claro-hyde': '#55CCEF'
       }
     },
   },
