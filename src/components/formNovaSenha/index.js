@@ -6,37 +6,36 @@ import { Link } from "react-router-dom";
 export default function Form(){
   
     return(
-        <div className="bg-white px-10 py-10 rounded">
-            <h1 className="font-bold">Nova senha</h1>
-            <div>
-            <input
-            className="border-2 w-full rounded p-2 mt-3"
-            placeholder="Digite a nova senha"
-          
+      <div className="bg-white px-10 py-10">
+      <div>
+        <div>
+          <label className="text-lg font-semibold items-center text-gray-900 ">
+            Nova Senha
+          </label>
+          <input
+            type="text"
+            className="focus:outline-none focus:border-azul-hyde border-b-2 w-full p-2"
+            placeholder="Nova senha"
           />
-            </div>
-            <div>
-            <h1 className="font-bold mt-5">Confirmar senha</h1>
-             <div>
-             <input
-            className="border-2 w-full rounded p-2 mt-3"
-            placeholder="Digite a nova senha"
-            />
-             </div>
-             <div>
-             <button
-            className="hover:bg-cyan-600 mb-6 bg-azul-hyde p-2 w-80 rounded-3xl text-white font-bold text-lg mt-12"
-            onClick={() => {
-                
-              }}>Alterar senha</button>
-          <p className="text-red-500 flex justify-center "></p>
-          <Link
-            className="no-underline flex items-center "
-            to="/cadastro"
-          ></Link>
-             </div>
-
-            </div>
         </div>
+      </div>
+      <div className="mt-10">
+          <label className="text-lg font-semibold items-center text-gray-900">
+            Confirmar nova senha
+          </label>
+          <input
+            type="text"
+            className="focus:outline-none focus:border-azul-hyde border-b-2 w-full p-2"
+            placeholder="Confirmar nova senha"
+          />
+        </div>
+        <div className="mt-8 flex flex-col justify-center items-center">
+          <button
+            className="hover:bg-cyan-600 mb-6 bg-azul-hyde p-2 w-2/3 rounded-3xl text-white font-bold text-lg "
+            onClick={() => {
+            }}> Atualizar</button>
+          <p className="text-red-500 flex justify-center"></p>
+        </div>
+    </div>
     )
 }

@@ -1,3 +1,4 @@
+import Footer from "../../components/Footer";
 import Header from "../../components/header";
 import ImagemLogin from "../../images/suporte.svg"
 
@@ -26,9 +27,9 @@ function Home() {
                         {/* <a href="https://storyset.com/internet">Internet illustrations by Storyset</a> */}
                     </div>
                 </div>
-                
             </div>
         </div>
+        <Footer/>
     </div>
   );
 }

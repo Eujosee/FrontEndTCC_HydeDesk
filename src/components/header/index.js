@@ -12,7 +12,6 @@ export default function HeaderEmpresa({ fixed }) {
 
 
   const { authenticated, handleLogout }  = useContext(Context)
-  console.log(authenticated)
 
   return (
     <div className="font-Poppins">

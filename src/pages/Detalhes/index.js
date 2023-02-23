@@ -8,7 +8,7 @@ export default function Detalhes() {
  return (
    <>
     <Header/>
-    <div className='flex flex-col w-full h-1/4 font-Poppins p-8'>
+    <div className='flex flex-col w-full h-1/4 p-8'>
       <div className='mb-5'>
          <AiOutlineArrowLeft size={20} />
          <h1 className='text-2xl font-bold mt-2 ml-3'>Detalhes - 22/01/2023</h1> 

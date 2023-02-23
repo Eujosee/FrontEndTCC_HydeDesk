@@ -1,80 +1,74 @@
 import { Link } from "react-router-dom";
 import { useState, useContext } from "react";
+import Imagemcad from "../../images/loginamico.svg"
 
 import { Context } from "../../Context/AuthContext";
 
-export default function Form(){
-    const [label, setLabel] = useState("email");
-    const [email, setEmail] = useState("");
-    const { handleLogin, status } = useContext(Context);
+export default function Form() {
+  const [label, setLabel] = useState("cpf");
+  const [email, setEmail] = useState("");
+  const { handleLogin, status } = useContext(Context);
 
-  
-    const user = {
-        [label]: email,
-  }
   const handleChange = (event) => {
     setLabel(event.target.value);
   };
 
-    return(
-        <div className="bg-white px-10 py-10 rounded">
-      <h1 className="font-bold">Recuperar senha</h1>
-      <p className="font-medium mt-8 text-xl">Recuperar como:</p>
+  return (
+    <div className="bg-white px-10 py-10">
       <div>
-        <div>
-          <input
-            type="radio"
-            name="escolhalogin"
-            value="Email"
-            onChange={handleChange}
-            defaultChecked
-          />
-          <label className="mr-4 ml-2 font-medium text-xl">Técnico</label>
+        <div className="sm:px-0 lg:px-8 mb-10 justify-center items-center">
 
-          <input
-            type="radio"
-            name="escolhalogin"
-            value="Email"
-            onChange={handleChange}
-          />
-          <label className="mr-4 ml-2 font-medium text-xl">Empresa</label>
+          <p className="font-semibold text-lg text-center">Qual seu tipo de conta?</p>
+          <div className="flex justify-center items-center">
+            <input
+              type="radio"
+              name="escolhalogin"
+              value="cpf"
+              onChange={handleChange}
+              defaultChecked
+            />
 
-          <input
-            type="radio"
-            name="escolhalogin"
-            value="Email"
-            onChange={handleChange}
-          />
-          <label className="ml-2 font-medium text-xl">Funcionário</label>
+            <label className="mr-4 ml-2 font-semibold ">Técnico</label>
+            <input
+              type="radio"
+              name="escolhalogin"
+              value="cnpj"
+              onChange={handleChange}
+            />
+            <label className="mr-4 ml-2 font-semibold ">Empresa</label>
+
+            <input
+              type="radio"
+              name="escolhalogin"
+              value="Matricula"
+              onChange={handleChange}
+            />
+            <label className="ml-2 font-semibold ">Funcionário</label>
+          </div>
         </div>
-        <div className="mt-2">
-          <label className="text-lg font-medium text-gray-900 mt-2">
+        <div>
+          <label className="text-lg font-semibold items-center text-gray-900 ">
             Email
           </label>
           <input
-            className="border-2 w-full rounded p-2"
+            type="text"
+            className="focus:outline-none focus:border-azul-hyde border-b-2 w-full p-2"
             placeholder="Email"
             value={email}
-            onChange={(e) => [setEmail(e.target.value), ]}
+            onChange={(e) => [setEmail(e.target.value)]}
           />
         </div>
-        <div className="mt-2 flex flex-col">
-    
-            <label className="text-black font-medium text-xl">Será enviado um link ao seu email<br/>para redefinição de senha</label>
-        
+        <div className="mt-8 flex flex-col justify-center items-center">
           <button
-            className="hover:bg-cyan-600 mb-6 bg-azul-hyde p-2 rounded-3xl text-white font-bold text-lg mt-4"
+            className="hover:bg-cyan-600 mb-6 bg-azul-hyde p-2 w-2/3 rounded-3xl text-white font-bold text-lg "
             onClick={() => {
-              handleLogin(user, label)
-              }}>Recuperar Senha</button>
+              handleLogin()
+            }}> Enviar email</button>
+
+          <p>Um link será enviado para que você possa redefinir sua senha</p>
           <p className="text-red-500 flex justify-center">{status}</p>
-          <Link
-            className="no-underline flex items-center "
-            to="/cadastro"
-          >
-          </Link>
         </div>
       </div>
     </div>
-    )
+  )
 }
