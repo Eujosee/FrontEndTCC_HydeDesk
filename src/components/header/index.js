@@ -1,89 +1,106 @@
-import "./header.css";
-import { useState } from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
+import React, { useContext } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
+import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
+import { Context } from "../../Context/AuthContext";
+import { FiLogOut } from "react-icons/fi"
 
-export default function Header() {
-  const [isNavExpanded, setIsNavExpanded] = useState(false);
+
+export default function HeaderEmpresa({ fixed }) {
+  const [navbarOpen, setNavbarOpen] = React.useState(false);
+
+
+  const { authenticated, handleLogout }  = useContext(Context)
 
   return (
-		<nav className="navigation">
-			<a href="/" className="brand-name">
-        <p>Hyde</p>
-        <p className="preto">Desk</p>
-			</a>
-			<button
-				className="hamburger"
-				onClick={() => {
-					setIsNavExpanded(!isNavExpanded);
-				}}
-			>
-				{/* icon from Heroicons.com */}
-				<svg
-					xmlns="http://www.w3.org/2000/svg"
-					className="h-5 w-5"
-					viewBox="0 0 20 20"
-					fill="white"
-				>
-					<path
-						fillRule="evenodd"
-						d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM9 15a1 1 0 011-1h6a1 1 0 110 2h-6a1 1 0 01-1-1z"
-						clipRule="evenodd"
-					/>
-				</svg>
-			</button>
-			<div
-				className={
-					isNavExpanded ? "navigation-menu expanded" : "navigation-menu"
-				}
-			>
-				<ul>
-					<li>
-						<a href="/">Sobre</a>
-					</li>
-					<li>
-						<a href="/about">Informações</a>
-					</li>
-					<li>
-						<a className="login" href="/login">
-							Login
-						</a>
-					</li>
-				</ul>
-			</div>
-		</nav>
-	);
+    <div className="font-Poppins">
+      <nav className="relative flex flex-wrap items-center justify-between px-2 py-3 bg-white mb-3">
+        <div className="container px-4 mx-auto flex flex-wrap items-center justify-between">
+          <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
+            <Link
+              className="text-3xl font-bold leading-relaxed mr-4 py-2 whitespace-nowrap text-white flex"
+              to="/"
+            >
+              <p className="text-black ">Hyde</p>
+              <p className="text-azul-hyde">Desk</p>
+            </Link>
+            <button
+              className=" cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none"
+              type="button"
+              onClick={() => setNavbarOpen(!navbarOpen)}
+            >
+              <FontAwesomeIcon icon={faBars} className="h-10 w-10" />
+            </button>
+          </div>
+          <div
+            className={
+              "lg:flex flex-grow items-center" +
+              (navbarOpen ? " flex" : " hidden")
+            }
+            id="example-navbar-danger"
+          >
+            <ul className="flex flex-col lg:flex-row list-none lg:ml-auto">
+              <li className="nav-item">
+                <Link
+                  className="px-3 py-2 flex items-center text-xl uppercase font-bold leading-snug text-black hover:opacity-75"
+                  to="/"
+                >
+                  <i className="fab fa-facebook-square text-lg leading-lg text-black opacity-75"></i>
+                  <span className="ml-2">Página inicial</span>
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link
+                  className="px-3 py-2 flex items-center text-xl uppercase font-bold leading-snug text-black hover:opacity-75"
+                  to="/"
+                >
+                  <i className="fab fa-facebook-square text-lg leading-lg text-black opacity-75"></i>
+                  <span className="ml-2">Quem somos?</span>
+                </Link>
+              </li>
+              {authenticated && <li className="nav-item">
+              <Link
+                  className="px-3 py-2 flex items-center text-xl uppercase font-bold leading-snug text-black hover:opacity-75"
+                  to="/lista-chamados-empresa"
+                >
+                  <i className="fab fa-twitter text-lg leading-lg text-black opacity-75 "></i>
+                  <span className="ml-2">Chamados</span>
+                </Link>
+              </li>}
+              <li className="nav-item">
+                {!authenticated ? <Link
+                  className="ml-5 px-3 py-2 flex items-center content-center text-xl uppercase font-bold leading-snug rounded-2xl bg-azul-hyde hover:bg-cyan-600 text-azul-hyde"
+                  to="/login"
+                >
+                  <i className="fab fa-twitter text-lg leading-lg text-black opacity-75 "></i>
+                  <span className="text-white">Login</span>
+                </Link> :  <Link
+                  className="ml-5 px-3 py-2 flex items-center content-center text-xl uppercase font-bold leading-snug rounded-2xl bg-azul-hyde hover:bg-cyan-600 text-azul-hyde"
+                  to="/perfil"
+                >
+                  <i className="fab fa-twitter text-lg leading-lg text-black opacity-75 "></i>
+                  <span className="text-white">Perfil</span>
+                </Link>}
+                
+              </li>
+              {authenticated && <li className="nav-item">
+                <button
+                  className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug"
+                  type="button"
+                  onClick={() => handleLogout()}
+                >
+                  <FiLogOut
+                    size={30}
+                    className="ml-4 hover:text-azul-hyde"
+                  />
+                </button>
+              </li>}
+              
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+  );
 }
-
-		// 		<>
-		// 			<header className="header">
-		// 				<div className="container">
-		// 					<div className="coluna col-6">
-		// 						<a className="link1" href="/">
-		// 							<div className="logo">
-		// 								<h1 className="hyde">Hyde</h1>
-		// 								<h1 className="desk">Desk</h1>
-		// 							</div>
-		// 						</a>
-		// 					</div>
-		// 					<div className="coluna2 col-6">
-		// 						<div className="container-info">
-		// 							<a className="link1" href="/">
-		// 								<div className="sobre">
-		// 									<h2 className="sobre">Sobre nós</h2>
-		// 								</div>
-		// 							</a>
-		// 							<a className="link1" href="/">
-		// 								<div className="informacoes">
-		// 									<h2 className="informacoes">Informações</h2>
-		// 								</div>
-		// 							</a>
-		// 							<a className="link1" href="/">
-		// 								<div className="login">
-		// 									<h2 className="login">Login</h2>
-		// 								</div>
-		// 							</a>
-		// 						</div>
-		// 					</div>
-		// 				</div>
-		// 			</header>
-		// 		</>
