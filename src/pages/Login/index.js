@@ -1,6 +1,7 @@
 import Form from "../../components/formLogin"
 import ImagemLogin from "../../images/loginamico.svg"
 import { Link } from "react-router-dom";
+import Footer from "../../components/Footer";
 
 function Login() {
     return (
