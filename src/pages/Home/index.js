@@ -4,9 +4,9 @@ import ImagemLogin from "../../images/suporte.svg"
 
 function Home() {
   return (
-    <div className="font-Poppins">
+    <>
       <Header />
-      <div className="flex w-full h-screen items-center justify-center ">
+      <div className="flex w-full h-screen items-center justify-center">
             <div className="flex items-center justify-center">
                 <div className="max-w-sm">
                     <h1 className="font-bold">Suporte</h1>
@@ -30,7 +30,7 @@ function Home() {
             </div>
         </div>
         <Footer/>
-    </div>
+    </>
   );
 }
 

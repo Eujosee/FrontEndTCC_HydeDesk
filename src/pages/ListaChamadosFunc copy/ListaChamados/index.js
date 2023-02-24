@@ -15,7 +15,6 @@ function ListaChamados() {
   const [chamados, setChamados] = useState([]);
   const [status, setStatus] = useState("");
   const [loading, setLoading] = useState(true);
-  const type = JSON.parse(localStorage.getItem("Tipo"))
 
   useEffect(() => {
     (async () => {

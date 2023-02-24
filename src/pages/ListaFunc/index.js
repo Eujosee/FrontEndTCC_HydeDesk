@@ -18,6 +18,7 @@ function ListaFunc() {
     (async () => {
       try {
         const { data } = await api.get("/funcionarios");
+        console.log(data)
         setFuncs(data);
         setLoading(false);
       } catch (error) {
@@ -111,10 +112,10 @@ function ListaFunc() {
                         </tr>
                       </thead>
                       <tbody>
-                        <tr align="center" class="border-b">
                           {funcs.map((item) => {
                             return (
-                              <>
+                              
+                              <tr align="center" class="border-b">
                                 <td class="text-lg text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                                   {item.nome}
                                 </td>
@@ -125,7 +126,7 @@ function ListaFunc() {
                                   {item.usuario}
                                 </td>
                                 <td class="text-lg text-red-600 font-bold underline px-6 py-4  whitespace-nowrap">
-                                  {item.status}
+                                  {item.status_funcionario}
                                 </td>
                                 <td class="text-lg text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                                   <a href="/">
@@ -137,10 +138,10 @@ function ListaFunc() {
                                     <FontAwesomeIcon icon={faTrash} />
                                   </a>
                                 </td>
-                              </>
+                                </tr>
+                              
                             );
                           })}
-                        </tr>
                       </tbody>
                     </table>
                     {loading && (
