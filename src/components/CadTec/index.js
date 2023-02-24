@@ -109,129 +109,176 @@ function CadTec () {
     }
 
     return (
-        <div className="bg-white px-10 pb-10 pt-3">
-                <form encType="multipart/form">
-                    <div className="flex flex-col justify-center items-center mt-5">
-                        <label className="text-lg font-medium text-gray-900">Foto de perfil</label>
-                        {imagem ? <img className="w-40 h-40 rounded-full" src={URL.createObjectURL(imagem)} alt="sua foto" /> :
-                        <CgProfile className="text-gray-900" size={160}/>
-                        }
-                    </div>
-                <div className="sm:flex sm:flex-col lg:grid lg:grid-cols-2 lg:gap-x-10 lg:gap-y-2">
-                        <div className="mt-2">
-                        <label className="text-lg font-medium text-gray-900">Nome completo *</label>
-                            <input
-                                className="focus:outline-none focus:border-azul-hyde border-b-2 w-full  p-2"
-                                placeholder= "Nome completo"
-                                name="nome"
-                                value={user.nome}
-                                onChange={(e) => [handleUser(e), setStatusErro('')]}
-                                required
-                                />
-                        </div>
-                        <div className="mt-2">
-                        <label className="text-lg font-medium text-gray-900">CPF *</label>
-                            <InputMask
-                                className="focus:outline-none focus:border-azul-hyde border-b-2 w-full  p-2"
-                                placeholder="CPF"
-                                name="cpf"
-                                value={user.cpf}
-                                mask="999.999.999-99"
-                                onChange={(e) => [handleUser(e), setStatusErro('')]}
-                                required
-                            />
-                        </div>
+			<div className="bg-white px-10 pb-10 pt-3 dark:bg-preto">
+				<form encType="multipart/form">
+					<div className="flex flex-col justify-center items-center mt-5">
+						<label className="text-lg font-medium text-gray-900 dark:text-branco">
+							Foto de perfil
+						</label>
+						{imagem ? (
+							<img
+								className="w-40 h-40 rounded-full"
+								src={URL.createObjectURL(imagem)}
+								alt="sua foto"
+							/>
+						) : (
+							<CgProfile className="text-gray-900" size={160} />
+						)}
+					</div>
+					<div className="sm:flex sm:flex-col lg:grid lg:grid-cols-2 lg:gap-x-10 lg:gap-y-2">
+						<div className="mt-2">
+							<label className="text-lg font-medium text-gray-900 dark:text-branco">
+								Nome completo *
+							</label>
+							<input
+								className="focus:outline-none focus:border-azul-hyde border-b-2 w-full  p-2  dark:text-branco  dark:bg-preto"
+								placeholder="Nome completo"
+								name="nome"
+								value={user.nome}
+								onChange={(e) => [handleUser(e), setStatusErro("")]}
+								required
+							/>
+						</div>
+						<div className="mt-2">
+							<label className="text-lg font-medium text-gray-900 dark:text-branco">
+								CPF *
+							</label>
+							<InputMask
+								className="focus:outline-none focus:border-azul-hyde border-b-2 w-full  p-2 2 dark:text-branco  dark:bg-preto"
+								placeholder="CPF"
+								name="cpf"
+								value={user.cpf}
+								mask="999.999.999-99"
+								onChange={(e) => [handleUser(e), setStatusErro("")]}
+								required
+							/>
+						</div>
 
-                    <div className="mt-2">
-                        <label className="text-lg font-medium text-gray-900">Email *</label>
-                            <input
-                                type="email"
-                                className="focus:outline-none focus:border-azul-hyde border-b-2 w-full  p-2"
-                                placeholder= "Email"
-                                name="email"
-                                value={user.email}
-                                onChange={(e) => [handleUser(e), setStatusErro('')]}
-                                required
-                                />
-                        </div>
-                        <div className="mt-2">
-                        <label className="text-lg font-medium text-gray-900">Telefone *</label>
-                                <InputMask
-                                className="focus:outline-none focus:border-azul-hyde border-b-2 w-full  p-2"
-                                placeholder="Telefone"
-                                type="tel"
-                                name="telefone"
-                                value={user.telefone}
-                                mask="(99) 99999-9999"
-                                onChange={(e) => [handleUser(e), setStatusErro('')]}
-                                required
-                            />
-                        </div>
-                    <div className="mt-2">
-                        <label className="text-lg font-medium text-gray-900">Especialidade *</label>
-                        <select className="focus:outline-none focus:border-azul-hyde border-b-2 w-full  p-2" name="especialidade" onChange={(e) => [handleUser(e), setStatusErro('')]} value={user.especialidade} required>
-                            <option selected disabled>Selecione uma opção</option>
-                            <option value="Desenvolvedor">Desenvolvedor</option>
-                            <option value="Infraestrutura">Infraestrutura</option>
-                            <option value="Sistemas operacionais">Sistemas operacionais</option>
-                        </select>
-                    </div>
-                    <div className="mt-1">
-                        <div className="flex flex-row">
-                            <label className="text-lg font-medium text-gray-900">Foto de perfil *</label>
-                            <p className="ml-3 mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">PNG, JPG ou JPEG.</p>
-                        </div>
-                        <input
-                            type="file"
-                            className="focus:outline-none focus:border-azul-hyde border-b-2 w-full  p-2"
-                            placeholder="Selecione uma foto"
-                            name="anexo"
-                            ref={fileInput}
-                            accept=".png, .jpg, .jpeg"
-                            onChange={(e) => setImagem(e.target.files[0])}
-                            required
-                            />
-                    </div>
-                    <div className="mt-2">
-                    <label className="text-lg font-medium text-gray-900">Senha *</label>
-                        <input
-                            type="password"
-                            className="focus:outline-none focus:border-azul-hyde border-b-2 w-full  p-2"
-                            placeholder="Senha"
-                            name="senha"
-                            value={user.senha}
-                            onChange={(e) => [handleUser(e), setStatusErro('')]}
-                            required
-                            />
-                    </div>
-                    <div className="mt-2">
-                    <label className="text-lg font-medium text-gray-900">Confirme sua senha *</label>
-                        <input
-                            type="password"
-                            className="focus:outline-none focus:border-azul-hyde border-b-2 w-full  p-2"
-                            placeholder="Confirme sua senha"
-                            name="confirmsenha"
-                            value={user.confirmsenha}
-                            onChange={(e) => [handleUser(e), setStatusErro('')]}
-                            required
-                            />
-                    </div>
-                </div>
-                <div className="mt-8 flex justify-center items-center flex-col">
-                    <button type="submit" className="hover:bg-cyan-600 mb-6 bg-azul-hyde p-2 rounded-3xl text-white font-bold text-lg w-80"
-                    onClick={handleCad}
-                    >Cadastrar</button>
-                    <p className={status ? "text-green-500" : "text-red-500"}>{status ? status : statusErro}</p>
-                </div>
-                </form>
-                <div>
-                    <Link className="no-underline flex items-center " to='/login'>
-                        <p className="text-black font-bold text-lg mb-1">Já possui uma conta?</p>
-                        <p className="ml-2 text-azul-hyde text-lg font-bold mb-1">Login</p>
-                    </Link>                                  
-                </div>
-        </div>
-    );
+						<div className="mt-2">
+							<label className="text-lg font-medium text-gray-900 dark:text-branco">
+								Email *
+							</label>
+							<input
+								type="email"
+								className="focus:outline-none focus:border-azul-hyde border-b-2 w-full  p-2 2 dark:text-branco  dark:bg-preto"
+								placeholder="Email"
+								name="email"
+								value={user.email}
+								onChange={(e) => [handleUser(e), setStatusErro("")]}
+								required
+							/>
+						</div>
+						<div className="mt-2">
+							<label className="text-lg font-medium text-gray-900 dark:text-branco">
+								Telefone *
+							</label>
+							<InputMask
+								className="focus:outline-none focus:border-azul-hyde border-b-2 w-full  p-2 2 dark:text-branco  dark:bg-preto"
+								placeholder="Telefone"
+								type="tel"
+								name="telefone"
+								value={user.telefone}
+								mask="(99) 99999-9999"
+								onChange={(e) => [handleUser(e), setStatusErro("")]}
+								required
+							/>
+						</div>
+						<div className="mt-2">
+							<label className="text-lg font-medium text-gray-900 dark:text-branco">
+								Especialidade *
+							</label>
+							<select
+								className="focus:outline-none focus:border-azul-hyde border-b-2 w-full  p-2 2 dark:text-branco  dark:bg-preto"
+								name="especialidade"
+								onChange={(e) => [handleUser(e), setStatusErro("")]}
+								value={user.especialidade}
+								required
+							>
+								<option selected disabled>
+									Selecione uma opção
+								</option>
+								<option value="Desenvolvedor">Desenvolvedor</option>
+								<option value="Infraestrutura">Infraestrutura</option>
+								<option value="Sistemas operacionais">
+									Sistemas operacionais
+								</option>
+							</select>
+						</div>
+						<div className="mt-1">
+							<div className="flex flex-row">
+								<label className="text-lg font-medium text-gray-900">
+									Foto de perfil *
+								</label>
+								<p
+									className="ml-3 mt-1 text-sm text-gray-500 dark:text-gray-300"
+									id="file_input_help"
+								>
+									PNG, JPG ou JPEG.
+								</p>
+							</div>
+							<input
+								type="file"
+								className="focus:outline-none focus:border-azul-hyde border-b-2 w-full  p-2 2 dark:text-branco  dark:bg-preto"
+								placeholder="Selecione uma foto"
+								name="anexo"
+								ref={fileInput}
+								accept=".png, .jpg, .jpeg"
+								onChange={(e) => setImagem(e.target.files[0])}
+								required
+							/>
+						</div>
+						<div className="mt-2">
+							<label className="text-lg font-medium text-gray-900 dark:text-branco">
+								Senha *
+							</label>
+							<input
+								type="password"
+								className="focus:outline-none focus:border-azul-hyde border-b-2 w-full  p-2 2 dark:text-branco  dark:bg-preto"
+								placeholder="Senha"
+								name="senha"
+								value={user.senha}
+								onChange={(e) => [handleUser(e), setStatusErro("")]}
+								required
+							/>
+						</div>
+						<div className="mt-2">
+							<label className="text-lg font-medium text-gray-900 dark:text-branco">
+								Confirme sua senha *
+							</label>
+							<input
+								type="password"
+								className="focus:outline-none focus:border-azul-hyde border-b-2 w-full  p-2 2 dark:text-branco  dark:bg-preto"
+								placeholder="Confirme sua senha"
+								name="confirmsenha"
+								value={user.confirmsenha}
+								onChange={(e) => [handleUser(e), setStatusErro("")]}
+								required
+							/>
+						</div>
+					</div>
+					<div className="mt-8 flex justify-center items-center flex-col">
+						<button
+							type="submit"
+							className="hover:bg-cyan-600 mb-6 bg-azul-hyde p-2 rounded-3xl text-white font-bold text-lg w-80"
+							onClick={handleCad}
+						>
+							Cadastrar
+						</button>
+						<p className={status ? "text-green-500" : "text-red-500"}>
+							{status ? status : statusErro}
+						</p>
+					</div>
+				</form>
+				<div>
+					<Link className="no-underline flex items-center " to="/login">
+						<p className="text-black font-bold text-lg mb-1 dark:text-branco">
+							Já possui uma conta?
+						</p>
+						<p className="ml-2 text-azul-hyde text-lg font-bold mb-1">Login</p>
+					</Link>
+				</div>
+			</div>
+		);
 }
 
 export default CadTec

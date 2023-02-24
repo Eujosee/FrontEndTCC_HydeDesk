@@ -172,178 +172,226 @@ function CadEmp () {
 
     }
 
-    return ( 
-        <div className="bg-white px-10 pb-10 pt-3">
-            <form encType="multipart/form">
-                    <div className="flex flex-col justify-center items-center mt-5">
-                        <label className="text-lg font-medium text-gray-900">Foto de perfil</label>
-                        {imagem ? <img className="w-40 h-40 rounded-full" src={URL.createObjectURL(imagem)} alt="sua foto"/> :
-                        <CgProfile size={160}/>}
-                    </div>
-            <div className="sm:flex sm:flex-col lg:grid lg:grid-cols-4 lg:gap-x-10 lg:gap-y-2">
-                    <div className="mt-2 col-span-2">
-                    <label className="text-lg font-medium text-gray-900">Nome da empresa *</label>
-                        <input
-                            className="focus:outline-none focus:border-azul-hyde border-b-2 w-full p-2"
-                            placeholder= "Nome da empresa"
-                            name="nome"
-                            value={user.nome}
-                            onChange={(e) => [handleUser(e), setStatusErro('')]}
-                            />
-                    </div>
-                    <div className="mt-2 col-span-2">
-                    <label className="text-lg font-medium text-gray-900">CNPJ *</label>
-                        <InputMask
-                                className="focus:outline-none focus:border-azul-hyde border-b-2 w-full  p-2"
-                                placeholder="CNPJ"
-                                name="cnpj"
-                                value={user.cnpj}
-                                mask="99.999.999/9999-99"
-                                onChange={(e) => [handleUser(e), setStatusErro('')]}
-                                required
-                        />
-                    </div>
-                    <div className="mt-2 col-span-2">
-                    <label className="text-lg font-medium text-gray-900">Email *</label>
-                        <input
-                            type="email"
-                            className="focus:outline-none focus:border-azul-hyde border-b-2 w-full p-2"
-                            placeholder= "Email"
-                            name="email"
-                            value={user.email}
-                            onChange={(e) => [handleUser(e), setStatusErro('')]}
-                            />
-                    </div>
-                    <div className="mt-2 col-span-2">
-                    <label className="text-lg font-medium text-gray-900">Telefone *</label>
-                            <InputMask
-                                className="focus:outline-none focus:border-azul-hyde border-b-2 w-full  p-2"
-                                placeholder="Telefone"
-                                type="tel"
-                                name="telefone"
-                                value={user.telefone}
-                                mask="(99) 99999-9999"
-                                onChange={(e) => [handleUser(e), setStatusErro('')]}
-                                required
-                            />
-                    </div>
-                    <div className="mt-2 col-span-1">
-                    <label className="text-lg font-medium text-gray-900">CEP *</label>
-                        <InputMask
-                                className="focus:outline-none focus:border-azul-hyde border-b-2 w-full  p-2"
-                                placeholder="CEP"
-                                name="cep"
-                                value={user.cep}
-                                mask="99999-999"
-                                onChange={(e) => [handleUser(e), setStatusErro('')]}
-                                required
-                                onBlur={checkCEP}
-                        />
-                    </div>
-                    <div className="mt-2 col-span-1">
-                    <label className="text-lg font-medium text-gray-900">Estado</label>
-                        <input
-                            className="focus:outline-none focus:border-azul-hyde border-b-2 w-full p-2"
-                            placeholder= "Estado"
-                            name="estado"
-                            value={adress.estado}
-                            disabled
-                            />
-                    </div>
-                    <div className="mt-2 col-span-2">
-                    <label className="text-lg font-medium text-gray-900">Cidade</label>
-                        <input
-                            className="focus:outline-none focus:border-azul-hyde border-b-2 w-full p-2"
-                            placeholder= "Cidade"
-                            name="cidade"
-                            value={adress.cidade}
-                            disabled
-                            />
-                    </div>
-                    <div className="mt-2 col-span-1">
-                    <label className="text-lg font-medium text-gray-900">N°</label>
-                        <input
-                            className="focus:outline-none focus:border-azul-hyde border-b-2 w-full p-2"
-                            placeholder= "N°"
-                            name="numero_endereco"
-                            value={user.numero_endereco}
-                            onChange={(e) => [handleUser(e), setStatusErro('')]}
-                            />
-                    </div>
-                    <div className="mt-2 col-span-1">
-                    <label className="text-lg font-medium text-gray-900">Rua</label>
-                        <input
-                            className="focus:outline-none focus:border-azul-hyde border-b-2 w-full p-2"
-                            placeholder= "Rua"
-                            name="Rua"
-                            value={adress.rua}
-                            disabled
-                            />
-                    </div>
-                    <div className="mt-2 col-span-2">
-                    <label className="text-lg font-medium text-gray-900">Bairro</label>
-                        <input
-                            className="focus:outline-none focus:border-azul-hyde border-b-2 w-full p-2"
-                            placeholder= "Bairro"
-                            name="bairro"
-                            value={adress.bairro}
-                            disabled
-                            />
-                    </div>
-                    <div className="mt-1 col-span-4">
-                        <div className="flex flex-row">
-                    <label className="text-lg font-medium text-gray-900">Foto de perfil *</label>
-                    <p className="ml-3 mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">PNG, JPG ou JPEG.</p>
-                        </div>
-                        <input
-                            type="file"
-                            className="focus:outline-none focus:border-azul-hyde border-b-2 w-full  p-2"
-                            placeholder="Selecione uma foto"
-                            name="anexo"
-                            ref={fileInput}
-                            accept=".png, .jpg, .jpeg"
-                            onChange={(e) => setImagem(e.target.files[0])}
-                            required
-                            />
-                    </div>
-                    <div className="mt-2 col-span-2">
-                    <label className="text-lg font-medium text-gray-900">Senha *</label>
-                        <input
-                            type="password"
-                            className="focus:outline-none focus:border-azul-hyde border-b-2 w-full p-2"
-                            placeholder="Senha"
-                            name="senha"
-                            value={user.senha}
-                            onChange={(e) => [handleUser(e), setStatusErro('')]}
-                            />
-                    </div>
-                    <div className="mt-2 col-span-2">
-                    <label className="text-lg font-medium text-gray-900">Confirme sua senha *</label>
-                        <input
-                            type="password"
-                            className="focus:outline-none focus:border-azul-hyde border-b-2 w-full p-2"
-                            placeholder="Confirme sua senha"
-                            name="confirmarsenha"
-                            value={user.confirmarsenha}
-                            onChange={(e) => [handleUser(e), setStatusErro('')]}
-                            />
-                    </div>
-                </div>
-                <div className="mt-8 flex justify-center items-center flex-col">
-                    <button type="submit" className="hover:bg-cyan-600 mb-6 bg-azul-hyde p-2 rounded-3xl text-white font-bold text-lg w-80"
-                    onClick={handleCad}
-                    >Cadastrar</button>
-                     <p className={status ? "text-green-500" : "text-red-500"}>{status ? status : statusErro}</p>
-                </div>
-                </form>
-                <div>
-                    <Link className="no-underline flex items-center " to='/login'>
-                        <p className="text-black font-bold mb-1 text-lg">Já possui uma conta?</p>
-                        <p className="ml-2 text-azul-hyde font-bold mb-1 text-lg">Login</p>
-                    </Link>                                   
-                </div>
-        </div>
-    );
+    return (
+			<div className="bg-white px-10 pb-10 pt-3 dark:bg-preto">
+				<form encType="multipart/form">
+					<div className="flex flex-col justify-center items-center mt-5">
+						<label className="text-lg font-medium text-gray-900 dark:text-branco">
+							Foto de perfil
+						</label>
+						{imagem ? (
+							<img
+								className="w-40 h-40 rounded-full"
+								src={URL.createObjectURL(imagem)}
+								alt="sua foto"
+							/>
+						) : (
+							<CgProfile size={160} />
+						)}
+					</div>
+					<div className="sm:flex sm:flex-col lg:grid lg:grid-cols-4 lg:gap-x-10 lg:gap-y-2">
+						<div className="mt-2 col-span-2">
+							<label className="text-lg font-medium text-gray-900 dark:text-branco">
+								Nome da empresa *
+							</label>
+							<input
+								className="focus:outline-none focus:border-azul-hyde border-b-2 w-full p-2 dark:bg-preto dark:text-branco"
+								placeholder="Nome da empresa"
+								name="nome"
+								value={user.nome}
+								onChange={(e) => [handleUser(e), setStatusErro("")]}
+							/>
+						</div>
+						<div className="mt-2 col-span-2">
+							<label className="text-lg font-medium text-gray-900 dark:text-branco">
+								CNPJ *
+							</label>
+							<InputMask
+								className="focus:outline-none focus:border-azul-hyde border-b-2 w-full  p-2 dark:text-branco dark:bg-preto"
+								placeholder="CNPJ"
+								name="cnpj"
+								value={user.cnpj}
+								mask="99.999.999/9999-99"
+								onChange={(e) => [handleUser(e), setStatusErro("")]}
+								required
+							/>
+						</div>
+						<div className="mt-2 col-span-2">
+							<label className="text-lg font-medium text-gray-900 dark:text-branco">
+								Email *
+							</label>
+							<input
+								type="email"
+								className="focus:outline-none focus:border-azul-hyde border-b-2 w-full p-2 dark:text-branco dark:bg-preto"
+								placeholder="Email"
+								name="email"
+								value={user.email}
+								onChange={(e) => [handleUser(e), setStatusErro("")]}
+							/>
+						</div>
+						<div className="mt-2 col-span-2">
+							<label className="text-lg font-medium text-gray-900 dark:text-branco">
+								Telefone *
+							</label>
+							<InputMask
+								className="focus:outline-none focus:border-azul-hyde border-b-2 w-full  p-2 dark:text-branco  dark:bg-preto"
+								placeholder="Telefone"
+								type="tel"
+								name="telefone"
+								value={user.telefone}
+								mask="(99) 99999-9999"
+								onChange={(e) => [handleUser(e), setStatusErro("")]}
+								required
+							/>
+						</div>
+						<div className="mt-2 col-span-1">
+							<label className="text-lg font-medium text-gray-900 dark:text-branco">
+								CEP *
+							</label>
+							<InputMask
+								className="focus:outline-none focus:border-azul-hyde border-b-2 w-full  p-2 dark:text-branco dark:bg-preto"
+								placeholder="CEP"
+								name="cep"
+								value={user.cep}
+								mask="99999-999"
+								onChange={(e) => [handleUser(e), setStatusErro("")]}
+								required
+								onBlur={checkCEP}
+							/>
+						</div>
+						<div className="mt-2 col-span-1">
+							<label className="text-lg font-medium text-gray-900 dark:text-branco">
+								Estado
+							</label>
+							<input
+								className="focus:outline-none focus:border-azul-hyde border-b-2 w-full p-2 dark:text-branco dark:bg-preto"
+								placeholder="Estado"
+								name="estado"
+								value={adress.estado}
+								disabled
+							/>
+						</div>
+						<div className="mt-2 col-span-2">
+							<label className="text-lg font-medium text-gray-900 dark:text-branco">
+								Cidade
+							</label>
+							<input
+								className="focus:outline-none focus:border-azul-hyde border-b-2 w-full p-2 dark:text-branco dark:bg-preto"
+								placeholder="Cidade"
+								name="cidade"
+								value={adress.cidade}
+								disabled
+							/>
+						</div>
+						<div className="mt-2 col-span-1">
+							<label className="text-lg font-medium text-gray-900 dark:text-branco">
+								N°
+							</label>
+							<input
+								className="focus:outline-none focus:border-azul-hyde border-b-2 w-full p-2 dark:text-branco dark:bg-preto"
+								placeholder="N°"
+								name="numero_endereco"
+								value={user.numero_endereco}
+								onChange={(e) => [handleUser(e), setStatusErro("")]}
+							/>
+						</div>
+						<div className="mt-2 col-span-1">
+							<label className="text-lg font-medium text-gray-900 dark:text-branco">
+								Rua
+							</label>
+							<input
+								className="focus:outline-none focus:border-azul-hyde border-b-2 w-full p-2 dark:text-branco dark:bg-preto"
+								placeholder="Rua"
+								name="Rua"
+								value={adress.rua}
+								disabled
+							/>
+						</div>
+						<div className="mt-2 col-span-2">
+							<label className="text-lg font-medium text-gray-900 dark:text-branco">
+								Bairro
+							</label>
+							<input
+								className="focus:outline-none focus:border-azul-hyde border-b-2 w-full p-2 dark:text-branco dark:bg-preto"
+								placeholder="Bairro"
+								name="bairro"
+								value={adress.bairro}
+								disabled
+							/>
+						</div>
+						<div className="mt-1 col-span-4">
+							<div className="flex flex-row">
+								<label className="text-lg font-medium text-gray-900 dark:text-branco">
+									Foto de perfil *
+								</label>
+								<p
+									className="ml-3 mt-1 text-sm text-gray-500 dark:text-gray-300 "
+									id="file_input_help"
+								>
+									PNG, JPG ou JPEG.
+								</p>
+							</div>
+							<input
+								type="file"
+								className="focus:outline-none focus:border-azul-hyde border-b-2 w-full  p-2 dark:text-branco dark:bg-preto"
+								placeholder="Selecione uma foto"
+								name="anexo"
+								ref={fileInput}
+								accept=".png, .jpg, .jpeg"
+								onChange={(e) => setImagem(e.target.files[0])}
+								required
+							/>
+						</div>
+						<div className="mt-2 col-span-2">
+							<label className="text-lg font-medium text-gray-900 dark:text-branco">
+								Senha *
+							</label>
+							<input
+								type="password"
+								className="focus:outline-none focus:border-azul-hyde border-b-2 w-full p-2 dark:text-branco  dark:bg-preto"
+								placeholder="Senha"
+								name="senha"
+								value={user.senha}
+								onChange={(e) => [handleUser(e), setStatusErro("")]}
+							/>
+						</div>
+						<div className="mt-2 col-span-2">
+							<label className="text-lg font-medium text-gray-900 dark:text-branco">
+								Confirme sua senha *
+							</label>
+							<input
+								type="password"
+								className="focus:outline-none focus:border-azul-hyde border-b-2 w-full p-2 dark:text-branco  dark:bg-preto"
+								placeholder="Confirme sua senha"
+								name="confirmarsenha"
+								value={user.confirmarsenha}
+								onChange={(e) => [handleUser(e), setStatusErro("")]}
+							/>
+						</div>
+					</div>
+					<div className="mt-8 flex justify-center items-center flex-col dark:text-branco ">
+						<button
+							type="submit"
+							className="hover:bg-cyan-600 mb-6 bg-azul-hyde p-2 rounded-3xl text-white font-bold text-lg w-80"
+							onClick={handleCad}
+						>
+							Cadastrar
+						</button>
+						<p className={status ? "text-green-500" : "text-red-500"}>
+							{status ? status : statusErro}
+						</p>
+					</div>
+				</form>
+				<div>
+					<Link className="no-underline flex items-center " to="/login">
+						<p className="text-black font-bold mb-1 text-lg dark:text-branco">
+							Já possui uma conta?
+						</p>
+						<p className="ml-2 text-azul-hyde font-bold mb-1 text-lg">Login</p>
+					</Link>
+				</div>
+			</div>
+		);
 }
 
 export default CadEmp
