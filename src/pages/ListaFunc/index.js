@@ -34,7 +34,7 @@ function ListaFunc() {
           <div class="relative px-6 lg:px-8">
             <div class=" max-w-2xl py-5 sm:py-16 lg:py-16">
               <div class="text-center flex flex-row">
-                <h1 class="text-2xl font-semi-bold  text-gray-900 sm:text-4xl">
+                <h1 class="text-2xl font-semibold  text-gray-900 sm:text-4xl">
                   Funcionários cadastrados
                 </h1>
 
@@ -135,36 +135,34 @@ function ListaFunc() {
                         </tr>
                       </thead>
                       <tbody>
-                        <tr align="center" class="border-b">
-                          {chamados.map((item) => {
-                            return (
-                              <>
-                                <td class="text-lg text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                  Fulano da Silva
-                                </td>
-                                <td class="text-lg text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                  000000000
-                                </td>
-                                <td class="text-lg text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                  Fulano123
-                                </td>
-                                <td class="text-lg text-red-600 font-bold underline px-6 py-4  whitespace-nowrap">
-                                  status
-                                </td>
-                                <td class="text-lg text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                  <a href="/">
-                                    <FontAwesomeIcon icon={faPen} />
-                                  </a>
-                                </td>
-                                <td class="text-lg text-gray-900 font-light px-6 py-4 whitespace-nowrap ">
-                                  <a href="/">
-                                    <FontAwesomeIcon icon={faTrash} />
-                                  </a>
-                                </td>
-                              </>
-                            );
-                          })}
-                        </tr>
+                        {chamados.map((item) => {
+                          return (
+                            <tr align="center" class="border-b">
+                              <td class="text-lg text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                Fulano da Silva
+                              </td>
+                              <td class="text-lg text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                000000000
+                              </td>
+                              <td class="text-lg text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                Fulano123
+                              </td>
+                              <td class="text-lg text-red-600 font-bold underline px-6 py-4  whitespace-nowrap">
+                                status
+                              </td>
+                              <td class="text-lg text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                <a href="/" className="text-azul-hyde">
+                                  <FontAwesomeIcon icon={faPen} />
+                                </a>
+                              </td>
+                              <td class="text-lg text-gray-900 font-light px-6 py-4 whitespace-nowrap ">
+                                <a href="/" className="text-azul-hyde">
+                                  <FontAwesomeIcon icon={faTrash} />
+                                </a>
+                              </td>
+                            </tr>
+                          );
+                        })}
                       </tbody>
                     </table>
                     {loading && (
