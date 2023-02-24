@@ -1,4 +1,5 @@
 import Header from "../../components/header";
+import Footer from "../../components/Footer"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
@@ -28,11 +29,11 @@ function ListaChamados() {
   }, []);
 
   return (
-    <div className="font-Poppins teste">
+    <div className="teste">
       <Header />  
       <main>
         <div class="relative px-6 lg:px-8">
-          <div class=" max-w-2xl py-5 :py-16 lg:py-16">
+          <div class="max-w-2xl py-5 :py-16 lg:py-16">
             <div class="text-center flex flex-row">
               <h1 class=" texto text-2xl ml-6 first-letter:font-semibold sm:ml-0 text-gray-900 sm:text-4xl">
                 Lista de chamados
@@ -56,16 +57,11 @@ function ListaChamados() {
           <div className="w-full">
             <select
               className="focus:outline-none focus:border-b-azul-hyde border-b-2 w-full p-2"
-              name="especialidade"
+              name="filtro"
               required
             >
               <option selected disabled>
                 Selecione uma opção
-              </option>
-              <option value="Desenvolvedor">Desenvolvedor</option>
-              <option value="Infraestrutura">Infraestrutura</option>
-              <option value="Sistemas operacionais">
-                Sistemas operacionais
               </option>
             </select>
           </div>
@@ -78,7 +74,7 @@ function ListaChamados() {
         </button>
       </section>
 
-      <body>
+      <body className="h-screen">
         <div className=" w-full  sm:ml-0 sm:mr-0">
           <div class="flex  flex-col ">
             <div class="overflow-x-auto  lg:-mx-8">
@@ -136,6 +132,7 @@ function ListaChamados() {
                         {chamados.map((item) => {
                           return (
                             <>
+                            {console.log(item)}
                               <td class="text-lg text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                                 {item.empresa.nome_empresa}
                               </td>
@@ -149,7 +146,7 @@ function ListaChamados() {
                                 {item.status_chamado}
                               </td>
                               <td class="text-lg text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                <Link to="" className="text-azul-hyde">
+                                <Link to={"/detalhes/" + item.id_chamado}  className="text-azul-hyde">
                                   <FontAwesomeIcon icon={faEye} />
                                 </Link>
                               </td>
@@ -187,6 +184,7 @@ function ListaChamados() {
           </div>
         </div>
       </body>
+      <Footer/>
     </div>
   );
 }

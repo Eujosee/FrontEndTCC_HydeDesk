@@ -17,7 +17,7 @@ function Cadastro() {
                 <div className="flex w-full items-center">
                     <div className="hidden w-2/6 h-screen lg:flex lg:flex-col bg-azul-claro-hyde justify-center items-center">
                         <Link to="/">
-                            <h1 className="font-extrabold text-gray-900 mr-2 text-3xl mb-12"><span className="font-extrabold text-white text-3xl">Hyde</span>Desk</h1>
+                            <h1 className="hover:underline font-extrabold text-gray-900 mr-2 text-3xl mb-12"><span className="font-extrabold text-white text-3xl">Hyde</span>Desk</h1>
                         </Link>
                         <img className="w-3/4 h-3/4" src={Imagemcad} alt='Mulher mexendo no celular para fazer login' />
                         {/* <a href="https://storyset.com/internet">Internet illustrations by Storyset</a> */}

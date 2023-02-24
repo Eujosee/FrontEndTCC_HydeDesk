@@ -1,34 +1,34 @@
 import Header from "../../components/header";
+import Footer from "../../components/Footer"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPen } from "@fortawesome/free-solid-svg-icons";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
-import { faEye } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState, Fragment } from "react";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { BiSearchAlt2 } from "react-icons/bi";
 import api from "../../api";
 
 function ListaFunc() {
-  const [chamados, setChamados] = useState([]);
+  const [funcs, setFuncs] = useState([]);
   const [status, setStatus] = useState("");
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     (async () => {
       try {
-        const { data } = await api.get("/chamados");
-        setChamados(data);
+        const { data } = await api.get("/funcionarios");
+        setFuncs(data);
         setLoading(false);
       } catch (error) {
-        setStatus("Erro ao buscar seus chamados!");
+        setStatus("Erro ao buscar seus funcionários!");
       }
     })();
   }, []);
 
   
     return (
-      <div className="font-Poppins">
+      <>
         <Header />
         <main>
           <div class="relative px-6 lg:px-8">
@@ -61,33 +61,9 @@ function ListaFunc() {
             />
             <BiSearchAlt2 size={20} className="absolute right-3" />
           </div>
-          {/* <div className="filtro w-1/4 ml-4  flex items-center mr-8">
-            <div className="w-full">
-              <select
-                className="focus:outline-none focus:border-b-azul-hyde border-b-2 w-full p-2"
-                name="especialidade"
-                required
-              >
-                <option selected disabled>
-                  Selecione uma opção
-                </option>
-                <option value="Desenvolvedor">Desenvolvedor</option>
-                <option value="Infraestrutura">Infraestrutura</option>
-                <option value="Sistemas operacionais">
-                  Sistemas operacionais
-                </option>
-              </select>
-            </div>
-          </div>
-          <button
-            type="submit"
-            className=" botao hover:bg-cyan-600  bg-azul-hyde p-2 rounded-xl text-white font-bold text-lg    "
-          >
-            Pesquisar
-          </button> */}
         </section>
 
-        <body>
+        <body className="h-screen">
           <div className=" w-auto mr-10 ml-10 ">
             <div class="flex flex-col">
               <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -136,20 +112,20 @@ function ListaFunc() {
                       </thead>
                       <tbody>
                         <tr align="center" class="border-b">
-                          {chamados.map((item) => {
+                          {funcs.map((item) => {
                             return (
                               <>
                                 <td class="text-lg text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                  Fulano da Silva
+                                  {item.nome}
                                 </td>
                                 <td class="text-lg text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                  000000000
+                                  {item.matricula}
                                 </td>
                                 <td class="text-lg text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                  Fulano123
+                                  {item.usuario}
                                 </td>
                                 <td class="text-lg text-red-600 font-bold underline px-6 py-4  whitespace-nowrap">
-                                  status
+                                  {item.status}
                                 </td>
                                 <td class="text-lg text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                                   <a href="/">
@@ -174,7 +150,7 @@ function ListaFunc() {
                       </div>
                     )}
 
-                    {chamados.length < 1 && (
+                    {funcs.length < 1 && (
                       <div className="flex gap-2 items-center m-auto w-64 mt-10">
                         <p className=""> Você não possui chamados.</p>
                       </div>
@@ -185,7 +161,8 @@ function ListaFunc() {
             </div>
           </div>
         </body>
-      </div>
+        <Footer/>
+      </>
     );
   }
 

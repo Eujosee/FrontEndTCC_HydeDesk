@@ -22,9 +22,9 @@ function PrivateRoutes({children}){
     return authenticated ? children : <Navigate to="/login"/>
     
 }
+
 const Rotas = () => {
     return (
-
     <AuthProvider>
         <BrowserRouter>
         <Routes>
@@ -41,7 +41,6 @@ const Rotas = () => {
             <Route path="/mudar-senha" element={<MudaSenha/>}/>
             <Route path="/abrir-chamado" element={<PrivateRoutes><AbrirChamado/></PrivateRoutes>}/>
             <Route path="*" element={<Navigate to="/404"/>}/>
-
         </Routes>
         </BrowserRouter>
     </AuthProvider>

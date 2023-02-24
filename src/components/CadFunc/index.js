@@ -1,23 +1,20 @@
 import api from "../../api"
 import { useState, useRef } from "react";
-import { AiOutlineArrowLeft } from 'react-icons/ai'
 import {CgProfile} from  'react-icons/cg'
-import { Link } from "react-router-dom";
 
 function CadFunc () {
     const [status, setStatus] = useState('');
     const [statusErro, setStatusErro] = useState('');
-    const [imagem, setImagem] = useState('')
-    const fileInput = useRef(null)
+    const [imagem, setImagem] = useState('');
+    const fileInput = useRef(null);
     const id = JSON.parse(localStorage.getItem("Id"));
     const [user,setUser] = useState({
         nome: "",
-        id_empresa: id,
         matricula: "",
         usuario: "",
         senha: "",
         confirmsenha: "",
-    })
+    });
 
     const resetForm = () => {
         setUser({
@@ -69,7 +66,6 @@ function CadFunc () {
 
     return (
         <div className="bg-white px-10 py-4 ">
-            
             <h1 className="font-bold text-2xl mt-4">Cadastre um funcionário</h1>
             <form encType="multipart/form">
                     <div className="flex flex-col justify-center items-center mt-5">
