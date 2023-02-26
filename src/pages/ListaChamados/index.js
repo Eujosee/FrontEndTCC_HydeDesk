@@ -5,7 +5,7 @@ import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 import { faEllipsis } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
-import { useEffect, useState, Fragment } from "react";
+import { useEffect, useState } from "react";
 import api from "../../api";
 import { BiSearchAlt2 } from "react-icons/bi";
 import "./index.css";
@@ -16,36 +16,48 @@ function ListaChamados() {
   const [loading, setLoading] = useState(true);
   const [filtro, setFiltro] = useState({
     status_chamado: "",
-    empresa: ""
-  })
+    empresa: "",
+  });
+  const type = JSON.parse(localStorage.getItem("Tipo"));
+  const id = JSON.parse(localStorage.getItem("Id"));
 
   const changeFiltro = (e) => {
     setFiltro({
       ...filtro,
-      [e.target.name]:e.target.value
-    })
-  }
-  console.log(filtro)
+      [e.target.name]: e.target.value,
+    });
+  };
+  console.log(filtro);
   const handleFiltro = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
     try {
-      if(filtro.status_chamado !== ""){
-        const { data } = await api.get("/chamados?status_chamado=" + filtro.status_chamado )
-        setChamados(data)
-        console.log(data)
+      if (filtro.status_chamado !== "") {
+        const { data } = await api.get(
+          "/chamados?status_chamado=" + filtro.status_chamado
+        );
+        setChamados(data);
+        console.log(data);
       }
-    } catch (error) {
-      
-    }
-  }
+    } catch (error) {}
+  };
+
   const handleFiltroName = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
     try {
-      if(filtro.empresa !== ""){
-        const { data } = await api.get("/chamados?nome_empresa=" + filtro.empresa )
-        setChamados(data)
-        console.log(data)
+      if (filtro.empresa !== "") {
+        const { data } = await api.get(
+          "/chamados?nome_empresa=" + filtro.empresa
+        );
+        setChamados(data);
+        console.log(data);
       }
+    } catch (error) {}
+  };
+  const handleCancel = async ( id_chamado, chamado, e) => {
+    e.preventDefault();
+    try {
+      const { data } =  await api.put("/cancelar/" + id_chamado, chamado )
+      console.log(data)
     } catch (error) {
       
     }
@@ -53,14 +65,30 @@ function ListaChamados() {
   useEffect(() => {
     (async () => {
       try {
-        const { data } = await api.get("/chamados");
-        setChamados(data);
-        setLoading(false);
+        switch (type) {
+          case "empresas":
+            const { data } = await api.get("/chamados?empresa_id=" + id);
+            setChamados(data);
+            setLoading(false);
+            break;
+          case "funcionarios":
+            const response = await api.get("/chamados?funcionario_id=" + id);
+            setChamados(response.data);
+            setLoading(false);
+            break;
+          case "tecnicos":
+            const res = await api.get("/chamados");
+            setChamados(res.data);
+            setLoading(false);
+            break;
+          default:
+            break;
+        }
       } catch (error) {
         setStatus("Erro ao buscar seus chamados!");
       }
     })();
-  }, []);
+  }, [id,type]);
 
   return (
     <div className="font-Poppins teste">
@@ -72,6 +100,15 @@ function ListaChamados() {
               <h1 class=" texto text-2xl ml-6 first-letter:font-semibold sm:ml-0 text-gray-900 sm:text-4xl">
                 Lista de chamados
               </h1>
+              {type !== "empresas" && <div class="ml-6 flex items-center justify-center gap-x-6">
+                  <Link
+                    to="/abrir-chamado"
+                    class=" no-underline rounded-md bg-azul-hyde px-3.5 py-1.5 text-base font-semibold leading-7 text-white shadow-sm hover:bg-cyan-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-600"
+                  >
+                    Novo chamado
+                  </Link>
+                </div>}
+             
             </div>
           </div>
         </div>
@@ -86,7 +123,11 @@ function ListaChamados() {
             onChange={changeFiltro}
             required
           />
-          <BiSearchAlt2 size={20} className="absolute right-3 cursor-pointer" onClick={handleFiltroName}/>
+          <BiSearchAlt2
+            size={20}
+            className="absolute right-3 cursor-pointer"
+            onClick={handleFiltroName}
+          />
         </div>
         <div className="filtro w-1/4 ml-4  flex items-center mr-8">
           <div className="w-full">
@@ -101,9 +142,7 @@ function ListaChamados() {
               </option>
               <option value="pendente">Pendente</option>
               <option value="andamento">Em andamento</option>
-              <option value="concluido">
-                Concluido
-              </option>
+              <option value="concluido">Concluido</option>
             </select>
           </div>
         </div>
@@ -148,10 +187,7 @@ function ListaChamados() {
                         >
                           Status
                         </th>
-                        <th
-                          scope="col"
-                          class="text-lg font-bold px-6 py-4 "
-                        >
+                        <th scope="col" class="text-lg font-bold px-6 py-4 ">
                           Detalhes
                         </th>
                       </tr>
@@ -169,14 +205,17 @@ function ListaChamados() {
                             <td class="text-lg text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                               {item.cod_verificacao}
                             </td>
-                            <td class="text-lg text-red-600 font-bold underline px-6 py-4  whitespace-nowrap" >
+                            <td class="text-lg text-red-600 font-bold underline px-6 py-4  whitespace-nowrap">
                               {item.status_chamado}
                             </td>
                             <td class="text-lg text-gray-900 font-light px-6 py-4 whitespace-nowrap space-x-3">
-                              <Link to={"/detalhes/" + item.id_chamado} className="text-azul-hyde">
+                              <Link
+                                to={"/detalhes/" + item.id_chamado}
+                                className="text-azul-hyde"
+                              >
                                 <FontAwesomeIcon icon={faEye} />
                               </Link>
-                                <FontAwesomeIcon icon={faTrash} />
+                              <FontAwesomeIcon icon={faTrash} className="cursor-pointer" onClick={handleCancel(item.id_chamado, item[index])} />
                               <a href="/" className="text-azul-hyde">
                                 <FontAwesomeIcon icon={faEllipsis} />
                               </a>
@@ -193,9 +232,14 @@ function ListaChamados() {
                     </div>
                   )}
 
-                  {chamados.length < 1 && (
+                  {chamados.length < 1 && !loading && !status && (
                     <div className="flex gap-2 items-center m-auto w-64 mt-10">
                       <p className=""> Você não possui chamados.</p>
+                    </div>
+                  )}
+                                     {status && !loading && (
+                    <div className="flex gap-2 items-center m-auto w-64 mt-10">
+                      <p className="">{status}</p>
                     </div>
                   )}
                 </div>

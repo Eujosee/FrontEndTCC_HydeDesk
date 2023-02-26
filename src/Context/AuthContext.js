@@ -1,5 +1,4 @@
-import React, { createContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import  { createContext, useEffect, useState } from "react";
 import api from "../api"
 
 const Context = createContext();
@@ -72,7 +71,7 @@ function AuthProvider({ children }) {
             case "matricula":
                 try {
                     const { data } = await api.post('/funcionarios/login', user)
-
+                    console.log(data)
                     setToken(data.token)
                     setID(data.id)
                     setTipo(data.tipo)
