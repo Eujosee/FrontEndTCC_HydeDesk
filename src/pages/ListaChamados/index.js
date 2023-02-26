@@ -1,5 +1,5 @@
 import Header from "../../components/header";
-import Footer from "../../components/Footer"
+import Footer from "../../components/Footer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
@@ -23,33 +23,80 @@ function ListaChamados() {
   const type = JSON.parse(localStorage.getItem("Tipo"));
   const id = JSON.parse(localStorage.getItem("Id"));
 
-
   const changeFiltro = (e) => {
     setFiltro({
       ...filtro,
       [e.target.name]: e.target.value,
     });
   };
-  console.log(filtro);
   const handleFiltro = async (e) => {
     e.preventDefault();
     try {
       if (filtro.status_chamado !== "") {
         switch (type) {
           case "empresas":
-            const { data } = await api.get("/chamados?empresa_id=" + id + "&status_chamado=" + filtro.status_chamado);
-            setChamados(data);
-            setLoading(false);
+            if (filtro.empresa && filtro.status_chamado) {
+              const { data } = await api.get(
+                "/chamados?empresa_id=" +
+                  id +
+                  "&status_chamado=" +
+                  filtro.status_chamado +
+                  "&nome_funcionario=" +
+                  filtro.empresa
+              );
+              setChamados(data);
+              setLoading(false);
+            } else {
+              const { data } = await api.get(
+                "/chamados?empresa_id=" +
+                  id +
+                  "&status_chamado=" +
+                  filtro.status_chamado
+              );
+              setChamados(data);
+              setLoading(false);
+            }
             break;
           case "funcionarios":
-            const response = await api.get("/chamados?funcionario_id=" + id + "&status_chamado=" + filtro.status_chamado);
-            setChamados(response.data);
-            setLoading(false);
+            if (filtro.empresa && filtro.status_chamado) {
+              const response = await api.get(
+                "/chamados?funcionario_id=" +
+                  id +
+                  "&status_chamado=" +
+                  filtro.status_chamado +
+                  "&protocolo=" +
+                  filtro.empresa
+              );
+              setChamados(response.data);
+              setLoading(false);
+            } else {
+              const response = await api.get(
+                "/chamados?funcionario_id=" +
+                  id +
+                  "&status_chamado=" +
+                  filtro.status_chamado
+              );
+              setChamados(response.data);
+              setLoading(false);
+            }
             break;
           case "tecnicos":
-            const res = await api.get("/chamados?status_chamado=" + filtro.status_chamado);
-            setChamados(res.data);
-            setLoading(false);
+            if (filtro.empresa && filtro.status_chamado) {
+              const res = await api.get(
+                "/chamados?status_chamado=" +
+                  filtro.status_chamado +
+                  "&nome_empresa=" +
+                  filtro.empresa
+              );
+              setChamados(res.data);
+              setLoading(false);
+            } else {
+              const res = await api.get(
+                "/chamados?status_chamado=" + filtro.status_chamado
+              );
+              setChamados(res.data);
+              setLoading(false);
+            }
             break;
           default:
             break;
@@ -62,39 +109,40 @@ function ListaChamados() {
     e.preventDefault();
     try {
       if (filtro.empresa !== "") {
-        const { data } = await api.get(
-          "/chamados?nome_empresa=" + filtro.empresa
-        );
-        setChamados(data);
-        console.log(data);
+        if (type == "tecnicos") {
+          const { data } = await api.get(
+            "/chamados?nome_empresa=" + filtro.empresa + "&empresa_id=" + id
+          );
+          setChamados(data);
+        } else {
+          const { data } = await api.get(
+            "/chamados?nome_funcionario=" + filtro.empresa + "&empresa_id=" + id
+          );
+          setChamados(data);
+        }
       }
     } catch (error) {}
   };
-  const handleCancel = async ( id_chamado, chamado, e) => {
-    e.preventDefault();
-    try {
-      const { data } =  await api.put("/cancelar/" + id_chamado, chamado )
-      console.log(data)
-    } catch (error) {
-      
-    }
-  }
+
   useEffect(() => {
     (async () => {
       try {
         switch (type) {
           case "empresas":
             const { data } = await api.get("/chamados?empresa_id=" + id);
+
             setChamados(data);
             setLoading(false);
             break;
           case "funcionarios":
             const response = await api.get("/chamados?funcionario_id=" + id);
+
             setChamados(response.data);
             setLoading(false);
             break;
           case "tecnicos":
             const res = await api.get("/chamados");
+
             setChamados(res.data);
             setLoading(false);
             break;
@@ -105,28 +153,29 @@ function ListaChamados() {
         setStatus("Erro ao buscar seus chamados!");
       }
     })();
-  }, [id,type]);
+  }, [id, type]);
 
   return (
     <div className="font-Poppins teste">
       <Header />
 
       <main>
-        <div class="relative px-6 lg:px-8">
-          <div class="max-w-2xl py-5 :py-16 lg:py-16">
-            <div class="text-center flex flex-row">
-              <h1 class=" texto text-2xl ml-6 first-letter:font-semibold sm:ml-0 text-gray-900 sm:text-4xl">
+        <div className="relative px-6 lg:px-8">
+          <div className="max-w-2xl py-5 :py-16 lg:py-16">
+            <div className="text-center flex flex-row">
+              <h1 className=" texto text-2xl ml-6 first-letter:font-semibold sm:ml-0 text-gray-900 sm:text-4xl">
                 Lista de chamados
               </h1>
-              {type !== "empresas" && <div class="ml-6 flex items-center justify-center gap-x-6">
+              {type !== "empresas" && (
+                <div className="ml-6 flex items-center justify-center gap-x-6">
                   <Link
                     to="/abrir-chamado"
-                    class=" no-underline rounded-md bg-azul-hyde px-3.5 py-1.5 text-base font-semibold leading-7 text-white shadow-sm hover:bg-cyan-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-600"
+                    className=" no-underline rounded-md bg-azul-hyde px-3.5 py-1.5 text-base font-semibold leading-7 text-white shadow-sm hover:bg-cyan-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-600"
                   >
                     Novo chamado
                   </Link>
-                </div>}
-             
+                </div>
+              )}
             </div>
           </div>
         </div>
@@ -136,7 +185,13 @@ function ListaChamados() {
         <div className=" pesquisa w-1/3 flex items-center relative">
           <input
             className="focus:outline-none focus:border-b-azul-hyde border-b-2 w-full  p-2"
-            placeholder="Nome completo"
+            placeholder={
+              type == "tecnicos"
+                ? "Nome da empresa"
+                : type == "empresas"
+                ? "Nome do funcionário"
+                : "Protocolo"
+            }
             name="empresa"
             onChange={changeFiltro}
             required
@@ -153,7 +208,6 @@ function ListaChamados() {
               className="focus:outline-none focus:border-b-azul-hyde border-b-2 w-full p-2"
               name="status_chamado"
               onChange={changeFiltro}
-
               required
             >
               <option selected disabled>
@@ -163,7 +217,6 @@ function ListaChamados() {
               <option value="pendente">Pendente</option>
               <option value="andamento">Em andamento</option>
               <option value="concluido">Concluido</option>
-
             </select>
           </div>
         </div>
@@ -177,67 +230,91 @@ function ListaChamados() {
 
       <body className="h-screen">
         <div className=" w-full  sm:ml-0 sm:mr-0">
-          <div class="flex  flex-col ">
-            <div class="overflow-x-auto  lg:-mx-8">
-              <div class="py-8 inline-block min-w-full sm:px-2 lg:px-">
-                <div class="overflow-hidden">
-                  <table class="w-full">
-                    <thead align="center" class="border-b-2 w-full">
+          <div className="flex  flex-col ">
+            <div className="overflow-x-auto  lg:-mx-8">
+              <div className="py-8 inline-block min-w-full sm:px-2 lg:px-">
+                <div className="overflow-hidden">
+                  <table className="w-full">
+                    <thead align="center" className="border-b-2 w-full">
                       <tr>
+                        {type == "tecnicos" && (
+                          <th
+                            scope="col"
+                            className="text-lg font-bold text-gray-900 px-6 py-4"
+                          >
+                            Nome da empresa
+                          </th>
+                        )}
                         <th
                           scope="col"
-                          class="text-lg font-bold text-gray-900 px-6 py-4"
+                          className="text-lg font-bold text-gray-900 px-6 py-4"
                         >
-                          Nome
+                          Nome do funcionário
                         </th>
+
                         <th
                           scope="col"
-                          class="text-lg font-bold text-gray-900 px-6 py-4 "
+                          className="text-lg font-bold text-gray-900 px-6 py-4 "
                         >
                           Problema
                         </th>
                         <th
                           scope="col"
-                          class="text-lg font-bold text-gray-900 px-6 py-4"
+                          className="text-lg font-bold text-gray-900 px-6 py-4"
                         >
                           Protocolo
                         </th>
                         <th
                           scope="col"
-                          class="text-lg font-bold text-gray-900 px-6 py-4 "
+                          className="text-lg font-bold text-gray-900 px-6 py-4 "
                         >
                           Status
                         </th>
-                        <th scope="col" class="text-lg font-bold px-6 py-4 ">
+                        <th
+                          scope="col"
+                          className="text-lg font-bold px-6 py-4 "
+                        >
                           Detalhes
                         </th>
                       </tr>
                     </thead>
                     <tbody>
-
                       {chamados.map((item, index) => {
                         return (
-                          <tr align="center" class="border-b">
-                            <td class="text-lg text-gray-900 font-light px-4 py-4 whitespace-nowrap">
-                              {item.nome_empresa}
+                          <tr
+                            align="center"
+                            className="border-b"
+                            key={item.id_chamad}
+                          >
+                            {type == "tecnicos" && (
+                              <td className="text-lg text-gray-900 font-light px-4 py-4 whitespace-nowrap">
+                                {item.nome_empresa}
+                              </td>
+                            )}
+                            <td className="text-lg text-gray-900 font-light px-4 py-4 whitespace-nowrap">
+                              {item.nome_funcionario}
                             </td>
-                            <td class="text-lg text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+
+                            <td className="text-lg text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                               {item.problema}
                             </td>
-                            <td class="text-lg text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                            <td className="text-lg text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                               {item.cod_verificacao}
                             </td>
-                            <td class="text-lg text-red-600 font-bold underline px-6 py-4  whitespace-nowrap">
+                            <td className="text-lg text-red-600 font-bold underline px-6 py-4  whitespace-nowrap">
                               {item.status_chamado}
                             </td>
-                            <td class="text-lg text-gray-900 font-light px-6 py-4 whitespace-nowrap space-x-3">
+                            <td className="text-lg text-gray-900 font-light px-6 py-4 whitespace-nowrap space-x-3">
                               <Link
                                 to={"/detalhes/" + item.id_chamado}
                                 className="text-azul-hyde"
                               >
                                 <FontAwesomeIcon icon={faEye} />
                               </Link>
-                              <FontAwesomeIcon icon={faTrash} className="cursor-pointer" onClick={handleCancel(item.id_chamado, item[index])} />
+                              <FontAwesomeIcon
+                                icon={faTrash}
+                                className="cursor-pointer"
+                              />
                               <a href="/" className="text-azul-hyde">
                                 <FontAwesomeIcon icon={faEllipsis} />
                               </a>
@@ -245,7 +322,6 @@ function ListaChamados() {
                           </tr>
                         );
                       })}
-
                     </tbody>
                   </table>
                   {loading && (
@@ -260,7 +336,7 @@ function ListaChamados() {
                       <p className=""> Você não possui chamados.</p>
                     </div>
                   )}
-                                     {status && !loading && (
+                  {status && !loading && (
                     <div className="flex gap-2 items-center m-auto w-64 mt-10">
                       <p className="">{status}</p>
                     </div>
@@ -271,7 +347,7 @@ function ListaChamados() {
           </div>
         </div>
       </body>
-      <Footer/>
+      <Footer />
     </div>
   );
 }

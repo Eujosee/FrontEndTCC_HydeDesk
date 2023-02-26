@@ -20,7 +20,7 @@ function ListaFunc() {
     status_empresa: "",
     nome: "",
   });
- 
+  const id = JSON.parse(localStorage.getItem("Id"));
 
   const changeFiltro = (e) => {
     setFiltro({
@@ -34,24 +34,26 @@ function ListaFunc() {
     try {
       if (filtro.nome !== "") {
         const { data } = await api.get(
-          "/funcionarios?nome=" + filtro.nome
+          "/funcionarios?nome=" + filtro.nome + "&id_empresa=" + id
         );
         setFuncionarios(data);
         console.log(data);
       }
-    } catch (error) {}
+    } catch (error) {
+
+    }
   };
 
   const handleFiltro = async (e) => {
     e.preventDefault();
     try {
-      const id = JSON.parse(localStorage.getItem("Id"));
+      
       if (filtro.nome && filtro.status_empresa) {
         const { data } = await api.get(
           "/funcionarios?status_funcionario=" + filtro.status_empresa +"&nome=" + filtro.nome + "&id_empresa=" + id
         );
         setFuncionarios(data);
-      }
+      }else
       if(filtro.status_empresa ){
         const { data } = await api.get(
           "/funcionarios?status_funcionario=" + filtro.status_empresa  + "&id_empresa=" + id
@@ -66,8 +68,6 @@ function ListaFunc() {
   useEffect(() => {
     (async () => {
       try {
-
-        const id = JSON.parse(localStorage.getItem("Id"));
         if(id){
           const { data } = await api.get("/funcionarios?id_empresa=" + id);
           setFuncionarios(data);
@@ -78,7 +78,7 @@ function ListaFunc() {
 
       }
     })();
-  }, []);
+  }, [id]);
 
 
   return (
@@ -144,7 +144,7 @@ function ListaFunc() {
         </button>
       </section>
 
-      <body>
+      <body className="mb-8">
         <div className=" w-auto mr-10 ml-10 ">
           <div class="flex flex-col">
             <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -237,10 +237,11 @@ function ListaFunc() {
               </div>
             </div>
           </div>
-
+        </div>
         </body>
         <Footer/>
-      </>
+        
+      </div>
     );
   }
 

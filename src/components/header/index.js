@@ -11,7 +11,6 @@ export default function HeaderEmpresa({ fixed }) {
 
   const type = JSON.parse(localStorage.getItem("Tipo"))
   const { authenticated, handleLogout }  = useContext(Context)
-  const type = JSON.parse(localStorage.getItem("Tipo"))
   console.log(type)
 
   return (

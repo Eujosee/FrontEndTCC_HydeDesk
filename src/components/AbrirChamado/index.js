@@ -121,8 +121,8 @@ function AbrirChamado() {
             placeholder="Informe o patrimônio"
             onChange={changeChamado}
             name="patrimonio"
-            value={user.patrimonio}
-            onChange={(e) => [handleUser(e), setStatusErro('')]}
+
+   
           />
         </div>
         <div className="">
@@ -132,8 +132,6 @@ function AbrirChamado() {
             placeholder="Informe o setor"
             onChange={changeChamado}
             name="setor"
-            value={user.setor}
-            onChange={(e) => [handleUser(e), setStatusErro('')]}
           />
         </div>
         <div className="grid col-span-2">
@@ -169,7 +167,6 @@ function AbrirChamado() {
               name="anexo"
               onChange={(e) => setImagem(e.target.files[0])}
               accept=".png, .jpg, .jpeg"
-              onChange={(e) => setImagem(e.target.files[0])}
               required
             />
           </div>
