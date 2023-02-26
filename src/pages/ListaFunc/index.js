@@ -1,27 +1,28 @@
 import Header from "../../components/header";
+import Footer from "../../components/Footer"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPen } from "@fortawesome/free-solid-svg-icons";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
-import { faEye } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState, Fragment } from "react";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { BiSearchAlt2 } from "react-icons/bi";
 import api from "../../api";
 
 function ListaFunc() {
-  const [chamados, setChamados] = useState([]);
+  const [funcs, setFuncs] = useState([]);
   const [status, setStatus] = useState("");
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     (async () => {
       try {
-        const { data } = await api.get("/chamados");
-        setChamados(data);
+        const { data } = await api.get("/funcionarios");
+        console.log(data)
+        setFuncs(data);
         setLoading(false);
       } catch (error) {
-        setStatus("Erro ao buscar seus chamados!");
+        setStatus("Erro ao buscar seus funcionários!");
       }
     })();
   }, []);
@@ -50,143 +51,119 @@ function ListaFunc() {
 						</div>
 					</div>
 				</main>
+        <section className="response ml-6 sm:ml-0 flex w-full p-4 lg:flex-row ">
+          <div className=" pesquisa w-1/3 flex items-center relative">
+            <input
+              className="focus:outline-none focus:border-b-azul-hyde border-b-2 w-full  p-2"
+              placeholder="Nome completo"
+              name="nome"
+              required
+            />
+            <BiSearchAlt2 size={20} className="absolute right-3" />
+          </div>
+        </section>
 
-				<section className="response ml-6 sm:ml-0 flex w-full p-4 lg:flex-row ">
-					<div className=" pesquisa w-1/3 flex items-center relative">
-						<input
-							className="focus:outline-none focus:border-b-azul-hyde border-b-2 w-full  p-2 dark:text-branco  dark:bg-preto"
-							placeholder="Nome completo"
-							name="nome"
-							required
-						/>
-						<BiSearchAlt2 size={20} className="absolute right-3" />
-					</div>
-					{/* <div className="filtro w-1/4 ml-4  flex items-center mr-8">
-            <div className="w-full">
-              <select
-                className="focus:outline-none focus:border-b-azul-hyde border-b-2 w-full p-2"
-                name="especialidade"
-                required
-              >
-                <option selected disabled>
-                  Selecione uma opção
-                </option>
-                <option value="Desenvolvedor">Desenvolvedor</option>
-                <option value="Infraestrutura">Infraestrutura</option>
-                <option value="Sistemas operacionais">
-                  Sistemas operacionais
-                </option>
-              </select>
+        <body className="h-screen">
+          <div className=" w-auto mr-10 ml-10 ">
+            <div class="flex flex-col">
+              <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+                <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
+                  <div class="overflow-hidden">
+                    <table class="min-w-full">
+                      <thead align="center" class="border-b-2">
+                        <tr>
+                          <th
+                            scope="col"
+                            class="text-lg font-medium text-gray-900 px-6 py-4"
+                          >
+                            Nome
+                          </th>
+                          <th
+                            scope="col"
+                            class="text-lg font-medium text-gray-900 px-6 py-4"
+                          >
+                            Matrícula
+                          </th>
+                          <th
+                            scope="col"
+                            class="text-lg font-medium text-gray-900 px-6 py-4"
+                          >
+                            Usuário
+                          </th>
+                          <th
+                            scope="col"
+                            class="text-lg font-bold text-gray-900 px-6 py-4 "
+                          >
+                            Status
+                          </th>
+                          <th
+                            scope="col"
+                            class="text-lg font-medium text-gray-900 px-6 py-4"
+                          >
+                            Editar
+                          </th>
+                          <th
+                            scope="col"
+                            class="text-lg font-medium text-gray-900 px-6 py-4"
+                          >
+                            Excluir
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                          {funcs.map((item) => {
+                            return (
+                              
+                              <tr align="center" class="border-b">
+                                <td class="text-lg text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                  {item.nome}
+                                </td>
+                                <td class="text-lg text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                  {item.matricula}
+                                </td>
+                                <td class="text-lg text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                  {item.usuario}
+                                </td>
+                                <td class="text-lg text-red-600 font-bold underline px-6 py-4  whitespace-nowrap">
+                                  {item.status_funcionario}
+                                </td>
+                                <td class="text-lg text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                  <a href="/">
+                                    <FontAwesomeIcon icon={faPen} />
+                                  </a>
+                                </td>
+                                <td class="text-lg text-gray-900 font-light px-6 py-4 whitespace-nowrap ">
+                                  <a href="/">
+                                    <FontAwesomeIcon icon={faTrash} />
+                                  </a>
+                                </td>
+                                </tr>
+                              
+                            );
+                          })}
+                      </tbody>
+                    </table>
+                    {loading && (
+                      <div className="flex gap-2 items-center m-auto w-64 mt-10">
+                        <AiOutlineLoading3Quarters size={25} className="icon" />
+                        <p className=""> Carregando...</p>
+                      </div>
+                    )}
+
+                    {funcs.length < 1 && (
+                      <div className="flex gap-2 items-center m-auto w-64 mt-10">
+                        <p className=""> Você não possui chamados.</p>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-          <button
-            type="submit"
-            className=" botao hover:bg-cyan-600  bg-azul-hyde p-2 rounded-xl text-white font-bold text-lg    "
-          >
-            Pesquisar
-          </button> */}
-				</section>
-
-				<body className="h-screen">
-					<div className=" w-auto mr-10 ml-10 ">
-						<div class="flex flex-col">
-							<div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
-								<div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
-									<div class="overflow-hidden">
-										<table class="min-w-full">
-											<thead align="center" class="border-b-2">
-												<tr>
-													<th
-														scope="col"
-														class="text-lg font-medium text-gray-900 px-6 py-4 dark:text-white"
-													>
-														Nome
-													</th>
-													<th
-														scope="col"
-														class="text-lg font-medium text-gray-900 px-6 py-4 dark:text-white"
-													>
-														Matrícula
-													</th>
-													<th
-														scope="col"
-														class="text-lg font-medium text-gray-900 px-6 py-4 dark:text-white"
-													>
-														Usuário
-													</th>
-													<th
-														scope="col"
-														class="text-lg font-bold text-gray-900 px-6 py-4 dark:text-white"
-													>
-														Status
-													</th>
-													<th
-														scope="col"
-														class="text-lg font-medium text-gray-900 px-6 py-4 dark:text-white"
-													>
-														Editar
-													</th>
-													<th
-														scope="col"
-														class="text-lg font-medium text-gray-900 px-6 py-4 dark:text-white"
-													>
-														Excluir
-													</th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr align="center" class="border-b">
-													{chamados.map((item) => {
-														return (
-															<>
-																<td class="text-lg text-gray-900 font-light px-6 py-4 whitespace-nowrap dark:text-white">
-																	Fulano da Silva
-																</td>
-																<td class="text-lg text-gray-900 font-light px-6 py-4 whitespace-nowrap dark:text-white">
-																	000000000
-																</td>
-																<td class="text-lg text-gray-900 font-light px-6 py-4 whitespace-nowrap dark:text-white">
-																	Fulano123
-																</td>
-																<td class="text-lg text-red-600 font-bold underline px-6 py-4  whitespace-nowrap dark:text-white">
-																	status
-																</td>
-																<td class="text-lg text-gray-900 font-light px-6 py-4 whitespace-nowrap dark:text-white">
-																	<a href="/">
-																		<FontAwesomeIcon icon={faPen} />
-																	</a>
-																</td>
-																<td class="text-lg text-gray-900 font-light px-6 py-4 whitespace-nowrap dark:text-white">
-																	<a href="/">
-																		<FontAwesomeIcon icon={faTrash} />
-																	</a>
-																</td>
-															</>
-														);
-													})}
-												</tr>
-											</tbody>
-										</table>
-										{loading && (
-											<div className="flex gap-2 items-center m-auto w-64 mt-10">
-												<AiOutlineLoading3Quarters size={25} className="icon" />
-												<p className=""> Carregando...</p>
-											</div>
-										)}
-
-										{chamados.length < 1 && (
-											<div className="flex gap-2 items-center m-auto w-64 mt-10">
-												<p className=""> Você não possui chamados.</p>
-											</div>
-										)}
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</body>
-			</div>
-		);
+        </body>
+        <Footer/>
+      </>
+    );
   }
 
 export default ListaFunc;

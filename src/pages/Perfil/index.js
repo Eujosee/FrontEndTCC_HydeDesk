@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Header from "../../components/header";
+import Footer from "../../components/Footer"
 import CardPerfil from "../../components/Perfil";
 import api from "../../api";
 
@@ -23,9 +24,6 @@ export default function Perfil(){
         pegarDados()
     }, [busca, id]) 
     
-    
-    
-
     return (
 			<div className="font-Poppins dark:bg-preto">
 				<Header />

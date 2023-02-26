@@ -15,7 +15,6 @@ function ListaChamados() {
   const [chamados, setChamados] = useState([]);
   const [status, setStatus] = useState("");
   const [loading, setLoading] = useState(true);
-  const type = JSON.parse(localStorage.getItem("Tipo"))
 
   useEffect(() => {
     (async () => {
@@ -135,7 +134,7 @@ function ListaChamados() {
                             <tr align="center" class="border-b">
                             {console.log(item)}
                               <td class="text-lg text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                {item.nome_empresa}
+                                {item.empresa.nome_empresa}
                               </td>
                               <td class="text-lg text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                                 {item.problema}

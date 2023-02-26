@@ -57,7 +57,6 @@ function Cadastro() {
 										<label className="mr-4 ml-2 font-medium text-xl dark:text-branco">
 											Técnico
 										</label>
-
 										<input
 											type="radio"
 											name="escolhalogin"

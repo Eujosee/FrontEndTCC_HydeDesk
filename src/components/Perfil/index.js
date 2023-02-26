@@ -1,12 +1,9 @@
-import { Link } from "react-router-dom";
-import { useState, useContext } from "react";
+import { useContext } from "react";
 import { Context } from "../../Context/AuthContext";
 
 export default function CardPerfil(props) {
   const { handleLogout } = useContext(Context)
   const { busca } = props
-  console.log(busca)
-
 
   switch (busca) {
     case "tecnicos":

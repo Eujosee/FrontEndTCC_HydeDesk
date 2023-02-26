@@ -22,9 +22,9 @@ function PrivateRoutes({children}){
     return authenticated ? children : <Navigate to="/login"/>
     
 }
+
 const Rotas = () => {
     return (
-
     <AuthProvider>
         <BrowserRouter>
         <Routes>
@@ -37,11 +37,11 @@ const Rotas = () => {
             <Route path="/perfil" element={<PrivateRoutes><Perfil/></PrivateRoutes>}/>
             <Route path="/recuperar" element={<RecuperarSenha/>}/>
             <Route path="/lista-funcionarios" element={<PrivateRoutes><ListaFunc/></PrivateRoutes>}/>
+            <Route path="/lista-funcionarios" element={<PrivateRoutes><ListaFunc/></PrivateRoutes>}/>
             <Route path="/lista-chamados" element={<PrivateRoutes><ListaChamados/></PrivateRoutes>}/>
             <Route path="/mudar-senha" element={<MudaSenha/>}/>
             <Route path="/abrir-chamado" element={<PrivateRoutes><AbrirChamado/></PrivateRoutes>}/>
-            <Route path="*" element={<Navigate to="/404"/>}/>
-
+            <Route path="*" element={<Pag404/>}/>
         </Routes>
         </BrowserRouter>
     </AuthProvider>
