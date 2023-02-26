@@ -25,7 +25,9 @@ function EmpresaPrivateRoutes({ children }) {
 }
 
 const Rotas = () => {
+
   return (
+
     <AuthProvider>
       <BrowserRouter>
         <Routes>
@@ -83,6 +85,7 @@ const Rotas = () => {
             }
           />
           <Route path="*" element={<Pag404 />} />
+
         </Routes>
       </BrowserRouter>
     </AuthProvider>

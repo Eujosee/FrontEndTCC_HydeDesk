@@ -1,4 +1,5 @@
 import Header from "../../components/header";
+import Footer from "../../components/Footer"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
@@ -14,12 +15,14 @@ function ListaChamados() {
   const [chamados, setChamados] = useState([]);
   const [status, setStatus] = useState("");
   const [loading, setLoading] = useState(true);
+
   const [filtro, setFiltro] = useState({
     status_chamado: "",
     empresa: "",
   });
   const type = JSON.parse(localStorage.getItem("Tipo"));
   const id = JSON.parse(localStorage.getItem("Id"));
+
 
   const changeFiltro = (e) => {
     setFiltro({
@@ -107,9 +110,10 @@ function ListaChamados() {
   return (
     <div className="font-Poppins teste">
       <Header />
+
       <main>
         <div class="relative px-6 lg:px-8">
-          <div class=" max-w-2xl py-5 :py-16 lg:py-16">
+          <div class="max-w-2xl py-5 :py-16 lg:py-16">
             <div class="text-center flex flex-row">
               <h1 class=" texto text-2xl ml-6 first-letter:font-semibold sm:ml-0 text-gray-900 sm:text-4xl">
                 Lista de chamados
@@ -149,14 +153,17 @@ function ListaChamados() {
               className="focus:outline-none focus:border-b-azul-hyde border-b-2 w-full p-2"
               name="status_chamado"
               onChange={changeFiltro}
+
               required
             >
               <option selected disabled>
                 Selecione uma opção
               </option>
+
               <option value="pendente">Pendente</option>
               <option value="andamento">Em andamento</option>
               <option value="concluido">Concluido</option>
+
             </select>
           </div>
         </div>
@@ -168,7 +175,7 @@ function ListaChamados() {
         </button>
       </section>
 
-      <body>
+      <body className="h-screen">
         <div className=" w-full  sm:ml-0 sm:mr-0">
           <div class="flex  flex-col ">
             <div class="overflow-x-auto  lg:-mx-8">
@@ -207,6 +214,7 @@ function ListaChamados() {
                       </tr>
                     </thead>
                     <tbody>
+
                       {chamados.map((item, index) => {
                         return (
                           <tr align="center" class="border-b">
@@ -237,6 +245,7 @@ function ListaChamados() {
                           </tr>
                         );
                       })}
+
                     </tbody>
                   </table>
                   {loading && (
@@ -262,6 +271,7 @@ function ListaChamados() {
           </div>
         </div>
       </body>
+      <Footer/>
     </div>
   );
 }

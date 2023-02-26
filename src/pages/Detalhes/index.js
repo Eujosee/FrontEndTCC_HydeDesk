@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react';
 import Header from '../../components/header';
 import './index.css';
@@ -68,16 +69,42 @@ export default function Detalhes() {
               <div className='flex flex-col justify-center items-center text-center w-1/2 pl-8'>
                     <label className='font-medium text-gray-500'>Status:</label>
                     <p className="text-green-500 rounded text-center w-1/2">{data[0].status_chamado}</p>
+
               </div>
             </div>
-            <div className='flex flex-col w-full pl-8'>
-              <label className='font-medium text-gray-500'>Anexo:</label>
-              <img src="http://placehold.it/" className='w-full h-60' alt=''/>
+            <div className="w-1/2 data2">
+              <div className="flex w-full space-x-2">
+                <div className="flex flex-col text-center items-center justify-center w-1/2 pl-8">
+                  <label className="font-medium text-gray-500">
+                    Código de Verificação:
+                  </label>
+                  <p className="text-lg font-bold focus:outline-none border-b-2 bg-white w-1/2">
+                    {dados[0].cod_verificacao}
+                  </p>
+                </div>
+                <div className="flex flex-col justify-center items-center text-center w-1/2 pl-8">
+                  <label className="font-medium text-gray-500">Status:</label>
+                  <p className="text-green-500 rounded text-center w-1/2">
+                    {dados[0].status_chamado}
+                  </p>
+                </div>
+              </div>
+                {dados[0].anexo &&  <div className="flex flex-col w-full pl-8">
+                <label className="font-medium text-gray-500">Anexo:</label>
+                <img
+                  src={"https://hdteste.azurewebsites.net/" + dados[0].anexo}
+                  className="w-full h-60"
+                  alt="anexo do chamado"
+                />
+              </div>}
+             
             </div>
           </div>
+        )}
       </div>
     </div>}
     
    </>
  );
+
 }

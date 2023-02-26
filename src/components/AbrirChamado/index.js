@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import api from "../../api";
 import { ToastContainer, toast } from 'react-toastify';
@@ -65,21 +66,25 @@ function AbrirChamado() {
     }
   };
   return (
+
     <div className="">
       <h1 className="text-center font-bold text-2xl sm:mt-4">
         Abrir um chamado
       </h1>
+
       <div className="sm:mt-12 sm:flex sm:flex-col lg:grid lg:grid-cols-2 lg:gap-x-10 lg:gap-y-2">
         <div className="">
-          <label className="text-lg font-medium text-gray-900">Problema</label>
+          <label className="text-lg font-medium text-gray-900">Problema *</label>
           <select
             className="focus:outline-none focus:border-azul-hyde border-b-2 w-full p-2"
             name="problema"
+
             onChange={changeChamado}
+
             required
           >
             <option selected disabled>
-              Selecione uma opção
+              Selecione uma opção 
             </option>
             <option value="Hardware">Hardware</option>
             <option value="Redes">Redes</option>
@@ -89,11 +94,12 @@ function AbrirChamado() {
 
         <div className="">
           <label className="text-lg font-medium text-gray-900">
-            Prioridade
+            Prioridade *
           </label>
           <select
             className="focus:outline-none focus:border-azul-hyde border-b-2 w-full p-2"
             name="prioridade"
+
             onChange={changeChamado}
             required
           >
@@ -108,34 +114,42 @@ function AbrirChamado() {
 
         <div className="">
           <label className="text-lg font-medium text-gray-900">
-            Patrimônio
+            Patrimônio *
           </label>
           <input
             className="focus:outline-none focus:border-azul-hyde border-b-2 w-full p-2"
             placeholder="Informe o patrimônio"
             onChange={changeChamado}
             name="patrimonio"
+            value={user.patrimonio}
+            onChange={(e) => [handleUser(e), setStatusErro('')]}
           />
         </div>
         <div className="">
-          <label className="text-lg font-medium text-gray-900">Setor</label>
+          <label className="text-lg font-medium text-gray-900">Setor *</label>
           <input
             className="focus:outline-none focus:border-azul-hyde border-b-2 w-full p-2"
             placeholder="Informe o setor"
             onChange={changeChamado}
             name="setor"
+            value={user.setor}
+            onChange={(e) => [handleUser(e), setStatusErro('')]}
           />
         </div>
         <div className="grid col-span-2">
           <div className="mt-2 ">
             <label className="text-lg font-medium text-gray-900">
+
               Descrição
+
             </label>
             <input
               className="focus:outline-none focus:border-azul-hyde border-b-2 w-full p-2"
               placeholder="Descreva o seu problema"
+
               onChange={changeChamado}
               name="descricao"
+
             />
           </div>
           <div className="mt-1 ">
@@ -155,11 +169,13 @@ function AbrirChamado() {
               name="anexo"
               onChange={(e) => setImagem(e.target.files[0])}
               accept=".png, .jpg, .jpeg"
+              onChange={(e) => setImagem(e.target.files[0])}
               required
             />
           </div>
         </div>
       </div>
+
       <div className=" mt-8 flex justify-center items-center flex-col">
         <button
           className="hover:bg-cyan-600 mb-6 bg-azul-hyde p-2 rounded-3xl text-white font-bold text-lg w-80"
@@ -168,9 +184,9 @@ function AbrirChamado() {
           Enviar
         </button>
         <ToastContainer/>
-        {/* {message && <><p className={message ? "text-green-500" : "text-red-500"}>{message ? message : messageErro}</p></>} */}
       </div>
     </div>
+
   );
 }
 

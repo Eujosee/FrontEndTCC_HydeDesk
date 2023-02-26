@@ -166,6 +166,7 @@ function CadEmp() {
     }
   };
 
+
   return (
     <div className="bg-white px-10 pb-10 pt-3">
       <form encType="multipart/form">

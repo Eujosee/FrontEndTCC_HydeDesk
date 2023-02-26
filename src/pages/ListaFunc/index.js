@@ -1,15 +1,19 @@
 import Header from "../../components/header";
+import Footer from "../../components/Footer"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPen } from "@fortawesome/free-solid-svg-icons";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
+
 import { useEffect, useState } from "react";
+
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { BiSearchAlt2 } from "react-icons/bi";
 import api from "../../api";
 
 function ListaFunc() {
   const [funcionarios, setFuncionarios] = useState([]);
+
   const [status, setStatus] = useState("");
   const [loading, setLoading] = useState(true);
   const [filtro, setFiltro] = useState({
@@ -62,6 +66,7 @@ function ListaFunc() {
   useEffect(() => {
     (async () => {
       try {
+
         const id = JSON.parse(localStorage.getItem("Id"));
         if(id){
           const { data } = await api.get("/funcionarios?id_empresa=" + id);
@@ -70,9 +75,11 @@ function ListaFunc() {
         }
       } catch (error) {
         setStatus("Erro ao buscar os funcionários!");
+
       }
     })();
   }, []);
+
 
   return (
     <div className="font-Poppins">
@@ -225,14 +232,17 @@ function ListaFunc() {
                       <p className="">{status}</p>
                     </div>
                   )}
+
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </body>
-    </div>
-  );
-}
+
+        </body>
+        <Footer/>
+      </>
+    );
+  }
+
 
 export default ListaFunc;

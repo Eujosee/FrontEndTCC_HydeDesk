@@ -28,26 +28,30 @@ function Form() {
   };
 
   return (
-    <div className="bg-white px-10 py-10">
-      <div>
-        <div className="sm:px-0 sm:shrink lg:px-8">
-          <p className="font-semibold text-lg">Entrar como:</p>
-          <input
-            type="radio"
-            name="escolhalogin"
-            value="cpf"
-            onChange={handleChange}
-            defaultChecked
-          />
-          <label className="mr-4 ml-2 font-semibold ">Técnico</label>
+		<div className="bg-white px-10 py-10 dark:bg-preto">
+			<div>
+				<div className="sm:px-0 sm:shrink lg:px-8">
+					<p className="font-semibold text-lg dark:text-white">Entrar como:</p>
+					<input
+						type="radio"
+						name="escolhalogin"
+						value="cpf"
+						onChange={handleChange}
+						defaultChecked
+					/>
+					<label className="mr-4 ml-2 font-semibold dark:text-white">
+						Técnico
+					</label>
 
-          <input
-            type="radio"
-            name="escolhalogin"
-            value="cnpj"
-            onChange={handleChange}
-          />
-          <label className="mr-4 ml-2 font-semibold ">Empresa</label>
+					<input
+						type="radio"
+						name="escolhalogin"
+						value="cnpj"
+						onChange={handleChange}
+					/>
+					<label className="mr-4 ml-2 font-semibold dark:text-white ">
+						Empresa
+					</label>
 
           <input
             type="radio"
