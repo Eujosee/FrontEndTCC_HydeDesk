@@ -14,10 +14,11 @@ export default function Footer () {
                 <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Sobre a Hyde</h2>
                 <ul className="text-gray-600 dark:text-gray-400">
                     <li className="mb-4">
-                        <Link to="#" className="hover:underline">Nossa história</Link>
+                        <Link to="/" className="hover:underline">Nossa história</Link>
+                        
                     </li>
                     <li>
-                        <Link to="#" className="hover:underline">Time</Link>
+                        <Link to="/" className="hover:underline">Time</Link>
                     </li>
                 </ul>
             </div>
