@@ -14,7 +14,42 @@ function ListaChamados() {
   const [chamados, setChamados] = useState([]);
   const [status, setStatus] = useState("");
   const [loading, setLoading] = useState(true);
+  const [filtro, setFiltro] = useState({
+    status_chamado: "",
+    empresa: ""
+  })
 
+  const changeFiltro = (e) => {
+    setFiltro({
+      ...filtro,
+      [e.target.name]:e.target.value
+    })
+  }
+  console.log(filtro)
+  const handleFiltro = async (e) => {
+    e.preventDefault()
+    try {
+      if(filtro.status_chamado !== ""){
+        const { data } = await api.get("/chamados?status_chamado=" + filtro.status_chamado )
+        setChamados(data)
+        console.log(data)
+      }
+    } catch (error) {
+      
+    }
+  }
+  const handleFiltroName = async (e) => {
+    e.preventDefault()
+    try {
+      if(filtro.empresa !== ""){
+        const { data } = await api.get("/chamados?nome_empresa=" + filtro.empresa )
+        setChamados(data)
+        console.log(data)
+      }
+    } catch (error) {
+      
+    }
+  }
   useEffect(() => {
     (async () => {
       try {
@@ -29,7 +64,7 @@ function ListaChamados() {
 
   return (
     <div className="font-Poppins teste">
-      <Header />  
+      <Header />
       <main>
         <div class="relative px-6 lg:px-8">
           <div class=" max-w-2xl py-5 :py-16 lg:py-16">
@@ -47,32 +82,34 @@ function ListaChamados() {
           <input
             className="focus:outline-none focus:border-b-azul-hyde border-b-2 w-full  p-2"
             placeholder="Nome completo"
-            name="nome"
+            name="empresa"
+            onChange={changeFiltro}
             required
           />
-          <BiSearchAlt2 size={20} className="absolute right-3" />
+          <BiSearchAlt2 size={20} className="absolute right-3 cursor-pointer" onClick={handleFiltroName}/>
         </div>
         <div className="filtro w-1/4 ml-4  flex items-center mr-8">
           <div className="w-full">
             <select
               className="focus:outline-none focus:border-b-azul-hyde border-b-2 w-full p-2"
-              name="especialidade"
+              name="status_chamado"
+              onChange={changeFiltro}
               required
             >
               <option selected disabled>
                 Selecione uma opção
               </option>
-              <option value="Desenvolvedor">Desenvolvedor</option>
-              <option value="Infraestrutura">Infraestrutura</option>
-              <option value="Sistemas operacionais">
-                Sistemas operacionais
+              <option value="pendente">Pendente</option>
+              <option value="andamento">Em andamento</option>
+              <option value="concluido">
+                Concluido
               </option>
             </select>
           </div>
         </div>
         <button
-          type="submit"
-          className=" botao hover:bg-cyan-600  bg-azul-hyde p-2 rounded-xl text-white font-bold text-lg    "
+          className=" botao hover:bg-cyan-600  bg-azul-hyde p-2 rounded-xl text-white font-bold text-lg"
+          onClick={handleFiltro}
         >
           Pesquisar
         </button>
@@ -84,7 +121,7 @@ function ListaChamados() {
             <div class="overflow-x-auto  lg:-mx-8">
               <div class="py-8 inline-block min-w-full sm:px-2 lg:px-">
                 <div class="overflow-hidden">
-                  <table class="min-w-full">
+                  <table class="w-full">
                     <thead align="center" class="border-b-2 w-full">
                       <tr>
                         <th
@@ -113,60 +150,40 @@ function ListaChamados() {
                         </th>
                         <th
                           scope="col"
-                          class="text-lg font-bold text-gray-900 px-6 py-4 "
+                          class="text-lg font-bold px-6 py-4 "
                         >
                           Detalhes
-                        </th>
-                        <th
-                          scope="col"
-                          class="text-lg font-bold text-gray-900 px-6 py-4"
-                        >
-                          Conclusão
-                        </th>
-                        <th
-                          scope="col"
-                          class="text-lg font-bold text-gray-900 px-6 py-4 "
-                        >
-                          Excluir
                         </th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr align="center" class="border-b">
-                        {chamados.map((item) => {
-                          return (
-                            <>
-                              <td class="text-lg text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                {item.empresa.nome_empresa}
-                              </td>
-                              <td class="text-lg text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                {item.problema}
-                              </td>
-                              <td class="text-lg text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                {item.cod_verificacao}
-                              </td>
-                              <td class="text-lg text-red-600 font-bold underline px-6 py-4  whitespace-nowrap">
-                                {item.status_chamado}
-                              </td>
-                              <td class="text-lg text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                <Link to="" className="text-azul-hyde">
-                                  <FontAwesomeIcon icon={faEye} />
-                                </Link>
-                              </td>
-                              <td class="text-lg text-gray-900 font-light px-6 py-4 whitespace-nowrap ">
-                                <a href="/" className="text-azul-hyde">
-                                  <FontAwesomeIcon icon={faEllipsis} />
-                                </a>
-                              </td>
-                              <td class="text-lg text-gray-900 font-light px-6 py-4 whitespace-nowrap ">
-                                <a href="/" className="text-azul-hyde">
-                                  <FontAwesomeIcon icon={faTrash} />
-                                </a>
-                              </td>
-                            </>
-                          );
-                        })}
-                      </tr>
+                      {chamados.map((item, index) => {
+                        return (
+                          <tr align="center" class="border-b">
+                            <td class="text-lg text-gray-900 font-light px-4 py-4 whitespace-nowrap">
+                              {item.nome_empresa}
+                            </td>
+                            <td class="text-lg text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                              {item.problema}
+                            </td>
+                            <td class="text-lg text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                              {item.cod_verificacao}
+                            </td>
+                            <td class="text-lg text-red-600 font-bold underline px-6 py-4  whitespace-nowrap" >
+                              {item.status_chamado}
+                            </td>
+                            <td class="text-lg text-gray-900 font-light px-6 py-4 whitespace-nowrap space-x-3">
+                              <Link to={"/detalhes/" + item.id_chamado} className="text-azul-hyde">
+                                <FontAwesomeIcon icon={faEye} />
+                              </Link>
+                                <FontAwesomeIcon icon={faTrash} />
+                              <a href="/" className="text-azul-hyde">
+                                <FontAwesomeIcon icon={faEllipsis} />
+                              </a>
+                            </td>
+                          </tr>
+                        );
+                      })}
                     </tbody>
                   </table>
                   {loading && (

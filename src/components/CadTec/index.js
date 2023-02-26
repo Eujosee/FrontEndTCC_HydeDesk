@@ -170,7 +170,7 @@ function CadTec () {
                     <div className="mt-2">
                         <label className="text-lg font-medium text-gray-900">Especialidade *</label>
                         <select className="focus:outline-none focus:border-azul-hyde border-b-2 w-full  p-2" name="especialidade" onChange={(e) => [handleUser(e), setStatusErro('')]} value={user.especialidade} required>
-                            <option selected disabled>Selecione uma opção</option>
+                            <option selected>Selecione uma opção</option>
                             <option value="Desenvolvedor">Desenvolvedor</option>
                             <option value="Infraestrutura">Infraestrutura</option>
                             <option value="Sistemas operacionais">Sistemas operacionais</option>

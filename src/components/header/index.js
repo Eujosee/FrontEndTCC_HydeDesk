@@ -10,7 +10,7 @@ import { FiLogOut } from "react-icons/fi"
 export default function HeaderEmpresa({ fixed }) {
   const [navbarOpen, setNavbarOpen] = React.useState(false);
 
-
+  const type = JSON.parse(localStorage.getItem("Tipo"))
   const { authenticated, handleLogout }  = useContext(Context)
 
   return (
@@ -62,7 +62,7 @@ export default function HeaderEmpresa({ fixed }) {
               {authenticated && <li className="nav-item">
               <Link
                   className="px-3 py-2 flex items-center text-xl uppercase font-bold leading-snug text-black hover:opacity-75"
-                  to="/lista-chamados-empresa"
+                  to={type === "tecnicos" ? "/lista-chamados" : type === "empresas" ? "/lista-funcionarios" : ""}
                 >
                   <i className="fab fa-twitter text-lg leading-lg text-black opacity-75 "></i>
                   <span className="ml-2">Chamados</span>
