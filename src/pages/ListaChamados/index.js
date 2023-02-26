@@ -32,11 +32,25 @@ function ListaChamados() {
     e.preventDefault();
     try {
       if (filtro.status_chamado !== "") {
-        const { data } = await api.get(
-          "/chamados?status_chamado=" + filtro.status_chamado
-        );
-        setChamados(data);
-        console.log(data);
+        switch (type) {
+          case "empresas":
+            const { data } = await api.get("/chamados?empresa_id=" + id + "&status_chamado=" + filtro.status_chamado);
+            setChamados(data);
+            setLoading(false);
+            break;
+          case "funcionarios":
+            const response = await api.get("/chamados?funcionario_id=" + id + "&status_chamado=" + filtro.status_chamado);
+            setChamados(response.data);
+            setLoading(false);
+            break;
+          case "tecnicos":
+            const res = await api.get("/chamados?status_chamado=" + filtro.status_chamado);
+            setChamados(res.data);
+            setLoading(false);
+            break;
+          default:
+            break;
+        }
       }
     } catch (error) {}
   };
