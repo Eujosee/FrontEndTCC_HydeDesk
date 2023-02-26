@@ -135,7 +135,7 @@ function ListaChamados() {
                             <tr align="center" class="border-b">
                             {console.log(item)}
                               <td class="text-lg text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                {item.empresa.nome_empresa}
+                                {item.nome_empresa}
                               </td>
                               <td class="text-lg text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                                 {item.problema}

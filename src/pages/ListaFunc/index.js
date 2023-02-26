@@ -29,29 +29,28 @@ function ListaFunc() {
 
   
     return (
-      <>
-        <Header />
-        <main>
-          <div class="relative px-6 lg:px-8">
-            <div class=" max-w-2xl py-5 sm:py-16 lg:py-16">
-              <div class="text-center flex flex-row">
-                <h1 class="text-2xl font-semi-bold  text-gray-900 sm:text-4xl">
-                  Funcionários cadastrados
-                </h1>
+			<div className="font-Poppins dark:bg-preto">
+				<Header />
+				<main>
+					<div class="relative px-6 lg:px-8">
+						<div class=" max-w-2xl py-5 sm:py-16 lg:py-16">
+							<div class="text-center flex flex-row">
+								<h1 class="text-2xl font-semi-bold  text-gray-900 sm:text-4xl dark:text-white">
+									Funcionários cadastrados
+								</h1>
 
-                <div class="ml-6 flex items-center justify-center gap-x-6">
-                  <a
-                    href="cadastro-funcionario"
-                    class=" no-underline rounded-md bg-azul-hyde px-3.5 py-1.5 text-base font-semibold leading-7 text-white shadow-sm hover:bg-cyan-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-600"
-                  >
-                    Novo
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </main>
-
+								<div class="ml-6 flex items-center justify-center gap-x-6">
+									<a
+										href="cadastro-funcionario"
+										class=" no-underline rounded-md bg-azul-hyde px-3.5 py-1.5 text-base font-semibold leading-7 text-white shadow-sm hover:bg-cyan-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-600"
+									>
+										Novo
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</main>
         <section className="response ml-6 sm:ml-0 flex w-full p-4 lg:flex-row ">
           <div className=" pesquisa w-1/3 flex items-center relative">
             <input
