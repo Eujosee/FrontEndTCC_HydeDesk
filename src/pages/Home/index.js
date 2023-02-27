@@ -11,8 +11,8 @@ function Home() {
     <>
       <Header />
       <div className="flex flex-col w-full min-h-screen overflow-x-hidden dark:bg-preto ">
-        <div className="w-full">
-          <img src={ImagemFloppa1} alt="" />
+        <div className="w-full ">
+          <img className="w-full" src={ImagemFloppa1} alt="" />
         </div>
         <div
           id="historia"
@@ -37,12 +37,12 @@ function Home() {
           </div>
           <div className="md:px-20 hidden lg:flex">
             <div className="flex justify-center items-center w-80 h-80">
-              <img src={ImagemFloppa} alt="" />
+              <img  src={ImagemFloppa} alt="" />
             </div>
           </div>
         </div>
         <div className="w-full h-90">
-          <img src={ImagemFloppa2} alt="" />
+          <img className="w-full" src={ImagemFloppa2} alt="" />
         </div>
         <div className=" py-14 flex flex-col justify-center items-center">
           <h1 className="mb-10 font-bold text-2xl dark:text-white">
