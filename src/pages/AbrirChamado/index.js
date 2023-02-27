@@ -2,8 +2,27 @@ import AbrirChamado from "../../components/AbrirChamado";
 import Imagem from "../../images/imageCAD.svg";
 import { Link } from "react-router-dom";
 import { AiOutlineArrowLeft } from "react-icons/ai";
+import { useState } from "react";
 
 function Cadastro() {
+  const id = JSON.parse(localStorage.getItem("Id"));
+  const [imagem, setImagem] = useState("")
+  const [abrirChamado, setAbrirChamado] = useState({
+    prioridade: "",
+    patrimonio: "",
+    problema:"",
+    setor:"",
+    descricao:"",
+    anexo:imagem,
+    funcionario_id: id
+  })
+
+  const changeChamado = (e) => {
+    setAbrirChamado({
+      ...AbrirChamado,
+      [e.target.name]:e.target.value
+    })
+  }
   return (
 		<>
 			<div className="flex w-screen h-screen items-center dark:text-branco  dark:bg-preto  ">

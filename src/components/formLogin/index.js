@@ -1,26 +1,27 @@
 import { Link } from "react-router-dom";
 import { useState, useContext } from "react";
 import { Context } from "../../Context/AuthContext";
-import InputMask from "react-input-mask"
-
+import InputMask from "react-input-mask";
 
 function Form() {
   const [label, setLabel] = useState("cpf");
   const [cpf, setCPF] = useState("");
   const [senha, setSenha] = useState("");
-  const { authenticated, handleLogin, status } = useContext(Context);
-  var user = {}
+  const { handleLogin, status } = useContext(Context);
+  var user = {};
 
   if (label === "matricula") {
-      user = {
+    user = {
       [label]: cpf,
       senha: senha,
-    }
-  }
+    };
+  } else {
     user = {
-    [label]: cpf.replace(/[^0-9]+/g,''),
-    senha: senha,
+      [label]: cpf.replace(/[^0-9]+/g, ""),
+      senha: senha,
+    };
   }
+  console.log(user)
 
   const handleChange = (event) => {
     setLabel(event.target.value);
@@ -52,78 +53,72 @@ function Form() {
 						Empresa
 					</label>
 
-					<input
-						type="radio"
-						name="escolhalogin"
-						value="matricula"
-						onChange={handleChange}
-					/>
-					<label className="ml-2 font-semibold dark:text-white">
-						Funcionário
-					</label>
-				</div>
-				<div className="mt-8 mb-3">
-					<label className="text-lg font-semibold  text-gray-900 dark:text-white">
-						Login
-					</label>
-					<InputMask
-						className="focus:outline-none focus:border-azul-hyde border-b-2 w-full p-2  dark:text-branco  dark:bg-preto"
-						placeholder={
-							label === "cpf" || label === "cnpj"
-								? label.toUpperCase()
-								: "Matrícula"
-						}
-						name="cpf"
-						mask={
-							label === "cpf"
-								? "999.999.999-99"
-								: label === "cnpj"
-								? "99.999.999/9999-99"
-								: label === "matricula"
-								? ""
-								: ""
-						}
-						onChange={(e) => [setCPF(e.target.value)]}
-						required
-					/>
-				</div>
-				<div>
-					<label className="text-lg font-semibold  text-gray-900">Senha</label>
-					<input
-						type="password"
-						className="focus:outline-none focus:border-azul-hyde border-b-2 w-full p-2  dark:text-branco  dark:bg-preto"
-						placeholder="Senha"
-						onChange={(e) => [setSenha(e.target.value)]}
-					/>
-				</div>
-				<div className="mt-8 flex flex-col">
-					<button
-						className="hover:bg-cyan-600 mb-6 bg-azul-hyde p-2 rounded-3xl text-white font-bold text-lg "
-						onClick={() => {
-							handleLogin(user, label);
-						}}
-					>
-						{" "}
-						Login
-					</button>
-					<p className="text-red-500 flex justify-center">{status}</p>
+          <input
+            type="radio"
+            name="escolhalogin"
+            value="matricula"
+            onChange={handleChange}
+          />
+          <label className="ml-2 font-semibold ">Funcionário</label>
+        </div>
+        <div className="mt-8 mb-3">
+          <label className="text-lg font-semibold  text-gray-900">Login</label>
+          <InputMask
+            className="focus:outline-none focus:border-azul-hyde border-b-2 w-full p-2"
+            placeholder={
+              label === "cpf" || label === "cnpj"
+                ? label.toUpperCase()
+                : "Matrícula"
+            }
+            name="cpf"
+            mask={
+              label === "cpf"
+                ? "999.999.999-99"
+                : label === "cnpj"
+                ? "99.999.999/9999-99"
+                : label === "matricula"
+                ? ""
+                : ""
+            }
+            onChange={(e) => [setCPF(e.target.value)]}
+            required
+          />
+        </div>
+        <div>
+          <label className="text-lg font-semibold  text-gray-900">Senha</label>
+          <input
+            type="password"
+            className="focus:outline-none focus:border-azul-hyde border-b-2 w-full p-2"
+            placeholder="Senha"
+            onChange={(e) => [setSenha(e.target.value)]}
+          />
+        </div>
+        <div className="mt-8 flex flex-col">
+          <button
+            className="hover:bg-cyan-600 mb-6 bg-azul-hyde p-2 rounded-3xl text-white font-bold text-lg "
+            onClick={() => {
+              handleLogin(user, label);
+            }}
+          >
+            {" "}
+            Login
+          </button>
+          <p className="text-red-500 flex justify-center">{status}</p>
 
-					<Link className="no-underline flex " to="/recuperar">
-						<p className="text-black font-semibold dark:text-white">
-							Esqueceu a senha?
-						</p>
-						<p className="ml-2 text-azul-hyde font-semibold">Recuperar</p>
-					</Link>
-					<Link className="no-underline flex  " to="/cadastro">
-						<p className="text-black font-semibold mb-1 dark:text-branco">
-							Não possui uma conta?
-						</p>
-						<p className="ml-2 text-azul-hyde font-semibold mb-1">Cadastrar</p>
-					</Link>
-				</div>
-			</div>
-		</div>
-	);
+          <Link className="no-underline flex " to="/recuperar">
+            <p className="text-black font-semibold">Esqueceu a senha?</p>
+            <p className="ml-2 text-azul-hyde font-semibold">Recuperar</p>
+          </Link>
+          <Link className="no-underline flex  " to="/cadastro">
+            <p className="text-black font-semibold mb-1">
+              Não possui uma conta?
+            </p>
+            <p className="ml-2 text-azul-hyde font-semibold mb-1">Cadastrar</p>
+          </Link>
+        </div>
+      </div>
+    </div>
+  );
 }
 
 export default Form;
