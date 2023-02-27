@@ -10,11 +10,14 @@ function Home() {
   return (
     <>
       <Header />
-      <div className="flex flex-col w-full h-screen  dark:bg-preto ">
-        <div className="hidden lg:flex">
+      <div className="flex flex-col w-full min-h-screen overflow-x-hidden dark:bg-preto ">
+        <div className="w-full">
           <img src={ImagemFloppa1} alt="" />
         </div>
-        <div id="historia" className="md:py-24 flex items-center justify-center">
+        <div
+          id="historia"
+          className="py-10 md:py-24 flex items-center justify-center"
+        >
           <div className="max-w-lg">
             <h1 className="text-center font-bold text-2xl dark:text-white">
               Quem somos?
@@ -32,31 +35,29 @@ function Home() {
               lacus.
             </p>
           </div>
-          <div className="px-20 hidden lg:flex">
+          <div className="md:px-20 hidden lg:flex">
             <div className="flex justify-center items-center w-80 h-80">
               <img src={ImagemFloppa} alt="" />
             </div>
           </div>
         </div>
-        <div className="hidden lg:flex w-full h-90">
+        <div className="w-full h-90">
           <img src={ImagemFloppa2} alt="" />
         </div>
-        <div id="time" className="py-14 flex flex-col justify-center items-center">
+        <div className=" py-14 flex flex-col justify-center items-center">
           <h1 className="mb-10 font-bold text-2xl dark:text-white">
             Conheça nosso time
           </h1>
-		<div>
-			<Carrossel/>
-		</div>
+          <div className="max-w-full">
+            <Carrossel />
+          </div>
         </div>
-		<div className="w-full flex flex-col justify-center items-center py-44 bg-slate-400">
-			<h1 className="font-bold text-2xl">Estamos em obra</h1>
-			<button className="hover:bg-cyan-600 text-white font-semibold py-2 px-10 rounded-md bg-azul-hyde">
-			<Link to="">
-				Em breve
-			</Link>
-			</button>
-		</div>
+        <div className="w-full flex flex-col justify-center items-center py-44 bg-slate-400">
+          <h1 className="font-bold text-2xl">Estamos em obra</h1>
+          <button className="hover:bg-cyan-600 text-white font-semibold py-2 px-10 rounded-md bg-azul-hyde">
+            <Link to="">Em breve</Link>
+          </button>
+        </div>
         <Footer />
       </div>
     </>
