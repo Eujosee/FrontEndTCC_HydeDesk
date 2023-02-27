@@ -15,18 +15,18 @@ export default function HeaderEmpresa({ fixed }) {
 
   return (
     <div className="font-Poppins">
-      <nav className="relative flex flex-wrap items-center justify-between px-2 py-3 bg-white">
+      <nav className="relative flex flex-wrap items-center justify-between px-2 py-3 bg-white dark:bg-gray-900">
         <div className="container px-4 mx-auto flex flex-wrap items-center justify-between">
           <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
             <Link
               className="text-3xl font-bold leading-relaxed mr-4 py-2 whitespace-nowrap text-white flex"
               to="/"
             >
-              <p className="text-black ">Hyde</p>
+              <p className="text-black dark:text-white">Hyde</p>
               <p className="text-azul-hyde">Desk</p>
             </Link>
             <button
-              className=" cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none"
+              className="dark:text-white cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none"
               type="button"
               onClick={() => setNavbarOpen(!navbarOpen)}
             >
@@ -43,25 +43,25 @@ export default function HeaderEmpresa({ fixed }) {
             <ul className="flex flex-col lg:flex-row list-none lg:ml-auto">
               <li className="nav-item">
                 <Link
-                  className="px-3 py-2 flex items-center text-xl uppercase font-bold leading-snug text-black hover:opacity-75"
+                  className=" dark:text-white px-3 py-2 flex items-center text-xl uppercase font-bold leading-snug text-black hover:opacity-75"
                   to="/"
                 >
-                  <i className="fab fa-facebook-square text-lg leading-lg text-black opacity-75"></i>
+                  <i className=" fab fa-facebook-square text-lg leading-lg text-black opacity-75"></i>
                   <span className="ml-2">Página inicial</span>
                 </Link>
               </li>
               <li className="nav-item">
                 <Link
-                  className="px-3 py-2 flex items-center text-xl uppercase font-bold leading-snug text-black hover:opacity-75"
+                  className=" dark:text-white px-3 py-2 flex items-center text-xl uppercase font-bold leading-snug text-black hover:opacity-75"
                   to="/"
                 >
                   <i className="fab fa-facebook-square text-lg leading-lg text-black opacity-75"></i>
-                  <span className="ml-2">Quem somos?</span>
+                  <span className="ml-2 ">Quem somos?</span>
                 </Link>
               </li>
               {authenticated && <li className="nav-item">
               <Link
-                  className="px-3 py-2 flex items-center text-xl uppercase font-bold leading-snug text-black hover:opacity-75"
+                  className="dark:text-white px-3 py-2 flex items-center text-xl uppercase font-bold leading-snug text-black hover:opacity-75"
 
                   to="/lista-chamados"
 
@@ -72,7 +72,7 @@ export default function HeaderEmpresa({ fixed }) {
               </li>}
               {type === "empresas" && <li className="nav-item">
               <Link
-                  className="px-3 py-2 flex items-center text-xl uppercase font-bold leading-snug text-black hover:opacity-75"
+                  className="dark:text-white px-3 py-2 flex items-center text-xl uppercase font-bold leading-snug text-black hover:opacity-75"
                   to="/lista-funcionarios"
                 >
                   <i className="fab fa-twitter text-lg leading-lg text-black opacity-75 "></i>
@@ -103,7 +103,7 @@ export default function HeaderEmpresa({ fixed }) {
                 >
                   <FiLogOut
                     size={30}
-                    className="ml-4 hover:text-azul-hyde"
+                    className="ml-4 dark:text-white hover:text-azul-hyde"
                   />
                 </button>
               </li>}
