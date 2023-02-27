@@ -85,7 +85,6 @@ const Rotas = () => {
             }
           />
           <Route path="*" element={<Pag404 />} />
-
         </Routes>
       </BrowserRouter>
     </AuthProvider>

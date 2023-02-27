@@ -6,10 +6,13 @@ import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 import { faEllipsis } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { Menu, Transition } from "@headlessui/react";
+import { useEffect, useState, Fragment } from "react";
+import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import api from "../../api";
 import { BiSearchAlt2 } from "react-icons/bi";
 import "./index.css";
+import CardAvaliacao from "../../components/CardAvaliacao";
 
 function ListaChamados() {
   const [chamados, setChamados] = useState([]);
@@ -158,12 +161,12 @@ function ListaChamados() {
   return (
     <div className="font-Poppins teste">
       <Header />
-
-      <main>
-        <div className="relative px-6 lg:px-8">
-          <div className="max-w-2xl py-5 :py-16 lg:py-16">
-            <div className="text-center flex flex-row">
-              <h1 className=" texto text-2xl ml-6 first-letter:font-semibold sm:ml-0 text-gray-900 sm:text-4xl">
+      <body>
+      <section>
+        <div class="relative px-6 lg:px-8">
+          <div class=" max-w-2xl py-5 :py-16 lg:py-16">
+            <div class="text-center flex flex-row">
+              <h1 class=" texto text-2xl ml-6 font-semibold sm:ml-0 sm:text-4xl">
                 Lista de chamados
               </h1>
               {type !== "empresas" && (
@@ -179,9 +182,10 @@ function ListaChamados() {
             </div>
           </div>
         </div>
-      </main>
+      </section>
 
-      <section className="response ml-6 sm:ml-0 flex w-full p-4 lg:flex-row ">
+
+      <section1 className="response ml-6 sm:ml-0 flex w-full p-4 lg:flex-row ">
         <div className=" pesquisa w-1/3 flex items-center relative">
           <input
             className="focus:outline-none focus:border-b-azul-hyde border-b-2 w-full  p-2"
@@ -213,7 +217,6 @@ function ListaChamados() {
               <option selected disabled>
                 Selecione uma opção
               </option>
-
               <option value="pendente">Pendente</option>
               <option value="andamento">Em andamento</option>
               <option value="concluido">Concluido</option>
@@ -226,16 +229,14 @@ function ListaChamados() {
         >
           Pesquisar
         </button>
-      </section>
-
-      <body className="h-screen">
-        <div className=" w-full  sm:ml-0 sm:mr-0">
-          <div className="flex  flex-col ">
-            <div className="overflow-x-auto  lg:-mx-8">
-              <div className="py-8 inline-block min-w-full sm:px-2 lg:px-">
-                <div className="overflow-hidden">
-                  <table className="w-full">
-                    <thead align="center" className="border-b-2 w-full">
+      </section1>
+        <div className=" w-auto mr-10 ml-10 ">
+          <div class="flex  flex-col ">
+            <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+              <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
+                <div class="overflow-hidden">
+                  <table class="min-w-full">
+                    <thead align="center" class="border-b-2  ">
                       <tr>
                         {type == "tecnicos" && (
                           <th
@@ -268,56 +269,95 @@ function ListaChamados() {
                           scope="col"
                           className="text-lg font-bold text-gray-900 px-6 py-4 "
                         >
-                          Status
+                          Prioridade
                         </th>
                         <th
                           scope="col"
                           className="text-lg font-bold px-6 py-4 "
                         >
-                          Detalhes
+                          Status
+                        </th>
+                        <th
+                          scope="col"
+                          class="text-lg font-bold text-gray-900 px-6 py-4"
+                        >
+                          Opções
                         </th>
                       </tr>
                     </thead>
                     <tbody>
-                      {chamados.map((item, index) => {
+                      {chamados.map((item) => {
                         return (
-                          <tr
-                            align="center"
-                            className="border-b"
-                            key={item.id_chamad}
-                          >
-                            {type == "tecnicos" && (
-                              <td className="text-lg text-gray-900 font-light px-4 py-4 whitespace-nowrap">
-                                {item.nome_empresa}
-                              </td>
-                            )}
-                            <td className="text-lg text-gray-900 font-light px-4 py-4 whitespace-nowrap">
-                              {item.nome_funcionario}
+                          <tr align="center" class="border-b">
+                            <td class="text-lg text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                              {item.empresa.nome_empresa}
                             </td>
-
-                            <td className="text-lg text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                            <td class="text-lg text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                               {item.problema}
                             </td>
-                            <td className="text-lg text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                            <td class="text-lg text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                               {item.cod_verificacao}
                             </td>
-                            <td className="text-lg text-red-600 font-bold underline px-6 py-4  whitespace-nowrap">
+                            <td class="text-lg text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                              {item.prioridade}
+                            </td>
+                            <td class="text-lg text-red-600 font-bold underline px-6 py-4  whitespace-nowrap">
                               {item.status_chamado}
                             </td>
-                            <td className="text-lg text-gray-900 font-light px-6 py-4 whitespace-nowrap space-x-3">
-                              <Link
-                                to={"/detalhes/" + item.id_chamado}
-                                className="text-azul-hyde"
+
+                            <td class="text-lg text-gray-900 font-light px-6 py-4 whitespace-nowrap ">
+                              <Menu
+                                as="div"
+                                className="relative inline-block text-left"
                               >
-                                <FontAwesomeIcon icon={faEye} />
-                              </Link>
-                              <FontAwesomeIcon
-                                icon={faTrash}
-                                className="cursor-pointer"
-                              />
-                              <a href="/" className="text-azul-hyde">
-                                <FontAwesomeIcon icon={faEllipsis} />
-                              </a>
+                                <div>
+                                  <Menu.Button>
+                                    {" "}
+                                    <FontAwesomeIcon
+                                      className="text-azul-hyde"
+                                      icon={faEllipsis}
+                                    />
+                                  </Menu.Button>
+                                </div>
+
+                                <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                                  <div className="py-1">
+                                    <Menu.Item>
+                                      <div>
+                                        <Link
+                                          to={"/detalhes/" + item.id_chamado"}
+                                          className="block w-full px-4 py-2 text-left text-sm hover:bg-gray-100 font-semibold"
+                                        >
+                                          <button />
+                                          Detalhes
+                                        </Link>
+                                      </div>
+                                    </Menu.Item>
+                                    <Menu.Item>
+                                      <div>
+                                        <Link
+                                          to={"/"}
+                                          className="block w-full px-4 py-2 text-left text-sm hover:bg-gray-100 font-semibold"
+                                        >
+                                          <button />
+                                          Conclusão
+                                        </Link>
+                                      </div>
+                                    </Menu.Item>
+                                    <Menu.Item>
+                                      <div>
+                                        <Link
+                                          to={<CardAvaliacao />}
+                                          className="block w-full px-4 py-2 text-left text-sm hover:bg-gray-100 font-semibold"
+                                        >
+                                          <button />
+                                          Avaliação
+                                        </Link>
+                                      </div>
+                                    </Menu.Item>
+                                  </div>
+                                </Menu.Items>
+                              </Menu>
                             </td>
                           </tr>
                         );

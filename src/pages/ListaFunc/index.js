@@ -232,7 +232,6 @@ function ListaFunc() {
                       <p className="">{status}</p>
                     </div>
                   )}
-
                 </div>
               </div>
             </div>
