@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Header from "../../components/header";
+import Footer from "../../components/Footer"
 import CardPerfil from "../../components/Perfil";
 import api from "../../api";
 
@@ -23,17 +24,14 @@ export default function Perfil(){
         pegarDados()
     }, [busca, id]) 
     
-    
-    
-
-    return(
-        <div className="font-Poppins">
-        <Header/>
-            <div className="flex w-full h-screen items-center justify-center ">
-                <div className="flex items-center justify-center rounded shadow-2xl ">
-                    <CardPerfil {...dados} busca={busca}/>
-                </div>
-            </div>
-        </div>
-    )
+    return (
+			<div className="font-Poppins dark:bg-preto">
+				<Header />
+				<div className="flex w-full h-screen items-center justify-center ">
+					<div className="flex items-center justify-center rounded shadow-2xl">
+						<CardPerfil {...dados} busca={busca} />
+					</div>
+				</div>
+			</div>
+		);
 }

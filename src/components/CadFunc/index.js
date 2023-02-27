@@ -1,23 +1,24 @@
 import api from "../../api"
 import { useState, useRef } from "react";
-import { AiOutlineArrowLeft } from 'react-icons/ai'
 import {CgProfile} from  'react-icons/cg'
 import { Link } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 function CadFunc () {
     const [status, setStatus] = useState('');
     const [statusErro, setStatusErro] = useState('');
-    const [imagem, setImagem] = useState('')
-    const fileInput = useRef(null)
+    const [imagem, setImagem] = useState('');
+    const fileInput = useRef(null);
     const id = JSON.parse(localStorage.getItem("Id"));
     const [user,setUser] = useState({
         nome: "",
-        id_empresa: id,
         matricula: "",
         usuario: "",
         senha: "",
         confirmsenha: "",
-    })
+    });
 
     const resetForm = () => {
         setUser({
@@ -59,6 +60,9 @@ function CadFunc () {
         formData.append("id_empresa", id)
 
         const { data } = await api.post('/funcionarios/cadastro', formData, config)
+        toast.success(data.message, {
+            position: toast.POSITION.TOP_RIGHT
+        });
         setStatus(data.message)
         resetForm()
       } catch (error) {
@@ -68,6 +72,7 @@ function CadFunc () {
     }
 
     return (
+
         <div className="bg-white px-10 py-4 ">
             
             <h1 className="font-bold text-2xl mt-4">Cadastre um funcionário</h1>
@@ -153,11 +158,13 @@ function CadFunc () {
                     <button type="submit" className="hover:bg-cyan-600 mb-6 bg-cyan-500 p-2 rounded-3xl text-white font-bold text-lg w-80"
                     onClick={handleCad}
                     >Cadastrar</button>
+                    <ToastContainer/>
                     <p className={status ? "text-green-500" : "text-red-500"}>{status ? status : statusErro}</p>
                 </div>
             </form>
         </div>
     );
+
 }
 
 export default CadFunc

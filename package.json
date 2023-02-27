@@ -24,6 +24,9 @@
     "react-input-mask": "^2.0.4",
     "react-router-dom": "^6.8.0",
     "react-scripts": "5.0.1",
+    "react-slick": "^0.29.0",
+    "slick-carousel": "^1.8.1",
+    "react-toastify": "^9.1.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

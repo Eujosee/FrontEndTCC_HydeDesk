@@ -1,5 +1,4 @@
-import React, { createContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import  { createContext, useEffect, useState } from "react";
 import api from "../api"
 
 const Context = createContext();
@@ -11,6 +10,7 @@ function AuthProvider({ children }) {
     const [status, setStatus] = useState('')
     const [authenticated, setAuthenticated] = useState(false)
     const [loading, setLoading] = useState(true)
+
     useEffect(() => {
         const activeToken = localStorage.getItem("Token")
 
@@ -37,7 +37,7 @@ function AuthProvider({ children }) {
                         localStorage.setItem("Tipo", JSON.stringify(tipo))
                         api.defaults.headers.Authorization = `Bearer ${token}`
                         setAuthenticated(true)
-                        // navigate("/")
+                        
                     }
                 } catch (error) {
                     console.log(error)
@@ -71,7 +71,7 @@ function AuthProvider({ children }) {
             case "matricula":
                 try {
                     const { data } = await api.post('/funcionarios/login', user)
-
+                    console.log(data)
                     setToken(data.token)
                     setID(data.id)
                     setTipo(data.tipo)

@@ -1,21 +1,21 @@
-import React, { useContext } from "react";
+import { useContext, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
-import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import { Context } from "../../Context/AuthContext";
 import { FiLogOut } from "react-icons/fi"
 
 
 export default function HeaderEmpresa({ fixed }) {
-  const [navbarOpen, setNavbarOpen] = React.useState(false);
+  const [navbarOpen, setNavbarOpen] = useState(false);
 
-
+  const type = JSON.parse(localStorage.getItem("Tipo"))
   const { authenticated, handleLogout }  = useContext(Context)
+  console.log(type)
 
   return (
     <div className="font-Poppins">
-      <nav className="relative flex flex-wrap items-center justify-between px-2 py-3 bg-white mb-3">
+      <nav className="relative flex flex-wrap items-center justify-between px-2 py-3 bg-white">
         <div className="container px-4 mx-auto flex flex-wrap items-center justify-between">
           <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
             <Link
@@ -62,10 +62,21 @@ export default function HeaderEmpresa({ fixed }) {
               {authenticated && <li className="nav-item">
               <Link
                   className="px-3 py-2 flex items-center text-xl uppercase font-bold leading-snug text-black hover:opacity-75"
-                  to="/lista-chamados-empresa"
+
+                  to="/lista-chamados"
+
                 >
                   <i className="fab fa-twitter text-lg leading-lg text-black opacity-75 "></i>
                   <span className="ml-2">Chamados</span>
+                </Link>
+              </li>}
+              {type === "empresas" && <li className="nav-item">
+              <Link
+                  className="px-3 py-2 flex items-center text-xl uppercase font-bold leading-snug text-black hover:opacity-75"
+                  to="/lista-funcionarios"
+                >
+                  <i className="fab fa-twitter text-lg leading-lg text-black opacity-75 "></i>
+                  <span className="ml-2">Funcionários</span>
                 </Link>
               </li>}
               <li className="nav-item">
