@@ -1,4 +1,3 @@
-import Header from "../../components/header";
 import Form from "../../components/formNovaSenha";
 import { Link } from "react-router-dom";
 

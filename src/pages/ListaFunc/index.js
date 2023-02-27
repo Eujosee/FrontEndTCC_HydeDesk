@@ -240,7 +240,6 @@ function ListaFunc() {
         </div>
         </body>
         <Footer/>
-        
       </div>
     );
   }

@@ -1,8 +1,3 @@
-import api from "../../api"
-import { useState } from "react";
-import { AiOutlineArrowLeft } from 'react-icons/ai'
-import { Link } from "react-router-dom";
-
 export default function Form(){
   
     return (
