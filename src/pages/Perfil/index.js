@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Header from "../../components/header";
+import Header from "../../components/Header";
 import Footer from "../../components/Footer"
 import CardPerfil from "../../components/Perfil";
 import api from "../../api";
