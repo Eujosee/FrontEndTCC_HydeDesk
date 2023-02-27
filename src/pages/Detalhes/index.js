@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Header from "../../components/header";
+import Header from "../../components/Header";
 import "./index.css";
 import { AiOutlineArrowLeft } from "react-icons/ai";
 import { useParams } from "react-router-dom";

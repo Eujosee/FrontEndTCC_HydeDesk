@@ -130,9 +130,9 @@ function CadTec() {
                 className="relative flex items-center justify-center w-3 h-3"
               >
                 <AiFillCamera
-                  size={50}
+                  size={30}
                   color="#f8f8ff    "
-                  className="absolute bottom-[-0.2rem] bg-azul-hyde   p-1 rounded-full"
+                  className="absolute bottom-[-0.2rem] bg-azul-hyde   p-2 rounded-full"
                 />
               </label>
               </>
@@ -146,7 +146,7 @@ function CadTec() {
                 <AiFillCamera
                   size={50}
                   color="#f8f8ff  "
-                  className="absolute bottom-[-0.2rem] bg-azul-hyde  p-1 rounded-full"
+                  className="absolute bottom-[-0.2rem] bg-azul-hyde p-2 rounded-full"
                 />
               </label>
             </>
@@ -206,7 +206,7 @@ function CadTec() {
               required
             />
           </div>
-          <div className="mt-2">
+          <div className="mt-2 col-span-2">
             <label className="text-lg font-medium text-gray-900">
               Especialidade *
             </label>
