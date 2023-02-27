@@ -289,8 +289,15 @@ function ListaChamados() {
                       {chamados.map((item) => {
                         return (
                           <tr align="center" class="border-b">
+                            {type == "tecnicos" && (
+                          <td
+                            className="text-lg text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                          >
+                            {item.nome_empresa}
+                          </td>
+                        )}
                             <td class="text-lg text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                              {item.empresa.nome_empresa}
+                              {item.nome_funcionario}
                             </td>
                             <td class="text-lg text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                               {item.problema}
