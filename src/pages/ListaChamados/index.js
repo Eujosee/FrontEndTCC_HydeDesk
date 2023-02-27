@@ -325,7 +325,7 @@ function ListaChamados() {
                                     <Menu.Item>
                                       <div>
                                         <Link
-                                          to={"/detalhes/" + item.id_chamado"}
+                                          to={"/detalhes/" + item.id_chamado}
                                           className="block w-full px-4 py-2 text-left text-sm hover:bg-gray-100 font-semibold"
                                         >
                                           <button />
