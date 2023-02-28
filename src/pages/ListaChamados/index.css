@@ -10,6 +10,7 @@
     transform: rotate(360deg);
   }
 }
+
 @media (max-width: 897px) {
   .response {
         display: flex;
@@ -20,9 +21,6 @@
           margin-left: 0;
           padding-left: 0;
           
-  }
-  .texto{
-    margin-left: 0;
   }
   .pesquisa{
     display: flex;
@@ -36,7 +34,4 @@
     margin-top: 1rem;
     
   }
-}
-.teste{
-  width: 100%;
 }

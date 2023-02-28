@@ -1,14 +1,11 @@
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
-import { faEye } from "@fortawesome/free-solid-svg-icons";
 import { faEllipsis } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
-import { Menu, Transition } from "@headlessui/react";
-import { useEffect, useState, Fragment } from "react";
-import { ChevronDownIcon } from "@heroicons/react/20/solid";
+import { Menu } from "@headlessui/react";
+import { useEffect, useState } from "react";
 import api from "../../api";
 import { BiSearchAlt2 } from "react-icons/bi";
 import "./index.css";
@@ -159,115 +156,100 @@ function ListaChamados() {
   }, [id, type]);
 
   return (
-    <div className="font-Poppins teste">
+    <>
       <Header />
-      <body>
-      <section>
-        <div class="relative px-6 lg:px-8">
-          <div class=" max-w-2xl py-5 :py-16 lg:py-16">
-            <div class="text-center flex flex-row">
-              <h1 class=" texto text-2xl ml-6 font-semibold sm:ml-0 sm:text-4xl">
-                Lista de chamados
-              </h1>
-              {type !== "empresas" && (
-                <div className="ml-6 flex items-center justify-center gap-x-6">
-                  <Link
-                    to="/abrir-chamado"
-                    className=" no-underline rounded-md bg-azul-hyde px-3.5 py-1.5 text-base font-semibold leading-7 text-white shadow-sm hover:bg-cyan-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-600"
-                  >
-                    Novo chamado
-                  </Link>
-                </div>
-              )}
-            </div>
-          </div>
+      <div className="flex flex-col min-h-screen">
+        <div class="px-6 flex flex-col lg:flex-row lg:space-x-6">
+          <h1 class="text-3xl font-semibold lg:text-3xl">
+            Lista de chamados
+          </h1>
+          {type == "funcionarios" && (
+              <Link
+                to="/abrir-chamado"
+                className="flex w-1/2 lg:w-40 no-underline rounded-md bg-azul-hyde px-3.5 py-1.5 text-base font-semibold leading-7 text-white shadow-sm hover:bg-cyan-600 "
+              >
+                Novo chamado
+              </Link>
+          )}
         </div>
-      </section>
 
-
-      <section1 className="response ml-6 sm:ml-0 flex w-full p-4 lg:flex-row ">
-        <div className=" pesquisa w-1/3 flex items-center relative">
-          <input
-            className="focus:outline-none focus:border-b-azul-hyde border-b-2 w-full  p-2"
-            placeholder={
-              type == "tecnicos"
-                ? "Nome da empresa"
-                : type == "empresas"
-                ? "Nome do funcionário"
-                : "Protocolo"
-            }
-            name="empresa"
-            onChange={changeFiltro}
-            required
-          />
-          <BiSearchAlt2
-            size={20}
-            className="absolute right-3 cursor-pointer"
-            onClick={handleFiltroName}
-          />
-        </div>
-        <div className="filtro w-1/4 ml-4  flex items-center mr-8">
-          <div className="w-full">
-            <select
-              className="focus:outline-none focus:border-b-azul-hyde border-b-2 w-full p-2"
-              name="status_chamado"
+        <section1 className="response ml-6 sm:ml-0 flex w-full p-6 lg:flex-row ">
+          <div className=" pesquisa w-1/3 flex items-center relative">
+            <input
+              className="focus:outline-none focus:border-b-azul-hyde border-b-2 w-full  p-2"
+              placeholder={
+                type == "tecnicos"
+                  ? "Nome da empresa"
+                  : type == "empresas"
+                  ? "Nome do funcionário"
+                  : "Protocolo"
+              }
+              name="empresa"
               onChange={changeFiltro}
               required
-            >
-              <option selected disabled>
-                Selecione uma opção
-              </option>
-              <option value="pendente">Pendente</option>
-              <option value="andamento">Em andamento</option>
-              <option value="concluido">Concluido</option>
-            </select>
+            />
+            <BiSearchAlt2
+              size={20}
+              className="absolute right-3 cursor-pointer"
+              onClick={handleFiltroName}
+            />
           </div>
-        </div>
-        <button
-          className=" botao hover:bg-cyan-600  bg-azul-hyde p-2 rounded-xl text-white font-bold text-lg"
-          onClick={handleFiltro}
-        >
-          Pesquisar
-        </button>
-      </section1>
+          <div className="filtro w-1/4 ml-4  flex items-center mr-8">
+            <div className="w-full">
+              <select
+                className="focus:outline-none focus:border-b-azul-hyde border-b-2 w-full p-2"
+                name="status_chamado"
+                onChange={changeFiltro}
+                required
+              >
+                <option selected disabled>
+                  Selecione uma opção
+                </option>
+                <option value="pendente">Pendente</option>
+                <option value="andamento">Em andamento</option>
+                <option value="concluido">Concluido</option>
+              </select>
+            </div>
+          </div>
+          <button
+            className=" botao  no-underline rounded-md bg-azul-hyde px-3.5 py-1.5 text-base font-semibold leading-7 text-white shadow-sm hover:bg-cyan-600 "
+            onClick={handleFiltro}
+          >
+            Pesquisar
+          </button>
+        </section1>
         <div className=" w-auto mr-10 ml-10 ">
           <div class="flex  flex-col ">
             <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
               <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
-                <div class="overflow-hidden">
+                <div class="overflow-hidden rounded-t-xl">
                   <table class="min-w-full">
-                    <thead align="center" class="border-b-2  ">
-                      <tr>
+                    <thead align="center" class="border-b-2">
+                      <tr className="bg-azul-hyde text-slate-50 ">
                         {type == "tecnicos" && (
                           <th
                             scope="col"
-                            className="text-lg font-bold text-gray-900 px-6 py-4"
+                            className="text-lg font-bold px-6 py-4"
                           >
-                            Nome da empresa
+                            Empresa
                           </th>
                         )}
-                        <th
-                          scope="col"
-                          className="text-lg font-bold text-gray-900 px-6 py-4"
-                        >
-                          Nome do funcionário
+                        <th scope="col" className="text-lg font-bold px-6 py-4">
+                          Funcionário
                         </th>
 
                         <th
                           scope="col"
-                          className="text-lg font-bold text-gray-900 px-6 py-4 "
+                          className="text-lg font-bold px-6 py-4 "
                         >
                           Problema
                         </th>
-                        <th
-                          scope="col"
-                          className="text-lg font-bold text-gray-900 px-6 py-4"
-                        >
+                        <th scope="col" className="text-lg font-bold px-6 py-4">
                           Protocolo
                         </th>
                         <th
                           scope="col"
-                          className="text-lg font-bold text-gray-900 px-6 py-4 "
+                          className="text-lg font-bold px-6 py-4 "
                         >
                           Prioridade
                         </th>
@@ -277,10 +259,7 @@ function ListaChamados() {
                         >
                           Status
                         </th>
-                        <th
-                          scope="col"
-                          class="text-lg font-bold text-gray-900 px-6 py-4"
-                        >
+                        <th scope="col" class="text-lg font-bold px-6 py-4">
                           Opções
                         </th>
                       </tr>
@@ -288,27 +267,31 @@ function ListaChamados() {
                     <tbody>
                       {chamados.map((item) => {
                         return (
-                          <tr align="center" class="border-b">
-                            {type == "tecnicos" && (
-                          <td
-                            className="text-lg text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                          <tr
+                            align="center"
+                            class="border-b odd:bg-white even:bg-slate-100 font-medium"
                           >
-                            {item.nome_empresa}
-                          </td>
-                        )}
-                            <td class="text-lg text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                            {type == "tecnicos" && (
+                              <td className="text-lg text-gray-900  px-6 py-4 whitespace-nowrap">
+                                {item.nome_empresa}
+                              </td>
+                            )}
+                            <td class="text-lg text-gray-900 px-6 py-4 whitespace-nowrap">
                               {item.nome_funcionario}
                             </td>
-                            <td class="text-lg text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                            <td class="text-lg text-gray-900 px-6 py-4 whitespace-nowrap">
                               {item.problema}
                             </td>
-                            <td class="text-lg text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                            <td class="text-lg text-gray-900 px-6 py-4 whitespace-nowrap">
                               {item.cod_verificacao}
                             </td>
-                            <td class="text-lg text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                            <td class="text-lg text-gray-900 px-6 py-4 whitespace-nowrap">
                               {item.prioridade}
                             </td>
-                            <td class="text-lg text-red-600 font-bold underline px-6 py-4  whitespace-nowrap">
+                            <td
+                              data-type={item.status_chamado}
+                              class="text-lg first-letter:uppercase data-[type=pendente]:text-red-500 data-[type=andamento]:text-yellow-500 data-[type=concluido]:text-green-500   font-bold px-6 py-4  whitespace-nowrap"
+                            >
                               {item.status_chamado}
                             </td>
 
@@ -393,9 +376,9 @@ function ListaChamados() {
             </div>
           </div>
         </div>
-      </body>
       <Footer />
-    </div>
+      </div>
+    </>
   );
 }
 export default ListaChamados;
