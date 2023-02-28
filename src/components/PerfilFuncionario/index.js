@@ -26,7 +26,7 @@ function PerfilFuncionario() {
         matricula: data[0].matricula,
         senha: data[0].senha,
       });
-      setFoto(data.foto);
+      setFoto(data[0].foto);
     })();
   }, [id]);
   return (
@@ -44,9 +44,11 @@ function PerfilFuncionario() {
               <h1 className="text-2xl dark:text-white font-bold mb-2">
                 Foto de perfil
               </h1>
-              <p className="text-sm w-full text-center">
-                Funcionarios não possuem foto de perfil
-              </p>
+              <img
+                src={"https://hdteste.azurewebsites.net/" + foto}
+                alt="Foto de perfil"
+                className="rounded-full w-52"
+              />
             </div>
             <div className="flex justify-center flex-col px-6 lg:w-3/4 space-y-4 sm:w-full sm:items-center">
               <p className="dark:text-white lg:text-2xl font-bold sm:text-xl">
@@ -55,6 +57,13 @@ function PerfilFuncionario() {
                   {dados.matricula}
                 </span>{" "}
               </p>
+              <label
+                htmlFor="foto"
+                className="p-2 bg-azul-hyde rounded-xl w-3/4 text-center cursor-pointer text-white font-medium text-lg"
+              >
+                Trocar foto
+              </label>
+              <input type="file" id="foto" onChange={(e) => setFoto(e.target.files[0])} className="hidden" />
             </div>
           </div>
           <div className="w-full flex flex-col overflow-hidden mt-14">
