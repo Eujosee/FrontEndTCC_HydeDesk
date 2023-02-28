@@ -4,7 +4,7 @@ import PerfilEmpresa from "../PerfilEmpresa";
 import PerfilFuncionario from "../PerfilFuncionario";
 import PerfilTecnico from "../PerfilTecnico";
 
-export default function CardPerfil(props) {
+export default function CardPerfil() {
   const tipo = JSON.parse(localStorage.getItem("Tipo"));
   switch (tipo) {
     case "tecnicos":
