@@ -1,37 +1,23 @@
 import { useEffect, useState } from "react";
+<<<<<<< HEAD
+import Header from "../../components/header";
+import Footer from "../../components/Footer";
+=======
 import Header from "../../components/Header";
 import Footer from "../../components/Footer"
 import CardPerfil from "../../components/Perfil";
+>>>>>>> a6ecedcea4ba7c2dedd5d9b66dac7010b59accd7
 import api from "../../api";
+import CardPerfil from "../../components/Perfil";
 
-export default function Perfil(){
-    const id = JSON.parse(localStorage.getItem("Id"));
-    const busca = JSON.parse(localStorage.getItem("Tipo"));
-    const [dados, setDados] = useState([])
+export default function Perfil() {
 
-    console.log(busca)
 
-    useEffect(() => {
-        const pegarDados = async () => {
-            try {
-                const {data} = await api.get('/' + busca + '/' + id);
-                setDados(data)
-     
-            } catch (error) {
-                console.log(error)
-            }
-        }
-        pegarDados()
-    }, [busca, id]) 
-    
-    return (
-			<div className="font-Poppins dark:bg-preto">
-				<Header />
-				<div className="flex w-full h-screen items-center justify-center ">
-					<div className="flex items-center justify-center rounded shadow-2xl">
-						<CardPerfil {...dados} busca={busca} />
-					</div>
-				</div>
-			</div>
-		);
+  return (
+    <div className="font-Poppins dark:bg-gray-900">
+      <Header />
+        <CardPerfil/>
+      <Footer />
+    </div>
+  );
 }

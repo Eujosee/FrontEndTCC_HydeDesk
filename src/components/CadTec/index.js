@@ -201,7 +201,7 @@ function CadTec() {
               type="tel"
               name="telefone"
               value={user.telefone}
-              mask="(99) 99999-9999"
+              mask="(+99) 99999-9999"
               onChange={(e) => [handleUser(e), setStatusErro("")]}
               required
             />
