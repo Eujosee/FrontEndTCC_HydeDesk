@@ -188,7 +188,7 @@ function CadEmp() {
                 <AiFillCamera
                   size={50}
                   color="#f8f8ff    "
-                  className="absolute bottom-[-0.2rem] bg-azul-hyde   p-1 rounded-full"
+                  className="absolute bottom-[-0.2rem] bg-azul-hyde   p-2 rounded-full"
                 />
               </label>
               </>
@@ -202,7 +202,7 @@ function CadEmp() {
                 <AiFillCamera
                   size={50}
                   color="#f8f8ff  "
-                  className="absolute bottom-[-0.2rem] bg-azul-hyde  p-1 rounded-full"
+                  className="absolute bottom-[-0.2rem] bg-azul-hyde  p-2 rounded-full"
                 />
               </label>
             </>

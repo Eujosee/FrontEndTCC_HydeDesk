@@ -1,4 +1,4 @@
-import Header from "../../components/header";
+import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import ImagemFloppa from "../../images/floppa.jpg";
 import ImagemFloppa1 from "../../images/floppa1.png";
