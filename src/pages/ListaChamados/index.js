@@ -169,7 +169,7 @@ function ListaChamados() {
               <h1 class=" texto text-2xl ml-6 font-semibold sm:ml-0 sm:text-4xl">
                 Lista de chamados
               </h1>
-              {type !== "empresas" && (
+              {type == "funcionarios" && (
                 <div className="ml-6 flex items-center justify-center gap-x-6">
                   <Link
                     to="/abrir-chamado"
