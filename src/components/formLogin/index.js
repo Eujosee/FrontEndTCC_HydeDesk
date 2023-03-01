@@ -7,7 +7,7 @@ function Form() {
   const [label, setLabel] = useState("cpf");
   const [cpf, setCPF] = useState("");
   const [senha, setSenha] = useState("");
-  const { handleLogin, status } = useContext(Context);
+  const { handleLogin, status, authenticated } = useContext(Context);
   var user = {};
 
   if (label === "matricula") {
@@ -99,6 +99,7 @@ function Form() {
             onClick={() => {
               handleLogin(user, label);
             }}
+            
           >
             {" "}
             Login

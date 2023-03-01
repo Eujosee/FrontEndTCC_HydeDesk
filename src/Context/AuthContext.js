@@ -8,6 +8,7 @@ function AuthProvider({ children }) {
     const [id, setID] = useState('')
     const [tipo, setTipo] = useState('')
     const [status, setStatus] = useState('')
+
     const [authenticated, setAuthenticated] = useState(false)
     const [loading, setLoading] = useState(true)
 
@@ -65,6 +66,7 @@ function AuthProvider({ children }) {
 
                 } catch (error) {
                     setStatus(error.response.data.message);
+                    console.error(error)
                 }
 
                 break;
