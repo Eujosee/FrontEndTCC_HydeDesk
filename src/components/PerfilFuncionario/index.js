@@ -30,7 +30,7 @@ function PerfilFuncionario() {
     })();
   }, [id]);
   return (
-    <div className="font-Poppins dark:bg-gray-900 mb-20">
+    <div className=" dark:bg-gray-900 mb-20">
       <div className="flex w-full lg:flex-row items-center justify-center sm:flex-col">
         <div className="lg:w-8/12 sm:w-full h-full dark:text-white dark:border-white border-r-2 border-gray-900">
           <div className="p-8">
@@ -44,11 +44,13 @@ function PerfilFuncionario() {
               <h1 className="text-2xl dark:text-white font-bold mb-2">
                 Foto de perfil
               </h1>
-              <img
-                src={"https://hdteste.azurewebsites.net/" + foto}
-                alt="Foto de perfil"
-                className="rounded-full w-52"
-              />
+              <div className="w-52">
+                <img
+                  src={"https://hdteste.azurewebsites.net/" + foto}
+                  alt="Foto de perfil"
+                  className="rounded-full w-full h-full align-middle border-none"
+                />
+              </div>
             </div>
             <div className="flex justify-center flex-col px-6 lg:w-3/4 space-y-4 sm:w-full sm:items-center">
               <p className="dark:text-white lg:text-2xl font-bold sm:text-xl">

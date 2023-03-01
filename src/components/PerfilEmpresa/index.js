@@ -146,26 +146,26 @@ function PerfilEmpresa() {
               <img
                 src={changeFoto ? URL.createObjectURL(foto) : "https://hdteste.azurewebsites.net/" + foto}
                 alt="Foto de perfil"
-                className="rounded-full w-52"
+                className="rounded-full w-52 h-52"
               />
             </div>
-            <div className="flex justify-center flex-col px-6 lg:w-3/4 space-y-4 sm:w-full sm:items-center">
-              <p className="dark:text-white lg:text-2xl font-bold sm:text-xl">
+            <div className="flex lg:items-start justify-center flex-col px-6 lg:w-3/4 space-y-4 sm:w-full sm:items-center">
+              <p className="dark:text-white lg:text-2xl font-semibold text-xl">
                 CNPJ:{" "}
-                <span className="lg:text-2xl font-normal sm:text-lg">
+                <span className="text-gray-500 lg:text-2xl font-normal sm:text-lg">
                   {dados.cnpj}
                 </span>{" "}
               </p>
               <label
                 htmlFor="foto"
-                className="p-2 bg-azul-hyde rounded-xl w-3/4 text-center cursor-pointer text-white font-medium text-lg"
+                className="p-2 px-5 bg-azul-hyde rounded-xl text-center cursor-pointer text-white font-medium text-lg"
               >
                 Trocar foto
               </label>
               <input type="file" id="foto" onChange={changeImage} className="hidden" />
             </div>
           </div>
-          <div className="w-full grid lg:grid-cols-2 grid-rows-3 p-2 gap-x-2 gap-y-4 sm:grid-cols-1 overflow-hidden">
+          <div className="w-full px-10 grid lg:grid-cols-2 grid-rows-3 p-2 gap-x-10 gap-y-4 sm:grid-cols-1 overflow-hidden">
             <div className="flex flex-col">
               <label htmlFor="nome" className="px-2 font-semibold">
                 Nome
