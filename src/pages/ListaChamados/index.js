@@ -10,8 +10,11 @@ import api from "../../api";
 import { BiSearchAlt2 } from "react-icons/bi";
 import "./index.css";
 import CardAvaliacao from "../../components/CardAvaliacao";
+import ReactDOM from "react-dom";
+import Dropdown from "../../components/Dropdown";
 
 function ListaChamados() {
+  const [modal, setModal] = useState(false);
   const [chamados, setChamados] = useState([]);
   const [status, setStatus] = useState("");
   const [loading, setLoading] = useState(true);
@@ -29,6 +32,7 @@ function ListaChamados() {
       [e.target.name]: e.target.value,
     });
   };
+
   const handleFiltro = async (e) => {
     e.preventDefault();
     try {
@@ -158,7 +162,7 @@ function ListaChamados() {
   return (
     <>
       <Header />
-      <div className="flex flex-col h-screen overflow-hidden">
+      <div className="flex flex-col min-h-screen overflow-hidden">
         <div className="mt-5 px-5 flex flex-col md:flex-row md:space-x-6">
           <h1 className="text-3xl font-semibold lg:text-3xl">
             Lista de chamados
@@ -168,18 +172,18 @@ function ListaChamados() {
               to="/abrir-chamado"
               className="w-full md:w-40 rounded-md bg-azul-hyde px-3.5 py-1.5 text-center font-semibold leading-7 text-white shadow-sm hover:bg-cyan-600 "
             >
-              <span className="flex justify-center items-center">Abrir chamado</span>
+              <span className="flex justify-center items-center">
+                Abrir chamado
+              </span>
             </Link>
           )}
         </div>
 
-        <div className="flex flex-col w-full mt-8 p-5 space-y-4 md:space-y-0 md:flex-row md:space-x-8 ">
+        <div className="flex flex-col w-full mt-8 p-5 space-y-4 md:space-y-0 md:flex-row md:space-x-8">
           <div className="w-full md:w-1/4 flex items-center relative">
-            <label>
-              Pesquisar:
-            </label>
+            <label>Pesquisar:</label>
             <input
-              className="focus:outline-none ml-2 focus:border-b-azul-hyde border-b-2 w-full  p-2"
+              className="focus:outline-none ml-2 focus:border-b-azul-hyde border-b-2 w-full p-2"
               placeholder={
                 type == "tecnicos"
                   ? "Nome da empresa"
@@ -198,19 +202,19 @@ function ListaChamados() {
             />
           </div>
           <div className="flex flex-row items-center md:w-1/3">
-            <label>
-              Filtrar:
-            </label>
+            <label>Filtrar:</label>
             <select
               className="focus:outline-none focus:border-b-azul-hyde ml-2 border-b-2 w-full p-2"
               name="status_chamado"
               onChange={changeFiltro}
               required
             >
-              <option selected disabled className="text-gray-400">
+              <option selected disabled>
                 Selecione uma opção
               </option>
-              <option className="appearence-none" value="pendente">Pendente</option>
+              <option value="pendente">
+                Pendente
+              </option>
               <option value="andamento">Em andamento</option>
               <option value="concluido">Concluido</option>
             </select>
@@ -223,8 +227,8 @@ function ListaChamados() {
           </button>
         </div>
 
-        <div className="mx-5 overflow-x-auto rounded-t-xl">
-          <table className="min-w-full">
+        <div className="mx-5 overflow-x-auto overflow-y-hidden rounded-t-xl">
+          <table className="min-w-full min-h-fit">
             <thead align="center">
               <tr className="bg-azul-hyde text-slate-50 text-lg font-bold">
                 {type == "tecnicos" && (
@@ -285,58 +289,10 @@ function ListaChamados() {
                     </td>
 
                     <td className="text-lg text-gray-900 font-light px-6 py-4 whitespace-nowrap ">
-                      <Menu
-                        as="div"
-                        className="relative inline-block text-left"
-                      >
-                        <div>
-                          <Menu.Button>
-                            {" "}
-                            <FontAwesomeIcon
-                              className="text-azul-hyde"
-                              icon={faEllipsis}
-                            />
-                          </Menu.Button>
-                        </div>
+                      <div>
 
-                        <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                          <div className="py-1">
-                            <Menu.Item>
-                              <div>
-                                <Link
-                                  to={"/detalhes/" + item.id_chamado}
-                                  className="block w-full px-4 py-2 text-left text-sm hover:bg-gray-100 font-semibold"
-                                >
-                                  <button />
-                                  Detalhes
-                                </Link>
-                              </div>
-                            </Menu.Item>
-                            <Menu.Item>
-                              <div>
-                                <Link
-                                  to={"/"}
-                                  className="block w-full px-4 py-2 text-left text-sm hover:bg-gray-100 font-semibold"
-                                >
-                                  <button />
-                                  Conclusão
-                                </Link>
-                              </div>
-                            </Menu.Item>
-                            <Menu.Item>
-                              <div>
-                                <Link
-                                  to={<CardAvaliacao />}
-                                  className="block w-full px-4 py-2 text-left text-sm hover:bg-gray-100 font-semibold"
-                                >
-                                  <button />
-                                  Avaliação
-                                </Link>
-                              </div>
-                            </Menu.Item>
-                          </div>
-                        </Menu.Items>
-                      </Menu>
+                       <Dropdown item={item}/>
+                      </div>
                     </td>
                   </tr>
                 );
@@ -362,7 +318,7 @@ function ListaChamados() {
           )}
         </div>
       </div>
-      <Footer  />
+      <Footer />
     </>
   );
 }

@@ -7,7 +7,7 @@ import "slick-carousel/slick/slick-theme.css";
 export default function Carrossel() {
     const settings = {
       dots: true,
-      infinite: false,
+      infinite: true,
       speed: 500,
       slidesToShow: 3,
       slidesToScroll: 3,

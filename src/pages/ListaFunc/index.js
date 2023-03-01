@@ -1,12 +1,9 @@
 import Header from "../../components/Header";
-import Footer from "../../components/Footer"
+import Footer from "../../components/Footer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPen } from "@fortawesome/free-solid-svg-icons";
-import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
-
 import { useEffect, useState } from "react";
-
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { BiSearchAlt2 } from "react-icons/bi";
 import api from "../../api";
@@ -39,26 +36,30 @@ function ListaFunc() {
         setFuncionarios(data);
         console.log(data);
       }
-    } catch (error) {
-
-    }
+    } catch (error) {}
   };
 
   const handleFiltro = async (e) => {
     e.preventDefault();
     try {
-      
       if (filtro.nome && filtro.status_empresa) {
         const { data } = await api.get(
-          "/funcionarios?status_funcionario=" + filtro.status_empresa +"&nome=" + filtro.nome + "&id_empresa=" + id
+          "/funcionarios?status_funcionario=" +
+            filtro.status_empresa +
+            "&nome=" +
+            filtro.nome +
+            "&id_empresa=" +
+            id
         );
         setFuncionarios(data);
-      }else
-      if(filtro.status_empresa ){
+      } else if (filtro.status_empresa) {
         const { data } = await api.get(
-          "/funcionarios?status_funcionario=" + filtro.status_empresa  + "&id_empresa=" + id
+          "/funcionarios?status_funcionario=" +
+            filtro.status_empresa +
+            "&id_empresa=" +
+            id
         );
-        console.log(data)
+        console.log(data);
         setFuncionarios(data);
       }
     } catch (error) {
@@ -68,180 +69,161 @@ function ListaFunc() {
   useEffect(() => {
     (async () => {
       try {
-        if(id){
+        if (id) {
           const { data } = await api.get("/funcionarios?id_empresa=" + id);
           setFuncionarios(data);
           setLoading(false);
         }
       } catch (error) {
         setStatus("Erro ao buscar os funcionários!");
-
       }
     })();
   }, [id]);
 
-
   return (
-    <div className="font-Poppins">
+    <>
       <Header />
-      <main>
-        <div class="relative px-6 lg:px-8">
-          <div class=" max-w-2xl py-5 sm:py-16 lg:py-16">
-            <div class="text-center flex flex-row">
-              <h1 class="text-2xl font-semi-bold  text-gray-900 sm:text-4xl">
-                Funcionários cadastrados
-              </h1>
-
-              <div class="ml-6 flex items-center justify-center gap-x-6">
-                <a
-                  href="cadastro-funcionario"
-                  class=" no-underline rounded-md bg-azul-hyde px-3.5 py-1.5 text-base font-semibold leading-7 text-white shadow-sm hover:bg-cyan-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-600"
-                >
-                  Novo
-                </a>
-              </div>
-            </div>
-          </div>
+      <div className="flex flex-col h-screen overflow-hidden">
+        <div className="mt-5 px-5 flex flex-col md:flex-row md:space-x-6">
+          <h1 className="text-3xl font-semibold lg:text-3xl">
+            Lista de funcionários
+          </h1>
+          <Link
+            to="cadastro-funcionario"
+            class="w-full md:w-40 rounded-md bg-azul-hyde px-3.5 py-1.5 text-center font-semibold leading-7 text-white shadow-sm hover:bg-cyan-600 "
+          >
+            <span className="flex justify-center items-center">Novo</span>
+          </Link>
         </div>
-      </main>
 
-      <section className="response ml-6 sm:ml-0 flex w-full p-4 lg:flex-row ">
-        <div className=" pesquisa w-1/3 flex items-center relative">
-          <input
-            className="focus:outline-none focus:border-b-azul-hyde border-b-2 w-full  p-2"
-            placeholder="Nome completo"
-            name="nome"
-            onChange={changeFiltro}
-            required
-          />
-          <BiSearchAlt2
-            size={20}
-            className="absolute right-3 cursor-pointer"
-            onClick={handleFiltroName}
-          />
-        </div>
-        <div className="filtro w-1/4 ml-4  flex items-center mr-8">
-          <div className="w-full">
-            <select
-              className="focus:outline-none focus:border-b-azul-hyde border-b-2 w-full p-2"
-              name="status_empresa"
+        <div className="flex flex-col w-full mt-8 p-5 space-y-4 md:space-y-0 md:flex-row md:space-x-8">
+          <div className="w-full md:w-1/4 flex items-center relative">
+            <label>Pesquisar:</label>
+            <input
+              className="focus:outline-none ml-2 focus:border-b-azul-hyde border-b-2 w-full p-2"
+              placeholder="Nome completo"
+              name="nome"
               onChange={changeFiltro}
               required
-            >
-              <option selected disabled>
-                Selecione uma opção
-              </option>
-              <option value="ativo">Ativo</option>
-              <option value="inativo">Inativo</option>
-            </select>
+            />
+            <BiSearchAlt2
+              size={20}
+              className="absolute text-gray-400 right-3 cursor-pointer"
+              onClick={handleFiltroName}
+            />
           </div>
-        </div>
-        <button
-          className=" botao hover:bg-cyan-600  bg-azul-hyde p-2 rounded-xl text-white font-bold text-lg "
-          onClick={handleFiltro}
-        >
-          Pesquisar
-        </button>
-      </section>
-
-      <body className="mb-8">
-        <div className=" w-auto mr-10 ml-10 ">
-          <div class="flex flex-col">
-            <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
-              <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
-                <div class="overflow-hidden">
-                  <table class="min-w-full">
-                    <thead align="center" class="border-b-2">
-                      <tr>
-                        <th
-                          scope="col"
-                          class="text-lg font-medium text-gray-900 px-6 py-4"
-                        >
-                          Nome
-                        </th>
-                        <th
-                          scope="col"
-                          class="text-lg font-medium text-gray-900 px-6 py-4"
-                        >
-                          Matrícula
-                        </th>
-                        <th
-                          scope="col"
-                          class="text-lg font-medium text-gray-900 px-6 py-4"
-                        >
-                          Usuário
-                        </th>
-                        <th
-                          scope="col"
-                          class="text-lg font-bold text-gray-900 px-6 py-4 "
-                        >
-                          Status
-                        </th>
-                        <th
-                          scope="col"
-                          class="text-lg font-medium text-gray-900 px-6 py-4"
-                        >
-                          Detalhes
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {funcionarios.map((item) => {
-                        return (
-                          <tr align="center" class="border-b">
-                            <td class="text-lg text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                              {item.nome}
-                            </td>
-                            <td class="text-lg text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                              {item.matricula}
-                            </td>
-                            <td class="text-lg text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                              {item.usuario}
-                            </td>
-                            <td class="text-lg text-red-600 font-bold underline px-6 py-4  whitespace-nowrap">
-                              {item.status_funcionario}
-                            </td>
-                            <td class="text-lg text-gray-900 font-light px-6 py-4 whitespace-nowrap space-x-3">
-                              <Link to="/">
-                                <FontAwesomeIcon icon={faPen} />
-                              </Link>
-                              <FontAwesomeIcon
-                                icon={faTrash}
-                                className="cursor-pointer"
-                              />
-                            </td>
-                          </tr>
-                        );
-                      })}
-                    </tbody>
-                  </table>
-                  {loading && (
-                    <div className="flex gap-2 items-center m-auto w-64 mt-10">
-                      <AiOutlineLoading3Quarters size={25} className="icon" />
-                      <p className=""> Carregando...</p>
-                    </div>
-                  )}
-
-                  {funcionarios.length < 1 && !loading && !status && (
-                    <div className="flex gap-2 items-center m-auto w-64 mt-10">
-                      <p className=""> Você não possui funcionários.</p>
-                    </div>
-                  )}
-                   {status && !loading && (
-                    <div className="flex gap-2 items-center m-auto w-64 mt-10">
-                      <p className="">{status}</p>
-                    </div>
-                  )}
-                </div>
-              </div>
+          <div className="flex flex-row items-center md:w-1/3">
+            <label>Filtrar:</label>
+            <div className="w-full">
+              <select
+                className="focus:outline-none focus:border-b-azul-hyde ml-2 border-b-2 w-full p-2"
+                name="status_empresa"
+                onChange={changeFiltro}
+                required
+              >
+                <option selected disabled>
+                  Selecione uma opção
+                </option>
+                <option value="ativo">Ativo</option>
+                <option value="inativo">Inativo</option>
+              </select>
             </div>
           </div>
+          <button
+            className="rounded-md bg-azul-hyde px-3.5 py-1.5 text-base font-semibold leading-7 text-white shadow-sm hover:bg-cyan-600"
+            onClick={handleFiltro}
+          >
+            Pesquisar
+          </button>
         </div>
-        </body>
-        <Footer/>
-      </div>
-    );
-  }
 
+        <div className="mx-5 overflow-x-auto rounded-t-xl">
+          <table className="min-w-full">
+            <thead align="center">
+              <tr className="bg-azul-hyde text-slate-50 text-lg font-bold">
+                <th
+                  scope="col"
+                  class="px-6 py-4"
+                >
+                  Nome
+                </th>
+                <th
+                  scope="col"
+                  class="px-6 py-4"
+                >
+                  Matrícula
+                </th>
+                <th
+                  scope="col"
+                  class="px-6 py-4"
+                >
+                  Usuário
+                </th>
+                <th
+                  scope="col"
+                  class="px-6 py-4 "
+                >
+                  Status
+                </th>
+                <th
+                  scope="col"
+                  className="px-6 py-4"
+                >
+                  Detalhes
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {funcionarios.map((item) => {
+                return (
+                  <tr align="center" className="border-b odd:bg-white even:bg-slate-100 font-medium hover:bg-slate-200">
+                    <td className="text-lg text-gray-900 px-6 py-4 whitespace-nowrap">
+                      {item.nome}
+                    </td>
+                    <td className="text-lg text-gray-900 px-6 py-4 whitespace-nowrap">
+                      {item.matricula}
+                    </td>
+                    <td className="text-lg text-gray-900 px-6 py-4 whitespace-nowrap">
+                      {item.usuario}
+                    </td>
+                    <td 
+                    data-type={item.status_funcionario}
+                    className="text-lg data-[type=Inativo]:text-red-500 data-[type=Ativo]:text-green-500 font-bold px-6 py-4  whitespace-nowrap">
+                    
+                      {item.status_funcionario}
+                    </td>
+                    <td className="text-lg text-gray-900 px-6 py-4 whitespace-nowrap space-x-3">
+                      <Link to="">
+                        <FontAwesomeIcon icon={faPen} />
+                      </Link>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+          {loading && (
+            <div className="flex gap-2 items-center m-auto w-64 mt-10">
+              <AiOutlineLoading3Quarters size={25} className="icon" />
+              <p className=""> Carregando...</p>
+            </div>
+          )}
+
+          {funcionarios.length < 1 && !loading && !status && (
+            <div className="flex gap-2 items-center m-auto w-64 mt-10">
+              <p className=""> Você não possui funcionários.</p>
+            </div>
+          )}
+          {status && !loading && (
+            <div className="flex gap-2 items-center m-auto w-64 mt-10">
+              <p className="">{status}</p>
+            </div>
+          )}
+        </div>
+      </div>
+      <Footer />
+    </>
+  );
+}
 
 export default ListaFunc;
