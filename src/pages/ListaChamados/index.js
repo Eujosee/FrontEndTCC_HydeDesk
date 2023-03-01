@@ -1,20 +1,14 @@
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
-import { faEllipsis } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
-import { Menu } from "@headlessui/react";
 import { useEffect, useState } from "react";
 import api from "../../api";
 import { BiSearchAlt2 } from "react-icons/bi";
 import "./index.css";
-import CardAvaliacao from "../../components/CardAvaliacao";
-import ReactDOM from "react-dom";
 import Dropdown from "../../components/Dropdown";
 
 function ListaChamados() {
-  const [modal, setModal] = useState(false);
   const [chamados, setChamados] = useState([]);
   const [status, setStatus] = useState("");
   const [loading, setLoading] = useState(true);
@@ -289,10 +283,7 @@ function ListaChamados() {
                     </td>
 
                     <td className="text-lg text-gray-900 font-light px-6 py-4 whitespace-nowrap ">
-                      <div>
-
                        <Dropdown item={item}/>
-                      </div>
                     </td>
                   </tr>
                 );
