@@ -91,7 +91,7 @@ export default function Header() {
               Página Inicial
             </Link>
             <Link
-              to="/"
+              to="/institucional"
               className="text-md font-semibold leading-6 text-gray-900 hover:text-azul-hyde"
             >
               Sobre a Hyde
