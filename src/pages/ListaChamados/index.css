@@ -10,28 +10,3 @@
     transform: rotate(360deg);
   }
 }
-
-@media (max-width: 897px) {
-  .response {
-        display: flex;
-          flex-wrap: wrap;
-          width: 100%;
-          flex-direction: column;
-          align-items: center;
-          margin-left: 0;
-          padding-left: 0;
-          
-  }
-  .pesquisa{
-    display: flex;
-    width: 90%;
-  }
-  .filtro{
-    display: flex;
-    width: 90%;
-  }
-  .botao{
-    margin-top: 1rem;
-    
-  }
-}
