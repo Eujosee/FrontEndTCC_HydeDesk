@@ -1,6 +1,7 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { AuthProvider, Context } from "./Context/AuthContext";
 import Home from "./pages/Home";
+import HomeInst from "./pages/HomeInst";
 import Login from "./pages/Login";
 import Cadastro from "./pages/Cadastro";
 import CadastroFunc from "./pages/CadastroFunc";
@@ -32,6 +33,7 @@ const Rotas = () => {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/institucional" element={<HomeInst />} />
           <Route path="/login" element={<Login />} />
           <Route
             path="/detalhes/:id"
