@@ -1,4 +1,5 @@
 import api from "../../api";
+import axios from "axios";
 import { Link } from "react-router-dom";
 import { useState, useRef } from "react";
 import { CgProfile } from "react-icons/cg";
@@ -156,10 +157,12 @@ function CadEmp() {
       formData.append("confirmarsenha", user.confirmarsenha);
 
       const { data } = await api.post("/empresas/cadastro", formData, config);
+      console.log(data)
       toast.success(data.message, {
         position: toast.POSITION.TOP_RIGHT
     });
       setStatus(data.message);
+      window.location.href = "/login"
       resetForm();
     } catch (error) {
       setStatusErro(error.response.data.message);

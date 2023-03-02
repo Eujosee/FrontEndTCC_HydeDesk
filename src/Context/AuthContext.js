@@ -22,7 +22,7 @@ function AuthProvider({ children }) {
 
         setLoading(false)
     }, [])
-    // const navigate = useNavigate()
+    
     const handleLogin = async (user, label) => {
         switch (label) {
             case "cpf":
@@ -38,6 +38,7 @@ function AuthProvider({ children }) {
                         localStorage.setItem("Tipo", JSON.stringify(tipo))
                         api.defaults.headers.Authorization = `Bearer ${token}`
                         setAuthenticated(true)
+                        window.location.href = "/"
                         
                     }
                 } catch (error) {
@@ -61,6 +62,7 @@ function AuthProvider({ children }) {
                         localStorage.setItem("Tipo", JSON.stringify(tipo))
                         api.defaults.headers.Authorization = `Bearer ${token}`
                         setAuthenticated(true)
+                        window.location.href = "/"
                     }
 
 
@@ -83,6 +85,7 @@ function AuthProvider({ children }) {
                         localStorage.setItem("Tipo", JSON.stringify(tipo))
                         api.defaults.headers.Authorization = `Bearer ${token}`
                         setAuthenticated(true)
+                        window.location.href = "/"
                     }
 
 
@@ -104,6 +107,7 @@ function AuthProvider({ children }) {
         localStorage.removeItem("Id")
         localStorage.removeItem("Tipo")
         api.defaults.headers.Authorization = undefined
+        window.location.href = "/"
     }
 
     if (loading) {

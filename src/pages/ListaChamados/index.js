@@ -62,9 +62,10 @@ function ListaChamados() {
                   id +
                   "&status_chamado=" +
                   filtro.status_chamado +
-                  "&protocolo=" +
+                  "&cod_verificacao=" +
                   filtro.empresa
               );
+              console.log(response.data)
               setChamados(response.data);
               setLoading(false);
             } else {
@@ -74,6 +75,7 @@ function ListaChamados() {
                   "&status_chamado=" +
                   filtro.status_chamado
               );
+              console.log(response.data)
               setChamados(response.data);
               setLoading(false);
             }
@@ -112,16 +114,22 @@ function ListaChamados() {
             "/chamados?nome_empresa=" + filtro.empresa + "&empresa_id=" + id
           );
           setChamados(data);
-        } else {
+        } else
+          if(type == "empresas") {
           const { data } = await api.get(
             "/chamados?nome_funcionario=" + filtro.empresa + "&empresa_id=" + id
+          );
+          setChamados(data);
+        }else
+          if(type == "funcionarios"){
+          const { data } = await api.get(
+            "/chamados?cod_verificacao=" + filtro.empresa + "&empresa_id=" + id
           );
           setChamados(data);
         }
       }
     } catch (error) {}
   };
-
   useEffect(() => {
     (async () => {
       try {
@@ -134,13 +142,12 @@ function ListaChamados() {
             break;
           case "funcionarios":
             const response = await api.get("/chamados?funcionario_id=" + id);
-
+            console.log(response.data)
             setChamados(response.data);
             setLoading(false);
             break;
           case "tecnicos":
             const res = await api.get("/chamados");
-
             setChamados(res.data);
             setLoading(false);
             break;

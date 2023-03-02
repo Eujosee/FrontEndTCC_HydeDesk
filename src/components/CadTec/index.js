@@ -6,6 +6,7 @@ import InputMask from "react-input-mask";
 import { AiFillCamera } from "react-icons/ai";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import axios from "axios";
 
 function CadTec() {
   const [status, setStatus] = useState("");
@@ -79,7 +80,15 @@ function CadTec() {
   const config = {
     headers: { "content-type": "multipart/form-data" },
   };
-
+  const sendEmail = async (data) => {
+    let emailData = {
+      toemail: data.email,
+      nome: data.nome,
+      tipo: "cadastro"
+    }
+    const email = await axios.post("https://prod2-16.eastus.logic.azure.com:443/workflows/84d96003bf1947d3a28036ee78348d4b/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=5BhPfg9NSmVU4gYJeUVD9yqkJPZACBFFxj0m1-KIY0o", emailData)
+    
+  }
   const handleCad = async (e) => {
     e.preventDefault();
 
@@ -100,10 +109,11 @@ function CadTec() {
       formData.append("confirmsenha", user.confirmsenha);
 
       const { data } = await api.post("/tecnicos/cadastro", formData, config);
+      setStatus(data.message);
       toast.success(data.message, {
         position: toast.POSITION.TOP_RIGHT
     });
-      setStatus(data.message);
+      window.location.href = "/login"
       resetForm();
     } catch (error) {
       setStatusErro(error.response.data.message);

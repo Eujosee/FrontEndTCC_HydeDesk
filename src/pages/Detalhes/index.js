@@ -29,7 +29,7 @@ export default function Detalhes() {
       {!loading && (
         <div className="flex flex-col w-full h-1/4 p-8">
           <div className="mb-5">
-            <AiOutlineArrowLeft size={20} />
+            <AiOutlineArrowLeft size={20} onClick={() => window.location.href = "/lista-chamados"} className="cursor-pointer"/>
             <h1 className="text-2xl font-bold mt-2 ml-3">
               Detalhes - 22/01/2023
             </h1>
