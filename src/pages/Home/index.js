@@ -2,20 +2,21 @@ import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import ImagemFloppa1 from "../../images/floppa1.png";
 import ImagemFloppa2 from "../../images/floppa2.png";
+import Business from "../../images/Business-amico.svg";
 import Carrossel from "../../components/CarroselProdutos";
 import CardDiferenciais from "../../components/CardDiferenciais";
 
-function Homeinterativo() {
+function HomeComercial() {
     return (
         <>
             <Header />
             <div className="flex flex-col w-full min-h-screen overflow-x-hidden dark:bg-preto ">
-                <div className="w-full ">
+                <div className="w-full">
                     <img className="w-full" src={ImagemFloppa1} alt="" />
                 </div>
-                <div className=" py-14 flex flex-col justify-center items-center">
+                <div className="py-14 flex flex-col justify-center items-center">
                     <h1 className="font-bold text-2xl dark:text-white">
-                        PRODUTOS
+                        Produtos
                     </h1>
                     <div className="max-w-full">
                         <Carrossel />
@@ -25,51 +26,45 @@ function Homeinterativo() {
                     <img className="w-full" src={ImagemFloppa2} alt="" />
                 </div>
                 <div className=" py-14 flex flex-col justify-center items-center">
-                    <h1 className="mb-10 font-bold text-2xl dark:text-white">
-                        RECURSOS
+                    <h1 className="mb-5 font-bold text-2xl dark:text-white">
+                        Recursos
                     </h1>
                     <div className="max-w-full">
                         <CardDiferenciais />
                     </div>
                 </div>
-                <div className="w-full flex flex-col justify-center items-center py-32 bg-slate-400">
-                    <h1 className="font-bold text-2xl">Citação</h1>
-                    <p className="text-gray-600 text-justify p-5 semi-bold dark:text-white">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Suspendisse tempus posuere purus ac convallis. Nulla facilisi.
-                        Pellentesque habitant morbi tristique senectus et netus et
-                        malesuada fames ac turpis egestas. Phasellus in dictum nunc, non
-                        lacinia magna. Praesent nec lacus sit amet enim pellentesque
-                        elementum. Sed suscipit blandit massa eu molestie. Nulla vel elit
-                        nec sapien scelerisque suscipit. Ut tristique eget augue id
-                        luctus. Integer sit amet diam cursus, viverra diam a, dignissim
-                        lacus.
+                <div className="w-full flex flex-row justify-evenly items-center py-10 px-10 lg:py-24 bg-slate-200">
+                    <p className="max-w-lg text-lg leading-relaxed text-justify text-gray-600">
+                    Nosso sistema de suporte técnico empresarial é a solução ideal para empresas que buscam gerenciar os problemas de TI de forma eficiente e manter sua infraestrutura funcionando sem interrupções. Nossa plataforma oferece recursos avançados que são capazes de atender às necessidades de suporte de sua empresa, garantindo que sua equipe tenha acesso aos recursos necessários para solucionar problemas de forma rápida e eficaz. Com o nosso sistema, sua empresa pode contar com uma gestão de TI de alta qualidade e garantir que seus recursos de tecnologia sejam aproveitados ao máximo.
                     </p>
+                    <img className="h-96 w-96" src={Business} alt="Duas pessoas dando as mãos ao fazerem negocíos"/>
                 </div>
-                <div className=" py-14 flex flex-col justify-center items-center">
-                    <h1 className="mb-10 font-bold text-2xl dark:text-white">
-                        DIFERENCIAIS
+                <div className=" py-8 flex flex-col justify-center items-center">
+                    <h1 className="mb-5 font-bold text-2xl dark:text-white">
+                        Diferenciais
                     </h1>
-                    <div className="w-full p-10">
-                        <div class="grid grid-cols-2 gap-6">
-                            <div><img className="w-full" src={ImagemFloppa1} alt="" /></div>
-                            <div><img className="w-full" src={ImagemFloppa1} alt="" /></div>
-                            <div><img className="w-full" src={ImagemFloppa1} alt="" /></div>
-                            <div><img className="w-full" src={ImagemFloppa1} alt="" /></div>
+                    <div className="w-3/4 p-x-10">
+                        <div class="grid grid-cols-2 gap-10 ">
+                            <div className="flex justify-center bg-white shadow-2xl rounded-xl p-32">
+                                <h1>card</h1>
+                            </div>
+                            <div className="flex justify-center bg-white shadow-2xl rounded-xl p-32">
+                                <h1>card</h1>
+                            </div>
+                            <div className="flex justify-center bg-white shadow-2xl rounded-xl p-32">
+                                <h1>card</h1>
+                            </div>
+                            <div className="flex justify-center bg-white shadow-2xl rounded-xl p-32">
+                                <h1>card</h1>
+                            </div>
+
                         </div>
                     </div>
                 </div>
-                <div className="w-full flex flex-col justify-center items-center py-32 bg-slate-400">
-                    <p className="text-gray-600 text-justify p-5 semi-bold dark:text-white">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Suspendisse tempus posuere purus ac convallis. Nulla facilisi.
-                        Pellentesque habitant morbi tristique senectus et netus et
-                        malesuada fames ac turpis egestas. Phasellus in dictum nunc, non
-                        lacinia magna. Praesent nec lacus sit amet enim pellentesque
-                        elementum. Sed suscipit blandit massa eu molestie. Nulla vel elit
-                        nec sapien scelerisque suscipit. Ut tristique eget augue id
-                        luctus. Integer sit amet diam cursus, viverra diam a, dignissim
-                        lacus.
+                <div className="w-full flex flex-col justify-center items-center py-32 bg-slate-200">
+                    <p className="text-lg text-justify p-5 semi-bold dark:text-white">
+                    “Os clientes se lembram de um bom atendimento durante muito mais tempo do que recordam do preço”
+                        – Kate Zabriskie.
                     </p>
                 </div>
                 <Footer />
@@ -78,4 +73,4 @@ function Homeinterativo() {
     );
 }
 
-export default Homeinterativo;
+export default HomeComercial;

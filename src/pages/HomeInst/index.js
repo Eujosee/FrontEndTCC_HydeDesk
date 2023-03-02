@@ -5,8 +5,9 @@ import ImagemFloppa1 from "../../images/floppa1.png";
 import ImagemFloppa2 from "../../images/floppa2.png";
 import Carrossel from "../../components/Carrosel";
 import { Link } from "react-router-dom";
+import Imagemfinal from "../../images/Nerd-amico.svg"
 
-function Homeinterativo() {
+function HomeInstitucional() {
   return (
     <>
       <Header />
@@ -16,28 +17,20 @@ function Homeinterativo() {
         </div>
         <div
           id="historia"
-          className="py-10 md:py-24 flex items-center justify-center"
+          className="flex py-10 md:py-24 items-center justify-center"
         >
           <div className="max-w-lg">
-            <h1 className="text-center font-bold text-2xl dark:text-white">
+            <h1 className="mb-5 font-semibold text-3xl dark:text-white">
               Quem somos?
             </h1>
 
-            <p className="text-gray-600 text-justify p-5 semi-bold dark:text-white">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Suspendisse tempus posuere purus ac convallis. Nulla facilisi.
-              Pellentesque habitant morbi tristique senectus et netus et
-              malesuada fames ac turpis egestas. Phasellus in dictum nunc, non
-              lacinia magna. Praesent nec lacus sit amet enim pellentesque
-              elementum. Sed suscipit blandit massa eu molestie. Nulla vel elit
-              nec sapien scelerisque suscipit. Ut tristique eget augue id
-              luctus. Integer sit amet diam cursus, viverra diam a, dignissim
-              lacus.
+            <p className="text-gray-600 text-lg text-justify leading-relaxed dark:text-white">
+            Nós somos uma equipe de alunos do curso Técnico em Desenvolvimento de Sistemas da escola SENAI Suíço-Brasileira, dedicados à criação de um TCC inovador: o HydeDesk. Nossa solução de suporte técnico empresarial oferece recursos avançados para gerenciar problemas de TI e manter a infraestrutura de empresas funcionando sem interrupções. Estamos comprometidos em entregar um projeto de alta qualidade e estamos entusiasmados com a oportunidade de aplicar nossos conhecimentos e habilidades em algo tão desafiador.
             </p>
           </div>
           <div className="md:px-20 hidden lg:flex">
             <div className="flex justify-center items-center w-80 h-80">
-              <img  src={ImagemFloppa} alt="" />
+              <img src={ImagemFloppa} alt="" />
             </div>
           </div>
         </div>
@@ -52,11 +45,18 @@ function Homeinterativo() {
             <Carrossel />
           </div>
         </div>
-        <div className="w-full flex flex-col justify-center items-center py-44 bg-slate-400">
-          <h1 className="font-bold text-2xl">Estamos em obra</h1>
-          <button className="hover:bg-cyan-600 text-white font-semibold py-2 px-10 rounded-md bg-azul-hyde">
-            <Link to="">Em breve</Link>
-          </button>
+        <div className="w-full flex flex-row justify-evenly items-center py-10 px-10 lg:py-24 bg-slate-200">
+          <div>
+            <h1 className="font-semibold text-2xl lg:text-3xl mb-5">Ficou interessado?</h1>
+            <p className="max-w-lg text-lg leading-relaxed text-justify text-gray-600 ">Olá! Ficamos felizes que você tenha acessado o nosso site e esteja interessado no nosso projeto de TCC. Se você deseja conhecer mais sobre a parte funcional do HydeDesk, convidamos você a visitar a nossa página comercial. Lá você encontrará informações detalhadas sobre as funcionalidades da nossa solução de suporte técnico empresarial. Não perca essa oportunidade de conhecer mais sobre a Hyde e como ela pode ajudar a melhorar a gestão de TI da sua empresa.</p>
+              <Link to="/"
+              className="flex mt-6 hover:bg-cyan-600 text-white font-semibold py-2.5 px-10 rounded-md bg-azul-hyde justify-center"
+              ><span>Saiba mais</span></Link>
+          </div>
+          <div className="hidden md:flex">
+            <img className="h-96 w-96" src={Imagemfinal} alt="Nerd mexendo em um computador sentado em livros"/>
+          </div>
+          {/* <a href="https://storyset.com/people">People illustrations by Storyset</a> */}
         </div>
         <Footer />
       </div>
@@ -64,4 +64,4 @@ function Homeinterativo() {
   );
 }
 
-export default Homeinterativo;
+export default HomeInstitucional;
