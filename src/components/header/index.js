@@ -242,7 +242,7 @@ export default function Header() {
                             aria-hidden="true"
                           /> }
                   <ChevronDownIcon
-                    className="h-5 w-5 flex-none text-gray-400 group-hover:text-azul-hyde"
+                    className="h-6 w-6 flex-none text-gray-400 group-hover:text-azul-hyde"
                     aria-hidden="true"
                   />
                 </Popover.Button>

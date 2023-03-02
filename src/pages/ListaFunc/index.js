@@ -3,14 +3,14 @@ import Footer from "../../components/Footer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPen } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useState, Fragment } from "react";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { BiSearchAlt2 } from "react-icons/bi";
+import Modal from "../../components/ModalFuncionario";
 import api from "../../api";
 
 function ListaFunc() {
   const [funcionarios, setFuncionarios] = useState([]);
-
   const [status, setStatus] = useState("");
   const [loading, setLoading] = useState(true);
   const [filtro, setFiltro] = useState({
@@ -18,6 +18,13 @@ function ListaFunc() {
     nome: "",
   });
   const id = JSON.parse(localStorage.getItem("Id"));
+  let [isOpen, setIsOpen] = useState(false);
+  let [dados, setDados] = useState('');
+
+  const abrirModal = (item) =>{
+    setDados(item)
+    setIsOpen(true)
+  }
 
   const changeFiltro = (e) => {
     setFiltro({
@@ -83,6 +90,7 @@ function ListaFunc() {
   return (
     <>
       <Header />
+      <Modal dataFunc={dados} open={isOpen} onClose={() => setIsOpen(false)}/>
       <div className="flex flex-col h-screen overflow-hidden">
         <div className="mt-5 px-5 flex flex-col md:flex-row md:space-x-6">
           <h1 className="text-3xl font-semibold lg:text-3xl">
@@ -141,34 +149,19 @@ function ListaFunc() {
           <table className="min-w-full">
             <thead align="center">
               <tr className="bg-azul-hyde text-slate-50 text-lg font-bold">
-                <th
-                  scope="col"
-                  class="px-6 py-4"
-                >
-                  Nome
+                <th scope="col" className="px-6 py-4">
+                  Funcionário
                 </th>
-                <th
-                  scope="col"
-                  class="px-6 py-4"
-                >
+                <th scope="col" className="px-6 py-4">
                   Matrícula
                 </th>
-                <th
-                  scope="col"
-                  class="px-6 py-4"
-                >
+                <th scope="col" className="px-6 py-4">
                   Usuário
                 </th>
-                <th
-                  scope="col"
-                  class="px-6 py-4 "
-                >
+                <th scope="col" className="px-6 py-4 ">
                   Status
                 </th>
-                <th
-                  scope="col"
-                  className="px-6 py-4"
-                >
+                <th scope="col" className="px-6 py-4">
                   Detalhes
                 </th>
               </tr>
@@ -176,8 +169,12 @@ function ListaFunc() {
             <tbody>
               {funcionarios.map((item) => {
                 return (
-                  <tr align="center" className="border-b odd:bg-white even:bg-slate-100 font-medium hover:bg-slate-200">
-                    <td className="text-lg text-gray-900 px-6 py-4 whitespace-nowrap">
+                  <tr
+                    align="center"
+                    className="border-b odd:bg-white even:bg-slate-100 font-medium hover:bg-slate-200"
+                  >
+                    <td className="flex grow-0 flex-row items-center space-y-8 text-lg text-gray-900 px-6 py-4 whitespace-nowrap">
+                      <img src={"https://hdteste.azurewebsites.net/" + item.foto} alt="Foto" className="h-10 w-10 text-gray-600 mr-4 rounded-full" /> 
                       {item.nome}
                     </td>
                     <td className="text-lg text-gray-900 px-6 py-4 whitespace-nowrap">
@@ -186,16 +183,17 @@ function ListaFunc() {
                     <td className="text-lg text-gray-900 px-6 py-4 whitespace-nowrap">
                       {item.usuario}
                     </td>
-                    <td 
-                    data-type={item.status_funcionario}
-                    className="text-lg data-[type=Inativo]:text-red-500 data-[type=Ativo]:text-green-500 font-bold px-6 py-4  whitespace-nowrap">
-                    
+                    <td
+                      data-type={item.status_funcionario}
+                      className="text-lg data-[type=Inativo]:text-red-500 data-[type=Ativo]:text-green-500 font-bold px-6 py-4  whitespace-nowrap"
+                    >
                       {item.status_funcionario}
                     </td>
-                    <td className="text-lg text-gray-900 px-6 py-4 whitespace-nowrap space-x-3">
-                      <Link to="">
+                    <td className="text-lg text-azul-hyde px-6 py-4 whitespace-nowrap space-x-3">
+                      <button onClick={() => abrirModal(item)}>
                         <FontAwesomeIcon icon={faPen} />
-                      </Link>
+                      </button>
+                      
                     </td>
                   </tr>
                 );
