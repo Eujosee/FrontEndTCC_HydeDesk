@@ -38,9 +38,9 @@ const Rotas = () => {
           <Route
             path="/detalhes/:id"
             element={
-              <PrivateRoutes>
+              
                 <Detalhes />
-              </PrivateRoutes>
+             
             }
           />
           <Route path="/cadastro" element={<Cadastro />} />
