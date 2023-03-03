@@ -12,11 +12,12 @@ import {
   CheckCircleIcon,
   ClipboardDocumentCheckIcon
 } from "@heroicons/react/24/outline";
-import Modais from "../ModaisChamado";
+import ModalConclusao from "../ModalConclusao";
 import ModalCancelar from "../ModalCancelar"
 import ModalAceitar from "../ModalAceitar";
 import ModalSuspender from "../ModalSuspender";
 import ModalConcluir from "../ModalConcluir";
+import ModalAvaliacao from "../ModalAvaliacao";
 
 export default function Dropdown({ item }) {
   const id = JSON.parse(localStorage.getItem("Id"));
@@ -30,8 +31,8 @@ export default function Dropdown({ item }) {
 
   return (
     <>
-    <Modais open={isOpenConclusao} type="conclusao" dataChamado={item} onClose={() => setIsOpenConclusao(false)}/>
-    <Modais open={IsOpenAvaliacao} type="avaliacao" dataChamado={item} onClose={() => setIsOpenAvaliacao(false)}/>
+    <ModalConclusao open={isOpenConclusao} dataChamado={item}  onClose={() => setIsOpenConclusao(false)}/>
+    <ModalAvaliacao open={IsOpenAvaliacao}  dataChamado={item} onClose={() => setIsOpenAvaliacao(false)}/>
     <ModalCancelar open={IsOpenCancel} id={item.id_chamado} onClose={() => setIsOpenCancel(false)}/>
     <ModalAceitar open={IsOpenAceitar} ids={ {id_chamado: item.id_chamado, tecnico_id:id}} onClose={() => setIsOpenAceitar(false)}/>
     <ModalSuspender open={IsOpenSuspender} id={item.id_chamado} onClose={() => setIsOpenSuspender(false)}/>
