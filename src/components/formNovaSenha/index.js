@@ -26,7 +26,7 @@ export default function Form(){
 				</div>
 				<div className="mt-8 flex flex-col justify-center items-center">
 					<button
-						className="hover:bg-cyan-600 mb-6 bg-azul-hyde p-2 w-2/3 rounded-3xl text-white font-bold text-lg "
+						className="hover:bg-cyan-600 mb-6 bg-azul-hyde p-2 w-2/3 rounded-md text-white font-bold text-lg "
 						onClick={() => {}}
 					>
 						{" "}

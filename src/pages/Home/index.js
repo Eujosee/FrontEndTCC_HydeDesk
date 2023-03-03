@@ -35,29 +35,33 @@ function HomeComercial() {
                 </div>
                 <div className="w-full flex flex-row justify-evenly items-center py-10 px-10 lg:py-24 bg-slate-200">
                     <p className="max-w-lg text-lg leading-relaxed text-justify text-gray-600">
-                    Nosso sistema de suporte técnico empresarial é a solução ideal para empresas que buscam gerenciar os problemas de TI de forma eficiente e manter sua infraestrutura funcionando sem interrupções. Nossa plataforma oferece recursos avançados que são capazes de atender às necessidades de suporte de sua empresa, garantindo que sua equipe tenha acesso aos recursos necessários para solucionar problemas de forma rápida e eficaz. Com o nosso sistema, sua empresa pode contar com uma gestão de TI de alta qualidade e garantir que seus recursos de tecnologia sejam aproveitados ao máximo.
+                    Nosso sistema de suporte técnico é a solução ideal para empresas que buscam gerenciar problemas de TI para manter sua infraestrutura funcionando sem interrupções.
+                    A plataforma oferece meios avançados, capazes de atender às necessidades de suporte, garantindo que a companhia tenha acesso a solucão de problemas de forma rápida e eficaz.
+                    Dessa forma, seu negócio pode contar com uma gestão de TI de alta qualidade e garantir que seus recursos de tecnologia sejam aproveitados ao máximo.
                     </p>
-                    <img className="h-96 w-96" src={Business} alt="Duas pessoas dando as mãos ao fazerem negocíos"/>
+                    <img className="hidden lg:flex h-96 w-96" src={Business} alt="Duas pessoas dando as mãos ao fazerem negocíos"/>
                 </div>
-                <div className=" py-8 flex flex-col justify-center items-center">
+                <div className=" py-14 flex flex-col justify-center items-center">
                     <h1 className="mb-5 font-bold text-2xl dark:text-white">
                         Diferenciais
                     </h1>
-                    <div className="w-3/4 p-x-10">
-                        <div class="grid grid-cols-2 gap-10 ">
-                            <div className="flex justify-center bg-white shadow-2xl rounded-xl p-32">
+                    <div className="max-w-full md:w-3/4 md:p-x-10">
+                        <div class="hidden md:grid md:grid-cols-2 md:gap-10 ">
+                            <div className="flex justify-center bg-slate-300 shadow-md rounded-xl p-32">
                                 <h1>card</h1>
                             </div>
-                            <div className="flex justify-center bg-white shadow-2xl rounded-xl p-32">
+                            <div className="flex justify-center bg-slate-300 shadow-md rounded-xl p-32">
                                 <h1>card</h1>
                             </div>
-                            <div className="flex justify-center bg-white shadow-2xl rounded-xl p-32">
+                            <div className="flex justify-center bg-slate-300 shadow-md rounded-xl p-32">
                                 <h1>card</h1>
                             </div>
-                            <div className="flex justify-center bg-white shadow-2xl rounded-xl p-32">
+                            <div className="flex justify-center bg-slate-300 shadow-md rounded-xl p-32">
                                 <h1>card</h1>
                             </div>
-
+                        </div>
+                        <div className="md:hidden">
+                            <CardDiferenciais/>
                         </div>
                     </div>
                 </div>

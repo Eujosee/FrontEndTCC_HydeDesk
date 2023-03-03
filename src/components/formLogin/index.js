@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useState, useContext } from "react";
+import { useState, useContext, useRef } from "react";
 import { Context } from "../../Context/AuthContext";
 import InputMask from "react-input-mask";
 
@@ -95,7 +95,7 @@ function Form() {
         </div>
         <div className="mt-8 flex flex-col">
           <button
-            className="hover:bg-cyan-600 mb-6 bg-azul-hyde p-2 rounded-3xl text-white font-bold text-lg "
+            className="hover:bg-cyan-600 mb-6 bg-azul-hyde p-2 rounded-md text-white font-bold text-lg "
             onClick={() => {
               handleLogin(user, label);
             }}

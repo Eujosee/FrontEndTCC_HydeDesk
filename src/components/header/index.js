@@ -238,11 +238,11 @@ export default function Header() {
               <Popover className="relative">
                 <Popover.Button className="group flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900 ">
                 {foto ? <img src={"https://hdteste.azurewebsites.net/" + foto} alt="Foto" className="h-10 w-10 text-gray-600 group-hover:text-azul-hyde rounded-full" /> :<UserCircleIcon
-                            className="h-6 w-6 text-gray-600 group-hover:text-azul-hyde"
+                            className="h-10 w-10 text-gray-900 group-hover:text-azul-hyde"
                             aria-hidden="true"
                           /> }
                   <ChevronDownIcon
-                    className="h-6 w-6 flex-none text-gray-400 group-hover:text-azul-hyde"
+                    className="h-6 w-6 flex-none text-gray-400"
                     aria-hidden="true"
                   />
                 </Popover.Button>

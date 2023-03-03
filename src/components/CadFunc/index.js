@@ -155,7 +155,7 @@ function CadFunc () {
                     </div>
                     </div>
                 <div className="mt-8 flex flex-col justify-center items-center">
-                    <button type="submit" className="hover:bg-cyan-600 mb-6 bg-cyan-500 p-2 rounded-3xl text-white font-bold text-lg w-80"
+                    <button type="submit" className="hover:bg-cyan-600 mb-6 bg-azul-hyde p-2 rounded-md text-white font-bold text-lg w-80"
                     onClick={handleCad}
                     >Cadastrar</button>
                     <ToastContainer/>

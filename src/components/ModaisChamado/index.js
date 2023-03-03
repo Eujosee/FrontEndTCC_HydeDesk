@@ -38,7 +38,7 @@ export default function Modais ({open, onClose, type, dataChamado }){
                     as="h3"
                     className="text-lg font-medium leading-6 text-gray-900"
                   >
-                    Desativar funcionário
+                    Conclusão
                   </Dialog.Title>
                   <div className="mt-2">
                     <p className="text-sm text-gray-500">

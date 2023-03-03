@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import api from "../../api";
 import { ToastContainer, toast } from 'react-toastify';
@@ -66,8 +65,9 @@ function AbrirChamado() {
     }
   };
   return (
-
-    <div className="">
+    
+    <>
+    <ToastContainer/>
       <h1 className="text-center font-bold text-2xl sm:mt-4">
         Abrir um chamado
       </h1>
@@ -182,7 +182,7 @@ function AbrirChamado() {
         </button>
         <ToastContainer/>
       </div>
-    </div>
+    </>
 
   );
 }
