@@ -17,9 +17,8 @@ function Login() {
 						</div>
 						<div className="w-full h-screen">
 							<div className="flex flex-col items-center h-full justify-center">
-								<Link to={"/"} className="flex flex-row m-10">
-									<h1 className="font-black text-4xl text-azul-hyde">Hyde</h1>
-									<h1 className="font-black text-4xl dark:text-white">Desk</h1>
+								<Link to={"/"} className="flex flex-row m-10 group">
+									<h1 className="font-black text-4xl text-azul-hyde group-hover:underline">Hyde<span className="font-black text-4xl text-black dark:text-white">Desk</span></h1>
 								</Link>
 
 								<h1 className="font-bold text-3xl dark:text-white">

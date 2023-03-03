@@ -129,18 +129,18 @@ function PerfilEmpresa() {
   }, []);
 
   return (
-    <div className="font-Poppins dark:bg-gray-900 mb-20">
-      <div className="flex w-full lg:flex-row items-center justify-center sm:flex-col">
-        <div className="lg:w-8/12 sm:w-full h-full dark:text-white dark:border-white border-r-2 border-gray-900">
-          <div className="p-8">
-            <h1 className="font-bold text-4xl">Meu perfil</h1>
+    <div className="dark:bg-gray-900 mb-20 mt-5">
+      <div className="flex flex-col w-full lg:flex-row items-center justify-center">
+        <div className="w-full px-5 md:px-10 lg:w-8/12 h-full dark:text-white dark:border-white border-r-2 border-gray-900">
+          <div>
+            <h1 className="font-bold text-3xl">Meu perfil</h1>
             <p className="text-gray-600 dark:text-gray-400">
-              Gerencie as informações
+              Gerencie suas informações
             </p>
           </div>
           <div className="flex lg:w-full mt-6 space-y-2 flex-wrap lg:flex-row sm:flex-col sm:mb-4">
-            <div className="flex flex-col lg:justify-center sm:items-center lg:w-1/4 sm:w-full ">
-              <h1 className="text-2xl dark:text-white font-bold mb-2">
+            <div className="flex flex-col items-center w-full lg:justify-center lg:w-1/4">
+              <h1 className="text-2xl dark:text-white font-semibold mb-2">
                 Foto de perfil
               </h1>
               <img
@@ -149,23 +149,23 @@ function PerfilEmpresa() {
                 className="rounded-full w-52 h-52"
               />
             </div>
-            <div className="flex lg:items-start justify-center flex-col px-6 lg:w-3/4 space-y-4 sm:w-full sm:items-center">
-              <p className="dark:text-white lg:text-2xl font-semibold text-xl">
+            <div className="flex items-center w-full justify-center flex-col px-6 space-y-4 lg:w-3/4 lg:items-start">
+              <p className="dark:text-white font-bold text-xl">
                 CNPJ:{" "}
-                <span className="text-gray-500 lg:text-2xl font-normal sm:text-lg">
+                <span className="text-gray-500 lg:text-xl font-normal text-lg">
                   {dados.cnpj}
                 </span>{" "}
               </p>
               <label
                 htmlFor="foto"
-                className="p-2 px-5 bg-azul-hyde rounded-xl text-center cursor-pointer text-white font-medium text-lg"
+                className="p-2 bg-azul-hyde hover:bg-cyan-600  rounded-md w-1/2 text-center cursor-pointer text-white font-medium"
               >
                 Trocar foto
               </label>
               <input type="file" id="foto" onChange={changeImage} className="hidden" />
             </div>
           </div>
-          <div className="w-full px-10 grid lg:grid-cols-2 grid-rows-3 p-2 gap-x-10 gap-y-4 sm:grid-cols-1 overflow-hidden">
+          <div className="w-full grid lg:grid-cols-2 grid-rows-3 p-2 gap-x-10 gap-y-4 sm:grid-cols-1 overflow-hidden">
             <div className="flex flex-col">
               <label htmlFor="nome" className="px-2 font-semibold">
                 Nome
@@ -208,7 +208,7 @@ function PerfilEmpresa() {
             </div>
             <div className="flex flex-col">
               <label htmlFor="cep" className="px-2 font-semibold">
-                Cep
+                CEP
               </label>
               <InputMask
                 type="text"
@@ -270,37 +270,15 @@ function PerfilEmpresa() {
                 disabled
               />
             </div>
-            <div className="flex flex-col">
-              <label htmlFor="senha" className="px-2 font-semibold">
-                Senha
-              </label>
-              <input
-                type="password"
-                id="senha"
-                value={dados.senha}
-                onChange={changeDados}
-                className="p-2 dark:text-white dark:bg-transparent dark:border-slate-300  outline-none border-b-2"
-              />
-            </div>
-            <div className="flex flex-col">
-              <label htmlFor="confirmsenha" className="px-2 font-semibold">
-                Confirmar Senha
-              </label>
-              <input
-                type="password"
-                id="confirmsenha"
-                value={dados.senha}
-                className="p-2 dark:text-white dark:bg-transparent dark:border-slate-300  outline-none border-b-2"
-              />
-            </div>
-
-            <button onClick={handleEdit} className="p-2 w-full bg-azul-hyde rounded-xl text-center cursor-pointer text-white font-medium">
-              Salvar mudanças
-            </button>
-            <button className="text-azul-hyde font-medium w-full">
-              Cancelar
-            </button>
           </div>
+            <div className="flex flex-row space-x-3 mt-5">
+              <button onClick={handleEdit} className="p-2 w-1/2 lg:w-1/3 bg-azul-hyde hover:bg-cyan-600 rounded-md text-center cursor-pointer text-white font-medium">
+                Salvar mudanças
+              </button>
+              <button className="p-2 w-1/2 lg:w-1/3 text-azul-hyde border border-azul-hyde hover:bg-azul-hyde hover:text-white font-medium rounded-md">
+                Cancelar
+              </button>
+            </div>
         </div>
         <div className="lg:w-4/12 sm:w-full  h-full"></div>
       </div>

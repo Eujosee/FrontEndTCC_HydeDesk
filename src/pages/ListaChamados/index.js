@@ -180,8 +180,8 @@ function ListaChamados() {
           )}
         </div>
 
-        <div className="flex flex-col w-full mt-8 p-5 space-y-4 md:space-y-0 md:flex-row md:space-x-8">
-          <div className="w-full md:w-1/4 flex items-center relative">
+        <div className="flex flex-col w-full mt-8 p-5 space-y-4 lg:space-y-0 lg:flex-row lg:space-x-8">
+          <div className="w-full lg:w-1/3 flex items-center relative">
             <label>Pesquisar:</label>
             <input
               className="focus:outline-none ml-2 focus:border-b-azul-hyde border-b-2 w-full p-2"
@@ -202,7 +202,7 @@ function ListaChamados() {
               onClick={handleFiltroName}
             />
           </div>
-          <div className="flex flex-row items-center md:w-1/3">
+          <div className="flex flex-row items-center lg:w-1/3">
             <label>Filtrar:</label>
             <select
               className="focus:outline-none focus:border-b-azul-hyde ml-2 border-b-2 w-full p-2"

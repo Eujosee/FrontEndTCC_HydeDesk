@@ -8,22 +8,36 @@ import {
   StarIcon,
   CheckBadgeIcon,
   ArchiveBoxIcon,
-  XCircleIcon
+  XCircleIcon,
+  CheckCircleIcon,
+  ClipboardDocumentCheckIcon
 } from "@heroicons/react/24/outline";
 import Modais from "../ModaisChamado";
-import ModalCancelar from "../ModalCancelar";
+import ModalCancelar from "../ModalCancelar"
+import ModalAceitar from "../ModalAceitar";
+import ModalSuspender from "../ModalSuspender";
+import ModalConcluir from "../ModalConcluir";
 
 export default function Dropdown({ item }) {
+  const id = JSON.parse(localStorage.getItem("Id"));
   const type = JSON.parse(localStorage.getItem("Tipo"));
   let [isOpenConclusao, setIsOpenConclusao] = useState(false);
   let [IsOpenAvaliacao, setIsOpenAvaliacao] = useState(false);
   let [IsOpenCancel, setIsOpenCancel] = useState(false);
+  let [IsOpenAceitar, setIsOpenAceitar] = useState(false);
+  let [IsOpenSuspender, setIsOpenSuspender] = useState(false);
+  let [IsOpenConcluir, setIsOpenConcluir] = useState(false);
 
   return (
     <>
     <Modais open={isOpenConclusao} type="conclusao" dataChamado={item} onClose={() => setIsOpenConclusao(false)}/>
     <Modais open={IsOpenAvaliacao} type="avaliacao" dataChamado={item} onClose={() => setIsOpenAvaliacao(false)}/>
     <ModalCancelar open={IsOpenCancel} id={item.id_chamado} onClose={() => setIsOpenCancel(false)}/>
+    <ModalAceitar open={IsOpenAceitar} ids={ {id_chamado: item.id_chamado, tecnico_id:id}} onClose={() => setIsOpenAceitar(false)}/>
+    <ModalSuspender open={IsOpenSuspender} id={item.id_chamado} onClose={() => setIsOpenSuspender(false)}/>
+    <ModalConcluir open={IsOpenConcluir} id={item.id_chamado} onClose={() => setIsOpenConcluir(false)}/>
+
+
       <Menu as="div" className="relative z-50 inline-block text-left">
         <Float portal>
           <div>
@@ -86,6 +100,54 @@ export default function Dropdown({ item }) {
                     />
                     <button
                       onClick={() => setIsOpenCancel(true)}
+                      className="block w-full px-2 py-2 text-left text-sm font-semibold group-hover:text-white"
+                    >
+                      Suspender
+                    </button>
+                  </div>
+                </Menu.Item>)
+              }
+              {item.status_chamado == "pendente" && type == "tecnicos" &&
+                (<Menu.Item>
+                  <div className="flex flex-row items-center px-4 group hover:bg-azul-hyde rounded-md">
+                    <CheckCircleIcon
+                      className="h-6 w-6 text-azul-hyde group-hover:text-white"
+                      aria-hidden="true"
+                    />
+                    <button
+                      onClick={() => setIsOpenAceitar(true)}
+                      className="block w-full px-2 py-2 text-left text-sm font-semibold group-hover:text-white"
+                    >
+                      Aceitar
+                    </button>
+                  </div>
+                </Menu.Item>)
+              }
+              {item.tecnico_id == id && type == "tecnicos" && item.status_chamado == "andamento" &&
+                (<Menu.Item>
+                  <div className="flex flex-row items-center px-4 group hover:bg-azul-hyde rounded-md">
+                    <ClipboardDocumentCheckIcon
+                      className="h-6 w-6 text-azul-hyde group-hover:text-white"
+                      aria-hidden="true"
+                    />
+                    <button
+                      onClick={() => setIsOpenConcluir(true)}
+                      className="block w-full px-2 py-2 text-left text-sm font-semibold group-hover:text-white"
+                    >
+                     Concluir
+                    </button>
+                  </div>
+                </Menu.Item>)
+              }
+              {item.tecnico_id == id && type == "tecnicos" && item.status_chamado == "andamento" &&
+                (<Menu.Item>
+                  <div className="flex flex-row items-center px-4 group hover:bg-azul-hyde rounded-md">
+                    <XCircleIcon
+                      className="h-6 w-6 text-azul-hyde group-hover:text-white"
+                      aria-hidden="true"
+                    />
+                    <button
+                      onClick={() => setIsOpenSuspender(true)}
                       className="block w-full px-2 py-2 text-left text-sm font-semibold group-hover:text-white"
                     >
                       Suspender

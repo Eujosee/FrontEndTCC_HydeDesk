@@ -377,7 +377,7 @@ function CadEmp() {
         <div className="mt-8 flex justify-center items-center flex-col">
           <button
             type="submit"
-            className="hover:bg-cyan-600 mb-6 bg-azul-hyde p-2 rounded-3xl text-white font-bold text-lg w-80"
+            className="hover:bg-cyan-600 mb-6 bg-azul-hyde p-2 rounded-md text-white font-bold text-lg w-80"
             onClick={handleCad}
           >
             Cadastrar

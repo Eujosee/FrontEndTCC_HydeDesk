@@ -1,23 +1,36 @@
 import { Dialog, Transition } from "@headlessui/react";
-import { Fragment, useState } from "react";
+import { Fragment } from "react";
 import api from "../../api";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-export default function ModalCancelar ({ open, onClose, id}){
-    if (!open) return null;
+export default function ModalAceitar ({ open, onClose, ids}){
+    if (!open) return null
 
-    const handleCancel = async (e) => {
-      e.preventDefault()
-      try {
-        const { data } = await api.put("/chamados/cancelar/" + id)
-        console.log(data.message)
-        onClose()
-      } catch (error) {
-        console.log(error.message)
+    
+    const handleAceitar = async (e) => {
+        e.preventDefault()
+        try {
+          await api.put("/chamados/aceitar/" + ids.id_chamado, ids)
+          toast.success("Chamado aceito com sucesso!")
+          setTimeout(() =>{
+            onClose()
+          }, (5000))
+          
+        } catch (error) {
+          console.log(error)
+          toast.error(error.response.data.message)
+          setTimeout(() =>{
+            onClose()
+          }, (5000))
+        }
+        
       }
-    }
-
+    
     return(
-        <Transition appear show={open} as={Fragment}>
+      <>
+      <ToastContainer/>
+      <Transition appear show={open} as={Fragment}>
         <Dialog as="div" className="relative z-10" onClose={onClose}>
           <Transition.Child
             as={Fragment}
@@ -47,11 +60,11 @@ export default function ModalCancelar ({ open, onClose, id}){
                     as="h3"
                     className="text-lg font-medium leading-6 text-gray-900"
                   >
-                    Suspender chamado
+                    Aceitar chamado
                   </Dialog.Title>
                   <div className="mt-2">
                     <p className="text-sm text-gray-500">
-                      Tem certeza que deseja suspender esse chamado?
+                      Tem certeza que deseja aceitar esse chamado?
                     </p>
                   </div>
 
@@ -59,9 +72,9 @@ export default function ModalCancelar ({ open, onClose, id}){
                     <button
                       type="button"
                       className="inline-flex justify-center rounded-md border border-transparent bg-green-100 px-4 py-2 text-sm font-medium text-green-900 hover:bg-green-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-                      onClick={(e) => handleCancel(e)}
+                      onClick={(e) => handleAceitar(e)}
                     >
-                      Suspender
+                      Aceitar
                     </button>
                     <button
                       type="button"
@@ -77,5 +90,6 @@ export default function ModalCancelar ({ open, onClose, id}){
           </div>
         </Dialog>
       </Transition>
+      </>
     )
 }
