@@ -100,7 +100,7 @@ function PerfilEmpresa() {
 
       try {
         const { data } = await api.put("/empresas/editar/" + id, formData, config)
-        toast.success(data.message, {
+        toast.success("Dado(s) alterado(s) com sucesso", {
           position: toast.POSITION.TOP_RIGHT
       });
       setChangeFoto("")
@@ -113,7 +113,7 @@ function PerfilEmpresa() {
     }else{
       try {
         const { data } = await api.put("/empresas/editar/" + id, dados)
-        toast.success(data.message, {
+        toast.success("Dados alterados com sucesso", {
           position: toast.POSITION.TOP_RIGHT
       });
       buscarEmpresa()
@@ -275,6 +275,7 @@ function PerfilEmpresa() {
               <button onClick={handleEdit} className="p-2 w-1/2 lg:w-1/3 bg-azul-hyde hover:bg-cyan-600 rounded-md text-center cursor-pointer text-white font-medium">
                 Salvar mudanças
               </button>
+              <ToastContainer />
               <button className="p-2 w-1/2 lg:w-1/3 text-azul-hyde border border-azul-hyde hover:bg-azul-hyde hover:text-white font-medium rounded-md">
                 Cancelar
               </button>
