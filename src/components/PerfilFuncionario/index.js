@@ -39,30 +39,15 @@ function PerfilFuncionario() {
           formData,
           config
         );
-        toast.success("Dados alterados com sucesso", {
+        toast.success("Dados alterada com sucesso", {
           position: toast.POSITION.TOP_RIGHT,
         });
-      } catch (error) {
+      } catch (error){
         toast.error("Não foi possível alterar seus dados", {
           position: toast.POSITION.TOP_RIGHT,
         });
       }
-    } else {
-      try {
-        const { data } = await api.put("/funcionarios/editar/" + id, dados);
-        toast.success(data.message, {
-          position: toast.POSITION.TOP_RIGHT,
-        });
-      } catch (error) {
-        toast.error("Não foi possível alterar seus dados", {
-          position: toast.POSITION.TOP_RIGHT,
-        });
-      }
-    }
-  };
-
-
-
+    }}
 
   useEffect(() => {
     (async () => {
@@ -147,7 +132,7 @@ function PerfilFuncionario() {
                   name="usuario"
                   value={dados.usuario}
                   onChange={changeDados}
-                  className="p-2 dark:text-white dark:bg-transparent dark:border-slate-300  outline-none border-b-2"
+                  className="p-2 dark:text-white dark:bg-transparent dark:border-slate-300  outline-none border-b-2 teste"
                 />
               </div>
             </div>

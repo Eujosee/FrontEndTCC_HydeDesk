@@ -110,7 +110,7 @@ function CadTec() {
 
       const { data } = await api.post("/tecnicos/cadastro", formData, config);
       setStatus(data.message);
-      toast.success(data.message, {
+      toast.success("Técnico cadastrado com sucesso", {
         position: toast.POSITION.TOP_RIGHT
     });
       window.location.href = "/login"
