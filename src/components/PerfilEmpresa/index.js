@@ -187,7 +187,7 @@ function PerfilEmpresa() {
                 type="text"
                 id="telefone"
                 name="telefone"
-                mask="(+99) 99999-9999"
+                mask="(99) 99999-9999"
                 value={dados.telefone}
                 onChange={changeDados}
                 className="p-2 dark:text-white dark:bg-transparent dark:border-slate-300  outline-none border-b-2"

@@ -1,5 +1,7 @@
 import  { createContext, useEffect, useState } from "react";
-import api from "../api"
+import api from "../api";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Context = createContext();
 
@@ -39,11 +41,17 @@ function AuthProvider({ children }) {
                         api.defaults.headers.Authorization = `Bearer ${token}`
                         setAuthenticated(true)
                         window.location.href = "/"
+                        toast.success("Login realizado com sucesso!", {
+                            position: toast.POSITION.TOP_RIGHT
+                        });
                         
                     }
                 } catch (error) {
+                    toast.error(error.response.data.message, {
+                        position: toast.POSITION.TOP_RIGHT
+                    });
+                    // setStatus(error.response.data.message);
                     console.log(error)
-                    setStatus(error.response.data.message);
                 }
                 break;
             case "cnpj":
@@ -63,11 +71,15 @@ function AuthProvider({ children }) {
                         api.defaults.headers.Authorization = `Bearer ${token}`
                         setAuthenticated(true)
                         window.location.href = "/"
+                        toast.success("Login realizado com sucesso!", {
+                            position: toast.POSITION.TOP_RIGHT
+                        });
                     }
-
-
                 } catch (error) {
-                    setStatus(error.response.data.message);
+                    toast.error(error.response.data.message, {
+                        position: toast.POSITION.TOP_RIGHT
+                    });
+                    // setStatus(error.response.data.message);
                     console.error(error)
                 }
 
@@ -86,12 +98,16 @@ function AuthProvider({ children }) {
                         api.defaults.headers.Authorization = `Bearer ${token}`
                         setAuthenticated(true)
                         window.location.href = "/"
+                        toast.success("Login realizado com sucesso!", {
+                            position: toast.POSITION.TOP_RIGHT
+                        });
+                        
                     }
-
-
-
                 } catch (error) {
-                    setStatus(error.response.data.message);
+                    toast.error(error.response.data.message, {
+                        position: toast.POSITION.TOP_RIGHT
+                    });
+                    // setStatus(error.response.data.message);
                 }
                 break;
 
