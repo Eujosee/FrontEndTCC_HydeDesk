@@ -14,6 +14,7 @@ import MudaSenha from "./pages/MudaSenha";
 import AbrirChamado from "./pages/AbrirChamado";
 import Pag404 from "./pages/NotFound";
 import { useContext } from "react";
+import ConfirmarToken from "./pages/ConfirmarToken";
 
 function PrivateRoutes({ children }) {
   const { authenticated } = useContext(Context)
@@ -61,6 +62,8 @@ const Rotas = () => {
             }
           />
           <Route path="/recuperar" element={<RecuperarSenha />} />
+          <Route path="/recuperar/confirmar-token" element={<ConfirmarToken />} />
+          <Route path="/recuperar/confirmar-token/trocar-senha" element={<ConfirmarToken />} />
           <Route
             path="/lista-funcionarios"
             element={

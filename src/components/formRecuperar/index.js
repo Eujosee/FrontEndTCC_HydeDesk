@@ -1,11 +1,12 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState, useContext } from "react";
 import Imagemcad from "../../images/loginamico.svg"
-
+import api from "../../api";
 import { Context } from "../../Context/AuthContext";
 
 export default function Form() {
-  const [label, setLabel] = useState("cpf");
+	const navigate = useNavigate()
+  const [label, setLabel] = useState("tecnicos");
   const [email, setEmail] = useState("");
   const { handleLogin, status } = useContext(Context);
 
@@ -13,6 +14,27 @@ export default function Form() {
     setLabel(event.target.value);
   };
 
+  function goToConfirmarToken(values){
+	navigate("confirmar-token",	{state: {token: values, tipoTabela : label}} )
+  }
+  
+  async function receberEmail(){
+	const data = {
+		toemail: email,
+		tipoTabela: label
+	}
+	console.log(data)
+	try{
+		const response = await api.post("/email", data);
+
+		console.log(response)
+		if(response.data.token){
+			goToConfirmarToken(response.data.token)
+		}
+	}catch(error){
+		console.log(error)
+	}
+  }
   return (
 		<div className="bg-white px-10 py-10 dark:bg-preto">
 			<div>
@@ -24,7 +46,7 @@ export default function Form() {
 						<input
 							type="radio"
 							name="escolhalogin"
-							value="cpf"
+							value="tecnicos"
 							onChange={handleChange}
 							defaultChecked
 						/>
@@ -35,7 +57,7 @@ export default function Form() {
 						<input
 							type="radio"
 							name="escolhalogin"
-							value="cnpj"
+							value="empresas"
 							onChange={handleChange}
 						/>
 						<label className="mr-4 ml-2 font-semibold dark:text-branco">
@@ -45,7 +67,7 @@ export default function Form() {
 						<input
 							type="radio"
 							name="escolhalogin"
-							value="Matricula"
+							value="funcionarios"
 							onChange={handleChange}
 						/>
 						<label className="ml-2 font-semibold dark:text-branco">
@@ -69,7 +91,7 @@ export default function Form() {
 					<button
 						className="hover:bg-cyan-600 mb-6 bg-azul-hyde p-2 w-2/3 rounded-md text-white font-bold text-lg dark:text-branco"
 						onClick={() => {
-							handleLogin();
+							receberEmail()
 						}}
 					>
 						{" "}
