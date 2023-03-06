@@ -60,15 +60,14 @@ export default function Detalhes() {
 		}
 	}
 
-useEffect(() => {
-	(async () => {
-					try {
-						const { data } = await api.get("/tecnicos/" + id);
-						setUser({nome: data.nome, tel: data.telefone});
-					} catch (error) {}			
-		}
-	)();
-}, []);
+	useEffect(() => {
+		(async () => {
+			try {
+				const { data } = await api.get("/tecnicos/" + id);
+				setUser({ nome: data.nome, tel: data.telefone });
+			} catch (error) {}
+		})();
+	}, []);
 	return (
 		<>
 			<Header />
@@ -80,13 +79,34 @@ useEffect(() => {
 							onClick={() => (window.location.href = "/lista-chamados")}
 							className="cursor-pointer"
 						/>
-						<h1 className="text-2xl font-bold mt-2 ml-3">
-							Detalhes - 22/01/2023
-						</h1>
+						<div className="flex flex-col mt-5 justify-start md:flex-row md:space-x-5">
+							<h1 className="text-xl font-bold w-auto">
+								Abertura do chamado - 00/00/0000
+							</h1>
+							<div className="flex flex-row items-center justify-start mt-4 lg:mt-0">
+								<label className="text-xl font-medium text-gray-500 pr-2">
+									Protocolo:
+								</label>
+								<p className="text-xl font-bold rounded">
+									{data[0].cod_verificacao}
+								</p>
+							</div>
+							<div className="flex flex-row items-center mt-2 lg:mt-0">
+								<label className="text-xl font-medium text-gray-500 pr-2">
+									Status:
+								</label>
+								<p
+									data-type={data[0].status_chamado}
+									className="first-letter:uppercase data-[type=pendente]:text-red-500 data-[type=andamento]:text-yellow-500 data-[type=concluido]:text-green-500 rounded  w-1/2 font-semibold text-xl"
+								>
+									{data[0].status_chamado}
+								</p>
+							</div>
+						</div>
 					</div>
-					<div className="flex flex-col lg:flex-row w-full space-x-10">
-						<div className="flex flex-col w-full lg:w-1/2 bg-slate-100 p-6 rounded-lg">
-							<h1 className="font-bold text-md">Informações do problema</h1>
+					<div className="flex flex-col lg:flex-row w-full lg:space-x-10">
+						<div className="flex flex-col w-full lg:w-1/2 mt-5 rounded-lg">
+							<h1 className="font-bold text-md  mb-6">Detalhes:</h1>
 							<div className="grid grid-cols-2 gap-x-5 gap-y-5">
 								<div className="flex flex-col">
 									<label className="font-medium text-gray-500">Problema:</label>
@@ -150,30 +170,10 @@ useEffect(() => {
 									/>
 								</div>
 							)}
-							<div className="flex w-full mt-5 justify-center items-center">
-								<div className="flex flex-col text-center items-center justify-center w-1/2 pl-8">
-									<label className="font-medium text-gray-500">
-										Código de Verificação:
-									</label>
-									<p className="text-lg font-bold rounded w-1/2">
-										{data[0].cod_verificacao}
-									</p>
-								</div>
-								<div className="flex flex-col justify-center items-center text-center w-1/2 pl-8">
-									<label className="font-medium text-gray-500">Status:</label>
-									<p
-										data-type={data[0].status_chamado}
-										className="first-letter:uppercase data-[type=pendente]:text-red-500 data-[type=andamento]:text-yellow-500 data-[type=concluido]:text-green-500 rounded text-center w-1/2 font-semibold"
-									>
-										{data[0].status_chamado}
-									</p>
-								</div>
-							</div>
 						</div>
-
-						<div className="w-full lg:w-1/2">
-							<div className="flex flex-col w-full  bg-slate-100 p-6 rounded-lg">
-								<h1 className="font-bold text-md">Informações da empresa</h1>
+						<div className="flex flex-col w-full lg:w-1/2 sm:w-auto mt-5 rounded-lg">
+							<div className="flex flex-col w-full rounded-lg">
+								<h1 className="font-bold text-md mb-6">Empresa:</h1>
 								<div className="grid grid-cols-2 gap-x-5 gap-y-5">
 									<div className="flex flex-col">
 										<label className="font-medium text-gray-500">Nome:</label>
@@ -185,7 +185,9 @@ useEffect(() => {
 										/>
 									</div>
 									<div className="flex flex-col">
-										<label className="font-medium">Telefone:</label>
+										<label className="font-medium text-gray-500">
+											Telefone:
+										</label>
 										<input
 											type="text"
 											className="p-2 dark:text-white dark:bg-transparent dark:border-slate-300  outline-none border-b-2 hover:border-b-azul-hyde"
@@ -194,14 +196,12 @@ useEffect(() => {
 										/>
 									</div>
 									<div className="col-start-1 col-end-3">
-										<h1 className="font-bold text-md">Endereço</h1>
+										<h1 className="font-bold text-md  mb-6">Endereço:</h1>
 									</div>
 								</div>
-								<div className="grid grid-cols-3 gap-x-5 gap-y-5">
-									<div className="mt-2 col-3">
-										<label className="text-lg font-medium text-gray-900">
-											CEP *
-										</label>
+								<div className="grid grid-cols-2 gap-x-5 gap-y-5">
+									<div className="flex flex-col">
+										<label className=" font-medium text-gray-500">CEP *</label>
 										<InputMask
 											className="p-2 dark:text-white dark:bg-transparent dark:border-slate-300  outline-none border-b-2 hover:border-b-azul-hyde"
 											placeholder="CEP"
@@ -211,10 +211,8 @@ useEffect(() => {
 											disabled
 										/>
 									</div>
-									<div className="mt-2 col-span-1">
-										<label className="text-lg font-medium text-gray-900">
-											Rua
-										</label>
+									<div className="flex flex-col">
+										<label className="font-medium text-gray-500">Rua</label>
 										<input
 											className="p-2 dark:text-white dark:bg-transparent dark:border-slate-300  outline-none border-b-2 hover:border-b-azul-hyde"
 											placeholder="Rua"
@@ -223,10 +221,8 @@ useEffect(() => {
 											disabled
 										/>
 									</div>
-									<div className="mt-2 col-span-1">
-										<label className="text-lg font-medium text-gray-900">
-											N°
-										</label>
+									<div className="flex flex-col">
+										<label className="font-medium text-gray-500">N°</label>
 										<input
 											className="p-2 dark:text-white dark:bg-transparent dark:border-slate-300  outline-none border-b-2 hover:border-b-azul-hyde"
 											placeholder="N°"
@@ -235,10 +231,8 @@ useEffect(() => {
 											disabled
 										/>
 									</div>
-									<div className="mt-2 col-span-1">
-										<label className="text-lg font-medium text-gray-900">
-											Bairro
-										</label>
+									<div className="flex flex-col">
+										<label className="font-medium text-gray-500">Bairro</label>
 										<input
 											className="p-2 dark:text-white dark:bg-transparent dark:border-slate-300  outline-none border-b-2 hover:border-b-azul-hyde"
 											placeholder="Bairro"
@@ -247,10 +241,8 @@ useEffect(() => {
 											disabled
 										/>
 									</div>
-									<div className="mt-2 col-span-1">
-										<label className="text-lg font-medium text-gray-900">
-											Cidade
-										</label>
+									<div className="flex flex-col">
+										<label className="font-medium text-gray-500">Cidade</label>
 										<input
 											className="p-2 dark:text-white dark:bg-transparent dark:border-slate-300  outline-none border-b-2 hover:border-b-azul-hyde"
 											placeholder="Cidade"
@@ -259,10 +251,8 @@ useEffect(() => {
 											disabled
 										/>
 									</div>
-									<div className="mt-2 col-span-1">
-										<label className="text-lg font-medium text-gray-900">
-											UF
-										</label>
+									<div className="flex flex-col">
+										<label className="font-medium text-gray-500">UF</label>
 										<input
 											className="p-2 dark:text-white dark:bg-transparent dark:border-slate-300  outline-none border-b-2 hover:border-b-azul-hyde"
 											placeholder="Estado"
@@ -272,31 +262,33 @@ useEffect(() => {
 										/>
 									</div>
 								</div>
-							</div>
-							<div className="flex flex-col mt-3 w-full bg-slate-100 p-6 rounded-lg">
-								<h1 className="font-bold text-md">Informações do técnico</h1>
-								<div className="grid grid-cols-2 gap-x-5 gap-y-5">
-									<div className="flex flex-col">
-										<label className="font-medium text-gray-500">Nome:</label>
-										<input
-											type="text"
-											className="p-2 dark:text-white dark:bg-transparent dark:border-slate-300  outline-none border-b-2 hover:border-b-azul-hyde"
-											value={user.nome}
-											disabled
-										/>
-									</div>
-									<div className="flex flex-col">
-										<label className="font-medium text-gray-500">
-											Telefone:
-										</label>
-										<InputMask
-											className="p-2 dark:text-white dark:bg-transparent dark:border-slate-300  outline-none border-b-2 hover:border-b-azul-hyde"
-											placeholder="CEP"
-											name="cep"
-											mask="(99) 99999-9999"
-											value={user.tel}
-											disabled
-										/>
+								<div className="flex flex-col w-full mt-6 rounded-lg">
+									<h1 className="font-bold text-md mb-6">
+										Informações do técnico:
+									</h1>
+									<div className="grid grid-cols-2 gap-x-5 gap-y-5">
+										<div className="flex flex-col">
+											<label className="font-medium text-gray-500">Nome:</label>
+											<input
+												type="text"
+												className="p-2 dark:text-white dark:bg-transparent dark:border-slate-300  outline-none border-b-2 hover:border-b-azul-hyde"
+												value={user.nome}
+												disabled
+											/>
+										</div>
+										<div className="flex flex-col">
+											<label className="font-medium text-gray-500">
+												Telefone:
+											</label>
+											<InputMask
+												className="p-2 dark:text-white dark:bg-transparent dark:border-slate-300  outline-none border-b-2 hover:border-b-azul-hyde"
+												placeholder="CEP"
+												name="cep"
+												mask="(99) 99999-9999"
+												value={user.tel}
+												disabled
+											/>
+										</div>
 									</div>
 								</div>
 							</div>
