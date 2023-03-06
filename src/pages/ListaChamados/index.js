@@ -12,6 +12,7 @@ import PaginationButton from "../../components/PaginationButton";
 
 function ListaChamados() {
   const [chamados, setChamados] = useState([]);
+  const [chamadoAceito, setChamadoAceito] = useState([]);
   const [status, setStatus] = useState("");
   const [loading, setLoading] = useState(true);
 
@@ -102,6 +103,19 @@ function ListaChamados() {
     if (currentPage + 1 < totalPages) {
       changePage(currentPage + 1);
       setCurrentPage(currentPage + 1);
+    }
+  }
+
+  async function getChamadoAceito() {
+    try {
+      const tecnico_id = localStorage.getItem("Id");
+      const response = await api.get(
+        `/chamados?status_chamado=andamento&tecnico_id=${tecnico_id}`
+      );
+
+      setChamadoAceito(response.data);
+    } catch (error) {
+      console.log(error);
     }
   }
 
@@ -207,6 +221,7 @@ function ListaChamados() {
     } catch (error) {}
   };
   useEffect(() => {
+    getChamadoAceito();
     (async () => {
       try {
         switch (type) {
@@ -352,7 +367,44 @@ function ListaChamados() {
                 </th>
               </tr>
             </thead>
-            <tbody>{pagination}</tbody>
+            <tbody>
+              {chamadoAceito.length === 0 ? (
+                pagination
+              ) : (
+                <tr
+                  align="center"
+                  className="border-b odd:bg-white even:bg-slate-100 font-medium hover:bg-slate-200"
+                >
+                  {type === "tecnicos" && (
+                    <td className="text-lg text-gray-900  px-6 py-4 whitespace-nowrap">
+                      {chamadoAceito[0].nome_empresa}
+                    </td>
+                  )}
+                  <td className="text-lg text-gray-900 px-6 py-4 whitespace-nowrap">
+                    {chamadoAceito[0].nome_funcionario}
+                  </td>
+                  <td className="text-lg text-gray-900 px-6 py-4 whitespace-nowrap">
+                    {chamadoAceito[0].problema}
+                  </td>
+                  <td className="text-lg text-gray-900 px-6 py-4 whitespace-nowrap">
+                    {chamadoAceito[0].cod_verificacao}
+                  </td>
+                  <td className="text-lg text-gray-900 px-6 py-4 whitespace-nowrap">
+                    {chamadoAceito[0].prioridade}
+                  </td>
+                  <td
+                    data-type={chamadoAceito[0].status_chamado}
+                    className="text-lg first-letter:uppercase data-[type=pendente]:text-red-500 data-[type=andamento]:text-yellow-500 data-[type=concluido]:text-green-500   font-bold px-6 py-4  whitespace-nowrap"
+                  >
+                    {chamadoAceito[0].status_chamado}
+                  </td>
+
+                  <td className="text-lg text-gray-900 font-light px-6 py-4 whitespace-nowrap ">
+                    <Dropdown item={chamadoAceito[0]} />
+                  </td>
+                </tr>
+              )}
+            </tbody>
           </table>
           {loading && (
             <div className="flex gap-2 items-center m-auto w-64 mt-10">
@@ -372,24 +424,51 @@ function ListaChamados() {
             </div>
           )}
         </div>
-        {chamados?.length !== 0 && (
-          <div className="flex w-full justify-center mt-10 mb-10">
-            <div className="flex rounded-lg justify-center px-2 py-2 shadow-lg w-11/12 md:w-1/2 lg:w-1/3">
-              <div className="flex align-center justify-center w-12 h-10">
-                <button
-                  className="flex item-center justify-center rounded-md item-center h-full w-full text-base font-semibold text-black hover:bg-slate-200"
-                  onClick={prevPage}
-                >
-                  <ChevronLeftIcon
-                    className="h-full w-7"
-                    aria-hidden="true"
-                  />
-                </button>
-              </div>
-              <div className="flex flex-row w-full h-full px-2 justify-evenly" > 
-                {paginationButtons?.map((button, index) => {
-                  if (currentPage < 2) {
-                    if (index >= 0 && index < 5) {
+        {chamados?.length !== 0 &&
+          totalPages !== 1 &&
+          chamadoAceito.length === 0 && (
+            <div className="flex w-full justify-center mt-10 mb-10">
+              <div className="flex rounded-lg justify-center px-2 py-2 shadow-lg w-11/12 md:w-1/2 lg:w-1/3">
+                <div className="flex align-center justify-center w-12 h-10">
+                  <button
+                    className="flex item-center justify-center rounded-md item-center h-full w-full text-base font-semibold text-black hover:bg-slate-200"
+                    onClick={prevPage}
+                  >
+                    <ChevronLeftIcon
+                      className="h-full w-7"
+                      aria-hidden="true"
+                    />
+                  </button>
+                </div>
+                <div className="flex flex-row w-full h-full px-2 justify-evenly">
+                  {paginationButtons?.map((button, index) => {
+                    if (currentPage < 2) {
+                      if (index >= 0 && index < 5) {
+                        return (
+                          <PaginationButton
+                            key={index}
+                            currentPage={currentPage}
+                            index={index}
+                            handleChangePage={(e) => handleChangePage(e)}
+                          />
+                        );
+                      }
+                    }
+
+                    if (currentPage > totalPages - 3) {
+                      if (index >= totalPages - 5 && index < totalPages) {
+                        return (
+                          <PaginationButton
+                            key={index}
+                            currentPage={currentPage}
+                            index={index}
+                            handleChangePage={(e) => handleChangePage(e)}
+                          />
+                        );
+                      }
+                    }
+
+                    if (index >= currentPage - 2 && index < currentPage + 3) {
                       return (
                         <PaginationButton
                           key={index}
@@ -399,47 +478,22 @@ function ListaChamados() {
                         />
                       );
                     }
-                  }
-
-                  if (currentPage > totalPages - 3) {
-                    if (index >= totalPages - 5 && index < totalPages) {
-                      return (
-                        <PaginationButton
-                          key={index}
-                          currentPage={currentPage}
-                          index={index}
-                          handleChangePage={(e) => handleChangePage(e)}
-                        />
-                      );
-                    }
-                  }
-
-                  if (index >= currentPage - 2 && index < currentPage + 3) {
-                    return (
-                      <PaginationButton
-                        key={index}
-                        currentPage={currentPage}
-                        index={index}
-                        handleChangePage={(e) => handleChangePage(e)}
-                      />
-                    );
-                  }
-                })}
-              </div>
-              <div className="flex align-center justify-center w-12 h-10">
-                <button
-                  className="flex align-center justify-center rounded-md item-center h-full w-full text-base font-semibold text-black hover:bg-slate-200"
-                  onClick={nextPage}
-                >
-                  <ChevronRightIcon
-                    className="h-full w-7"
-                    aria-hidden="true"
-                  />
-                </button>
+                  })}
+                </div>
+                <div className="flex align-center justify-center w-12 h-10">
+                  <button
+                    className="flex align-center justify-center rounded-md item-center h-full w-full text-base font-semibold text-black hover:bg-slate-200"
+                    onClick={nextPage}
+                  >
+                    <ChevronRightIcon
+                      className="h-full w-7"
+                      aria-hidden="true"
+                    />
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
-        )}
+          )}
       </div>
       <Footer />
     </>
