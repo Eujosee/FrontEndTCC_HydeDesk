@@ -17,8 +17,10 @@ import ModalCancelar from "../ModalCancelar"
 import ModalAceitar from "../ModalAceitar";
 import ModalSuspender from "../ModalSuspender";
 import ModalConcluir from "../ModalConcluir";
+import { useNavigate } from "react-router-dom";
 
 export default function Dropdown({ item }) {
+  const navigate = useNavigate();
   const id = JSON.parse(localStorage.getItem("Id"));
   const type = JSON.parse(localStorage.getItem("Tipo"));
   let [isOpenConclusao, setIsOpenConclusao] = useState(false);
@@ -33,8 +35,8 @@ export default function Dropdown({ item }) {
     <Modais open={isOpenConclusao} type="conclusao" dataChamado={item} onClose={() => setIsOpenConclusao(false)}/>
     <Modais open={IsOpenAvaliacao} type="avaliacao" dataChamado={item} onClose={() => setIsOpenAvaliacao(false)}/>
     <ModalCancelar open={IsOpenCancel} id={item.id_chamado} onClose={() => setIsOpenCancel(false)}/>
-    <ModalAceitar open={IsOpenAceitar} ids={ {id_chamado: item.id_chamado, tecnico_id:id}} onClose={() => setIsOpenAceitar(false)}/>
-    <ModalSuspender open={IsOpenSuspender} id={item.id_chamado} onClose={() => setIsOpenSuspender(false)}/>
+    <ModalAceitar open={IsOpenAceitar} ids={ {id_chamado: item.id_chamado, tecnico_id:id}} onClose={() => setIsOpenAceitar(false)} navigate={(e) => navigate(e)}/>
+    <ModalSuspender open={IsOpenSuspender} id={item.id_chamado} onClose={() => setIsOpenSuspender(false)} navigate={(e) => navigate(e)}/>
     <ModalConcluir open={IsOpenConcluir} id={item.id_chamado} onClose={() => setIsOpenConcluir(false)}/>
 
 
