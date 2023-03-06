@@ -15,7 +15,7 @@ export default function Form() {
   };
 
   function goToConfirmarToken(values){
-	navigate("confirmar-token",	{state: {token: values, tipoTabela : label}} )
+	navigate("confirmar-token",	{state: {token: values, tipoTabela : label, email: email}} )
   }
   
   async function receberEmail(){
@@ -23,7 +23,6 @@ export default function Form() {
 		toemail: email,
 		tipoTabela: label
 	}
-	console.log(data)
 	try{
 		const response = await api.post("/email", data);
 

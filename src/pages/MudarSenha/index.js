@@ -1,9 +1,9 @@
-import Form from "../../components/formNovaSenha";
+import FormNovaSenha from "../../components/FormNovaSenha";
 import { Link } from "react-router-dom";
 
 import ImagemLogin from "../../images/loginamico.svg"
 
-export default function MudaSenha(){
+export default function MudarSenha(){
     return (
 			<>
 				<div className=" flex w-screen h-screen items-center dark:bg-preto">
@@ -26,7 +26,7 @@ export default function MudaSenha(){
 								<h1 className="font-bold text-3xl dark:text-branco">
 									Mudança de senha
 								</h1>
-								<Form />
+								<FormNovaSenha />
 							</div>
 						</div>
 					</div>

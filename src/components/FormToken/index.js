@@ -16,17 +16,9 @@ export default function FormToken() {
 
   const { state } = useLocation();
 
-  const { token, tipoTabela } = state;
+  const { token, tipoTabela, email } = state;
 
   const navigate = useNavigate();
-  const [label, setLabel] = useState("tecnicos");
-  const [email, setEmail] = useState("");
-  const { handleLogin, status } = useContext(Context);
-
-  console.log(inputValues);
-  const handleChange = (event) => {
-    setLabel(event.target.value);
-  };
 
   async function comparar() {
     let tokenCompare = "";
@@ -35,12 +27,10 @@ export default function FormToken() {
     });
 
     if (tokenCompare === token) {
-      navigate("trocar-senha")
+      navigate("trocar-senha", {state:{tipoTabela: tipoTabela, email: email}})
     } else {
-      console.log("nada")
+      console.log("O token não é igual")
     }
-
-    console.log(tokenCompare);
   }
 
   return (
@@ -105,7 +95,6 @@ export default function FormToken() {
           <p className="dark:text-branco">
             Verifique o token enviado para você via email
           </p>
-          <p className="text-red-500 flex justify-center">{status}</p>
         </div>
       </div>
     </div>
