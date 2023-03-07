@@ -55,7 +55,7 @@ function PerfilTecnico() {
           formData,
           config
         );
-        toast.success(data.message, {
+        toast.success("Dados alterados com sucesso", {
           position: toast.POSITION.TOP_RIGHT,
         });
         setChangeFoto("");
@@ -214,7 +214,7 @@ function PerfilTecnico() {
                 type="text"
                 id="telefone"
                 name="telefone"
-                mask="(+99) 99 99999-9999"
+                mask="(99) 99999-9999"
                 value={dados.telefone}
                 onChange={changeDados}
                 className="p-2 dark:text-white dark:bg-transparent dark:border-slate-300  outline-none border-b-2"
@@ -243,6 +243,7 @@ function PerfilTecnico() {
             >
               Salvar mudanças
             </button>
+            <ToastContainer />
             <button className="p-2 w-1/2 lg:w-1/3 text-azul-hyde border border-azul-hyde hover:bg-azul-hyde hover:text-white font-medium rounded-md">
               Cancelar
             </button>
@@ -250,7 +251,6 @@ function PerfilTecnico() {
         </div>
         <div className="lg:w-4/12 sm:w-full  h-full"></div>
       </div>
-      <ToastContainer />
     </div>
   );
 }
