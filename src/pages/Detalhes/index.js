@@ -13,7 +13,7 @@ export default function Detalhes() {
 	const [loading, setLoading] = useState(true);
 	const [statusErro, setStatusErro] = useState("");
 	const [user, setUser] = useState([]);
-
+	const [dataChamado, setDataChamado] = useState(null);
 	const [adress, setAdress] = useState({
 		rua: "",
 		estado: "",
@@ -27,6 +27,11 @@ export default function Detalhes() {
 				const { data } = await api.get("/chamados/" + id);
 				console.log(data);
 				setData(data);
+				const dataHora = data[0].data.split("T");
+				let d = dataHora[0];
+				d = d.split("-");
+				const dateCall = `${d[2]}/${d[1]}/${d[0]}`;
+				setDataChamado(dateCall)
 				checkCEP(data[0].cep);
 				setLoading(false);
 			} catch (error) {
@@ -65,9 +70,11 @@ export default function Detalhes() {
 			try {
 				const { data } = await api.get("/tecnicos/" + id);
 				setUser({ nome: data.nome, tel: data.telefone });
-			} catch (error) {}
+			} catch (error) { }
 		})();
 	}, []);
+
+
 	return (
 		<>
 			<Header />
@@ -80,19 +87,19 @@ export default function Detalhes() {
 							className="cursor-pointer"
 						/>
 						<div className="flex flex-col mt-5 justify-start md:flex-row md:space-x-5">
-							<h1 className="text-xl font-bold w-auto">
-								Abertura do chamado - 00/00/0000
+							<h1 className="text-xl w-auto">
+								<span className="font-bold">Abertura do chamado: </span><span className="text-gray-500">{dataChamado}</span>
 							</h1>
 							<div className="flex flex-row items-center justify-start mt-4 lg:mt-0">
-								<label className="text-xl font-medium text-gray-500 pr-2">
+								<label className="text-xl font-bold w-auto pr-2">
 									Protocolo:
 								</label>
-								<p className="text-xl font-bold rounded">
+								<p className="text-xl text-gray-500 rounded">
 									{data[0].cod_verificacao}
 								</p>
 							</div>
 							<div className="flex flex-row items-center mt-2 lg:mt-0">
-								<label className="text-xl font-medium text-gray-500 pr-2">
+								<label className="text-xl font-bold w-auto pr-2">
 									Status:
 								</label>
 								<p
@@ -106,13 +113,13 @@ export default function Detalhes() {
 					</div>
 					<div className="flex flex-col lg:flex-row w-full lg:space-x-10">
 						<div className="flex flex-col w-full lg:w-1/2 mt-5 rounded-lg">
-							<h1 className="font-bold text-md  mb-6">Detalhes:</h1>
+							<h1 className="font-bold text-md mb-6">Detalhes:</h1>
 							<div className="grid grid-cols-2 gap-x-5 gap-y-5">
 								<div className="flex flex-col">
 									<label className="font-medium text-gray-500">Problema:</label>
 									<input
 										type="text"
-										className="p-2 dark:text-white dark:bg-transparent dark:border-slate-300  outline-none border-b-2 hover:border-b-azul-hyde"
+										className="p-2 dark:text-white dark:bg-transparent bg-white dark:border-slate-300  outline-none border-b-2 hover:border-b-azul-hyde"
 										value={data[0].problema}
 										disabled
 									/>
@@ -121,7 +128,7 @@ export default function Detalhes() {
 									<label className="font-medium">Setor:</label>
 									<input
 										type="text"
-										className="p-2 dark:text-white dark:bg-transparent dark:border-slate-300  outline-none border-b-2 hover:border-b-azul-hyde"
+										className="p-2 dark:text-white dark:bg-transparent bg-white dark:border-slate-300  outline-none border-b-2 hover:border-b-azul-hyde"
 										value={data[0].setor}
 										disabled
 									/>
@@ -133,7 +140,7 @@ export default function Detalhes() {
 									</label>
 									<input
 										type="text"
-										className="p-2 dark:text-white dark:bg-transparent dark:border-slate-300  outline-none border-b-2 hover:border-b-azul-hyde"
+										className="p-2 dark:text-white dark:bg-transparent bg-white dark:border-slate-300  outline-none border-b-2 hover:border-b-azul-hyde"
 										value={data[0].patrimonio}
 										disabled
 									/>
@@ -144,7 +151,7 @@ export default function Detalhes() {
 									</label>
 									<input
 										type="text"
-										className="p-2 dark:text-white dark:bg-transparent dark:border-slate-300  outline-none border-b-2 hover:border-b-azul-hyde"
+										className="p-2 dark:text-white dark:bg-transparent bg-white dark:border-slate-300  outline-none border-b-2 hover:border-b-azul-hyde"
 										value={data[0].prioridade}
 										disabled
 									/>
@@ -154,21 +161,28 @@ export default function Detalhes() {
 										Descrição:
 									</label>
 									<textarea
-										className="p-2 dark:text-white dark:bg-transparent dark:border-slate-300  outline-none border-b-2 hover:border-b-azul-hyde"
+										className="p-2 dark:text-white dark:bg-transparent bg-white dark:border-slate-300  outline-none border-b-2 hover:border-b-azul-hyde"
 										value={data[0].descricao}
 										disabled
 									/>
 								</div>
 							</div>
-							{data[0].anexo && (
-								<div className="flex flex-col w-full pl-8">
-									<label className="font-medium text-gray-500">Anexo:</label>
+							<label className="font-medium text-gray-500 mt-6">Anexo:</label>
+							{data[0].anexo ? (
+								<div className="flex flex-col w-full">
 									<img
 										src={"https://hdteste.azurewebsites.net/" + data[0].anexo}
 										className="w-full h-60"
 										alt="anexo do chamado"
 									/>
 								</div>
+							) : (
+								<input
+									type="text"
+									className="p-2 bg-white"
+									value="Este chamado não possui anexo."
+									disabled
+								/>
 							)}
 						</div>
 						<div className="flex flex-col w-full lg:w-1/2 sm:w-auto mt-5 rounded-lg">
@@ -179,7 +193,7 @@ export default function Detalhes() {
 										<label className="font-medium text-gray-500">Nome:</label>
 										<input
 											type="text"
-											className="p-2 dark:text-white dark:bg-transparent dark:border-slate-300  outline-none border-b-2 hover:border-b-azul-hyde"
+											className="p-2 dark:text-white dark:bg-transparent bg-white dark:border-slate-300  outline-none border-b-2 hover:border-b-azul-hyde"
 											value={data[0].nome_empresa}
 											disabled
 										/>
@@ -190,7 +204,7 @@ export default function Detalhes() {
 										</label>
 										<input
 											type="text"
-											className="p-2 dark:text-white dark:bg-transparent dark:border-slate-300  outline-none border-b-2 hover:border-b-azul-hyde"
+											className="p-2 dark:text-white dark:bg-transparent  bg-white dark:border-slate-300  outline-none border-b-2 hover:border-b-azul-hyde"
 											value={data[0].telefone}
 											disabled
 										/>
@@ -203,7 +217,7 @@ export default function Detalhes() {
 									<div className="flex flex-col">
 										<label className=" font-medium text-gray-500">CEP *</label>
 										<InputMask
-											className="p-2 dark:text-white dark:bg-transparent dark:border-slate-300  outline-none border-b-2 hover:border-b-azul-hyde"
+											className="p-2 dark:text-white dark:bg-transparent bg-white dark:border-slate-300  outline-none border-b-2 hover:border-b-azul-hyde"
 											placeholder="CEP"
 											name="cep"
 											mask="99999-999"
@@ -214,7 +228,7 @@ export default function Detalhes() {
 									<div className="flex flex-col">
 										<label className="font-medium text-gray-500">Rua</label>
 										<input
-											className="p-2 dark:text-white dark:bg-transparent dark:border-slate-300  outline-none border-b-2 hover:border-b-azul-hyde"
+											className="p-2 dark:text-white dark:bg-transparent bg-white dark:border-slate-300  outline-none border-b-2 hover:border-b-azul-hyde"
 											placeholder="Rua"
 											name="Rua"
 											value={adress.rua}
@@ -224,7 +238,7 @@ export default function Detalhes() {
 									<div className="flex flex-col">
 										<label className="font-medium text-gray-500">N°</label>
 										<input
-											className="p-2 dark:text-white dark:bg-transparent dark:border-slate-300  outline-none border-b-2 hover:border-b-azul-hyde"
+											className="p-2 dark:text-white dark:bg-transparent bg-white dark:border-slate-300  outline-none border-b-2 hover:border-b-azul-hyde"
 											placeholder="N°"
 											name="numero_endereco"
 											value={data[0].numero_endereco}
@@ -234,7 +248,7 @@ export default function Detalhes() {
 									<div className="flex flex-col">
 										<label className="font-medium text-gray-500">Bairro</label>
 										<input
-											className="p-2 dark:text-white dark:bg-transparent dark:border-slate-300  outline-none border-b-2 hover:border-b-azul-hyde"
+											className="p-2 dark:text-white dark:bg-transparent bg-white dark:border-slate-300  outline-none border-b-2 hover:border-b-azul-hyde"
 											placeholder="Bairro"
 											name="bairro"
 											value={adress.bairro}
@@ -244,7 +258,7 @@ export default function Detalhes() {
 									<div className="flex flex-col">
 										<label className="font-medium text-gray-500">Cidade</label>
 										<input
-											className="p-2 dark:text-white dark:bg-transparent dark:border-slate-300  outline-none border-b-2 hover:border-b-azul-hyde"
+											className="p-2 dark:text-white dark:bg-transparent bg-white dark:border-slate-300  outline-none border-b-2 hover:border-b-azul-hyde"
 											placeholder="Cidade"
 											name="cidade"
 											value={adress.cidade}
@@ -254,7 +268,7 @@ export default function Detalhes() {
 									<div className="flex flex-col">
 										<label className="font-medium text-gray-500">UF</label>
 										<input
-											className="p-2 dark:text-white dark:bg-transparent dark:border-slate-300  outline-none border-b-2 hover:border-b-azul-hyde"
+											className="p-2 dark:text-white dark:bg-transparent bg-white dark:border-slate-300  outline-none border-b-2 hover:border-b-azul-hyde"
 											placeholder="Estado"
 											name="estado"
 											value={adress.estado}
@@ -271,7 +285,7 @@ export default function Detalhes() {
 											<label className="font-medium text-gray-500">Nome:</label>
 											<input
 												type="text"
-												className="p-2 dark:text-white dark:bg-transparent dark:border-slate-300  outline-none border-b-2 hover:border-b-azul-hyde"
+												className="p-2 dark:text-white dark:bg-transparent bg-white dark:border-slate-300  outline-none border-b-2 hover:border-b-azul-hyde"
 												value={user.nome}
 												disabled
 											/>
@@ -281,7 +295,7 @@ export default function Detalhes() {
 												Telefone:
 											</label>
 											<InputMask
-												className="p-2 dark:text-white dark:bg-transparent dark:border-slate-300  outline-none border-b-2 hover:border-b-azul-hyde"
+												className="p-2 dark:text-white dark:bg-transparent bg-white dark:border-slate-300  outline-none border-b-2 hover:border-b-azul-hyde"
 												placeholder="CEP"
 												name="cep"
 												mask="(99) 99999-9999"

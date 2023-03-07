@@ -1,6 +1,5 @@
-import Form from "../../components/formNovaSenha";
+import Form from "../../components/FormNovaSenha";
 import { Link } from "react-router-dom";
-
 import ImagemLogin from "../../images/loginamico.svg"
 
 export default function MudaSenha(){
