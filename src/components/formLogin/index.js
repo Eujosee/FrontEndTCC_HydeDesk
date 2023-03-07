@@ -33,34 +33,48 @@ function Form() {
 			<div>
 				<div className="sm:px-0 sm:shrink lg:px-8">
 					<p className="font-semibold text-lg dark:text-white">Entrar como:</p>
-					<input
-						type="radio"
-						name="escolhalogin"
-						value="cpf"
-						onChange={handleChange}
-						defaultChecked
-					/>
-					<label className="mr-4 ml-2 font-semibold dark:text-white">
-						Técnico
-					</label>
+					<div className="flex flex-row">
 
-					<input
-						type="radio"
-						name="escolhalogin"
-						value="cnpj"
-						onChange={handleChange}
-					/>
-					<label className="mr-4 ml-2 font-semibold dark:text-white ">
-						Empresa
-					</label>
+          <div className="flex flex-row items-center">
+            <input
+              type="radio"
+              id="cpf"
+              className="w-4 h-4 text-azul-hyde bg-gray-100 border-gray-300 focus:azul-hyde dark:focus:azul-hyde dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+              name="escolhalogin"
+              value="cpf"
+              onChange={handleChange}
+              defaultChecked
+              />
+            <label for="cpf" className="mr-4 ml-2 font-semibold dark:text-white">
+              Técnico
+            </label>
+          </div>
+          <div className="flex flex-row items-center">
+            <input
+              type="radio"
+              id="cnpj"
+              className="w-4 h-4 text-azul-hyde bg-gray-100 border-gray-300 focus:azul-hyde dark:focus:azul-hyde dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+              name="escolhalogin"
+              value="cnpj"
+              onChange={handleChange}
+              />
+            <label for="cnpj" className="mr-4 ml-2 font-semibold dark:text-white ">
+              Empresa
+            </label>
+          </div>
+          <div className="flex flex-row items-center">
 
           <input
             type="radio"
+            id="matricula"
+            className="w-4 h-4 text-azul-hyde bg-gray-100 border-gray-300 focus:azul-hyde dark:focus:azul-hyde dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
             name="escolhalogin"
             value="matricula"
             onChange={handleChange}
-          />
-          <label className="ml-2 font-semibold ">Funcionário</label>
+            />
+          <label for="matricula" className="ml-2 font-semibold ">Funcionário</label>
+          </div>
+            </div>
         </div>
         <div className="mt-8 mb-3">
           <label className="text-lg font-semibold  text-gray-900">Login</label>

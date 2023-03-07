@@ -407,19 +407,19 @@ function ListaChamados() {
             </tbody>
           </table>
           {loading && (
-            <div className="flex gap-2 items-center m-auto w-64 mt-10">
+            <div className="flex gap-2 items-center justify-center m-auto w-64 mt-10">
               <AiOutlineLoading3Quarters size={25} className="icon" />
               <p className=""> Carregando...</p>
             </div>
           )}
 
           {chamados.length < 1 && !loading && !status && (
-            <div className="flex gap-2 items-center m-auto w-64 mt-10">
+            <div className="flex gap-2 items-center justify-center m-auto w-64 mt-10">
               <p className=""> Você não possui chamados.</p>
             </div>
           )}
           {status && !loading && (
-            <div className="flex gap-2 items-center m-auto w-64 mt-10">
+            <div className="flex gap-2 items-center justify-center m-auto w-64 mt-10">
               <p className="">{status}</p>
             </div>
           )}
