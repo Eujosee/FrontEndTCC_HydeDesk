@@ -1,6 +1,6 @@
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
-import { AiOutlineLoading3Quarters } from "react-icons/ai";
+import { AiOutlineConsoleSql, AiOutlineLoading3Quarters } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import api from "../../api";
@@ -109,9 +109,8 @@ function ListaChamados() {
 
   async function getChamadoAceito() {
     try {
-      const tecnico_id = localStorage.getItem("Id");
       const response = await api.get(
-        `/chamados?status_chamado=andamento&tecnico_id=${tecnico_id}`
+        `/chamados?status_chamado=andamento&tecnico_id=${id}`
       );
 
       setChamadoAceito(response.data);
@@ -251,6 +250,8 @@ function ListaChamados() {
       }
     })();
   }, [id, type]);
+
+  console.log(chamadoAceito);
 
   useEffect(() => {
     const totalItems = 8;

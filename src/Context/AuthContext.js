@@ -25,6 +25,7 @@ function AuthProvider({ children }) {
 
   const handleLogin = async (user, label) => {
     console.log(user);
+    console.log(label)
     switch (label) {
       case "cpf":
         try {
@@ -67,7 +68,7 @@ function AuthProvider({ children }) {
         }
 
         break;
-      case "matricula":
+      case "usuario":
         try {
           const { data } = await api.post("/funcionarios/login", user);
 

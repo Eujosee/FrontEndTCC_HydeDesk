@@ -6,62 +6,61 @@ import { ToastContainer } from "react-toastify";
 
 function Form() {
   const [label, setLabel] = useState("cpf");
-  const cpf = useRef();
+  const [usuario, setUsuario] = useState("");
   const senha = useRef();
   const { handleLogin, status, authenticated } = useContext(Context);
- 
+
   var user = {};
   const getRef = () => {
-    if (label === "matricula") {
-      return user = {
-        [label]: cpf.current.value,
+    if (label === "usuario") {
+      return (user = {
+        usuario: usuario,
         senha: senha.current.value,
-      }
-        
-      
+      });
     } else {
-      return user = {
-        [label]: cpf.current.value.replace(/[^0-9]+/g, ""),
+      return (user = {
+        [label]: usuario.replace(/[^0-9]+/g, ""),
         senha: senha.current.value,
-      };
-      
+      });
     }
-  }
+  };
+
+  console.log(label)
 
   const handleChange = (event) => {
     setLabel(event.target.value);
   };
 
   return (
-		<div className="bg-white px-10 py-10 dark:bg-preto">
-			<div>
-				<div className="sm:px-0 sm:shrink lg:px-8">
-					<p className="font-semibold text-lg dark:text-white">Entrar como:</p>
-					<input
-						type="radio"
-						name="escolhalogin"
-						value="cpf"
-						onChange={handleChange}
-						defaultChecked
-					/>
-					<label className="mr-4 ml-2 font-semibold dark:text-white">
-						Técnico
-					</label>
-
-					<input
-						type="radio"
-						name="escolhalogin"
-						value="cnpj"
-						onChange={handleChange}
-					/>
-					<label className="mr-4 ml-2 font-semibold dark:text-white ">
-						Empresa
-					</label>
+    <div className="bg-white px-10 py-10 dark:bg-preto">
+      <div>
+        <div className="sm:px-0 sm:shrink lg:px-8">
+          <p className="font-semibold text-lg dark:text-white">Entrar como:</p>
+          <input
+            type="radio"
+            name="escolhalogin"
+            value="cpf"
+            onChange={handleChange}
+            defaultChecked
+          />
+          <label className="mr-4 ml-2 font-semibold dark:text-white">
+            Técnico
+          </label>
 
           <input
             type="radio"
             name="escolhalogin"
-            value="matricula"
+            value="cnpj"
+            onChange={handleChange}
+          />
+          <label className="mr-4 ml-2 font-semibold dark:text-white ">
+            Empresa
+          </label>
+
+          <input
+            type="radio"
+            name="escolhalogin"
+            value="usuario"
             onChange={handleChange}
           />
           <label className="ml-2 font-semibold ">Funcionário</label>
@@ -73,10 +72,11 @@ function Form() {
             placeholder={
               label === "cpf" || label === "cnpj"
                 ? label.toUpperCase()
-                : "Matrícula"
+                : "Usuário"
             }
             name="cpf"
-            ref={cpf}
+            value={usuario}
+            onChange={(e) => setUsuario(e.target.value)}
             mask={
               label === "cpf"
                 ? "999.999.999-99"
@@ -106,7 +106,6 @@ function Form() {
             onClick={() => {
               handleLogin(getRef(), label);
             }}
-            
           >
             {" "}
             Login

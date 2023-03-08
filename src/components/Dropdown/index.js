@@ -37,7 +37,7 @@ export default function Dropdown({ item }) {
   useEffect(() => {
     async function getConcluido() {
       const response = await api.get(
-        `/conclusoes?chamado_id${item.id_chamado}`
+        `/conclusoes?chamado_id=${item.id_chamado}`
       );
 
       if (response.data.length > 0) {
@@ -114,51 +114,59 @@ export default function Dropdown({ item }) {
                   </Link>
                 </div>
               </Menu.Item>
-              <Menu.Item>
-                <div className="flex flex-row items-center px-4 group hover:bg-azul-hyde rounded-md">
-                  <CheckBadgeIcon
-                    className="h-6 w-6 text-azul-hyde group-hover:text-white"
-                    aria-hidden="true"
-                  />
-                  <button
-                    onClick={() => setIsOpenConclusao(true)}
-                    className="block w-full px-2 py-2 text-left text-sm font-semibold group-hover:text-white"
-                  >
-                    Conclusão
-                  </button>
-                </div>
-              </Menu.Item>
-              <Menu.Item>
-                <div className="flex flex-row items-center px-4 group hover:bg-azul-hyde rounded-md">
-                  <StarIcon
-                    className="h-6 w-6 text-azul-hyde group-hover:text-white"
-                    aria-hidden="true"
-                  />
-                  <button
-                    onClick={() => setIsOpenAvaliacao(true)}
-                    className="block w-full px-2 py-2 text-left text-sm font-semibold group-hover:text-white"
-                  >
-                    Avaliação
-                  </button>
-                </div>
-              </Menu.Item>
-              {item.status_chamado !== "cancelado" && type !== "tecnicos" && (
+              {estaConcluido && type !== "tecnicos" && (
                 <Menu.Item>
                   <div className="flex flex-row items-center px-4 group hover:bg-azul-hyde rounded-md">
-                    <XCircleIcon
+                    <CheckBadgeIcon
                       className="h-6 w-6 text-azul-hyde group-hover:text-white"
                       aria-hidden="true"
                     />
                     <button
-                      onClick={() => setIsOpenCancel(true)}
+                      onClick={() => setIsOpenConclusao(true)}
                       className="block w-full px-2 py-2 text-left text-sm font-semibold group-hover:text-white"
                     >
-                      Suspender
+                      Conclusão
                     </button>
                   </div>
                 </Menu.Item>
               )}
-              {item.status_chamado == "pendente" && type == "tecnicos" && (
+
+              {estaConcluido && !estaAvaliado && type !== "tecnicos" && (
+                <Menu.Item>
+                  <div className="flex flex-row items-center px-4 group hover:bg-azul-hyde rounded-md">
+                    <StarIcon
+                      className="h-6 w-6 text-azul-hyde group-hover:text-white"
+                      aria-hidden="true"
+                    />
+                    <button
+                      onClick={() => setIsOpenAvaliacao(true)}
+                      className="block w-full px-2 py-2 text-left text-sm font-semibold group-hover:text-white"
+                    >
+                      Avaliação
+                    </button>
+                  </div>
+                </Menu.Item>
+              )}
+
+              {item.status_chamado !== "cancelado" &&
+                item.status_chamado !== "concluido" &&
+                type !== "tecnicos" && (
+                  <Menu.Item>
+                    <div className="flex flex-row items-center px-4 group hover:bg-azul-hyde rounded-md">
+                      <XCircleIcon
+                        className="h-6 w-6 text-azul-hyde group-hover:text-white"
+                        aria-hidden="true"
+                      />
+                      <button
+                        onClick={() => setIsOpenCancel(true)}
+                        className="block w-full px-2 py-2 text-left text-sm font-semibold group-hover:text-white"
+                      >
+                        Cancelar
+                      </button>
+                    </div>
+                  </Menu.Item>
+                )}
+              {item.status_chamado === "pendente" && type === "tecnicos" && (
                 <Menu.Item>
                   <div className="flex flex-row items-center px-4 group hover:bg-azul-hyde rounded-md">
                     <CheckCircleIcon
