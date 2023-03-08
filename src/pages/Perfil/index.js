@@ -6,7 +6,7 @@ export default function Perfil() {
 
 
   return (
-    <div className="dark:bg-gray-900">
+    <div className="h-screen dark:bg-gray-900">
       <Header />
         <CardPerfil/>
       <Footer />

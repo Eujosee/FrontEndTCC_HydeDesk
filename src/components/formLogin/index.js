@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { useState, useContext, useRef } from "react";
 import { Context } from "../../Context/AuthContext";
 import InputMask from "react-input-mask";
+import { ToastContainer } from "react-toastify";
 
 function Form() {
   const [label, setLabel] = useState("cpf");
@@ -104,6 +105,7 @@ function Form() {
             {" "}
             Login
           </button>
+          <ToastContainer />
           <p className="text-red-500 flex justify-center">{status}</p>
 
           <Link className="no-underline flex " to="/recuperar">

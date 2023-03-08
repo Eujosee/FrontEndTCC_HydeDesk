@@ -10,10 +10,11 @@ import RecuperarSenha from "./pages/RecuperaSenha";
 import Detalhes from "./pages/Detalhes";
 import ListaFunc from "./pages/ListaFunc";
 import ListaChamados from "./pages/ListaChamados";
-import MudaSenha from "./pages/MudaSenha";
 import AbrirChamado from "./pages/AbrirChamado";
 import Pag404 from "./pages/NotFound";
 import { useContext } from "react";
+import ConfirmarToken from "./pages/ConfirmarToken";
+import MudarSenha from "./pages/MudarSenha";
 
 function PrivateRoutes({ children }) {
   const { authenticated } = useContext(Context)
@@ -61,6 +62,8 @@ const Rotas = () => {
             }
           />
           <Route path="/recuperar" element={<RecuperarSenha />} />
+          <Route path="/recuperar/confirmar-token" element={<ConfirmarToken />} />
+          <Route path="/recuperar/confirmar-token/trocar-senha" element={<MudarSenha />} />
           <Route
             path="/lista-funcionarios"
             element={
@@ -77,7 +80,6 @@ const Rotas = () => {
               </PrivateRoutes>
             }
           />
-          <Route path="/mudar-senha" element={<MudaSenha />} />
           <Route
             path="/abrir-chamado"
             element={

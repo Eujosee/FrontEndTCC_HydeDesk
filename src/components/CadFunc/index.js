@@ -60,7 +60,7 @@ function CadFunc () {
         formData.append("id_empresa", id)
 
         const { data } = await api.post('/funcionarios/cadastro', formData, config)
-        toast.success(data.message, {
+        toast.success("Funcionário cadastrado com sucesso!", {
             position: toast.POSITION.TOP_RIGHT
         });
         setStatus(data.message)
