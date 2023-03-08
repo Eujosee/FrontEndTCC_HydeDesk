@@ -125,7 +125,7 @@ function CadFunc() {
               className="focus:outline-none focus:border-azul-hyde border-b-2 w-full  p-2"
               placeholder="Nome completo"
               name="nome"
-              value={user.nome_funcionario}
+              value={user.nome}
               onChange={(e) => [handleUser(e), setStatusErro("")]}
             />
           </div>
@@ -162,7 +162,7 @@ function CadFunc() {
               className="focus:outline-none focus:border-azul-hyde border-b-2 w-full  p-2"
               placeholder="Email"
               name="email"
-              value={user.email_funcionario}
+              value={user.email}
               onChange={(e) => [handleUser(e), setStatusErro("")]}
             />
           </div>
