@@ -2,14 +2,12 @@ import React from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
 import api from "../../api";
-import dadosAvaliacao from "../ModalAvaliacao";
 
-export default function ModalConclusao({ open, onClose, dataChamado, dadosAvaliacao }) {
+export default function ModalConclusao({ open, onClose, dataChamado}) {
   const [nomeTecnico, setNomeTecnico] = useState("");
   const id = JSON.parse(localStorage.getItem("Id"));
+  const id2 = JSON.parse(localStorage.getItem("Id2"));
   
-  let modal = dadosAvaliacao
-  console.log(modal);
 
   (async () => {
     try {
@@ -18,6 +16,7 @@ export default function ModalConclusao({ open, onClose, dataChamado, dadosAvalia
     } catch (error) {}
   })();
 
+
   if (!open) return null;
 
   let data = dataChamado;
@@ -25,8 +24,6 @@ export default function ModalConclusao({ open, onClose, dataChamado, dadosAvalia
   let d = dataHora[0];
   d = d.split("-");
   const dateCall = `${d[2]}/${d[1]}/${d[0]}`;
-
-  console.log(data);
 
   return (
     <Transition appear show={open} as={Fragment}>

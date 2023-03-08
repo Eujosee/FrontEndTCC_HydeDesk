@@ -2,18 +2,14 @@ import React from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
 import { text } from "@fortawesome/fontawesome-svg-core";
+import { FaStar } from "react-icons/fa";
+import Rating from "../Estrelas"
 
 export default function ModalAvaliacao({ open, onClose, dataChamado }) {
-  const [avaliacao, setAvaliacao] = useState();
-  const [descricao, setDescricao] = useState();
-  const [anexo, setAnexo] = useState();
-  
-  let dadosAvalicao ={
-    avaliacao,
-    descricao,
-    anexo,
-}
-  console.log(dadosAvalicao.anexo);
+  // const [descricao, setDescricao] = useState();
+  // const [anexo, setAnexo] = useState();
+
+
 
   if (!open) return null;
   let data = dataChamado;
@@ -44,7 +40,7 @@ export default function ModalAvaliacao({ open, onClose, dataChamado }) {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <Dialog.Panel className="w-full md:w-1/3 transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+              <Dialog.Panel className="w-full md:w-1/4 transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
                 <Dialog.Title
                   as="h3"
                   className="flex justify-center text-lg font-medium leading-6 text-gray-900"
@@ -52,62 +48,10 @@ export default function ModalAvaliacao({ open, onClose, dataChamado }) {
                   Avaliação
                 </Dialog.Title>
                 <div className="flex items-center justify-center">
-                  <div className="flex flex-col h-1/2 font-Poppins p-8">
-                    <div className="flex w-full media pt-4">
-                      <div className="w-full flex flex-col space-y-4 data1">
-                        <div className=" w-full flex space-x-2">
-                          <div className="flex flex-col w-full ">
-                            <label className="font-medium text-gray-500">
-                              Descrição
-                            </label>
-                            <input
-                              type="text"
-                              className="bg-gray-300 rounded w-full md:w-80 h-10 pl-4 shadow"
-                              onChange={e => setDescricao(e.target.value)}
-                            />
-                          </div>
-                          <div className="flex flex-col w-full">
-                            <label className="font-medium text-gray-500">
-                              Avaliação
-                            </label>
-                            <input
-                              type="number"
-                              className="bg-gray-300 rounded h-10 pl-4 shadow"
-                              onChange={e => setAvaliacao(e.target.value)}
-                              min={0}
-                              max={10}
-                            />
-                          </div>
-                        </div>
-                        {avaliacao < 3 && <div className="flex flex-col w-full">
-                          <label className="font-medium text-gray-500">
-                            Detalhes da Avaliação
-                          </label>
-                          <textarea className="bg-gray-300 rounded h-36 pt-2 pl-4 shadow" />
-                        </div>} 
-                        
-
-                        <div className="flex flex-col w-full">
-                          <label className="font-medium text-gray-500">
-                            Anexo:
-                          </label>
-                          <input
-                            type="file"
-                            accept="application/pdf"
-                            className="shadow"
-                            onChange={e => setAnexo(e.target.value)}
-                          />
-                        </div>
-                        <div className="flex flex-col w-full">
-                          <label className="font-medium text-gray-500">
-                            Protocolo
-                          </label>
-                          <input
-                            type="text"
-                            className="bg-gray-300 rounded h-10 pl-4 shadow"
-                            value={data.cod_verificacao}
-                          />
-                        </div>
+                  <div className="flex flex-col items-center h-1/2 font-Poppins justify-center p-8">
+                    <div className="flex items-center w-full media pt-4">
+                      <div className="w-full items-center flex ex-col space-y-4 data1">
+                        <Rating />  
                       </div>
                     </div>
                   </div>
@@ -119,7 +63,7 @@ export default function ModalAvaliacao({ open, onClose, dataChamado }) {
                     className="inline-flex justify-center rounded-md border border-transparent bg-green-100 px-4 py-2 text-sm font-medium text-green-900 hover:bg-green-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
                     onClick={onClose}
                   >
-                   Enviar
+                    Enviar
                   </button>
                   <button
                     type="button"
