@@ -3,9 +3,10 @@ import api from "../../api";
 import InputMask from "react-input-mask";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import secureLocalStorage from "react-secure-storage";
 
 function PerfilEmpresa() {
-  const id = JSON.parse(localStorage.getItem("Id"));
+  const id = JSON.parse(secureLocalStorage.getItem("Id"));
   const [foto, setFoto] = useState("");
   const [changeFoto, setChangeFoto] = useState("");
   const [dados, setDados] = useState({
@@ -174,7 +175,7 @@ function PerfilEmpresa() {
                 type="text"
                 id="nome"
                 name="nome"
-                value={dados.nome}
+                value={dados.nome_empresa}
                 onChange={changeDados}
                 className="p-2 dark:text-white dark:bg-transparent dark:border-slate-300  outline-none border-b-2"
               />
@@ -201,7 +202,7 @@ function PerfilEmpresa() {
                 type="email"
                 id="email"
                 name="email"
-                value={dados.email}
+                value={dados.email_empresa}
                 onChange={changeDados}
                 className="p-2 dark:text-white dark:bg-transparent dark:border-slate-300  outline-none border-b-2"
               />

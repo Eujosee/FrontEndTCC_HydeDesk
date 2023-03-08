@@ -15,6 +15,7 @@ import Pag404 from "./pages/NotFound";
 import { useContext } from "react";
 import ConfirmarToken from "./pages/ConfirmarToken";
 import MudarSenha from "./pages/MudarSenha";
+import secureLocalStorage from "react-secure-storage";
 
 function PrivateRoutes({ children }) {
   const { authenticated } = useContext(Context)
@@ -22,7 +23,7 @@ function PrivateRoutes({ children }) {
 }
 
 function EmpresaPrivateRoutes({ children }) {
-  const type = JSON.parse(localStorage.getItem("Tipo"));
+  const type = JSON.parse(secureLocalStorage.getItem("Tipo"));
   return type == "empresas" ? children : <Navigate to="/login" />;
 }
 

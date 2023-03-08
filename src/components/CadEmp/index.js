@@ -165,6 +165,7 @@ function CadEmp() {
       window.location.href = "/login"
       resetForm();
     } catch (error) {
+      console.log(error)
       setStatusErro(error.response.data.message);
     }
   };

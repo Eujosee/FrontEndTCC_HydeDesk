@@ -8,6 +8,7 @@ import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { BiSearchAlt2 } from "react-icons/bi";
 import Modal from "../../components/ModalFuncionario";
 import api from "../../api";
+import secureLocalStorage from "react-secure-storage";
 
 function ListaFunc() {
   const [funcionarios, setFuncionarios] = useState([]);
@@ -17,7 +18,7 @@ function ListaFunc() {
     status_empresa: "",
     nome: "",
   });
-  const id = JSON.parse(localStorage.getItem("Id"));
+  const id = JSON.parse(secureLocalStorage.getItem("Id"));
   let [isOpen, setIsOpen] = useState(false);
   let [dados, setDados] = useState('');
 
@@ -158,6 +159,9 @@ function ListaFunc() {
                 <th scope="col" className="px-6 py-4">
                   Usuário
                 </th>
+                <th scope="col" className="px-6 py-4">
+                  Email
+                </th>
                 <th scope="col" className="px-6 py-4 ">
                   Status
                 </th>
@@ -168,6 +172,7 @@ function ListaFunc() {
             </thead>
             <tbody>
               {funcionarios.map((item) => {
+                console.log(item)
                 return (
                   <tr
                     align="center"
@@ -175,13 +180,16 @@ function ListaFunc() {
                   >
                     <td className="flex grow-0 flex-row items-center space-y-8 text-lg text-gray-900 px-6 py-4 whitespace-nowrap">
                       <img src={"https://hdteste.azurewebsites.net/" + item.foto} alt="Foto" className="h-10 w-10 text-gray-600 mr-4 rounded-full" /> 
-                      {item.nome}
+                      {item.nome_funcionario}
                     </td>
                     <td className="text-lg text-gray-900 px-6 py-4 whitespace-nowrap">
                       {item.matricula}
                     </td>
                     <td className="text-lg text-gray-900 px-6 py-4 whitespace-nowrap">
                       {item.usuario}
+                    </td>
+                    <td className="text-lg text-gray-900 px-6 py-4 whitespace-nowrap">
+                      {item.email_funcionario}
                     </td>
                     <td
                       data-type={item.status_funcionario}

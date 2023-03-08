@@ -6,23 +6,27 @@ import { ToastContainer } from "react-toastify";
 
 function Form() {
   const [label, setLabel] = useState("cpf");
-  const [cpf, setCPF] = useState("");
-  const [senha, setSenha] = useState("");
+  const cpf = useRef();
+  const senha = useRef();
   const { handleLogin, status, authenticated } = useContext(Context);
+ 
   var user = {};
-
-  if (label === "matricula") {
-    user = {
-      [label]: cpf,
-      senha: senha,
-    };
-  } else {
-    user = {
-      [label]: cpf.replace(/[^0-9]+/g, ""),
-      senha: senha,
-    };
+  const getRef = () => {
+    if (label === "matricula") {
+      return user = {
+        [label]: cpf.current.value,
+        senha: senha.current.value,
+      }
+        
+      
+    } else {
+      return user = {
+        [label]: cpf.current.value.replace(/[^0-9]+/g, ""),
+        senha: senha.current.value,
+      };
+      
+    }
   }
-  console.log(user)
 
   const handleChange = (event) => {
     setLabel(event.target.value);
@@ -72,6 +76,7 @@ function Form() {
                 : "Matrícula"
             }
             name="cpf"
+            ref={cpf}
             mask={
               label === "cpf"
                 ? "999.999.999-99"
@@ -81,7 +86,7 @@ function Form() {
                 ? ""
                 : ""
             }
-            onChange={(e) => [setCPF(e.target.value)]}
+            // onChange={(e) => [setCPF(e.target.value)]}
             required
           />
         </div>
@@ -90,15 +95,16 @@ function Form() {
           <input
             type="password"
             className="focus:outline-none focus:border-azul-hyde border-b-2 w-full p-2"
+            ref={senha}
             placeholder="Senha"
-            onChange={(e) => [setSenha(e.target.value)]}
+            // onChange={(e) => [setSenha(e.target.value)]}
           />
         </div>
         <div className="mt-8 flex flex-col">
           <button
             className="hover:bg-cyan-600 mb-6 bg-azul-hyde p-2 rounded-md text-white font-bold text-lg "
             onClick={() => {
-              handleLogin(user, label);
+              handleLogin(getRef(), label);
             }}
             
           >
