@@ -1,5 +1,5 @@
 import ImagemLogin from "../../images/loginamico.svg"
-import Form from "../../components/formRecuperar"
+import Form from "../../components/FormRecuperar"
 import { Link } from "react-router-dom";
 import { AiOutlineArrowLeft } from "react-icons/ai";
 

@@ -256,7 +256,7 @@ function ListaChamados() {
     setCurrentPage(0);
 
     function calcPagination() {
-      let pages = Math.round(chamados.length / totalItems);
+      let pages = Math.ceil(chamados.length / totalItems);
       setTotalPages(pages);
       let buttons = [];
 
