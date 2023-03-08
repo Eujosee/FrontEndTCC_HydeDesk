@@ -13,6 +13,7 @@ import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import { Link } from "react-router-dom";
 import { Context } from "../../Context/AuthContext";
 import api from "../../api";
+import secureLocalStorage from 'react-secure-storage';
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -21,8 +22,8 @@ function classNames(...classes) {
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [foto, setFoto] = useState("");
-  const type = JSON.parse(localStorage.getItem("Tipo"));
-  const id = JSON.parse(localStorage.getItem("Id"));
+  const type = JSON.parse(secureLocalStorage.getItem("Tipo"));
+  const id = JSON.parse(secureLocalStorage.getItem("Id"));
   const { authenticated, handleLogout } = useContext(Context);
 
   useEffect(() => {

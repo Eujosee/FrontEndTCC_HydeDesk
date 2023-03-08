@@ -9,6 +9,7 @@ import "./index.css";
 import Dropdown from "../../components/Dropdown";
 import { ChevronRightIcon, ChevronLeftIcon } from "@heroicons/react/20/solid";
 import PaginationButton from "../../components/PaginationButton";
+import secureLocalStorage from "react-secure-storage";
 
 function ListaChamados() {
   const [chamados, setChamados] = useState([]);
@@ -20,8 +21,8 @@ function ListaChamados() {
     status_chamado: "",
     empresa: "",
   });
-  const type = JSON.parse(localStorage.getItem("Tipo"));
-  const id = JSON.parse(localStorage.getItem("Id"));
+  const type = JSON.parse(secureLocalStorage.getItem("Tipo"));
+  const id = JSON.parse(secureLocalStorage.getItem("Id"));
 
   const changeFiltro = (e) => {
     setFiltro({

@@ -4,9 +4,10 @@ import api from "../../api";
 import InputMask from "react-input-mask";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import secureLocalStorage from "react-secure-storage";
 
 function PerfilTecnico() {
-  const id = JSON.parse(localStorage.getItem("Id"));
+  const id = JSON.parse(secureLocalStorage.getItem("Id"));
   const [foto, setFoto] = useState("");
   const [changeFoto, setChangeFoto] = useState("");
   const [dados, setDados] = useState({
@@ -138,7 +139,7 @@ function PerfilTecnico() {
                 type="text"
                 id="nome"
                 name="nome"
-                value={dados.nome}
+                value={dados.nome_tecnico}
                 onChange={changeDados}
                 className="p-2 dark:text-white dark:bg-transparent dark:border-slate-300  outline-none border-b-2"
               />
@@ -167,7 +168,7 @@ function PerfilTecnico() {
                 type="email"
                 id="email"
                 name="email"
-                value={dados.email}
+                value={dados.email_tecnico}
                 onChange={changeDados}
                 className="p-2 dark:text-white dark:bg-transparent dark:border-slate-300  outline-none border-b-2"
               />
