@@ -23,6 +23,7 @@ function Cadastro() {
       [e.target.name]:e.target.value
     })
   }
+
   return (
 		<>
 			<div className="flex w-screen h-screen items-center dark:text-branco  dark:bg-preto  ">
