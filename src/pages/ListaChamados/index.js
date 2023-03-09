@@ -1,6 +1,6 @@
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
-import { AiOutlineLoading3Quarters } from "react-icons/ai";
+import { AiOutlineConsoleSql, AiOutlineLoading3Quarters } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import api from "../../api";
@@ -9,6 +9,7 @@ import "./index.css";
 import Dropdown from "../../components/Dropdown";
 import { ChevronRightIcon, ChevronLeftIcon } from "@heroicons/react/20/solid";
 import PaginationButton from "../../components/PaginationButton";
+import secureLocalStorage from "react-secure-storage";
 
 function ListaChamados() {
   const [chamados, setChamados] = useState([]);
@@ -20,8 +21,8 @@ function ListaChamados() {
     status_chamado: "",
     empresa: "",
   });
-  const type = JSON.parse(localStorage.getItem("Tipo"));
-  const id = JSON.parse(localStorage.getItem("Id"));
+  const type = JSON.parse(secureLocalStorage.getItem("Tipo"));
+  const id = JSON.parse(secureLocalStorage.getItem("Id"));
 
   const changeFiltro = (e) => {
     setFiltro({
@@ -108,9 +109,8 @@ function ListaChamados() {
 
   async function getChamadoAceito() {
     try {
-      const tecnico_id = localStorage.getItem("Id");
       const response = await api.get(
-        `/chamados?status_chamado=andamento&tecnico_id=${tecnico_id}`
+        `/chamados?status_chamado=andamento&tecnico_id=${id}`
       );
 
       setChamadoAceito(response.data);
@@ -250,6 +250,8 @@ function ListaChamados() {
       }
     })();
   }, [id, type]);
+
+  console.log(chamadoAceito);
 
   useEffect(() => {
     const totalItems = 8;
