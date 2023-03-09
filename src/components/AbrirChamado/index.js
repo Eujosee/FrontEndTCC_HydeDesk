@@ -2,9 +2,10 @@ import { useState } from "react";
 import api from "../../api";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import secureLocalStorage from "react-secure-storage";
 
 function AbrirChamado() {
-  const id = JSON.parse(localStorage.getItem("Id"));
+  const id = JSON.parse(secureLocalStorage.getItem("Id"));
   const [imagem, setImagem] = useState("");
   const [message, setMessage] = useState("")
   const [messageErro, setMessageErro] = useState("")

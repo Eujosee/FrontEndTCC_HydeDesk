@@ -3,9 +3,10 @@ import Imagem from "../../images/imageCAD.svg";
 import { Link } from "react-router-dom";
 import { AiOutlineArrowLeft } from "react-icons/ai";
 import { useState } from "react";
+import secureLocalStorage from "react-secure-storage";
 
 function Cadastro() {
-  const id = JSON.parse(localStorage.getItem("Id"));
+  const id = JSON.parse(secureLocalStorage.getItem("Id"));
   const [imagem, setImagem] = useState("")
   const [abrirChamado, setAbrirChamado] = useState({
     prioridade: "",
@@ -23,6 +24,7 @@ function Cadastro() {
       [e.target.name]:e.target.value
     })
   }
+
   return (
 		<>
 			<div className="flex w-screen h-screen items-center dark:text-branco  dark:bg-preto  ">

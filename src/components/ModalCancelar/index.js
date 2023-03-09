@@ -47,11 +47,11 @@ export default function ModalCancelar ({ open, onClose, id}){
                     as="h3"
                     className="text-lg font-medium leading-6 text-gray-900"
                   >
-                    Suspender chamado
+                    Cancelar chamado
                   </Dialog.Title>
                   <div className="mt-2">
                     <p className="text-sm text-gray-500">
-                      Tem certeza que deseja suspender esse chamado?
+                      Tem certeza que deseja cancelar esse chamado?
                     </p>
                   </div>
 
@@ -61,7 +61,7 @@ export default function ModalCancelar ({ open, onClose, id}){
                       className="inline-flex justify-center rounded-md border border-transparent bg-green-100 px-4 py-2 text-sm font-medium text-green-900 hover:bg-green-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
                       onClick={(e) => handleCancel(e)}
                     >
-                      Suspender
+                      Cancelar
                     </button>
                     <button
                       type="button"
