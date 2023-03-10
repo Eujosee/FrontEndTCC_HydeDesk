@@ -4,6 +4,8 @@
   "private": true,
   "dependencies": {
     "-": "^0.0.1",
+    "@emotion/react": "^11.10.6",
+    "@emotion/styled": "^11.10.6",
     "@fortawesome/fontawesome-svg-core": "^6.3.0",
     "@fortawesome/free-regular-svg-icons": "^6.3.0",
     "@fortawesome/free-solid-svg-icons": "^6.3.0",
@@ -11,6 +13,7 @@
     "@headlessui-float/react": "^0.10.1",
     "@headlessui/react": "^1.7.11",
     "@heroicons/react": "^2.0.15",
+    "@mui/material": "^5.11.12",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -25,10 +28,12 @@
     "react-input-mask": "^2.0.4",
     "react-router-dom": "^6.8.0",
     "react-scripts": "5.0.1",
+    "react-simple-star-rating": "^5.1.7",
     "react-secure-storage": "^1.1.0",
     "react-slick": "^0.29.0",
     "react-toastify": "^9.1.1",
     "slick-carousel": "^1.8.1",
+    "styled-components": "^5.3.8",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

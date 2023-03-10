@@ -12,11 +12,12 @@ import {
   CheckCircleIcon,
   ClipboardDocumentCheckIcon,
 } from "@heroicons/react/24/outline";
-import Modais from "../ModaisChamado";
+import ModalConclusao from "../ModalConclusao";
 import ModalCancelar from "../ModalCancelar";
 import ModalAceitar from "../ModalAceitar";
 import ModalSuspender from "../ModalSuspender";
 import ModalConcluir from "../ModalConcluir";
+import ModalAvaliacao from "../ModalAvaliacao";
 import { useNavigate } from "react-router-dom";
 import secureLocalStorage from "react-secure-storage";
 import api from "../../api";
@@ -54,15 +55,13 @@ export default function Dropdown({ item }) {
 
   return (
     <>
-      <Modais
+      <ModalConclusao
         open={isOpenConclusao}
-        type="conclusao"
         dataChamado={item}
         onClose={() => setIsOpenConclusao(false)}
       />
-      <Modais
+      <ModalAvaliacao
         open={IsOpenAvaliacao}
-        type="avaliacao"
         dataChamado={item}
         onClose={() => setIsOpenAvaliacao(false)}
       />
@@ -75,13 +74,11 @@ export default function Dropdown({ item }) {
         open={IsOpenAceitar}
         ids={{ id_chamado: item.id_chamado, tecnico_id: id }}
         onClose={() => setIsOpenAceitar(false)}
-        navigate={(e) => navigate(e)}
       />
       <ModalSuspender
         open={IsOpenSuspender}
         id={item.id_chamado}
         onClose={() => setIsOpenSuspender(false)}
-        navigate={(e) => navigate(e)}
       />
       <ModalConcluir
         open={IsOpenConcluir}
