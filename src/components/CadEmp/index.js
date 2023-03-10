@@ -158,13 +158,14 @@ function CadEmp() {
 
       const { data } = await api.post("/empresas/cadastro", formData, config);
       console.log(data)
-      toast.success(data.message, {
+      toast.success("Cadastro realizado com sucesso!", {
         position: toast.POSITION.TOP_RIGHT
     });
       setStatus(data.message);
       window.location.href = "/login"
       resetForm();
     } catch (error) {
+      console.log(error)
       setStatusErro(error.response.data.message);
     }
   };

@@ -4,7 +4,7 @@ import api from "../../api";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-export default function ModalAceitar ({ open, onClose, ids}){
+export default function ModalAceitar ({ open, onClose, ids, navigate}){
     if (!open) return null
 
     
@@ -15,6 +15,7 @@ export default function ModalAceitar ({ open, onClose, ids}){
           toast.success("Chamado aceito com sucesso!")
           setTimeout(() =>{
             onClose()
+            navigate(0)
           }, (5000))
           
         } catch (error) {

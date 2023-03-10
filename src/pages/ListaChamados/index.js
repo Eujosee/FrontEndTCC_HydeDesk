@@ -1,15 +1,19 @@
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
-import { AiOutlineLoading3Quarters } from "react-icons/ai";
+import { AiOutlineConsoleSql, AiOutlineLoading3Quarters } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import api from "../../api";
 import { BiSearchAlt2 } from "react-icons/bi";
 import "./index.css";
 import Dropdown from "../../components/Dropdown";
+import { ChevronRightIcon, ChevronLeftIcon } from "@heroicons/react/20/solid";
+import PaginationButton from "../../components/PaginationButton";
+import secureLocalStorage from "react-secure-storage";
 
 function ListaChamados() {
   const [chamados, setChamados] = useState([]);
+  const [chamadoAceito, setChamadoAceito] = useState([]);
   const [status, setStatus] = useState("");
   const [loading, setLoading] = useState(true);
 
@@ -17,8 +21,8 @@ function ListaChamados() {
     status_chamado: "",
     empresa: "",
   });
-  const type = JSON.parse(localStorage.getItem("Tipo"));
-  const id = JSON.parse(localStorage.getItem("Id"));
+  const type = JSON.parse(secureLocalStorage.getItem("Tipo"));
+  const id = JSON.parse(secureLocalStorage.getItem("Id"));
 
   const changeFiltro = (e) => {
     setFiltro({
@@ -26,6 +30,94 @@ function ListaChamados() {
       [e.target.name]: e.target.value,
     });
   };
+
+  const [pagination, setPagination] = useState(null);
+
+  function genPagination(from, to) {
+    setPagination(
+      chamados.map((item, index) => {
+        if (index >= from && index < to) {
+          return (
+            <tr
+              key={item.id_chamado}
+              align="center"
+              className="border-b odd:bg-white even:bg-slate-100 font-medium hover:bg-slate-200"
+            >
+              {type === "tecnicos" && (
+                <td className="text-lg text-gray-900  px-6 py-4 whitespace-nowrap">
+                  {item.nome_empresa}
+                </td>
+              )}
+              <td className="text-lg text-gray-900 px-6 py-4 whitespace-nowrap">
+                {item.nome_funcionario}
+              </td>
+              <td className="text-lg text-gray-900 px-6 py-4 whitespace-nowrap">
+                {item.problema}
+              </td>
+              <td className="text-lg text-gray-900 px-6 py-4 whitespace-nowrap">
+                {item.cod_verificacao}
+              </td>
+              <td className="text-lg text-gray-900 px-6 py-4 whitespace-nowrap">
+                {item.prioridade}
+              </td>
+              <td
+                data-type={item.status_chamado}
+                className="text-lg first-letter:uppercase data-[type=pendente]:text-red-500 data-[type=andamento]:text-yellow-500 data-[type=concluido]:text-green-500   font-bold px-6 py-4  whitespace-nowrap"
+              >
+                {item.status_chamado}
+              </td>
+
+              <td className="text-lg text-gray-900 font-light px-6 py-4 whitespace-nowrap ">
+                <Dropdown item={item} />
+              </td>
+            </tr>
+          );
+        } else {
+          return null;
+        }
+      })
+    );
+  }
+
+  const [currentPage, setCurrentPage] = useState(0);
+  const [totalPages, setTotalPages] = useState(1);
+  const [paginationButtons, setPaginationButtons] = useState(null);
+
+  function handleChangePage(index) {
+    changePage(index);
+    setCurrentPage(index);
+  }
+
+  function changePage(numberPage) {
+    const { from, to } = paginationButtons[numberPage];
+    genPagination(from, to);
+  }
+
+  function prevPage() {
+    if (currentPage - 1 >= 0) {
+      changePage(currentPage - 1);
+      setCurrentPage(currentPage - 1);
+    }
+  }
+
+  function nextPage() {
+    if (currentPage + 1 < totalPages) {
+      changePage(currentPage + 1);
+      setCurrentPage(currentPage + 1);
+    }
+  }
+
+  async function getChamadoAceito() {
+    try {
+      const response = await api.get(
+        `/chamados?status_chamado=andamento&tecnico_id=${id}`
+      );
+
+      setChamadoAceito(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   const handleFiltro = async (e) => {
     e.preventDefault();
@@ -65,7 +157,7 @@ function ListaChamados() {
                   "&cod_verificacao=" +
                   filtro.empresa
               );
-              console.log(response.data)
+              console.log(response.data);
               setChamados(response.data);
               setLoading(false);
             } else {
@@ -75,7 +167,7 @@ function ListaChamados() {
                   "&status_chamado=" +
                   filtro.status_chamado
               );
-              console.log(response.data)
+              console.log(response.data);
               setChamados(response.data);
               setLoading(false);
             }
@@ -114,14 +206,12 @@ function ListaChamados() {
             "/chamados?nome_empresa=" + filtro.empresa + "&empresa_id=" + id
           );
           setChamados(data);
-        } else
-          if(type == "empresas") {
+        } else if (type == "empresas") {
           const { data } = await api.get(
             "/chamados?nome_funcionario=" + filtro.empresa + "&empresa_id=" + id
           );
           setChamados(data);
-        }else
-          if(type == "funcionarios"){
+        } else if (type == "funcionarios") {
           const { data } = await api.get(
             "/chamados?cod_verificacao=" + filtro.empresa + "&empresa_id=" + id
           );
@@ -131,6 +221,7 @@ function ListaChamados() {
     } catch (error) {}
   };
   useEffect(() => {
+    getChamadoAceito();
     (async () => {
       try {
         switch (type) {
@@ -142,7 +233,7 @@ function ListaChamados() {
             break;
           case "funcionarios":
             const response = await api.get("/chamados?funcionario_id=" + id);
-            console.log(response.data)
+            console.log(response.data);
             setChamados(response.data);
             setLoading(false);
             break;
@@ -159,6 +250,28 @@ function ListaChamados() {
       }
     })();
   }, [id, type]);
+
+  console.log(chamadoAceito);
+
+  useEffect(() => {
+    const totalItems = 8;
+    setCurrentPage(0);
+
+    function calcPagination() {
+      let pages = Math.ceil(chamados.length / totalItems);
+      setTotalPages(pages);
+      let buttons = [];
+
+      for (let i = 0; i < pages; i++) {
+        buttons.push({ from: i * totalItems, to: (i + 1) * totalItems });
+      }
+
+      setPaginationButtons(buttons);
+    }
+
+    calcPagination();
+    genPagination(0, totalItems);
+  }, [chamados]); // eslint-disable-line
 
   return (
     <>
@@ -213,9 +326,7 @@ function ListaChamados() {
               <option selected disabled>
                 Selecione uma opção
               </option>
-              <option value="pendente">
-                Pendente
-              </option>
+              <option value="pendente">Pendente</option>
               <option value="andamento">Em andamento</option>
               <option value="concluido">Concluido</option>
             </select>
@@ -259,62 +370,132 @@ function ListaChamados() {
               </tr>
             </thead>
             <tbody>
-              {chamados.map((item) => {
-                return (
-                  <tr
-                    align="center"
-                    className="border-b odd:bg-white even:bg-slate-100 font-medium hover:bg-slate-200"
+              {chamadoAceito.length === 0 ? (
+                pagination
+              ) : (
+                <tr
+                  align="center"
+                  className="border-b odd:bg-white even:bg-slate-100 font-medium hover:bg-slate-200"
+                >
+                  {type === "tecnicos" && (
+                    <td className="text-lg text-gray-900  px-6 py-4 whitespace-nowrap">
+                      {chamadoAceito[0].nome_empresa}
+                    </td>
+                  )}
+                  <td className="text-lg text-gray-900 px-6 py-4 whitespace-nowrap">
+                    {chamadoAceito[0].nome_funcionario}
+                  </td>
+                  <td className="text-lg text-gray-900 px-6 py-4 whitespace-nowrap">
+                    {chamadoAceito[0].problema}
+                  </td>
+                  <td className="text-lg text-gray-900 px-6 py-4 whitespace-nowrap">
+                    {chamadoAceito[0].cod_verificacao}
+                  </td>
+                  <td className="text-lg text-gray-900 px-6 py-4 whitespace-nowrap">
+                    {chamadoAceito[0].prioridade}
+                  </td>
+                  <td
+                    data-type={chamadoAceito[0].status_chamado}
+                    className="text-lg first-letter:uppercase data-[type=pendente]:text-red-500 data-[type=andamento]:text-yellow-500 data-[type=concluido]:text-green-500   font-bold px-6 py-4  whitespace-nowrap"
                   >
-                    {type == "tecnicos" && (
-                      <td className="text-lg text-gray-900  px-6 py-4 whitespace-nowrap">
-                        {item.nome_empresa}
-                      </td>
-                    )}
-                    <td className="text-lg text-gray-900 px-6 py-4 whitespace-nowrap">
-                      {item.nome_funcionario}
-                    </td>
-                    <td className="text-lg text-gray-900 px-6 py-4 whitespace-nowrap">
-                      {item.problema}
-                    </td>
-                    <td className="text-lg text-gray-900 px-6 py-4 whitespace-nowrap">
-                      {item.cod_verificacao}
-                    </td>
-                    <td className="text-lg text-gray-900 px-6 py-4 whitespace-nowrap">
-                      {item.prioridade}
-                    </td>
-                    <td
-                      data-type={item.status_chamado}
-                      className="text-lg first-letter:uppercase data-[type=pendente]:text-red-500 data-[type=andamento]:text-yellow-500 data-[type=concluido]:text-green-500   font-bold px-6 py-4  whitespace-nowrap"
-                    >
-                      {item.status_chamado}
-                    </td>
+                    {chamadoAceito[0].status_chamado}
+                  </td>
 
-                    <td className="text-lg text-gray-900 font-light px-6 py-4 whitespace-nowrap ">
-                       <Dropdown item={item}/>
-                    </td>
-                  </tr>
-                );
-              })}
+                  <td className="text-lg text-gray-900 font-light px-6 py-4 whitespace-nowrap ">
+                    <Dropdown item={chamadoAceito[0]} />
+                  </td>
+                </tr>
+              )}
             </tbody>
           </table>
           {loading && (
-            <div className="flex gap-2 items-center m-auto w-64 mt-10">
+            <div className="flex gap-2 items-center justify-center m-auto w-64 mt-10">
               <AiOutlineLoading3Quarters size={25} className="icon" />
               <p className=""> Carregando...</p>
             </div>
           )}
 
           {chamados.length < 1 && !loading && !status && (
-            <div className="flex gap-2 items-center m-auto w-64 mt-10">
+            <div className="flex gap-2 items-center justify-center m-auto w-64 mt-10">
               <p className=""> Você não possui chamados.</p>
             </div>
           )}
           {status && !loading && (
-            <div className="flex gap-2 items-center m-auto w-64 mt-10">
+            <div className="flex gap-2 items-center justify-center m-auto w-64 mt-10">
               <p className="">{status}</p>
             </div>
           )}
         </div>
+        {chamados?.length !== 0 &&
+          totalPages !== 1 &&
+          chamadoAceito.length === 0 && (
+            <div className="flex w-full justify-center mt-10 mb-10">
+              <div className="flex rounded-lg justify-center px-2 py-2 shadow-lg w-11/12 md:w-1/2 lg:w-1/3">
+                <div className="flex align-center justify-center w-12 h-10">
+                  <button
+                    className="flex item-center justify-center rounded-md item-center h-full w-full text-base font-semibold text-black hover:bg-slate-200"
+                    onClick={prevPage}
+                  >
+                    <ChevronLeftIcon
+                      className="h-full w-7"
+                      aria-hidden="true"
+                    />
+                  </button>
+                </div>
+                <div className="flex flex-row w-full h-full px-2 justify-evenly">
+                  {paginationButtons?.map((button, index) => {
+                    if (currentPage < 2) {
+                      if (index >= 0 && index < 5) {
+                        return (
+                          <PaginationButton
+                            key={index}
+                            currentPage={currentPage}
+                            index={index}
+                            handleChangePage={(e) => handleChangePage(e)}
+                          />
+                        );
+                      }
+                    }
+
+                    if (currentPage > totalPages - 3) {
+                      if (index >= totalPages - 5 && index < totalPages) {
+                        return (
+                          <PaginationButton
+                            key={index}
+                            currentPage={currentPage}
+                            index={index}
+                            handleChangePage={(e) => handleChangePage(e)}
+                          />
+                        );
+                      }
+                    }
+
+                    if (index >= currentPage - 2 && index < currentPage + 3) {
+                      return (
+                        <PaginationButton
+                          key={index}
+                          currentPage={currentPage}
+                          index={index}
+                          handleChangePage={(e) => handleChangePage(e)}
+                        />
+                      );
+                    }
+                  })}
+                </div>
+                <div className="flex align-center justify-center w-12 h-10">
+                  <button
+                    className="flex align-center justify-center rounded-md item-center h-full w-full text-base font-semibold text-black hover:bg-slate-200"
+                    onClick={nextPage}
+                  >
+                    <ChevronRightIcon
+                      className="h-full w-7"
+                      aria-hidden="true"
+                    />
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
       </div>
       <Footer />
     </>

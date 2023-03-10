@@ -2,7 +2,7 @@ import { Dialog, Transition } from "@headlessui/react";
 import { Fragment } from "react";
 import api from "../../api";
 
-export default function ModalSuspender ({ open, onClose, id}){
+export default function ModalSuspender ({ open, onClose, id, navigate}){
     if (!open) return null
 
     const handleSuspender = async (e) => {
@@ -11,6 +11,7 @@ export default function ModalSuspender ({ open, onClose, id}){
           const { data } = await api.put("/chamados/suspender/" + id)
           console.log(data.message)
           onClose()
+          navigate(0)
         } catch (error) {
           console.log(error.message)
         }

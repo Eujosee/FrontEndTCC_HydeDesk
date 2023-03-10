@@ -1,9 +1,8 @@
-import ImagemLogin from "../../images/loginamico.svg"
-import Form from "../../components/FormRecuperar"
+import FormNovaSenha from "../../components/FormNovaSenha";
 import { Link } from "react-router-dom";
-import { AiOutlineArrowLeft } from "react-icons/ai";
+import ImagemLogin from "../../images/loginamico.svg"
 
-export default function RecuperarSenha(){
+export default function MudarSenha(){
     return (
 			<>
 				<div className=" flex w-screen h-screen items-center dark:bg-preto">
@@ -18,28 +17,19 @@ export default function RecuperarSenha(){
 						</div>
 						<div className="w-full h-screen">
 							<div className="flex flex-col items-center h-full justify-center">
-								<div className="flex w-full mt-11 lg:px-20 px-10 items-start justify-start">
-									<Link
-										className=" no-underline text-black"
-										to={"/lista-funcionarios"}
-									>
-										<AiOutlineArrowLeft size={20} />
-									</Link>
-								</div>
-
 								<Link to={"/"} className="flex flex-row m-10">
 									<h1 className="font-black text-4xl text-azul-hyde">Hyde</h1>
 									<h1 className="font-black text-4xl dark:text-branco">Desk</h1>
 								</Link>
 
 								<h1 className="font-bold text-3xl dark:text-branco">
-									Recuperação de senha
+									Mudança de senha
 								</h1>
-								<Form />
+								<FormNovaSenha />
 							</div>
 						</div>
 					</div>
 				</div>
 			</>
-		);
+		); 
 }

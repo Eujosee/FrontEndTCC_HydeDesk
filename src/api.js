@@ -1,7 +1,7 @@
-import axios from "axios"
+import axios from "axios";
 
 const api = axios.create({
-    baseURL: 'https://hdteste.azurewebsites.net/',
-})
+  baseURL: "https://hdteste.azurewebsites.net/",
+});
 
-export default api
+export default api;

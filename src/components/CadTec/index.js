@@ -110,7 +110,7 @@ function CadTec() {
 
       const { data } = await api.post("/tecnicos/cadastro", formData, config);
       setStatus(data.message);
-      toast.success(data.message, {
+      toast.success("Técnico cadastrado com sucesso", {
         position: toast.POSITION.TOP_RIGHT
     });
       window.location.href = "/login"
@@ -211,7 +211,7 @@ function CadTec() {
               type="tel"
               name="telefone"
               value={user.telefone}
-              mask="(+99) 99999-9999"
+              mask="(99) 99999-9999"
               onChange={(e) => [handleUser(e), setStatusErro("")]}
               required
             />
@@ -294,6 +294,7 @@ function CadTec() {
           >
             Cadastrar
           </button>
+          <ToastContainer/>
           <p className={status ? "text-green-500" : "text-red-500"}>
             {status ? status : statusErro}
           </p>
@@ -307,7 +308,6 @@ function CadTec() {
           <p className="ml-2 text-azul-hyde text-lg font-bold mb-1">Login</p>
         </Link>
       </div>
-          <ToastContainer/>
     </div>
   );
 

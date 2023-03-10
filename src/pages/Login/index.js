@@ -1,4 +1,4 @@
-import Form from "../../components/formLogin"
+import Form from "../../components/FormLogin"
 import ImagemLogin from "../../images/loginamico.svg"
 import { Link } from "react-router-dom";
 

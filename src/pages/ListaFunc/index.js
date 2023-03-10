@@ -2,14 +2,17 @@ import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPen } from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState, Fragment } from "react";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { BiSearchAlt2 } from "react-icons/bi";
 import Modal from "../../components/ModalFuncionario";
 import api from "../../api";
+import secureLocalStorage from "react-secure-storage";
+import { ToastContainer, toast } from "react-toastify";
 
 function ListaFunc() {
+  const navigate = useNavigate();
   const [funcionarios, setFuncionarios] = useState([]);
   const [status, setStatus] = useState("");
   const [loading, setLoading] = useState(true);
@@ -17,14 +20,14 @@ function ListaFunc() {
     status_empresa: "",
     nome: "",
   });
-  const id = JSON.parse(localStorage.getItem("Id"));
+  const id = JSON.parse(secureLocalStorage.getItem("Id"));
   let [isOpen, setIsOpen] = useState(false);
-  let [dados, setDados] = useState('');
+  let [dados, setDados] = useState("");
 
-  const abrirModal = (item) =>{
-    setDados(item)
-    setIsOpen(true)
-  }
+  const abrirModal = (item) => {
+    setDados(item);
+    setIsOpen(true);
+  };
 
   const changeFiltro = (e) => {
     setFiltro({
@@ -90,7 +93,14 @@ function ListaFunc() {
   return (
     <>
       <Header />
-      <Modal dataFunc={dados} open={isOpen} onClose={() => setIsOpen(false)}/>
+      <Modal
+        dataFunc={dados}
+        open={isOpen}
+        onClose={() => setIsOpen(false)}
+        toast={toast}
+        navigate={navigate}
+      />
+      <ToastContainer />
       <div className="flex flex-col h-screen overflow-hidden">
         <div className="mt-5 px-5 flex flex-col md:flex-row md:space-x-6">
           <h1 className="text-3xl font-semibold lg:text-3xl">
@@ -158,6 +168,9 @@ function ListaFunc() {
                 <th scope="col" className="px-6 py-4">
                   Usuário
                 </th>
+                <th scope="col" className="px-6 py-4">
+                  Email
+                </th>
                 <th scope="col" className="px-6 py-4 ">
                   Status
                 </th>
@@ -168,20 +181,28 @@ function ListaFunc() {
             </thead>
             <tbody>
               {funcionarios.map((item) => {
+                console.log(item);
                 return (
                   <tr
                     align="center"
                     className="border-b odd:bg-white even:bg-slate-100 font-medium hover:bg-slate-200"
                   >
                     <td className="flex grow-0 flex-row items-center space-y-8 text-lg text-gray-900 px-6 py-4 whitespace-nowrap">
-                      <img src={"https://hdteste.azurewebsites.net/" + item.foto} alt="Foto" className="h-10 w-10 text-gray-600 mr-4 rounded-full" /> 
-                      {item.nome}
+                      <img
+                        src={"https://hdteste.azurewebsites.net/" + item.foto}
+                        alt="Foto"
+                        className="h-10 w-10 text-gray-600 mr-4 rounded-full"
+                      />
+                      {item.nome_funcionario}
                     </td>
                     <td className="text-lg text-gray-900 px-6 py-4 whitespace-nowrap">
                       {item.matricula}
                     </td>
                     <td className="text-lg text-gray-900 px-6 py-4 whitespace-nowrap">
                       {item.usuario}
+                    </td>
+                    <td className="text-lg text-gray-900 px-6 py-4 whitespace-nowrap">
+                      {item.email_funcionario}
                     </td>
                     <td
                       data-type={item.status_funcionario}
@@ -193,7 +214,6 @@ function ListaFunc() {
                       <button onClick={() => abrirModal(item)}>
                         <FontAwesomeIcon icon={faPen} />
                       </button>
-                      
                     </td>
                   </tr>
                 );
@@ -201,19 +221,19 @@ function ListaFunc() {
             </tbody>
           </table>
           {loading && (
-            <div className="flex gap-2 items-center m-auto w-64 mt-10">
+            <div className="flex gap-2 items-center justify-center m-auto w-64 mt-10">
               <AiOutlineLoading3Quarters size={25} className="icon" />
               <p className=""> Carregando...</p>
             </div>
           )}
 
           {funcionarios.length < 1 && !loading && !status && (
-            <div className="flex gap-2 items-center m-auto w-64 mt-10">
+            <div className="flex gap-2 items-center justify-center m-auto w-64 mt-10">
               <p className=""> Você não possui funcionários.</p>
             </div>
           )}
           {status && !loading && (
-            <div className="flex gap-2 items-center m-auto w-64 mt-10">
+            <div className="flex gap-2 items-center justify-center m-auto w-64 mt-10">
               <p className="">{status}</p>
             </div>
           )}

@@ -3,9 +3,10 @@ import api from "../../api";
 import InputMask from "react-input-mask";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import secureLocalStorage from "react-secure-storage";
 
 function PerfilEmpresa() {
-  const id = JSON.parse(localStorage.getItem("Id"));
+  const id = JSON.parse(secureLocalStorage.getItem("Id"));
   const [foto, setFoto] = useState("");
   const [changeFoto, setChangeFoto] = useState("");
   const [dados, setDados] = useState({
@@ -100,7 +101,7 @@ function PerfilEmpresa() {
 
       try {
         const { data } = await api.put("/empresas/editar/" + id, formData, config)
-        toast.success(data.message, {
+        toast.success("Dado(s) alterado(s) com sucesso", {
           position: toast.POSITION.TOP_RIGHT
       });
       setChangeFoto("")
@@ -113,7 +114,7 @@ function PerfilEmpresa() {
     }else{
       try {
         const { data } = await api.put("/empresas/editar/" + id, dados)
-        toast.success(data.message, {
+        toast.success("Dados alterados com sucesso", {
           position: toast.POSITION.TOP_RIGHT
       });
       buscarEmpresa()
@@ -174,7 +175,7 @@ function PerfilEmpresa() {
                 type="text"
                 id="nome"
                 name="nome"
-                value={dados.nome}
+                value={dados.nome_empresa}
                 onChange={changeDados}
                 className="p-2 dark:text-white dark:bg-transparent dark:border-slate-300  outline-none border-b-2"
               />
@@ -187,7 +188,7 @@ function PerfilEmpresa() {
                 type="text"
                 id="telefone"
                 name="telefone"
-                mask="(+99) 99999-9999"
+                mask="(99) 99999-9999"
                 value={dados.telefone}
                 onChange={changeDados}
                 className="p-2 dark:text-white dark:bg-transparent dark:border-slate-300  outline-none border-b-2"
@@ -201,7 +202,7 @@ function PerfilEmpresa() {
                 type="email"
                 id="email"
                 name="email"
-                value={dados.email}
+                value={dados.email_empresa}
                 onChange={changeDados}
                 className="p-2 dark:text-white dark:bg-transparent dark:border-slate-300  outline-none border-b-2"
               />
@@ -275,6 +276,7 @@ function PerfilEmpresa() {
               <button onClick={handleEdit} className="p-2 w-1/2 lg:w-1/3 bg-azul-hyde hover:bg-cyan-600 rounded-md text-center cursor-pointer text-white font-medium">
                 Salvar mudanças
               </button>
+              <ToastContainer />
               <button className="p-2 w-1/2 lg:w-1/3 text-azul-hyde border border-azul-hyde hover:bg-azul-hyde hover:text-white font-medium rounded-md">
                 Cancelar
               </button>

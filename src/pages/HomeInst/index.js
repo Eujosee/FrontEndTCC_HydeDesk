@@ -20,9 +20,10 @@ function HomeInstitucional() {
           className="flex py-10 md:py-24 items-center justify-center"
         >
           <div className="max-w-lg">
-            <h1 className="mb-5 font-semibold text-3xl dark:text-white">
+            <h1 className="font-semibold text-3xl dark:text-white">
               Quem somos?
             </h1>
+            <hr className="bg-azul-hyde h-1.5 mb-5"></hr>
 
             <p className="text-gray-600 text-lg text-justify leading-relaxed dark:text-white">
             Somos uma equipe de alunos do curso Técnico em Desenvolvimento de Sistemas da escola SENAI Suíço-Brasileira, dedicados à criação de um TCC inovador: o HydeDesk. 
@@ -49,7 +50,8 @@ function HomeInstitucional() {
         </div>
         <div className="w-full flex flex-row justify-evenly items-center py-10 px-10 lg:py-24 bg-slate-200">
           <div>
-            <h1 className="font-semibold text-2xl lg:text-3xl mb-5">Ficou interessado?</h1>
+            <h1 className="font-semibold text-2xl lg:text-3xl">Ficou interessado?</h1>
+            <hr className="bg-azul-hyde h-1.5 mb-5"></hr>
             <p className="max-w-lg text-lg leading-relaxed text-justify text-gray-600 ">
             Olá! Ficamos felizes com seu acesso e seu interesse neste projeto de TCC. 
             Para conhecer mais sobre a parte funcional do HydeDesk, convidamos você a visitar a nossa página comercial. Lá, encontrará informações detalhadas sobre as funcionalidades do suporte técnico empresarial. 
