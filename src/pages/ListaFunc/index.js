@@ -1,9 +1,9 @@
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPen } from "@fortawesome/free-solid-svg-icons";
+import { PencilSquareIcon } from "@heroicons/react/24/outline";
 import { Link, useNavigate } from "react-router-dom";
-import { useEffect, useState, Fragment } from "react";
+import { useEffect, useState } from "react";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { BiSearchAlt2 } from "react-icons/bi";
 import Modal from "../../components/ModalFuncionario";
@@ -175,7 +175,7 @@ function ListaFunc() {
                   Status
                 </th>
                 <th scope="col" className="px-6 py-4">
-                  Detalhes
+                  Ativar / Desativar
                 </th>
               </tr>
             </thead>
@@ -206,13 +206,13 @@ function ListaFunc() {
                     </td>
                     <td
                       data-type={item.status_funcionario}
-                      className="text-lg data-[type=Inativo]:text-red-500 data-[type=Ativo]:text-green-500 font-bold px-6 py-4  whitespace-nowrap"
+                      className="text-lg data-[type=Desativado]:text-red-500 data-[type=Ativo]:text-green-500 font-bold px-6 py-4  whitespace-nowrap"
                     >
                       {item.status_funcionario}
                     </td>
-                    <td className="text-lg text-azul-hyde px-6 py-4 whitespace-nowrap space-x-3">
+                    <td className="text-lg text-azul-hyde px-6 py-4 whitespace-nowrap">
                       <button onClick={() => abrirModal(item)}>
-                        <FontAwesomeIcon icon={faPen} />
+                        <PencilSquareIcon className="h-6 w-6" />
                       </button>
                     </td>
                   </tr>

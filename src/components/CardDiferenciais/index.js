@@ -22,15 +22,7 @@ export default function Carrossel() {
         },
       },
       {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-          initialSlide: 2,
-        },
-      },
-      {
-        breakpoint: 480,
+        breakpoint: 615,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
@@ -39,7 +31,7 @@ export default function Carrossel() {
     ],
   };
   return (
-    <div className="">
+    <>
       <Slider className="flex justify-center items-center" {...settings}>
         <div className="flex m-5 justify-center bg-slate-300 shadow-md rounded-xl p-32">
           <h1 className="text-center">card</h1>
@@ -54,6 +46,6 @@ export default function Carrossel() {
           <h1 className="text-center">card</h1>
         </div>
       </Slider>
-    </div>
+    </>
   );
 }

@@ -60,7 +60,7 @@ function HomeComercial() {
                                 <h1>card</h1>
                             </div>
                         </div>
-                        <div className="md:hidden">
+                        <div className="[@media(min-width:768px)]:hidden">
                             <CardDiferenciais/>
                         </div>
                     </div>
