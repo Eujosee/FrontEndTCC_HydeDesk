@@ -33,7 +33,7 @@ export default function ConfirmarToken(){
 								</Link>
 
 								<h1 className="font-bold text-3xl dark:text-branco">
-									Confirmar Token
+									Confirmar código
 								</h1>
 								<FormToken />
 							</div>
