@@ -7,11 +7,11 @@ import { Context } from "../../Context/AuthContext";
 export default function FormToken() {
   const [inputValues, setInputValues] = useState([
     { value: "", ref: useRef(null) },
-    { value: "", ref: useRef(null) },
-    { value: "", ref: useRef(null) },
-    { value: "", ref: useRef(null) },
-    { value: "", ref: useRef(null) },
-    { value: "", ref: useRef(null) },
+    // { value: "", ref: useRef(null) },
+    // { value: "", ref: useRef(null) },
+    // { value: "", ref: useRef(null) },
+    // { value: "", ref: useRef(null) },
+    //  { value: "", ref: useRef(null) },
   ]);
 
   const { state } = useLocation();
@@ -38,15 +38,17 @@ export default function FormToken() {
       <div>
         <div>
           <label className="text-lg font-semibold items-center text-gray-900 dark:text-branco">
-            Token
+          Informe o código
           </label>
           {inputValues.map((input, index) => {
             return (
               <input
+              type="text"
+              className="focus:outline-none focus:border-azul-hyde border-b-2 w-full p-2  dark:text-branco  dark:bg-preto"
                 key={index}
                 ref={input.ref}
                 value={input.value}
-                placeholder="*"
+                // placeholder="*"
                 onChange={(e) => {
                   setInputValues(
                     inputValues.map((item, indexInput) => {
@@ -78,7 +80,8 @@ export default function FormToken() {
                     }
                   }
                 }}
-                maxLength={1}
+                maxLength={6}
+                placeholder="Código"
               />
             );
           })}
@@ -89,7 +92,7 @@ export default function FormToken() {
             onClick={comparar}
           >
             {" "}
-            Verficar Token
+            Verficar 
           </button>
 
           <p className="dark:text-branco">
