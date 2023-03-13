@@ -24,8 +24,6 @@ function AuthProvider({ children }) {
   }, []);
 
   const handleLogin = async (user, label) => {
-    console.log(user);
-    console.log(label)
     switch (label) {
       case "cpf":
         try {

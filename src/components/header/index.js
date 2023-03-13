@@ -46,7 +46,7 @@ export default function Header() {
           <Link to="/" className="text-md font-semibold leading-6 text-gray-900 hover:text-azul-hyde">
             Página Inicial
           </Link>
-          <Link to="/" className="text-md font-semibold leading-6 text-gray-900 hover:text-azul-hyde">
+          <Link to="/institucional" className="text-md font-semibold leading-6 text-gray-900 hover:text-azul-hyde">
             Sobre a Hyde
           </Link>
          {authenticated &&
@@ -243,7 +243,7 @@ export default function Header() {
                   Página Inicial
                 </Link>
                 <Link
-                  to="/"
+                  to="/institucional"
                   className="-mx-3 block rounded-lg py-2 px-3 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
                   Sobre a Hyde

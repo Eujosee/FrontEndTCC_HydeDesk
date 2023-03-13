@@ -19,7 +19,7 @@ function HomeInstitucional() {
           id="historia"
           className="flex py-10 md:py-24 items-center justify-center"
         >
-          <div className="max-w-lg">
+          <div className="max-w-lg p-10 lg:p-0">
             <h1 className="font-semibold text-3xl dark:text-white">
               Quem somos?
             </h1>
