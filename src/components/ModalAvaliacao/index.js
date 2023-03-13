@@ -51,7 +51,7 @@ export default function ModalAvaliacao({ open, onClose, dataChamado }) {
                   <div className="flex flex-col items-center h-1/2 font-Poppins justify-center p-8">
                     <div className="flex items-center w-full media pt-4">
                       <div className="w-full items-center flex ex-col space-y-4 data1">
-                        <Rating />  
+                        <Rating />
                       </div>
                     </div>
                   </div>
