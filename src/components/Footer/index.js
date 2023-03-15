@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import Iframe from 'react-iframe'
 
 export default function Footer () {
     return(
@@ -39,8 +40,11 @@ export default function Footer () {
                     <li className="mb-4">
                         <Link to="#" className="hover:underline">Termos e condições</Link>
                     </li>
-                    <li>
+                    <li className="mb-4">
                         <Link to="#" className="hover:underline">Política de privacidade</Link>
+                    </li>
+                    <li className="mb-4">
+                        <Link to="https://web.powerva.microsoft.com/environments/Default-b1051c4b-3b94-41ab-9441-e73a72342fdd/bots/new_bot_3e41221dd72148d4b5c14612de784c07/webchat" className="hover:underline">Atendimento Ao cliente</Link>
                     </li>
                 </ul>
             </div>
