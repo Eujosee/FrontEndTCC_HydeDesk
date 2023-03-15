@@ -5,7 +5,7 @@ import Typography from '@mui/material/Typography';
 
 export default function BasicRating() {
   const [value, setValue] = React.useState(2);
-  console.log(value)
+  
 
   return (
     <Box
@@ -13,9 +13,8 @@ export default function BasicRating() {
         '& > legend': { mt: 2 },
       }}
     >
-      <Typography component="legend">Controlled</Typography>
       <Rating
-        name="simple-controlled"
+        name="Avaliação"
         value={value}
         onChange={(event, newValue) => {
           setValue(newValue);
