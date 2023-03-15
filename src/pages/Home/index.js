@@ -5,8 +5,7 @@ import ImagemFloppa2 from "../../images/floppa2.png";
 import Business from "../../images/Business-amico.svg";
 import Carrossel from "../../components/CarroselProdutos";
 import CardDiferenciais from "../../components/CardDiferenciais";
-import Iframe from 'react-iframe'
-import { BiBot } from "react-icons/bi";
+import { BsChat } from "react-icons/bs";
 import ModalChatBot from "../../components/ModalChatBot";
 import { useState } from "react";
 
@@ -84,7 +83,7 @@ function HomeComercial() {
                 </div>
                 <button className="fixed bottom-10 right-10 w-16 h-16 rounded-full
                 bg-azul-hyde flex items-center justify-center" onClick={toggleModal}>
-                    <BiBot size={50} />
+                    <BsChat size={30}/>
                 </button>
 
                 <Footer />
