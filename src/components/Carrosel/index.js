@@ -41,7 +41,7 @@ export default function Carrossel() {
     }
   return (
     <>
-        <Slider className="flex justify-center items-center" {...settings}>
+        <Slider className="flex justify-center items-center dark:bg-preto" {...settings}>
             {data.map((item) => {
               return(
               <Card item={item} />)

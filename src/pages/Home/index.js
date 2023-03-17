@@ -37,15 +37,15 @@ function HomeComercial() {
                     <img className="w-full" src={ImagemFloppa2} alt="" />
                 </div>
                 <div className=" py-14 flex flex-col justify-center items-center">
-                    <h1 className="mb-5 font-bold text-2xl dark:text-white">
+                    <h1 className="mb-5 font-bold text-2xl dark:text-branco">
                         Recursos
                     </h1>
                     <div className="max-w-full">
                         <CardDiferenciais />
                     </div>
                 </div>
-                <div className="w-full flex flex-row justify-evenly items-center py-10 px-10 lg:py-24 bg-slate-200">
-                    <p className="max-w-lg text-lg leading-relaxed text-justify text-gray-600">
+                <div className="w-full flex flex-row justify-evenly items-center py-10 px-10 lg:py-24 dark:bg-gray-900">
+                    <p className="max-w-lg text-lg leading-relaxed text-justify text-gray-600 dark:text-branco">
                         Nosso sistema de suporte técnico é a solução ideal para empresas que buscam gerenciar problemas de TI para manter sua infraestrutura funcionando sem interrupções.
                         A plataforma oferece meios avançados, capazes de atender às necessidades de suporte, garantindo que a companhia tenha acesso a solucão de problemas de forma rápida e eficaz.
                         Dessa forma, seu negócio pode contar com uma gestão de TI de alta qualidade e garantir que seus recursos de tecnologia sejam aproveitados ao máximo.
@@ -76,8 +76,8 @@ function HomeComercial() {
                         </div>
                     </div>
                 </div>
-                <div className="w-full flex flex-col justify-center items-center py-32 bg-slate-200">
-                    <p className="text-lg text-justify p-5 semi-bold dark:text-white">
+                <div className="w-full flex flex-col justify-center items-center py-32 dark:bg-gray-900">
+                    <p className="text-lg text-justify p-5 semi-bold dark:text-branco">
                         “Os clientes se lembram de um bom atendimento durante muito mais tempo do que recordam do preço”
                         – Kate Zabriskie.
                     </p>

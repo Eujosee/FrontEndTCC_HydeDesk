@@ -13,9 +13,9 @@ function Cadastro() {
 
     return (
 			<>
-				<div className="flex w-screen h-fit items-center dark:bg-preto ">
+				<div className="flex w-screen h-fit items-center dark:bg-preto">
 					<div className="flex w-full items-center">
-						<div className="hidden w-2/6 h-screen lg:flex lg:flex-col bg-azul-claro-hyde justify-center items-center">
+						<div className="hidden w-2/6 h-screen lg:flex lg:flex-col bg-azul-claro-hyde dark:bg-azul-hyde justify-center items-center">
 							<Link to="/">
 								<h1 className="font-extrabold text-gray-900 mr-2 text-3xl mb-12">
 									<span className="font-extrabold text-white text-3xl">

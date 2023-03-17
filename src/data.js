@@ -17,7 +17,7 @@ const data = [
     {
         Foto: "https://drive.google.com/uc?id=1Z5yMrt0vWU7yr3_AhmLYoWexYdpSzJ2_",
         Nome: "Henrique Rizzo",
-        Atuacao: "Front-End,  Back-End , Ui/Ux Design, Midia",
+        Atuacao: "Front-End,  Back-End, Ui/Ux Design, Midia",
         Github: "https://github.com/HenriqueBRizzo",
         Linkedin: "https://br.linkedin.com/in/henrique-bueno-rizzo-6278b923a",
     },
@@ -25,7 +25,7 @@ const data = [
      {
         Foto: "https://drive.google.com/uc?id=1LixlmfwMYhWYDiTrM7rbHB4kWRtQRfXr",
         Nome: "João Francisco",
-        Atuacao: "Front-End",
+        Atuacao: "Front-End, Infra",
         Github: "https://github.com/jframnp",
         Linkedin: "https://www.linkedin.com/in/jo%C3%A3o-francisco-b94b84237/",
     },
@@ -89,7 +89,7 @@ const data = [
     {
         Foto: "https://drive.google.com/uc?id=1Boi9V7eL6TIYq_W04Jb2TfYX3gZbzXTt",
         Nome: "Miguel Soares",
-        Atuacao: "Front-end, Back-end, Banco de dados, Midia Social",
+        Atuacao: "Tech Lead de Banco de Dados, Front-end, Back-end, Midia Social",
         Github: "https://github.com/MiguelSoaresDev",
         Linkedin:"https://www.linkedin.com/in/miguel-soares-089436235/",
     },

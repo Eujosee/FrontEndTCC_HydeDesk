@@ -1,5 +1,4 @@
 import api from "../../api";
-import axios from "axios";
 import { Link } from "react-router-dom";
 import { useState, useRef } from "react";
 import { CgProfile } from "react-icons/cg";
@@ -172,10 +171,10 @@ function CadEmp() {
 
 
   return (
-    <div className="bg-white px-10 pb-10 pt-3">
+    <div className="bg-white dark:bg-preto px-10 pb-10 pt-3">
       <form encType="multipart/form">
         <div className="flex flex-col justify-center items-center mt-5">
-          <label className="text-lg font-medium text-gray-900">
+          <label className="text-lg font-medium text-gray-900 dark:text-branco">
             Foto de perfil
           </label>
           {imagem ? (
@@ -191,14 +190,14 @@ function CadEmp() {
               >
                 <AiFillCamera
                   size={50}
-                  color="#f8f8ff    "
+                  color="#f8f8ff"
                   className="absolute bottom-[-0.2rem] bg-azul-hyde   p-2 rounded-full"
                 />
               </label>
               </>
           ) : (
             <>
-              <CgProfile size={160} />
+              <CgProfile size={160} className="dark:text-white" />
               <label
                 htmlFor="foto"
                 className="relative flex items-center justify-center w-3 h-3"
@@ -214,11 +213,11 @@ function CadEmp() {
         </div>
         <div className="sm:flex sm:flex-col lg:grid lg:grid-cols-4 lg:gap-x-10 lg:gap-y-2">
           <div className="mt-2 col-span-2">
-            <label className="text-lg font-medium text-gray-900">
+            <label className="text-lg font-medium text-gray-900 dark:text-branco">
               Nome da empresa *
             </label>
             <input
-              className="focus:outline-none focus:border-azul-hyde border-b-2 w-full p-2"
+              className="focus:outline-none focus:border-azul-hyde border-b-2 w-full p-2 dark:bg-preto dark:text-branco"
               placeholder="Nome da empresa"
               name="nome"
               value={user.nome}
@@ -226,9 +225,9 @@ function CadEmp() {
             />
           </div>
           <div className="mt-2 col-span-2">
-            <label className="text-lg font-medium text-gray-900">CNPJ *</label>
+            <label className="text-lg font-medium text-gray-900 dark:text-branco">CNPJ *</label>
             <InputMask
-              className="focus:outline-none focus:border-azul-hyde border-b-2 w-full  p-2"
+              className="focus:outline-none focus:border-azul-hyde border-b-2 w-full p-2 dark:bg-preto dark:text-branco"
               placeholder="CNPJ"
               name="cnpj"
               value={user.cnpj}
@@ -238,10 +237,10 @@ function CadEmp() {
             />
           </div>
           <div className="mt-2 col-span-2">
-            <label className="text-lg font-medium text-gray-900">Email *</label>
+            <label className="text-lg font-medium text-gray-900 dark:text-branco">Email *</label>
             <input
               type="email"
-              className="focus:outline-none focus:border-azul-hyde border-b-2 w-full p-2"
+              className="focus:outline-none focus:border-azul-hyde border-b-2 w-full p-2 dark:bg-preto dark:text-branco"
               placeholder="Email"
               name="email"
               value={user.email}
@@ -249,11 +248,11 @@ function CadEmp() {
             />
           </div>
           <div className="mt-2 col-span-2">
-            <label className="text-lg font-medium text-gray-900">
+            <label className="text-lg font-medium text-gray-900 dark:text-branco">
               Telefone *
             </label>
             <InputMask
-              className="focus:outline-none focus:border-azul-hyde border-b-2 w-full  p-2"
+              className="focus:outline-none focus:border-azul-hyde border-b-2 w-full  p-2 dark:bg-preto dark:text-branco"
               placeholder="Telefone"
               type="tel"
               name="telefone"
@@ -264,9 +263,9 @@ function CadEmp() {
             />
           </div>
           <div className="mt-2 col-span-1">
-            <label className="text-lg font-medium text-gray-900">CEP *</label>
+            <label className="text-lg font-medium text-gray-900 dark:text-branco">CEP *</label>
             <InputMask
-              className="focus:outline-none focus:border-azul-hyde border-b-2 w-full  p-2"
+              className="focus:outline-none focus:border-azul-hyde border-b-2 w-full  p-2 dark:bg-preto dark:text-branco"
               placeholder="CEP"
               name="cep"
               value={user.cep}
@@ -277,9 +276,9 @@ function CadEmp() {
             />
           </div>
           <div className="mt-2 col-span-1">
-            <label className="text-lg font-medium text-gray-900">Estado</label>
+            <label className="text-lg font-medium text-gray-900 dark:text-branco">Estado</label>
             <input
-              className="focus:outline-none focus:border-azul-hyde border-b-2 w-full p-2"
+              className="focus:outline-none focus:border-azul-hyde border-b-2 w-full p-2 dark:bg-preto dark:text-branco"
               placeholder="Estado"
               name="estado"
               value={adress.estado}
@@ -287,9 +286,9 @@ function CadEmp() {
             />
           </div>
           <div className="mt-2 col-span-2">
-            <label className="text-lg font-medium text-gray-900">Cidade</label>
+            <label className="text-lg font-medium text-gray-900 dark:text-branco">Cidade</label>
             <input
-              className="focus:outline-none focus:border-azul-hyde border-b-2 w-full p-2"
+              className="focus:outline-none focus:border-azul-hyde border-b-2 w-full p-2 dark:bg-preto dark:text-branco"
               placeholder="Cidade"
               name="cidade"
               value={adress.cidade}
@@ -297,9 +296,9 @@ function CadEmp() {
             />
           </div>
           <div className="mt-2 col-span-1">
-            <label className="text-lg font-medium text-gray-900">N°</label>
+            <label className="text-lg font-medium text-gray-900 dark:text-branco">N°</label>
             <input
-              className="focus:outline-none focus:border-azul-hyde border-b-2 w-full p-2"
+              className="focus:outline-none focus:border-azul-hyde border-b-2 w-full p-2 dark:bg-preto dark:text-branco"
               placeholder="N°"
               name="numero_endereco"
               value={user.numero_endereco}
@@ -307,9 +306,9 @@ function CadEmp() {
             />
           </div>
           <div className="mt-2 col-span-1">
-            <label className="text-lg font-medium text-gray-900">Rua</label>
+            <label className="text-lg font-medium text-gray-900 dark:text-branco">Rua</label>
             <input
-              className="focus:outline-none focus:border-azul-hyde border-b-2 w-full p-2"
+              className="focus:outline-none focus:border-azul-hyde border-b-2 w-full p-2 dark:bg-preto dark:text-branco"
               placeholder="Rua"
               name="Rua"
               value={adress.rua}
@@ -317,9 +316,9 @@ function CadEmp() {
             />
           </div>
           <div className="mt-2 col-span-2">
-            <label className="text-lg font-medium text-gray-900">Bairro</label>
+            <label className="text-lg font-medium text-gray-900 dark:text-branco">Bairro</label>
             <input
-              className="focus:outline-none focus:border-azul-hyde border-b-2 w-full p-2"
+              className="focus:outline-none focus:border-azul-hyde border-b-2 w-full p-2 dark:bg-preto dark:text-branco"
               placeholder="Bairro"
               name="bairro"
               value={adress.bairro}
@@ -351,10 +350,10 @@ function CadEmp() {
             />
           </div>
           <div className="mt-2 col-span-2">
-            <label className="text-lg font-medium text-gray-900">Senha *</label>
+            <label className="text-lg font-medium text-gray-900 dark:text-branco">Senha *</label>
             <input
               type="password"
-              className="focus:outline-none focus:border-azul-hyde border-b-2 w-full p-2"
+              className="focus:outline-none focus:border-azul-hyde border-b-2 w-full p-2 dark:bg-preto dark:text-branco"
               placeholder="Senha"
               name="senha"
               value={user.senha}
@@ -362,12 +361,12 @@ function CadEmp() {
             />
           </div>
           <div className="mt-2 col-span-2">
-            <label className="text-lg font-medium text-gray-900">
+            <label className="text-lg font-medium text-gray-900 dark:text-branco">
               Confirme sua senha *
             </label>
             <input
               type="password"
-              className="focus:outline-none focus:border-azul-hyde border-b-2 w-full p-2"
+              className="focus:outline-none focus:border-azul-hyde border-b-2 w-full p-2 dark:bg-preto dark:text-branco"
               placeholder="Confirme sua senha"
               name="confirmarsenha"
               value={user.confirmarsenha}
@@ -391,7 +390,7 @@ function CadEmp() {
       </form>
       <div>
         <Link className="no-underline flex items-center " to="/login">
-          <p className="text-black font-bold mb-1 text-lg">
+          <p className="text-black font-bold mb-1 text-lg dark:text-white">
             Já possui uma conta?
           </p>
           <p className="ml-2 text-azul-hyde font-bold mb-1 text-lg">Login</p>

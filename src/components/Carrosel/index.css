@@ -3,3 +3,8 @@
     justify-content: center !important;
     align-items: center !important;
 }
+
+.slick-dots li button:before {
+    color: #1f2937;
+    opacity: 100%;
+}

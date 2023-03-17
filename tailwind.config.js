@@ -7,8 +7,9 @@ module.exports = {
 			colors: {
 				"azul-hyde": "#23AFFF",
 				"azul-claro-hyde": "#55CCEF",
-				'preto': "#1F1F1F",
-				'branco': "#F8F8FF",
+				'preto': "#0d1117",
+				'pretosec': "#1f2937",
+				'branco': "#e2e8f0",
 			},
 		},
 	},

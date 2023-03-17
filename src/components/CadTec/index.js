@@ -122,10 +122,10 @@ function CadTec() {
 
 
   return (
-    <div className="bg-white px-10 pb-10 pt-3">
+    <div className="bg-white dark:bg-preto px-10 pb-10 pt-3">
       <form encType="multipart/form">
         <div className="flex flex-col justify-center items-center mt-5">
-          <label className="text-lg font-medium text-gray-900">
+          <label className="text-lg font-medium text-gray-900 dark:text-branco">
             Foto de perfil
           </label>
           {imagem ? (
@@ -148,14 +148,14 @@ function CadTec() {
               </>
           ) : (
             <>
-              <CgProfile size={160} />
+              <CgProfile size={160} className="text-white" />
               <label
                 htmlFor="foto"
                 className="relative flex items-center justify-center w-3 h-3"
               >
                 <AiFillCamera
                   size={50}
-                  color="#f8f8ff  "
+                  color="#f8f8ff"
                   className="absolute bottom-[-0.2rem] bg-azul-hyde p-2 rounded-full"
                 />
               </label>
@@ -164,11 +164,11 @@ function CadTec() {
         </div>
         <div className="sm:flex sm:flex-col lg:grid lg:grid-cols-2 lg:gap-x-10 lg:gap-y-2">
           <div className="mt-2">
-            <label className="text-lg font-medium text-gray-900">
+            <label className="text-lg font-medium text-gray-900 dark:text-branco">
               Nome completo *
             </label>
             <input
-              className="focus:outline-none focus:border-azul-hyde border-b-2 w-full  p-2"
+              className="focus:outline-none focus:border-azul-hyde border-b-2 w-full  p-2 dark:bg-preto dark:text-branco"
               placeholder="Nome completo"
               name="nome"
               value={user.nome}
@@ -177,9 +177,9 @@ function CadTec() {
             />
           </div>
           <div className="mt-2">
-            <label className="text-lg font-medium text-gray-900">CPF *</label>
+            <label className="text-lg font-medium text-gray-900 dark:text-branco">CPF *</label>
             <InputMask
-              className="focus:outline-none focus:border-azul-hyde border-b-2 w-full  p-2"
+              className="focus:outline-none focus:border-azul-hyde border-b-2 w-full  p-2 dark:bg-preto dark:text-branco"
               placeholder="CPF"
               name="cpf"
               value={user.cpf}
@@ -190,10 +190,10 @@ function CadTec() {
           </div>
 
           <div className="mt-2">
-            <label className="text-lg font-medium text-gray-900">Email *</label>
+            <label className="text-lg font-medium text-gray-900 dark:text-branco">Email *</label>
             <input
               type="email"
-              className="focus:outline-none focus:border-azul-hyde border-b-2 w-full  p-2"
+              className="focus:outline-none focus:border-azul-hyde border-b-2 w-full  p-2 dark:bg-preto dark:text-branco"
               placeholder="Email"
               name="email"
               value={user.email}
@@ -202,11 +202,11 @@ function CadTec() {
             />
           </div>
           <div className="mt-2">
-            <label className="text-lg font-medium text-gray-900">
+            <label className="text-lg font-medium text-gray-900 dark:text-branco">
               Telefone *
             </label>
             <InputMask
-              className="focus:outline-none focus:border-azul-hyde border-b-2 w-full  p-2"
+              className="focus:outline-none focus:border-azul-hyde border-b-2 w-full  p-2 dark:bg-preto dark:text-branco"
               placeholder="Telefone"
               type="tel"
               name="telefone"
@@ -217,11 +217,11 @@ function CadTec() {
             />
           </div>
           <div className="mt-2 col-span-2">
-            <label className="text-lg font-medium text-gray-900">
+            <label className="text-lg font-medium text-gray-900 dark:text-branco">
               Especialidade *
             </label>
             <select
-              className="focus:outline-none focus:border-azul-hyde border-b-2 w-full  p-2"
+              className="focus:outline-none focus:border-azul-hyde border-b-2 w-full  p-2 dark:bg-preto dark:text-branco"
               name="especialidade"
               onChange={(e) => [handleUser(e), setStatusErro("")]}
               value={user.especialidade}
@@ -237,11 +237,11 @@ function CadTec() {
           </div>
           <div className="mt-1 hidden">
             <div className="flex flex-row">
-              <label className="text-lg font-medium text-gray-900">
+              <label className="text-lg font-medium text-gray-900 dark:text-branco">
                 Foto de perfil *
               </label>
               <p
-                className="ml-3 mt-1 text-sm text-gray-500 dark:text-gray-300"
+                className="ml-3 mt-1 text-sm text-gray-500 dark:text-gray-300 "
                 id="file_input_help"
               >
                 PNG, JPG ou JPEG.
@@ -260,10 +260,10 @@ function CadTec() {
             />
           </div>
           <div className="mt-2">
-            <label className="text-lg font-medium text-gray-900">Senha *</label>
+            <label className="text-lg font-medium text-gray-900 dark:text-branco">Senha *</label>
             <input
               type="password"
-              className="focus:outline-none focus:border-azul-hyde border-b-2 w-full  p-2"
+              className="focus:outline-none focus:border-azul-hyde border-b-2 w-full  p-2 dark:bg-preto dark:text-branco"
               placeholder="Senha"
               name="senha"
               value={user.senha}
@@ -272,12 +272,12 @@ function CadTec() {
             />
           </div>
           <div className="mt-2">
-            <label className="text-lg font-medium text-gray-900">
+            <label className="text-lg font-medium text-gray-900 dark:text-branco">
               Confirme sua senha *
             </label>
             <input
               type="password"
-              className="focus:outline-none focus:border-azul-hyde border-b-2 w-full  p-2"
+              className="focus:outline-none focus:border-azul-hyde border-b-2 w-full  p-2 dark:bg-preto dark:text-branco"
               placeholder="Confirme sua senha"
               name="confirmsenha"
               value={user.confirmsenha}
@@ -302,7 +302,7 @@ function CadTec() {
       </form>
       <div>
         <Link className="no-underline flex items-center " to="/login">
-          <p className="text-black font-bold text-lg mb-1">
+          <p className="text-black font-bold text-lg mb-1 dark:text-branco">
             Já possui uma conta?
           </p>
           <p className="ml-2 text-azul-hyde text-lg font-bold mb-1">Login</p>
