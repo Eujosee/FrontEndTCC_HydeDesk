@@ -19,7 +19,7 @@ function HomeInstitucional() {
 	}
   return (
     <>
-    <ModalChatBot open={modal} onClose={toggleModal} />;
+    <ModalChatBot open={modal} onClose={toggleModal} />
 			<Header />
 			<div className="flex flex-col w-full min-h-screen overflow-x-hidden dark:bg-preto">
 				<div className="w-full mt-10">
