@@ -24,7 +24,7 @@ function Cadastro() {
 					</div>
 					<div className="flex flex-col w-full h-full items-center overflow-y-auto">
 						<div className="flex w-full lg:mt-11 lg:px-20 px-10 items-start justify-start">
-							<Link className=" no-underline text-black " to={"/"}>
+							<Link className=" no-underline text-black dark:text-branco " to={"/"}>
 								<AiOutlineArrowLeft size={20} />
 							</Link>
 						</div>

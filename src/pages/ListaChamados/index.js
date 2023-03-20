@@ -413,12 +413,12 @@ function ListaChamados() {
 
           {chamados.length < 1 && !loading && !status && (
             <div className="flex gap-2 items-center justify-center m-auto w-64 mt-10">
-              <p className=""> Você não possui chamados.</p>
+              <p className="dark:text-branco"> Você não possui chamados.</p>
             </div>
           )}
           {status && !loading && (
             <div className="flex gap-2 items-center justify-center m-auto w-64 mt-10">
-              <p className="">{status}</p>
+              <p className="dark:text-branco">{status}</p>
             </div>
           )}
         </div>

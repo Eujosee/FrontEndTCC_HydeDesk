@@ -13,9 +13,7 @@ export default function Modal({ open, onClose, dataFunc, toast, navigate }) {
 
       toast.success(response.data.message);
 
-      setInterval(() => {
-        navigate(0);
-      }, 3000);
+     
     } catch (error) {
       throw new Error("Não foi possível ativar funcionário.");
     }
@@ -29,9 +27,7 @@ export default function Modal({ open, onClose, dataFunc, toast, navigate }) {
 
       toast.success(response.data.message);
 
-      setInterval(() => {
-        navigate(0);
-      }, 3000);
+     
     } catch (error) {
       throw new Error("Não foi possível desativar funcionário.");
     }
@@ -46,10 +42,6 @@ export default function Modal({ open, onClose, dataFunc, toast, navigate }) {
       }
     } catch (error) {
       toast.error(error.message);
-
-      setInterval(() => {
-        navigate(0);
-      }, 3000);
     }
     onClose();
   }
@@ -98,7 +90,7 @@ export default function Modal({ open, onClose, dataFunc, toast, navigate }) {
                   ) : (
                     <p className="text-sm text-gray-500">
                       Tem certeza que deseja ativar a conta de{" "}
-                      {dataFunc.nome_funcionario}, tornando-o inativo?
+                      {dataFunc.nome_funcionario}, tornando-o ativo?
                     </p>
                   )}
                 </div>

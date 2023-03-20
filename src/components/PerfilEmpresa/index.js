@@ -64,8 +64,8 @@ function PerfilEmpresa() {
       setDados({
         cep: data.cep,
         cnpj: data.cnpj,
-        email: data.email,
-        nome: data.nome,
+        email: data.email_empresa,
+        nome: data.nome_empresa,
         numero_endereco: data.numero_endereco,
         telefone: data.telefone,
         senha: data.senha,
@@ -175,7 +175,7 @@ function PerfilEmpresa() {
                 type="text"
                 id="nome"
                 name="nome"
-                value={dados.nome_empresa}
+                value={dados.nome}
                 onChange={changeDados}
                 className="p-2 dark:text-branco dark:bg-transparent dark:border-slate-300  outline-none border-b-2"
               />
@@ -202,7 +202,7 @@ function PerfilEmpresa() {
                 type="email"
                 id="email"
                 name="email"
-                value={dados.email_empresa}
+                value={dados.email}
                 onChange={changeDados}
                 className="p-2 dark:text-branco dark:bg-transparent dark:border-slate-300  outline-none border-b-2"
               />

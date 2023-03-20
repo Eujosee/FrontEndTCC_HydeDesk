@@ -180,12 +180,12 @@ export default function Header() {
                         <div className="flex-auto">
                           <Link
                             to="/cadastro-funcionario"
-                            className="block font-semibold text-gray-900"
+                            className="block font-semibold text-gray-900 dark:text-branco"
                           >
                             Novo
                             <span className="absolute inset-0" />
                           </Link>
-                          <p className=" text-gray-600">
+                          <p className=" text-gray-600 dark:text-gray-400">
                             Cadastrar um novo funcionário
                           </p>
                         </div>

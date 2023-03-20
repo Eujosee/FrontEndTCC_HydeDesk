@@ -187,9 +187,9 @@ function ListaFunc() {
                     align="center"
                     className="border-b odd:bg-white dark:odd:bg-gray-900 even:bg-slate-100 dark:even:bg-gray-800 font-medium hover:bg-slate-200 dark:hover:bg-gray-900"
                   >
-                    <td className="flex grow-0 flex-row items-center space-y-8 text-lg text-gray-900 px-6 py-4 whitespace-nowrap">
+                    <td className="flex grow-0 flex-row items-center space-y-8 text-lg text-gray-900 dark:text-branco px-6 py-4 whitespace-nowrap">
                       <img
-                        src={"https://hdteste.azurewebsites.net/" + item.foto}
+                        src={"https://hdteste-teste.azurewebsites.net/" + item.foto}
                         alt="Foto"
                         className="h-10 w-10 text-gray-600 mr-4 rounded-full"
                       />
@@ -229,12 +229,12 @@ function ListaFunc() {
 
           {funcionarios.length < 1 && !loading && !status && (
             <div className="flex gap-2 items-center justify-center m-auto w-64 mt-10">
-              <p className=""> Você não possui funcionários.</p>
+              <p className="dark:text-branco"> Você não possui funcionários.</p>
             </div>
           )}
           {status && !loading && (
             <div className="flex gap-2 items-center justify-center m-auto w-64 mt-10">
-              <p className="">{status}</p>
+              <p className="dark:text-branco">{status}</p>
             </div>
           )}
         </div>

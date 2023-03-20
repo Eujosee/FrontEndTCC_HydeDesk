@@ -55,10 +55,10 @@ function PerfilFuncionario() {
       const { data } = await api.get("/funcionarios?id_funcionario=" + id);
       console.log(data);
       setDados({
-        nome: data[0].nome,
+        nome: data[0].nome_funcionario,
+        email: data[0].email_funcionario,
         usuario: data[0].usuario,
         matricula: data[0].matricula,
-        senha: data[0].senha,
       });
       setFoto(data[0].foto);
     })();
@@ -93,6 +93,12 @@ function PerfilFuncionario() {
                 Matricula:{" "}
                 <span className="lg:text-xl font-normal text-lg">
                   {dados.matricula}
+                </span>{" "}
+              </p>
+              <p className="dark:text-branco font-bold text-xl">
+                Email:{" "}
+                <span className="lg:text-xl font-normal text-lg">
+                  {dados.email}
                 </span>{" "}
               </p>
               <label
