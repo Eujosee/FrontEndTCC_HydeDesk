@@ -74,6 +74,8 @@ export default function Detalhes() {
 		})();
 	}, []);
 
+	console.log(user)
+
 
 	return (
 		<>
@@ -84,7 +86,7 @@ export default function Detalhes() {
 						<AiOutlineArrowLeft
 							size={20}
 							onClick={() => (window.location.href = "/lista-chamados")}
-							className="cursor-pointer"
+							className="cursor-pointer text-gray-900 dark:text-branco"
 						/>
 						<div className="flex flex-col mt-5 justify-start md:flex-row md:space-x-5">
 							<h1 className="text-xl w-auto">

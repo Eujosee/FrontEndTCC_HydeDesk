@@ -56,8 +56,8 @@ function HomeInstitucional() {
 						</div>
 					</div>
 				</div>
-				<div className="flex items-center  justify-center w-full h-[43rem] overflow-hidden">
-					<img className="object-cover bottom-20" src={FotoTurma} alt="" />
+				<div className="flex items-center w-full h-[50rem] overflow-hidden">
+					<img className="object-cover bottom-20 w-full" src={FotoTurma} alt="" />
 				</div>
 				<div className=" py-14 flex flex-col justify-center items-center">
 					<h1 className="mb-10 font-bold text-2xl dark:text-branco">

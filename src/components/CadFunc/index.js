@@ -78,11 +78,11 @@ function CadFunc() {
   };
 
   return (
-    <div className="bg-white px-10 py-4 ">
+    <div className="bg-white dark:bg-preto px-10 py-4 ">
       <h1 className="font-bold text-2xl mt-4">Cadastre um funcionário</h1>
       <form encType="multipart/form">
         <div className="flex flex-col justify-center items-center mt-5">
-          <label className="text-lg font-medium text-gray-900">
+          <label className="text-lg font-medium text-gray-900 dark:text-branco">
             Foto de perfil
           </label>
           {imagem ? (
@@ -105,7 +105,7 @@ function CadFunc() {
             </>
           ) : (
             <>
-              <CgProfile size={160} />
+              <CgProfile size={160} className="text-gray-900 dark:text-branco" />
               <label
                 htmlFor="foto"
                 className="relative flex items-center justify-center w-3 h-3"
@@ -121,11 +121,11 @@ function CadFunc() {
         </div>
         <div className="sm:flex sm:flex-col lg:grid lg:grid-cols-2 lg:gap-x-10 lg:gap-y-2">
           <div className="mt-2">
-            <label className="text-lg font-medium text-gray-900">
+            <label className="text-lg font-medium text-gray-900 dark:text-branco">
               Nome completo
             </label>
             <input
-              className="focus:outline-none focus:border-azul-hyde border-b-2 w-full  p-2"
+              className="focus:outline-none focus:border-azul-hyde border-b-2 w-full  p-2 dark:bg-transparent"
               placeholder="Nome completo"
               name="nome"
               value={user.nome}
@@ -134,11 +134,11 @@ function CadFunc() {
           </div>
 
           <div className="mt-2">
-            <label className="text-lg font-medium text-gray-900">
+            <label className="text-lg font-medium text-gray-900 dark:text-branco">
               Matrícula
             </label>
             <input
-              className="focus:outline-none focus:border-azul-hyde border-b-2 w-full  p-2"
+              className="focus:outline-none focus:border-azul-hyde border-b-2 w-full  p-2 dark:bg-transparent"
               placeholder="Matrícula"
               name="matricula"
               value={user.matricula}
@@ -146,11 +146,11 @@ function CadFunc() {
             />
           </div>
           <div className="mt-2">
-            <label className="text-lg font-medium text-gray-900">
+            <label className="text-lg font-medium text-gray-900 dark:text-branco">
               Nome de usuário
             </label>
             <input
-              className="focus:outline-none focus:border-azul-hyde border-b-2 w-full  p-2"
+              className="focus:outline-none focus:border-azul-hyde border-b-2 w-full  p-2 dark:bg-transparent"
               placeholder="Usuário"
               name="usuario"
               value={user.usuario}
@@ -158,11 +158,11 @@ function CadFunc() {
             />
           </div>
           <div className="mt-2">
-            <label className="text-lg font-medium text-gray-900">
+            <label className="text-lg font-medium text-gray-900 dark:text-branco">
               Email
             </label>
             <input
-              className="focus:outline-none focus:border-azul-hyde border-b-2 w-full  p-2"
+              className="focus:outline-none focus:border-azul-hyde border-b-2 w-full  p-2 dark:bg-transparent"
               placeholder="Email"
               name="email"
               value={user.email}
@@ -183,10 +183,10 @@ function CadFunc() {
             />
           </div>
           <div className="mt-2">
-            <label className="text-lg font-medium text-gray-900">Senha</label>
+            <label className="text-lg font-medium text-gray-900 dark:text-branco">Senha</label>
             <input
               type="password"
-              className="focus:outline-none focus:border-azul-hyde border-b-2 w-full  p-2"
+              className="focus:outline-none focus:border-azul-hyde border-b-2 w-full  p-2 dark:bg-transparent"
               placeholder="Senha"
               name="senha"
               value={user.senha}
@@ -194,12 +194,12 @@ function CadFunc() {
             />
           </div>
           <div className="mt-2">
-            <label className="text-lg font-medium text-gray-900">
+            <label className="text-lg font-medium text-gray-900 dark:text-branco">
               Confirme sua senha
             </label>
             <input
               type="password"
-              className="focus:outline-none focus:border-azul-hyde border-b-2 w-full  p-2"
+              className="focus:outline-none focus:border-azul-hyde border-b-2 w-full  p-2 dark:bg-transparent"
               placeholder="Confirme sua senha"
               name="confirmsenha"
               value={user.confirmsenha}

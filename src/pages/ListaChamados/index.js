@@ -41,7 +41,7 @@ function ListaChamados() {
             <tr
               key={item.id_chamado}
               align="center"
-              className="border-b odd:bg-white dark:odd:bg-preto even:bg-slate-100 dark:even:bg-gray-800 font-medium hover:bg-slate-200 dark:hover:bg-gray-900"
+              className="border-b odd:bg-white dark:odd:bg-gray-900 even:bg-slate-100 dark:even:bg-gray-800 font-medium hover:bg-slate-200 dark:hover:bg-gray-900"
             >
               {type === "tecnicos" && (
                 <td className="text-lg text-gray-900 dark:text-branco  px-6 py-4 whitespace-nowrap">
@@ -251,8 +251,6 @@ function ListaChamados() {
     })();
   }, [id, type]);
 
-  console.log(chamadoAceito);
-
   useEffect(() => {
     const totalItems = 8;
     setCurrentPage(0);
@@ -268,7 +266,6 @@ function ListaChamados() {
 
       setPaginationButtons(buttons);
     }
-
     calcPagination();
     genPagination(0, totalItems);
   }, [chamados]); // eslint-disable-line
@@ -323,12 +320,12 @@ function ListaChamados() {
               onChange={changeFiltro}
               required
             >
-              <option className="dark:text-branco dark:bg-gray-900 dark:hover:bg-gray-800" selected disabled>
+              <option className="dark:text-branco dark:bg-gray-800 dark:hover:bg-gray-800" selected disabled>
                 Selecione uma opção
               </option>
-              <option className="dark:text-branco dark:bg-gray-900 dark:hover:bg-gray-800" value="pendente">Pendente</option>
-              <option className="dark:text-branco dark:bg-gray-900 dark:hover:bg-gray-800" value="andamento">Em andamento</option>
-              <option className="dark:text-branco dark:bg-gray-900 dark:hover:bg-gray-100" value="concluido">Concluido</option>
+              <option className="dark:text-branco dark:bg-gray-800 dark:hover:bg-gray-800" value="pendente">Pendente</option>
+              <option className="dark:text-branco dark:bg-gray-800 dark:hover:bg-gray-800" value="andamento">Em andamento</option>
+              <option className="dark:text-branco dark:bg-gray-800 dark:hover:bg-gray-100" value="concluido">Concluido</option>
             </select>
           </div>
           <button
@@ -365,7 +362,6 @@ function ListaChamados() {
                   Status
                 </th>
                 <th scope="col" className="px-6 py-4">
-                  Opções
                 </th>
               </tr>
             </thead>
@@ -378,20 +374,20 @@ function ListaChamados() {
                   className="border-b odd:bg-white dark:odd:bg-preto even:bg-slate-100 dark:even:bg-gray-900 font-medium hover:bg-slate-200"
                 >
                   {type === "tecnicos" && (
-                    <td className="text-lg text-gray-900  px-6 py-4 whitespace-nowrap">
+                    <td className="text-lg text-gray-900 dark:text-branco  px-6 py-4 whitespace-nowrap">
                       {chamadoAceito[0].nome_empresa}
                     </td>
                   )}
-                  <td className="text-lg text-gray-900 px-6 py-4 whitespace-nowrap">
+                  <td className="text-lg text-gray-900 dark:text-branco px-6 py-4 whitespace-nowrap">
                     {chamadoAceito[0].nome_funcionario}
                   </td>
-                  <td className="text-lg text-gray-900 px-6 py-4 whitespace-nowrap">
+                  <td className="text-lg text-gray-900 dark:text-branco px-6 py-4 whitespace-nowrap">
                     {chamadoAceito[0].problema}
                   </td>
-                  <td className="text-lg text-gray-900 px-6 py-4 whitespace-nowrap">
+                  <td className="text-lg text-gray-900 dark:text-branco px-6 py-4 whitespace-nowrap">
                     {chamadoAceito[0].cod_verificacao}
                   </td>
-                  <td className="text-lg text-gray-900 px-6 py-4 whitespace-nowrap">
+                  <td className="text-lg text-gray-900 dark:text-branco px-6 py-4 whitespace-nowrap">
                     {chamadoAceito[0].prioridade}
                   </td>
                   <td

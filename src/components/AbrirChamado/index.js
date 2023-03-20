@@ -69,56 +69,54 @@ function AbrirChamado() {
     
     <>
     <ToastContainer/>
-      <h1 className="text-center font-bold text-2xl sm:mt-4">
+      <h1 className="text-center text-gray-900 font-bold text-2xl sm:mt-4 dark:text-branco">
         Abrir um chamado
       </h1>
 
       <div className="sm:mt-12 sm:flex sm:flex-col lg:grid lg:grid-cols-2 lg:gap-x-10 lg:gap-y-2">
-        <div className="">
-          <label className="text-lg font-medium text-gray-900">Problema *</label>
+        <div>
+          <label className="text-lg font-medium text-gray-900 dark:text-branco">Problema *</label>
           <select
-            className="focus:outline-none focus:border-azul-hyde border-b-2 w-full p-2"
+            className="focus:outline-none focus:border-azul-hyde border-b-2 w-full p-2 dark:bg-transparent"
             name="problema"
-
             onChange={changeChamado}
-
             required
           >
-            <option selected disabled>
+            <option className="text-gray-900 dark:text-branco dark:bg-gray-800" selected disabled>
               Selecione uma opção 
             </option>
-            <option value="Hardware">Hardware</option>
-            <option value="Redes">Redes</option>
-            <option value="Software">Software</option>
+            <option className="text-gray-900 dark:text-branco dark:bg-gray-800" value="Hardware">Hardware</option>
+            <option className="text-gray-900 dark:text-branco dark:bg-gray-800" value="Redes">Redes</option>
+            <option className="text-gray-900 dark:text-branco dark:bg-gray-800" value="Software">Software</option>
           </select>
         </div>
 
         <div className="">
-          <label className="text-lg font-medium text-gray-900">
+          <label className="text-lg font-medium text-gray-900  dark:text-branco">
             Prioridade *
           </label>
           <select
-            className="focus:outline-none focus:border-azul-hyde border-b-2 w-full p-2"
+            className="focus:outline-none focus:border-azul-hyde border-b-2 w-full p-2 dark:bg-transparent"
             name="prioridade"
 
             onChange={changeChamado}
             required
           >
-            <option selected disabled>
+            <option className="text-gray-900 dark:text-branco dark:bg-gray-800" selected disabled>
               Selecione uma opção
             </option>
-            <option value="Alta">Alta</option>
-            <option value="Media">Média</option>
-            <option value="Baixa">Baixa</option>
+            <option className="text-gray-900 dark:text-branco dark:bg-gray-800" value="Alta">Alta</option>
+            <option className="text-gray-900 dark:text-branco dark:bg-gray-800" value="Media">Média</option>
+            <option className="text-gray-900 dark:text-branco dark:bg-gray-800" value="Baixa">Baixa</option>
           </select>
         </div>
 
         <div className="">
-          <label className="text-lg font-medium text-gray-900">
+          <label className="text-lg font-medium text-gray-900 dark:text-branco">
             Patrimônio *
           </label>
           <input
-            className="focus:outline-none focus:border-azul-hyde border-b-2 w-full p-2"
+            className="focus:outline-none focus:border-azul-hyde border-b-2 w-full p-2 dark:bg-transparent"
             placeholder="Informe o patrimônio"
             onChange={changeChamado}
             name="patrimonio"
@@ -126,10 +124,10 @@ function AbrirChamado() {
    
           />
         </div>
-        <div className="">
-          <label className="text-lg font-medium text-gray-900">Setor *</label>
+        <div>
+          <label className="text-lg font-medium text-gray-900 dark:text-branco">Setor *</label>
           <input
-            className="focus:outline-none focus:border-azul-hyde border-b-2 w-full p-2"
+            className="focus:outline-none focus:border-azul-hyde border-b-2 w-full p-2 dark:bg-transparent"
             placeholder="Informe o setor"
             onChange={changeChamado}
             name="setor"
@@ -137,13 +135,11 @@ function AbrirChamado() {
         </div>
         <div className="grid col-span-2">
           <div className="mt-2 ">
-            <label className="text-lg font-medium text-gray-900">
-
+            <label className="text-lg font-medium text-gray-900 dark:text-branco">
               Descrição
-
             </label>
             <input
-              className="focus:outline-none focus:border-azul-hyde border-b-2 w-full p-2"
+              className="focus:outline-none focus:border-azul-hyde border-b-2 w-full p-2 dark:bg-transparent"
               placeholder="Descreva o seu problema"
 
               onChange={changeChamado}
@@ -153,7 +149,7 @@ function AbrirChamado() {
           </div>
           <div className="mt-1 ">
             <div className="flex flex-row">
-              <label className="text-lg font-medium text-gray-900">Anexo</label>
+              <label className="text-lg font-medium text-gray-900 dark:text-branco">Anexo</label>
               <p
                 className="ml-3 mt-1 text-sm text-gray-500 dark:text-gray-300"
                 id="file_input_help"
@@ -163,20 +159,30 @@ function AbrirChamado() {
             </div>
             <input
               type="file"
-              className="focus:outline-none focus:border-azul-hyde border-b-2 w-full  p-2"
+              className="focus:outline-none focus:border-azul-hyde border-b-2 w-full  p-2 mb-2 dark:bg-transparent"
               placeholder="Escolher arquivo"
               name="anexo"
               onChange={(e) => setImagem(e.target.files[0])}
               accept=".png, .jpg, .jpeg"
               required
             />
+            {imagem ? (
+              <>
+                <img
+                    src={ URL.createObjectURL(imagem) }
+                    alt="Foto de anexo"
+                    className="w-56 h-56"
+                />
+              </>
+
+            ) : ""}
           </div>
         </div>
       </div>
 
       <div className=" mt-8 flex justify-center items-center flex-col">
         <button
-          className="hover:bg-cyan-600 mb-6 bg-azul-hyde p-2 rounded-3xl text-white font-bold text-lg w-80"
+          className="hover:bg-cyan-600 mb-6 bg-azul-hyde p-2 rounded-md text-white font-bold text-lg w-80"
           onClick={handleChamado}
         >
           Enviar

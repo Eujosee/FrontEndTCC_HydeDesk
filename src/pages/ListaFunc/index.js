@@ -101,13 +101,13 @@ function ListaFunc() {
         navigate={navigate}
       />
       <ToastContainer />
-      <div className="flex flex-col h-screen overflow-hidden">
+      <div className="flex flex-col h-screen overflow-hidden dark:bg-preto">
         <div className="mt-5 px-5 flex flex-col md:flex-row md:space-x-6">
-          <h1 className="text-3xl font-semibold lg:text-3xl">
+          <h1 className="text-3xl font-semibold lg:text-3xl dark:text-branco">
             Lista de funcionários
           </h1>
           <Link
-            to="cadastro-funcionario"
+            to="/cadastro-funcionario"
             class="w-full md:w-40 rounded-md bg-azul-hyde px-3.5 py-1.5 text-center font-semibold leading-7 text-white shadow-sm hover:bg-cyan-600 "
           >
             <span className="flex justify-center items-center">Novo</span>
@@ -116,9 +116,9 @@ function ListaFunc() {
 
         <div className="flex flex-col w-full mt-8 p-5 space-y-4 md:space-y-0 md:flex-row md:space-x-8">
           <div className="w-full md:w-1/4 flex items-center relative">
-            <label>Pesquisar:</label>
+            <label className="dark:text-branco">Pesquisar:</label>
             <input
-              className="focus:outline-none ml-2 focus:border-b-azul-hyde border-b-2 w-full p-2"
+              className="focus:outline-none ml-2 focus:border-b-azul-hyde border-b-2 w-full p-2 dark:bg-transparent dark:text-branco"
               placeholder="Nome completo"
               name="nome"
               onChange={changeFiltro}
@@ -131,19 +131,19 @@ function ListaFunc() {
             />
           </div>
           <div className="flex flex-row items-center md:w-1/3">
-            <label>Filtrar:</label>
+            <label className="dark:text-branco">Filtrar:</label>
             <div className="w-full">
               <select
-                className="focus:outline-none focus:border-b-azul-hyde ml-2 border-b-2 w-full p-2"
+                className="focus:outline-none focus:border-b-azul-hyde ml-2 border-b-2 w-full p-2 dark:bg-transparent dark:text-branco"
                 name="status_empresa"
                 onChange={changeFiltro}
                 required
               >
-                <option selected disabled>
+                <option className="dark:text-branco dark:bg-gray-800 dark:hover:bg-gray-800" selected disabled>
                   Selecione uma opção
                 </option>
-                <option value="ativo">Ativo</option>
-                <option value="inativo">Inativo</option>
+                <option className="dark:text-branco dark:bg-gray-800 dark:hover:bg-gray-800" value="ativo">Ativo</option>
+                <option className="dark:text-branco dark:bg-gray-800 dark:hover:bg-gray-800" value="inativo">Inativo</option>
               </select>
             </div>
           </div>
@@ -185,7 +185,7 @@ function ListaFunc() {
                 return (
                   <tr
                     align="center"
-                    className="border-b odd:bg-white even:bg-slate-100 font-medium hover:bg-slate-200"
+                    className="border-b odd:bg-white dark:odd:bg-gray-900 even:bg-slate-100 dark:even:bg-gray-800 font-medium hover:bg-slate-200 dark:hover:bg-gray-900"
                   >
                     <td className="flex grow-0 flex-row items-center space-y-8 text-lg text-gray-900 px-6 py-4 whitespace-nowrap">
                       <img
@@ -195,13 +195,13 @@ function ListaFunc() {
                       />
                       {item.nome_funcionario}
                     </td>
-                    <td className="text-lg text-gray-900 px-6 py-4 whitespace-nowrap">
+                    <td className="text-lg text-gray-900 dark:text-branco px-6 py-4 whitespace-nowrap">
                       {item.matricula}
                     </td>
-                    <td className="text-lg text-gray-900 px-6 py-4 whitespace-nowrap">
+                    <td className="text-lg text-gray-900 dark:text-branco px-6 py-4 whitespace-nowrap">
                       {item.usuario}
                     </td>
-                    <td className="text-lg text-gray-900 px-6 py-4 whitespace-nowrap">
+                    <td className="text-lg text-gray-900 dark:text-branco px-6 py-4 whitespace-nowrap">
                       {item.email_funcionario}
                     </td>
                     <td
@@ -222,8 +222,8 @@ function ListaFunc() {
           </table>
           {loading && (
             <div className="flex gap-2 items-center justify-center m-auto w-64 mt-10">
-              <AiOutlineLoading3Quarters size={25} className="icon" />
-              <p className=""> Carregando...</p>
+              <AiOutlineLoading3Quarters size={25} className="icon dark:text-branco" />
+              <p className="dark:text-branco"> Carregando...</p>
             </div>
           )}
 
