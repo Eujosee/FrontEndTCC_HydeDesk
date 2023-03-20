@@ -22,7 +22,7 @@ function HomeInstitucional() {
     <ModalChatBot open={modal} onClose={toggleModal} />
 			<Header />
 			<div className="flex flex-col w-full min-h-screen overflow-x-hidden dark:bg-preto">
-				<div className="flex items-center justify-center w-full h-[32rem] overflow-hidden relative">
+				<div className="flex items-center justify-center w-full h-[15rem] lg:h-[32rem] overflow-hidden relative">
 					<img className="object-cover" src={FotoInst}  alt="" />
 					{/* Foto de <a href="https://unsplash.com/@clark_fransa?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Arnold Francisca</a> na <a href="https://unsplash.com/pt-br/fotografias/f77Bh3inUpE?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a> */}
   
@@ -56,7 +56,7 @@ function HomeInstitucional() {
 						</div>
 					</div>
 				</div>
-				<div className="flex items-center w-full h-[50rem] overflow-hidden">
+				<div className="flex items-center w-full  h-[15rem] md:h-[20rem] lg:h-[36rem] overflow-hidden">
 					<img className="object-cover bottom-20 w-full" src={FotoTurma} alt="" />
 				</div>
 				<div className=" py-14 flex flex-col justify-center items-center">
