@@ -84,9 +84,9 @@ function PerfilTecnico() {
     buscarTecnico();
   }, []);
   return (
-    <div className="dark:bg-gray-900 mb-20 mt-5">
+    <div className="dark:bg-preto pb-20 pt-10">
       <div className="flex flex-col w-full lg:flex-row items-center justify-center">
-        <div className="w-full px-5 md:px-10 lg:w-8/12 h-full dark:text-white dark:border-white border-r-2 border-gray-900">
+        <div className="w-full px-5 md:px-10 lg:w-8/12 h-full dark:text-branco dark:border-white border-r-2 border-gray-900">
           <div>
             <h1 className="font-bold text-3xl">Meu perfil</h1>
             <p className="text-gray-600 dark:text-gray-400">
@@ -95,21 +95,21 @@ function PerfilTecnico() {
           </div>
           <div className="flex lg:w-full mt-6 space-y-2 flex-wrap lg:flex-row sm:flex-col sm:mb-4">
             <div className="flex flex-col items-center w-full lg:justify-center lg:w-1/4">
-              <h1 className="text-2xl dark:text-white font-semibold mb-2">
+              <h1 className="text-2xl dark:text-branco font-semibold mb-2">
                 Foto de perfil
               </h1>
               <img
                 src={
                   changeFoto
                     ? URL.createObjectURL(foto)
-                    : "https://hdteste.azurewebsites.net/" + foto
+                    : "https://hdteste-teste.azurewebsites.net/" + foto
                 }
                 alt="Foto de perfil"
                 className="rounded-full w-52 h-52"
               />
             </div>
             <div className="flex items-center w-full justify-center flex-col px-6 space-y-4 lg:w-3/4 lg:items-start">
-              <p className="dark:text-white font-bold text-xl">
+              <p className="dark:text-branco font-bold text-xl">
                 Matricula:{" "}
                 <span className="lg:text-xl font-normal text-lg">
                   {dados.matricula}
@@ -141,7 +141,7 @@ function PerfilTecnico() {
                 name="nome"
                 value={dados.nome_tecnico}
                 onChange={changeDados}
-                className="p-2 dark:text-white dark:bg-transparent dark:border-slate-300  outline-none border-b-2"
+                className="p-2 dark:text-branco dark:bg-transparent dark:border-slate-300  outline-none border-b-2"
               />
             </div>
             <div className="flex flex-col relative">
@@ -155,7 +155,7 @@ function PerfilTecnico() {
                 mask="999.999.999-99"
                 value={dados.cpf}
                 onChange={changeDados}
-                className="p-2 dark:text-white dark:bg-transparent dark:border-slate-300  outline-none border-b-2"
+                className="p-2 dark:text-branco dark:bg-transparent dark:border-slate-300  outline-none border-b-2"
                 disabled
               />
               <LockClosedIcon className="h-4 w-4 text-gray-400 absolute top-9 right-3"/>
@@ -170,7 +170,7 @@ function PerfilTecnico() {
                 name="email"
                 value={dados.email_tecnico}
                 onChange={changeDados}
-                className="p-2 dark:text-white dark:bg-transparent dark:border-slate-300  outline-none border-b-2"
+                className="p-2 dark:text-branco dark:bg-transparent dark:border-slate-300  outline-none border-b-2"
               />
             </div>
             <div className="flex flex-col">
@@ -184,24 +184,24 @@ function PerfilTecnico() {
                 onChange={changeDados}
                 required
               >
-                <option selected className="dark:text-white dark:bg-gray-900">
+                <option selected className="dark:text-branco dark:bg-gray-900">
                   Selecione uma opção
                 </option>
                 <option
                   value="Desenvolvedor"
-                  className="dark:text-white dark:bg-gray-900"
+                  className="dark:text-branco dark:bg-gray-900"
                 >
                   Desenvolvedor
                 </option>
                 <option
                   value="Infraestrutura"
-                  className="dark:text-white dark:bg-gray-900"
+                  className="dark:text-branco dark:bg-gray-900"
                 >
                   Infraestrutura
                 </option>
                 <option
                   value="Sistemas operacionais"
-                  className="dark:text-white dark:bg-gray-900"
+                  className="dark:text-branco dark:bg-gray-900"
                 >
                   Sistemas operacionais
                 </option>
@@ -218,7 +218,7 @@ function PerfilTecnico() {
                 mask="(99) 99999-9999"
                 value={dados.telefone}
                 onChange={changeDados}
-                className="p-2 dark:text-white dark:bg-transparent dark:border-slate-300  outline-none border-b-2"
+                className="p-2 dark:text-branco dark:bg-transparent dark:border-slate-300  outline-none border-b-2"
               />
             </div>
             <div className="flex flex-col relative">
@@ -231,7 +231,7 @@ function PerfilTecnico() {
                 name="telefone"
                 value={dados.matricula}
                 onChange={changeDados}
-                className="p-2 dark:text-white dark:bg-transparent dark:border-slate-300  outline-none border-b-2"
+                className="p-2 dark:text-branco dark:bg-transparent dark:border-slate-300  outline-none border-b-2"
                 disabled
               />
               <LockClosedIcon className="h-4 w-4 text-gray-400 absolute top-9 right-3"/>

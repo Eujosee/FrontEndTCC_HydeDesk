@@ -140,15 +140,15 @@ function CadTec() {
                 className="relative flex items-center justify-center w-3 h-3"
               >
                 <AiFillCamera
-                  size={30}
+                  size={50}
                   color="#f8f8ff    "
-                  className="absolute bottom-[-0.2rem] bg-azul-hyde   p-2 rounded-full"
+                  className="absolute bottom-[-0.2rem] bg-azul-hyde  p-2 rounded-full"
                 />
               </label>
               </>
           ) : (
             <>
-              <CgProfile size={160} className="text-white" />
+              <CgProfile size={160} className="dark:text-white" />
               <label
                 htmlFor="foto"
                 className="relative flex items-center justify-center w-3 h-3"
