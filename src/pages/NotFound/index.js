@@ -6,7 +6,7 @@ export default function Pag404 () {
     return (
 			<>
 				<Header />
-				<div className="mt-20 flex w-full h-screen items-center justify-center dark:text-branco  dark:bg-preto">
+				<div className="flex w-full h-screen items-center justify-center dark:text-branco  dark:bg-preto">
 					<div className="flex justify-center items-center">
 						<div className="p-10 max-w-sm flex flex-col items-center justify-center">
 							<div className="flex flex-col justify-start">

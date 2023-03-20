@@ -55,18 +55,18 @@ function PerfilFuncionario() {
       const { data } = await api.get("/funcionarios?id_funcionario=" + id);
       console.log(data);
       setDados({
-        nome: data[0].nome,
+        nome: data[0].nome_funcionario,
+        email: data[0].email_funcionario,
         usuario: data[0].usuario,
         matricula: data[0].matricula,
-        senha: data[0].senha,
       });
       setFoto(data[0].foto);
     })();
   }, [id]);
   return (
-    <div className=" dark:bg-gray-900 mb-20 mt-5">
+    <div className=" dark:bg-preto pb-20 pt-10">
       <div className="flex flex-col w-full lg:flex-row items-center justify-center">
-        <div className="w-full px-5 md:px-10 lg:w-8/12 h-full dark:text-white dark:border-white border-r-2 border-gray-900">
+        <div className="w-full px-5 md:px-10 lg:w-8/12 h-full dark:text-branco dark:border-white border-r-2 border-gray-900">
           <div>
             <h1 className="font-bold text-3xl">Meu perfil</h1>
             <p className="text-gray-600 dark:text-gray-400">
@@ -75,24 +75,30 @@ function PerfilFuncionario() {
           </div>
           <div className="flex lg:w-full mt-6 space-y-2 flex-wrap lg:flex-row sm:flex-col sm:mb-4">
             <div className="flex flex-col items-center w-full lg:justify-center lg:w-1/4">
-              <h1 className="text-2xl dark:text-white font-semibold mb-2">
+              <h1 className="text-2xl dark:text-branco font-semibold mb-2">
                 Foto de perfil
               </h1>
               <img
                 src={
                   changeFoto
                     ? URL.createObjectURL(foto)
-                    : "https://hdteste.azurewebsites.net/" + foto
+                    : "https://hdteste-teste.azurewebsites.net/" + foto
                 }
                 alt="Foto de perfil"
                 className="rounded-full w-52 h-52"
               />
             </div>
             <div className="flex items-center w-full justify-center flex-col px-6 space-y-4 lg:w-3/4 lg:items-start">
-              <p className="dark:text-white font-bold text-xl">
+              <p className="dark:text-branco font-bold text-xl">
                 Matricula:{" "}
                 <span className="lg:text-xl font-normal text-lg">
                   {dados.matricula}
+                </span>{" "}
+              </p>
+              <p className="dark:text-branco font-bold text-xl">
+                Email:{" "}
+                <span className="lg:text-xl font-normal text-lg">
+                  {dados.email}
                 </span>{" "}
               </p>
               <label
@@ -120,7 +126,7 @@ function PerfilFuncionario() {
                   name="nome"
                   value={dados.nome}
                   onChange={changeDados}
-                  className="p-2 dark:text-white dark:bg-transparent dark:border-slate-300  outline-none border-b-2"
+                  className="p-2 dark:text-branco dark:bg-transparent dark:border-slate-300  outline-none border-b-2"
                 />
               </div>
               <div className="flex flex-col lg:w-2/4 sm:w-full">
@@ -133,7 +139,7 @@ function PerfilFuncionario() {
                   name="usuario"
                   value={dados.usuario}
                   onChange={changeDados}
-                  className="p-2 dark:text-white dark:bg-transparent dark:border-slate-300  outline-none border-b-2 teste"
+                  className="p-2 dark:text-branco dark:bg-transparent dark:border-slate-300  outline-none border-b-2 teste"
                 />
               </div>
             </div>

@@ -15,6 +15,8 @@ function AuthProvider({ children }) {
   useEffect(() => {
     const activeToken = secureLocalStorage.getItem("Token");
 
+    console.log(activeToken)
+
     if (activeToken) {
       api.defaults.headers.Authorization = `Bearer ${JSON.parse(activeToken)}`;
       setAuthenticated(true);
@@ -24,8 +26,6 @@ function AuthProvider({ children }) {
   }, []);
 
   const handleLogin = async (user, label) => {
-    console.log(user);
-    console.log(label)
     switch (label) {
       case "cpf":
         try {

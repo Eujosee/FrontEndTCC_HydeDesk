@@ -35,23 +35,23 @@ export default function Dropdown({ item }) {
   const [estaConcluido, setEstaConcluido] = useState(false);
   const [estaAvaliado, setEstaAvaliado] = useState(false);
 
-  useEffect(() => {
-    async function getConcluido() {
-      const response = await api.get(
-        `/conclusoes?chamado_id=${item.id_chamado}`
-      );
+  // useEffect(() => {
+  //   async function getConcluido() {
+  //     const response = await api.get(
+  //       `/conclusoes?chamado_id=${item.id_chamado}`
+  //     );
 
-      if (response.data.length > 0) {
-        setEstaConcluido(true);
+  //     if (response.data.length > 0) {
+  //       setEstaConcluido(true);
 
-        if (response.data[0].num_avaliacao !== null) {
-          setEstaAvaliado(true);
-        }
-      }
-    }
+  //       if (response.data[0].num_avaliacao !== null) {
+  //         setEstaAvaliado(true);
+  //       }
+  //     }
+  //   }
 
-    getConcluido();
-  }, []);
+  //   getConcluido();
+  // }, []);
 
   return (
     <>
@@ -87,7 +87,7 @@ export default function Dropdown({ item }) {
       />
 
       <Menu as="div" className="relative z-50 inline-block text-left">
-        <Float portal>
+        <Float placement="bottom-end" offset={4} portal>
           <div>
             <Menu.Button>
               {" "}
@@ -95,7 +95,7 @@ export default function Dropdown({ item }) {
             </Menu.Button>
           </div>
 
-          <Menu.Items className="absolute -right-5 z-10 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+          <Menu.Items className="absolute -right-5 z-10 w-56 origin-top-right rounded-md bg-white dark:bg-gray-800 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
             <div className="p-2 ">
               <Menu.Item>
                 <div className="flex flex-row items-center px-4 group hover:bg-azul-hyde rounded-md">
@@ -105,7 +105,7 @@ export default function Dropdown({ item }) {
                   />
                   <Link
                     to={"/detalhes/" + item.id_chamado}
-                    className="block w-full px-2 py-2 text-left text-sm  font-semibold group-hover:text-white"
+                    className="block w-full px-2 py-2 text-left text-sm dark:text-branco  font-semibold group-hover:text-white"
                   >
                     Detalhes
                   </Link>
@@ -120,7 +120,7 @@ export default function Dropdown({ item }) {
                     />
                     <button
                       onClick={() => setIsOpenConclusao(true)}
-                      className="block w-full px-2 py-2 text-left text-sm font-semibold group-hover:text-white"
+                      className="block w-full px-2 py-2 text-left text-sm dark:text-branco font-semibold group-hover:text-white"
                     >
                       Conclusão
                     </button>
@@ -137,7 +137,7 @@ export default function Dropdown({ item }) {
                     />
                     <button
                       onClick={() => setIsOpenAvaliacao(true)}
-                      className="block w-full px-2 py-2 text-left text-sm font-semibold group-hover:text-white"
+                      className="block w-full px-2 py-2 text-left text-sm dark:text-branco font-semibold group-hover:text-white"
                     >
                       Avaliação
                     </button>
@@ -156,7 +156,7 @@ export default function Dropdown({ item }) {
                       />
                       <button
                         onClick={() => setIsOpenCancel(true)}
-                        className="block w-full px-2 py-2 text-left text-sm font-semibold group-hover:text-white"
+                        className="block w-full px-2 py-2 text-left text-sm dark:text-branco font-semibold group-hover:text-white"
                       >
                         Cancelar
                       </button>
@@ -172,7 +172,7 @@ export default function Dropdown({ item }) {
                     />
                     <button
                       onClick={() => setIsOpenAceitar(true)}
-                      className="block w-full px-2 py-2 text-left text-sm font-semibold group-hover:text-white"
+                      className="block w-full px-2 py-2 text-left text-sm dark:text-branco font-semibold group-hover:text-white"
                     >
                       Aceitar
                     </button>
@@ -190,7 +190,7 @@ export default function Dropdown({ item }) {
                       />
                       <button
                         onClick={() => setIsOpenConcluir(true)}
-                        className="block w-full px-2 py-2 text-left text-sm font-semibold group-hover:text-white"
+                        className="block w-full px-2 py-2 text-left text-sm dark:text-branco font-semibold group-hover:text-white"
                       >
                         Concluir
                       </button>
@@ -208,7 +208,7 @@ export default function Dropdown({ item }) {
                       />
                       <button
                         onClick={() => setIsOpenSuspender(true)}
-                        className="block w-full px-2 py-2 text-left text-sm font-semibold group-hover:text-white"
+                        className="block w-full px-2 py-2 text-left text-sm dark:text-branco font-semibold group-hover:text-white"
                       >
                         Suspender
                       </button>

@@ -1,5 +1,3 @@
-import api from "../../api";
-import Footer from "../Footer";
 import PerfilEmpresa from "../PerfilEmpresa";
 import PerfilFuncionario from "../PerfilFuncionario";
 import PerfilTecnico from "../PerfilTecnico";

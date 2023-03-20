@@ -64,8 +64,8 @@ function PerfilEmpresa() {
       setDados({
         cep: data.cep,
         cnpj: data.cnpj,
-        email: data.email,
-        nome: data.nome,
+        email: data.email_empresa,
+        nome: data.nome_empresa,
         numero_endereco: data.numero_endereco,
         telefone: data.telefone,
         senha: data.senha,
@@ -130,9 +130,9 @@ function PerfilEmpresa() {
   }, []);
 
   return (
-    <div className="dark:bg-gray-900 mb-20 mt-5">
+    <div className="dark:bg-preto pb-20 pt-10">
       <div className="flex flex-col w-full lg:flex-row items-center justify-center">
-        <div className="w-full px-5 md:px-10 lg:w-8/12 h-full dark:text-white dark:border-white border-r-2 border-gray-900">
+        <div className="w-full px-5 md:px-10 lg:w-8/12 h-full dark:text-branco dark:border-white border-r-2 border-gray-900">
           <div>
             <h1 className="font-bold text-3xl">Meu perfil</h1>
             <p className="text-gray-600 dark:text-gray-400">
@@ -141,17 +141,17 @@ function PerfilEmpresa() {
           </div>
           <div className="flex lg:w-full mt-6 space-y-2 flex-wrap lg:flex-row sm:flex-col sm:mb-4">
             <div className="flex flex-col items-center w-full lg:justify-center lg:w-1/4">
-              <h1 className="text-2xl dark:text-white font-semibold mb-2">
+              <h1 className="text-2xl dark:text-branco font-semibold mb-2">
                 Foto de perfil
               </h1>
               <img
-                src={changeFoto ? URL.createObjectURL(foto) : "https://hdteste.azurewebsites.net/" + foto}
+                src={changeFoto ? URL.createObjectURL(foto) : "https://hdteste-teste.azurewebsites.net/" + foto}
                 alt="Foto de perfil"
                 className="rounded-full w-52 h-52"
               />
             </div>
             <div className="flex items-center w-full justify-center flex-col px-6 space-y-4 lg:w-3/4 lg:items-start">
-              <p className="dark:text-white font-bold text-xl">
+              <p className="dark:text-branco font-bold text-xl">
                 CNPJ:{" "}
                 <span className="text-gray-500 lg:text-xl font-normal text-lg">
                   {dados.cnpj}
@@ -175,9 +175,9 @@ function PerfilEmpresa() {
                 type="text"
                 id="nome"
                 name="nome"
-                value={dados.nome_empresa}
+                value={dados.nome}
                 onChange={changeDados}
-                className="p-2 dark:text-white dark:bg-transparent dark:border-slate-300  outline-none border-b-2"
+                className="p-2 dark:text-branco dark:bg-transparent dark:border-slate-300  outline-none border-b-2"
               />
             </div>
             <div className="flex flex-col">
@@ -191,7 +191,7 @@ function PerfilEmpresa() {
                 mask="(99) 99999-9999"
                 value={dados.telefone}
                 onChange={changeDados}
-                className="p-2 dark:text-white dark:bg-transparent dark:border-slate-300  outline-none border-b-2"
+                className="p-2 dark:text-branco dark:bg-transparent dark:border-slate-300  outline-none border-b-2"
               />
             </div>
             <div className="flex flex-col">
@@ -202,9 +202,9 @@ function PerfilEmpresa() {
                 type="email"
                 id="email"
                 name="email"
-                value={dados.email_empresa}
+                value={dados.email}
                 onChange={changeDados}
-                className="p-2 dark:text-white dark:bg-transparent dark:border-slate-300  outline-none border-b-2"
+                className="p-2 dark:text-branco dark:bg-transparent dark:border-slate-300  outline-none border-b-2"
               />
             </div>
             <div className="flex flex-col">
@@ -219,7 +219,7 @@ function PerfilEmpresa() {
                 onChange={changeDados}
                 onBlur={checkCEP}
                 mask="99999-999"
-                className="p-2 dark:text-white dark:bg-transparent dark:border-slate-300  outline-none border-b-2"
+                className="p-2 dark:text-branco dark:bg-transparent dark:border-slate-300  outline-none border-b-2"
               />
             </div>
             <div className="flex flex-col">
@@ -230,7 +230,7 @@ function PerfilEmpresa() {
                 type="text"
                 id="rua"
                 value={adress.rua}
-                className="p-2 dark:text-white dark:bg-transparent dark:border-slate-300  outline-none border-b-2"
+                className="p-2 dark:text-branco dark:bg-transparent dark:border-slate-300  outline-none border-b-2"
                 disabled
               />
             </div>
@@ -244,7 +244,7 @@ function PerfilEmpresa() {
                 name="numero_endereco"
                 value={dados.numero_endereco}
                 onChange={changeDados}
-                className="p-2 dark:text-white dark:bg-transparent dark:border-slate-300  outline-none border-b-2"
+                className="p-2 dark:text-branco dark:bg-transparent dark:border-slate-300  outline-none border-b-2"
               />
             </div>
             <div className="flex flex-col">
@@ -255,7 +255,7 @@ function PerfilEmpresa() {
                 type="text"
                 id="estado"
                 value={adress.estado}
-                className="p-2 dark:text-white dark:bg-transparent dark:border-slate-300  outline-none border-b-2"
+                className="p-2 dark:text-branco dark:bg-transparent dark:border-slate-300  outline-none border-b-2"
                 disabled
               />
             </div>
@@ -267,7 +267,7 @@ function PerfilEmpresa() {
                 type="text"
                 id="rua"
                 value={adress.bairro}
-                className="p-2 dark:text-white dark:bg-transparent dark:border-slate-300  outline-none border-b-2"
+                className="p-2 dark:text-branco dark:bg-transparent dark:border-slate-300  outline-none border-b-2"
                 disabled
               />
             </div>

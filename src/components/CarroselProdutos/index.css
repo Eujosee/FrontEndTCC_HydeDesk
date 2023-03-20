@@ -3,3 +3,13 @@
     justify-content: space-between !important;
     align-items: center !important;
 }
+
+.slick-dots li button:before{
+    color: #9ca3af;
+    opacity: 100%;
+}
+
+.slick-dots li.slick-active button:before {
+    color: #374151;
+    opacity: 100%;
+}

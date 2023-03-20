@@ -1,13 +1,12 @@
 import { Link } from "react-router-dom";
-import Iframe from 'react-iframe'
 
 export default function Footer () {
     return(
-    <footer className="p-4 bg-white sm:p-6 dark:bg-gray-900 w-full">
+    <footer className="p-4 bg-white sm:p-6 dark:bg-pretosec w-full">
     <div className="md:flex md:justify-between">
         <div className="mb-6 md:mb-0">
             <Link to="/" className="flex items-center">
-                <span className="self-center text-2xl font-bold whitespace-nowrap dark:text-white"><span className="text-azul-hyde">Hyde</span>Desk</span>
+                <span className="self-center text-2xl font-extrabold whitespace-nowrap dark:text-white"><span className="text-azul-hyde">Hyde</span>Desk</span>
             </Link>
         </div>
         <div className="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
@@ -44,7 +43,7 @@ export default function Footer () {
                         <Link to="#" className="hover:underline">Política de privacidade</Link>
                     </li>
                     <li className="mb-4">
-                        <Link to="https://web.powerva.microsoft.com/environments/Default-b1051c4b-3b94-41ab-9441-e73a72342fdd/bots/new_bot_3e41221dd72148d4b5c14612de784c07/webchat" className="hover:underline">Atendimento Ao cliente</Link>
+                        <Link to="#" className="hover:underline">Atendimento Ao cliente</Link>
                     </li>
                 </ul>
             </div>

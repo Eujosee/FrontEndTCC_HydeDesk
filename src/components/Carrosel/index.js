@@ -3,6 +3,7 @@ import Slider from "react-slick";
 import "./index.css"
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import data from "../../data"
 
 export default function Carrossel() {
     const settings = {
@@ -39,15 +40,13 @@ export default function Carrossel() {
       ]
     }
   return (
-    <div className="">
-        <Slider className="flex justify-center items-center" {...settings}>
-            <Card/>
-            <Card/>
-            <Card/>
-            <Card/>
-            <Card/>
-            <Card/> 
+    <>
+        <Slider className="flex justify-center items-center dark:bg-preto" {...settings}>
+            {data.map((item) => {
+              return(
+              <Card item={item} />)
+            })}
         </Slider>
-    </div> 
+    </> 
   );
 }

@@ -1,6 +1,6 @@
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
-import { AiOutlineConsoleSql, AiOutlineLoading3Quarters } from "react-icons/ai";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import api from "../../api";
@@ -41,23 +41,23 @@ function ListaChamados() {
             <tr
               key={item.id_chamado}
               align="center"
-              className="border-b odd:bg-white even:bg-slate-100 font-medium hover:bg-slate-200"
+              className="border-b odd:bg-white dark:odd:bg-gray-900 even:bg-slate-100 dark:even:bg-gray-800 font-medium hover:bg-slate-200 dark:hover:bg-gray-900"
             >
               {type === "tecnicos" && (
-                <td className="text-lg text-gray-900  px-6 py-4 whitespace-nowrap">
+                <td className="text-lg text-gray-900 dark:text-branco  px-6 py-4 whitespace-nowrap">
                   {item.nome_empresa}
                 </td>
               )}
-              <td className="text-lg text-gray-900 px-6 py-4 whitespace-nowrap">
+              <td className="text-lg text-gray-900 dark:text-branco   px-6 py-4 whitespace-nowrap">
                 {item.nome_funcionario}
               </td>
-              <td className="text-lg text-gray-900 px-6 py-4 whitespace-nowrap">
+              <td className="text-lg text-gray-900 dark:text-branco   px-6 py-4 whitespace-nowrap">
                 {item.problema}
               </td>
-              <td className="text-lg text-gray-900 px-6 py-4 whitespace-nowrap">
+              <td className="text-lg text-gray-900 dark:text-branco   px-6 py-4 whitespace-nowrap">
                 {item.cod_verificacao}
               </td>
-              <td className="text-lg text-gray-900 px-6 py-4 whitespace-nowrap">
+              <td className="text-lg text-gray-900 dark:text-branco   px-6 py-4 whitespace-nowrap">
                 {item.prioridade}
               </td>
               <td
@@ -251,8 +251,6 @@ function ListaChamados() {
     })();
   }, [id, type]);
 
-  console.log(chamadoAceito);
-
   useEffect(() => {
     const totalItems = 8;
     setCurrentPage(0);
@@ -268,7 +266,6 @@ function ListaChamados() {
 
       setPaginationButtons(buttons);
     }
-
     calcPagination();
     genPagination(0, totalItems);
   }, [chamados]); // eslint-disable-line
@@ -276,9 +273,9 @@ function ListaChamados() {
   return (
     <>
       <Header />
-      <div className="flex flex-col min-h-screen overflow-hidden">
+      <div className="flex flex-col min-h-screen overflow-hidden dark:bg-preto">
         <div className="mt-5 px-5 flex flex-col md:flex-row md:space-x-6">
-          <h1 className="text-3xl font-semibold lg:text-3xl">
+          <h1 className="text-3xl font-semibold lg:text-3xl dark:text-branco">
             Lista de chamados
           </h1>
           {type == "funcionarios" && (
@@ -286,7 +283,7 @@ function ListaChamados() {
               to="/abrir-chamado"
               className="w-full md:w-40 rounded-md bg-azul-hyde px-3.5 py-1.5 text-center font-semibold leading-7 text-white shadow-sm hover:bg-cyan-600 "
             >
-              <span className="flex justify-center items-center">
+              <span className="flex justify-center items-cente dark:text-branco">
                 Abrir chamado
               </span>
             </Link>
@@ -295,9 +292,9 @@ function ListaChamados() {
 
         <div className="flex flex-col w-full mt-8 p-5 space-y-4 lg:space-y-0 lg:flex-row lg:space-x-8">
           <div className="w-full lg:w-1/3 flex items-center relative">
-            <label>Pesquisar:</label>
+            <label className="dark:text-gray-50">Pesquisar:</label>
             <input
-              className="focus:outline-none ml-2 focus:border-b-azul-hyde border-b-2 w-full p-2"
+              className="focus:outline-none ml-2 dark:bg-transparent dark:text-gray-50 focus:border-b-azul-hyde border-b-2 w-full p-2"
               placeholder={
                 type == "tecnicos"
                   ? "Nome da empresa"
@@ -316,19 +313,19 @@ function ListaChamados() {
             />
           </div>
           <div className="flex flex-row items-center lg:w-1/3">
-            <label>Filtrar:</label>
+            <label className="dark:text-gray-50">Filtrar:</label>
             <select
-              className="focus:outline-none focus:border-b-azul-hyde ml-2 border-b-2 w-full p-2"
+              className="focus:outline-none dark:bg-transparent dark:text-gray-50 focus:border-b-azul-hyde ml-2 border-b-2 w-full p-2"
               name="status_chamado"
               onChange={changeFiltro}
               required
             >
-              <option selected disabled>
+              <option className="dark:text-branco dark:bg-gray-800 dark:hover:bg-gray-800" selected disabled>
                 Selecione uma opção
               </option>
-              <option value="pendente">Pendente</option>
-              <option value="andamento">Em andamento</option>
-              <option value="concluido">Concluido</option>
+              <option className="dark:text-branco dark:bg-gray-800 dark:hover:bg-gray-800" value="pendente">Pendente</option>
+              <option className="dark:text-branco dark:bg-gray-800 dark:hover:bg-gray-800" value="andamento">Em andamento</option>
+              <option className="dark:text-branco dark:bg-gray-800 dark:hover:bg-gray-100" value="concluido">Concluido</option>
             </select>
           </div>
           <button
@@ -339,7 +336,7 @@ function ListaChamados() {
           </button>
         </div>
 
-        <div className="mx-5 overflow-x-auto overflow-y-hidden rounded-t-xl">
+        <div className="mx-5 my-5 overflow-x-auto overflow-y-hidden rounded-t-xl">
           <table className="min-w-full min-h-fit">
             <thead align="center">
               <tr className="bg-azul-hyde text-slate-50 text-lg font-bold">
@@ -365,7 +362,6 @@ function ListaChamados() {
                   Status
                 </th>
                 <th scope="col" className="px-6 py-4">
-                  Opções
                 </th>
               </tr>
             </thead>
@@ -375,23 +371,23 @@ function ListaChamados() {
               ) : (
                 <tr
                   align="center"
-                  className="border-b odd:bg-white even:bg-slate-100 font-medium hover:bg-slate-200"
+                  className="border-b odd:bg-white dark:odd:bg-preto even:bg-slate-100 dark:even:bg-gray-900 font-medium hover:bg-slate-200"
                 >
                   {type === "tecnicos" && (
-                    <td className="text-lg text-gray-900  px-6 py-4 whitespace-nowrap">
+                    <td className="text-lg text-gray-900 dark:text-branco  px-6 py-4 whitespace-nowrap">
                       {chamadoAceito[0].nome_empresa}
                     </td>
                   )}
-                  <td className="text-lg text-gray-900 px-6 py-4 whitespace-nowrap">
+                  <td className="text-lg text-gray-900 dark:text-branco px-6 py-4 whitespace-nowrap">
                     {chamadoAceito[0].nome_funcionario}
                   </td>
-                  <td className="text-lg text-gray-900 px-6 py-4 whitespace-nowrap">
+                  <td className="text-lg text-gray-900 dark:text-branco px-6 py-4 whitespace-nowrap">
                     {chamadoAceito[0].problema}
                   </td>
-                  <td className="text-lg text-gray-900 px-6 py-4 whitespace-nowrap">
+                  <td className="text-lg text-gray-900 dark:text-branco px-6 py-4 whitespace-nowrap">
                     {chamadoAceito[0].cod_verificacao}
                   </td>
-                  <td className="text-lg text-gray-900 px-6 py-4 whitespace-nowrap">
+                  <td className="text-lg text-gray-900 dark:text-branco px-6 py-4 whitespace-nowrap">
                     {chamadoAceito[0].prioridade}
                   </td>
                   <td
@@ -410,19 +406,19 @@ function ListaChamados() {
           </table>
           {loading && (
             <div className="flex gap-2 items-center justify-center m-auto w-64 mt-10">
-              <AiOutlineLoading3Quarters size={25} className="icon" />
-              <p className=""> Carregando...</p>
+              <AiOutlineLoading3Quarters size={25} className="icon dark:text-gray-50" />
+              <p className="dark:text-gray-50"> Carregando...</p>
             </div>
           )}
 
           {chamados.length < 1 && !loading && !status && (
             <div className="flex gap-2 items-center justify-center m-auto w-64 mt-10">
-              <p className=""> Você não possui chamados.</p>
+              <p className="dark:text-branco"> Você não possui chamados.</p>
             </div>
           )}
           {status && !loading && (
             <div className="flex gap-2 items-center justify-center m-auto w-64 mt-10">
-              <p className="">{status}</p>
+              <p className="dark:text-branco">{status}</p>
             </div>
           )}
         </div>

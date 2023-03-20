@@ -74,24 +74,26 @@ export default function Detalhes() {
 		})();
 	}, []);
 
+	console.log(user)
+
 
 	return (
 		<>
 			<Header />
 			{!loading && (
-				<div className="flex flex-col w-full h-1/4 p-8">
+				<div className="flex flex-col w-full h-1/4 p-8 dark:bg-preto">
 					<div className="mb-5">
 						<AiOutlineArrowLeft
 							size={20}
 							onClick={() => (window.location.href = "/lista-chamados")}
-							className="cursor-pointer"
+							className="cursor-pointer text-gray-900 dark:text-branco"
 						/>
 						<div className="flex flex-col mt-5 justify-start md:flex-row md:space-x-5">
 							<h1 className="text-xl w-auto">
-								<span className="font-bold">Abertura do chamado: </span><span className="text-gray-500">{dataChamado}</span>
+								<span className="font-bold dark:text-branco">Abertura do chamado: </span><span className="text-gray-500">{dataChamado}</span>
 							</h1>
 							<div className="flex flex-row items-center justify-start mt-4 lg:mt-0">
-								<label className="text-xl font-bold w-auto pr-2">
+								<label className="text-xl font-bold w-auto pr-2 dark:text-branco">
 									Protocolo:
 								</label>
 								<p className="text-xl text-gray-500 rounded">
@@ -99,7 +101,7 @@ export default function Detalhes() {
 								</p>
 							</div>
 							<div className="flex flex-row items-center mt-2 lg:mt-0">
-								<label className="text-xl font-bold w-auto pr-2">
+								<label className="text-xl font-bold w-auto pr-2 dark:text-branco">
 									Status:
 								</label>
 								<p
@@ -113,7 +115,7 @@ export default function Detalhes() {
 					</div>
 					<div className="flex flex-col lg:flex-row w-full lg:space-x-10">
 						<div className="flex flex-col w-full lg:w-1/2 mt-5 rounded-lg">
-							<h1 className="font-bold text-md mb-6">Detalhes:</h1>
+							<h1 className="font-bold text-md mb-6 dark:text-branco">Detalhes:</h1>
 							<div className="grid grid-cols-2 gap-x-5 gap-y-5">
 								<div className="flex flex-col">
 									<label className="font-medium text-gray-500">Problema:</label>
@@ -179,7 +181,7 @@ export default function Detalhes() {
 							) : (
 								<input
 									type="text"
-									className="p-2 bg-white"
+									className="p-2 bg-white "
 									value="Este chamado não possui anexo."
 									disabled
 								/>
@@ -187,7 +189,7 @@ export default function Detalhes() {
 						</div>
 						<div className="flex flex-col w-full lg:w-1/2 sm:w-auto mt-5 rounded-lg">
 							<div className="flex flex-col w-full rounded-lg">
-								<h1 className="font-bold text-md mb-6">Empresa:</h1>
+								<h1 className="font-bold text-md mb-6 dark:text-branco">Empresa:</h1>
 								<div className="grid grid-cols-2 gap-x-5 gap-y-5">
 									<div className="flex flex-col">
 										<label className="font-medium text-gray-500">Nome:</label>
@@ -210,7 +212,7 @@ export default function Detalhes() {
 										/>
 									</div>
 									<div className="col-start-1 col-end-3">
-										<h1 className="font-bold text-md  mb-6">Endereço:</h1>
+										<h1 className="font-bold text-md  mb-6 dark:text-branco">Endereço:</h1>
 									</div>
 								</div>
 								<div className="grid grid-cols-2 gap-x-5 gap-y-5">
@@ -277,7 +279,7 @@ export default function Detalhes() {
 									</div>
 								</div>
 								<div className="flex flex-col w-full mt-6 rounded-lg">
-									<h1 className="font-bold text-md mb-6">
+									<h1 className="font-bold text-md mb-6 dark:text-branco">
 										Informações do técnico:
 									</h1>
 									<div className="grid grid-cols-2 gap-x-5 gap-y-5">
