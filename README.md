@@ -27,8 +27,8 @@ O Hyde Desk é uma empresa fundada em 2023 com a intenção de facilitar a busca
 #### Funcionario
 
 Permissão para abrir um chamado e vizualizar os demais
-Login:
-Senha:
+Login:881.870.650-01
+Senha:senha123
 
 <!-- <p align="center">
   <img alt="Tela inicial" src="assets/home.png" width="300" height="600">
@@ -38,8 +38,8 @@ Senha:
 #### Técnico
 
 Permissão para aceitar chamdos e vizualizar os demais
-Login:
-Senha:
+Login:23.431.375/0001-01
+Senha:senha123
 
 <!-- <p align="center">
   <img alt="Tela de participantes" src="assets/ingredientes.png"  width="270" height="600">
@@ -48,8 +48,8 @@ Senha:
 #### Empresa
 
 Cadastra e apaga funcionarios além de vizualizar todos os chamados
-Login:
-Senha:
+Login:juresvaldo123_
+Senha:senha123
 
 <!-- <p align="center">
   <img alt="Tela de carnes" src="assets/preparo.png" width="270" height="600">
