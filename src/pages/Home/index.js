@@ -89,7 +89,7 @@ function HomeComercial() {
 						</p>
 					</div>
 					<button
-						className="fixed bottom-10 right-10 w-16 h-16 rounded-full
+						className="fixed bottom-10 right-12 w-16 h-16 rounded-full
                 bg-azul-hyde flex items-center justify-center"
 						onClick={toggleModal}
 					>
