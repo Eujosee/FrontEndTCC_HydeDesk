@@ -69,12 +69,12 @@ export default function Detalhes() {
 		(async () => {
 			try {
 				const { data } = await api.get("/tecnicos/" + id);
-				setUser({ nome: data.nome, tel: data.telefone });
+				setUser({ nome_tecnico: data.nome_tecnico, tel: data.telefone });
 			} catch (error) { }
 		})();
 	}, []);
 
-	console.log(user)
+	// console.log(user)
 
 
 	return (
@@ -173,7 +173,7 @@ export default function Detalhes() {
 							{data[0].anexo ? (
 								<div className="flex flex-col w-full">
 									<img
-										src={"https://hdteste.azurewebsites.net/" + data[0].anexo}
+										src={"https://hdteste-teste.azurewebsites.net/" + data[0].anexo}
 										className="w-full h-60"
 										alt="anexo do chamado"
 									/>
@@ -288,7 +288,7 @@ export default function Detalhes() {
 											<input
 												type="text"
 												className="p-2 dark:text-white dark:bg-transparent bg-white dark:border-slate-300  outline-none border-b-2 hover:border-b-azul-hyde"
-												value={user.nome}
+												value={user.nome_tecnico}
 												disabled
 											/>
 										</div>
@@ -298,8 +298,6 @@ export default function Detalhes() {
 											</label>
 											<InputMask
 												className="p-2 dark:text-white dark:bg-transparent bg-white dark:border-slate-300  outline-none border-b-2 hover:border-b-azul-hyde"
-												placeholder="CEP"
-												name="cep"
 												mask="(99) 99999-9999"
 												value={user.tel}
 												disabled

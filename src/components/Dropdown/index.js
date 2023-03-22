@@ -35,23 +35,23 @@ export default function Dropdown({ item }) {
   const [estaConcluido, setEstaConcluido] = useState(false);
   const [estaAvaliado, setEstaAvaliado] = useState(false);
 
-  // useEffect(() => {
-  //   async function getConcluido() {
-  //     const response = await api.get(
-  //       `/conclusoes?chamado_id=${item.id_chamado}`
-  //     );
+  useEffect(() => {
+    async function getConcluido() {
+      const response = await api.get(
+        `/conclusoes?chamado_id=${item.id_chamado}`
+      );
 
-  //     if (response.data.length > 0) {
-  //       setEstaConcluido(true);
+      if (response.data.length > 0) {
+        setEstaConcluido(true);
 
-  //       if (response.data[0].num_avaliacao !== null) {
-  //         setEstaAvaliado(true);
-  //       }
-  //     }
-  //   }
+        if (response.data[0].num_avaliacao !== null) {
+          setEstaAvaliado(true);
+        }
+      }
+    }
 
-  //   getConcluido();
-  // }, []);
+    getConcluido();
+  }, []);
 
   return (
     <>
