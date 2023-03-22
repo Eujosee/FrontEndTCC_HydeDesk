@@ -51,5 +51,5 @@ jobs:
         with:
           app-name: 'hydedesk'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_E20CFEADB54A49D780A2571DBF63BDAE }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_9C053E35107C4AADB95DCA0A23C69D21 }}
           package: .
