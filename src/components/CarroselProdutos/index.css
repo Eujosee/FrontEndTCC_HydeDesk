@@ -1,6 +1,6 @@
 .slick-slide > div {
     display: flex !important;
-    justify-content: space-between !important;
+    justify-content: center !important;
     align-items: center !important;
 }
 

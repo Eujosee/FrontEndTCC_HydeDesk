@@ -3,6 +3,7 @@ import Slider from "react-slick";
 import "./index.css"
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import CardServicos from "../CardServicos";
 
 export default function Carrossel() {
     const settings = {
@@ -16,10 +17,15 @@ export default function Carrossel() {
   return (
     <>
         <Slider className="flex justify-center items-center" {...settings}>
-                <img className="p-10 h-1/2 w-full" src={Imagem}/>
-                <img className="p-10 h-1/2 w-full" src={Imagem}/>
-                <img className="p-10 h-1/2 w-full" src={Imagem}/>
-            
+        <CardServicos
+						index={0}
+					/>
+					<CardServicos
+						index={1}
+					/>
+					<CardServicos
+						index={2}
+					/>
         </Slider>
     </> 
   );
