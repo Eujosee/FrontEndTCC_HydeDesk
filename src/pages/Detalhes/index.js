@@ -22,7 +22,8 @@ export default function Detalhes() {
 	});
 
 	useEffect(() => {
-		(async () => {
+
+		async function getDetalhe() {
 			try {
 				const { data } = await api.get("/chamados/" + id);
 				console.log(data);
@@ -37,7 +38,9 @@ export default function Detalhes() {
 			} catch (error) {
 				console.log(error);
 			}
-		})();
+		}
+
+		getDetalhe();
 	}, [id]);
 
 	async function checkCEP(cep) {
@@ -72,7 +75,7 @@ export default function Detalhes() {
 				setUser({ nome_tecnico: data.nome_tecnico, tel: data.telefone });
 			} catch (error) { }
 		})();
-	}, []);
+	}, []); // eslint-disable-line
 
 	// console.log(user)
 
