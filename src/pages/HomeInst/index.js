@@ -67,7 +67,7 @@ function HomeInstitucional() {
 						<Carrossel />
 					</div>
 				</div>
-				<div className="w-full flex flex-row justify-evenly items-center py-10 px-10 lg:py-24 bg-slate-100 dark:bg-gray-900">
+				<div className="w-full flex flex-row justify-evenly items-center py-10 px-10 lg:py-24 bg-slate-200 dark:bg-gray-900">
 					<div>
 						<h1 className="font-semibold text-2xl lg:text-3xl dark:text-branco">
 							Ficou interessado?

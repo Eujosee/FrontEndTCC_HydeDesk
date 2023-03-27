@@ -108,14 +108,6 @@ const data = [
         Linkedin:"https://www.linkedin.com/in/nathaly-ferreira-90073921b",
     },
     {
-        Foto: "https://drive.google.com/uc?id=1KD4wMQ9uERXqMynkLd5LDXPXUT63ZmD6",
-        Nome: "Paulo Henrique",
-        Atuacao: "Front-End, Projetos e Pesquisas",
-        Github: "https://github.com/Paulo-HSO",
-        Linkedin:"https://www.linkedin.com/in/paulo-henrique-oliveira-97733921b",
-    },
-
-    {
         Foto: "https://drive.google.com/uc?id=1Pl4357FGEFsek886FwoiD67K9rxkozfD",
         Nome: "Rafael Brambila",
         Atuacao: "Front-end, Back-End, Banco de dados, Midia",

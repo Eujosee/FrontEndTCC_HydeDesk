@@ -25,7 +25,7 @@ function HomeComercial() {
 				<div className="w-full">
 					<img className="w-full" src={ImagemFloppa1} alt="" />
 				</div>
-				<div className="py-14 flex flex-col justify-center items-center">
+				<div className="py-8 mb-10 flex flex-col justify-center items-center">
 					<h1 className="font-bold text-2xl dark:text-white">Soluções</h1>
 					<div className="max-w-full">
 						<Carrossel />
@@ -34,11 +34,7 @@ function HomeComercial() {
 				<div className="w-full h-90">
 					<img className="w-full" src={ImagemFloppa2} alt="" />
 				</div>
-				<div className=" py-14 flex flex-col justify-center items-center w-full">
-					<h1 className="mb-5 font-bold text-2xl dark:text-white">
-						Serviços
-					</h1>
-				</div>
+				
 				<div className="w-full flex flex-row justify-evenly items-center py-10 px-10 lg:py-24 bg-slate-200 dark:bg-gray-900">
 					<p className="max-w-lg text-lg leading-relaxed text-justify text-gray-600 dark:text-branco">
 						Nosso sistema de suporte técnico é a solução ideal para empresas
@@ -56,9 +52,9 @@ function HomeComercial() {
 						alt="Duas pessoas dando as mãos ao fazerem negocíos"
 					/>
 				</div>
-				<div className=" py-14 flex flex-col justify-center items-center">
+				<div className=" py-8 flex flex-col justify-center items-center">
 					<h1 className="mb-5 font-bold text-2xl dark:text-white">
-						Diferenciais
+						Planos
 					</h1>
 					<div className="max-w-full md:w-3/4 md:p-x-10">
 						<div class="hidden md:grid md:grid-cols-2 md:gap-10 ">
