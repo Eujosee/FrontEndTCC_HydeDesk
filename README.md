@@ -66,14 +66,3 @@ Instale as dependências com [![npm version](https://img.shields.io/npm/v/react-
 
 ```
 $ npm install 
-```
-
-Teste o aplicativo no seu celular usando o expo:
-
-```
-$ expo start 
-```
-
----
-
-Feito com ♥ by Cookeats :wave:
