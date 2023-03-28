@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
 import { Dialog, Transition } from "@headlessui/react";
-import { Fragment, useState, useEffect } from "react";
+import { Fragment, useState } from "react";
 import api from "../../api";
 
-export default function ModalConclusao({ open, onClose, dataChamado }) {
+export default function ModalConclusao({ open, onClose, dataChamado}) {
   const [nomeTecnico, setNomeTecnico] = useState("");
   const id = JSON.parse(localStorage.getItem("Id"));
-  
+    
   useEffect(() => {
     async function getNomeTecnico() {
       if (id === null) {
@@ -22,19 +22,9 @@ export default function ModalConclusao({ open, onClose, dataChamado }) {
     getNomeTecnico();
   }, [id]);
 
-      try {
-        const response = await api.get(
-          "conclusoes?chamado_id=" + dataChamado.id_chamado
-        );
-        console.log(response);
-      } catch (error) {
-        console.log(error);
-      }
-    }
-    getDados()
-  }, []);
   if (!open) return null;
 
+  let data = dataChamado;
   const dataHora = dataChamado.data.split("T");
   let d = dataHora[0];
   d = d.split("-");
@@ -83,7 +73,7 @@ export default function ModalConclusao({ open, onClose, dataChamado }) {
                         <input
                           type="text"
                           className="bg-gray-300 rounded w-full  h-10 pl-4 shadow"
-                          // value={data.descricao}
+                          value={data.descricao}
                           disabled
                         />
                       </div>
@@ -108,7 +98,7 @@ export default function ModalConclusao({ open, onClose, dataChamado }) {
                           value=""
                           disabled
                         />
-                      </div>
+                      </div>    
                     </div>
 
                     <div className="flex">
@@ -121,14 +111,14 @@ export default function ModalConclusao({ open, onClose, dataChamado }) {
                           disabled
                         />
                       </div>
-                      {/* {data.anexo && (
+                      {data.anexo && (
                         <div className="flex flex-col w-full  ">
                           <label className="font-medium text-gray-500">
                             Anexo:
                           </label>
                           <img src="" className="w-full h-60" alt="" />
                         </div>
-                      )} */}
+                      )}
                     </div>
                   </div>
                 </div>
