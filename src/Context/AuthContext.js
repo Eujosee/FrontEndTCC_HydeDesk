@@ -13,7 +13,7 @@ function AuthProvider({ children }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const activeToken = secureLocalStorage.getItem("Token");
+    const activeToken = localStorage.getItem("Token");
 
     console.log(activeToken)
 
@@ -30,7 +30,7 @@ function AuthProvider({ children }) {
       case "cpf":
         try {
           const { data } = await api.post("/tecnicos/login", user);
-          secureLocalStorage.setItem("Token", JSON.stringify(data.token));
+          localStorage.setItem("Token", JSON.stringify(data.token));
           secureLocalStorage.setItem("Id", JSON.stringify(data.id));
           secureLocalStorage.setItem("Tipo", JSON.stringify(data.tipo));
           api.defaults.headers.Authorization = `Bearer ${data.token}`;
@@ -50,7 +50,7 @@ function AuthProvider({ children }) {
       case "cnpj":
         try {
           const { data } = await api.post("/empresas/login", user);
-          secureLocalStorage.setItem("Token", JSON.stringify(data.token));
+          localStorage.setItem("Token", JSON.stringify(data.token));
           secureLocalStorage.setItem("Id", JSON.stringify(data.id));
           secureLocalStorage.setItem("Tipo", JSON.stringify(data.tipo));
           api.defaults.headers.Authorization = `Bearer ${data.token}`;
@@ -72,7 +72,7 @@ function AuthProvider({ children }) {
         try {
           const { data } = await api.post("/funcionarios/login", user);
 
-          secureLocalStorage.setItem("Token", JSON.stringify(data.token));
+          localStorage.setItem("Token", JSON.stringify(data.token));
           secureLocalStorage.setItem("Id", JSON.stringify(data.id));
           secureLocalStorage.setItem("Tipo", JSON.stringify(data.tipo));
           api.defaults.headers.Authorization = `Bearer ${data.token}`;
@@ -97,7 +97,7 @@ function AuthProvider({ children }) {
 
   function handleLogout() {
     setAuthenticated(false);
-    secureLocalStorage.removeItem("Token");
+    localStorage.removeItem("Token");
     secureLocalStorage.removeItem("Id");
     secureLocalStorage.removeItem("Tipo");
     api.defaults.headers.Authorization = undefined;

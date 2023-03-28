@@ -3,17 +3,19 @@ import api from "../../api";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import secureLocalStorage from "react-secure-storage";
+import { EyeDropperIcon } from "@heroicons/react/20/solid";
 
 function PerfilFuncionario() {
   const id = JSON.parse(secureLocalStorage.getItem("Id"));
   const [foto, setFoto] = useState();
   const [changeFoto, setChangeFoto] = useState("");
   const [dados, setDados] = useState({
-    nome: "",
+    nome_funcionario: "",
+    email_funcionario: "",
     usuario: "",
-    matricula: "",
-    senha: "",
+    matricula: "", 
   });
+
   const changeDados = (e) => {
     setDados({
       ...dados,
@@ -24,6 +26,7 @@ function PerfilFuncionario() {
     setFoto(e.target.files[0]);
     setChangeFoto(e.target.files[0]);
   };
+ 
   const handleEdit = async (e) => {
     e.preventDefault();
     if (foto) {
@@ -31,15 +34,17 @@ function PerfilFuncionario() {
         headers: { "content-type": "multipart/form-data" },
       };
       let formData = new FormData();
-      formData.append("nome", dados.nome);
+      formData.append("nome", dados.nome_funcionario);
       formData.append("usuario", dados.usuario);
       formData.append("foto", changeFoto);
+      console.log(foto)
       try {
         const { data } = await api.put(
           "/funcionarios/editar/" + id,
           formData,
           config
         );
+        // console.log(data)
         toast.success("Dados alterada com sucesso", {
           position: toast.POSITION.TOP_RIGHT,
         });
@@ -47,6 +52,7 @@ function PerfilFuncionario() {
         toast.error("Não foi possível alterar seus dados", {
           position: toast.POSITION.TOP_RIGHT,
         });
+        console.log(error)
       }
     }}
 
@@ -55,8 +61,8 @@ function PerfilFuncionario() {
       const { data } = await api.get("/funcionarios?id_funcionario=" + id);
       console.log(data);
       setDados({
-        nome: data[0].nome_funcionario,
-        email: data[0].email_funcionario,
+        nome_funcionario: data[0].nome_funcionario,
+        email_funcionario: data[0].email_funcionario,
         usuario: data[0].usuario,
         matricula: data[0].matricula,
       });
@@ -65,7 +71,7 @@ function PerfilFuncionario() {
   }, [id]);
   return (
     <div className=" dark:bg-preto pb-20 pt-10">
-      <div className="flex flex-col w-full lg:flex-row items-center justify-center">
+      <div className="flex flex-col w-full h-screen lg:flex-row items-center justify-center">
         <div className="w-full px-5 md:px-10 lg:w-8/12 h-full dark:text-branco dark:border-white border-r-2 border-gray-900">
           <div>
             <h1 className="font-bold text-3xl">Meu perfil</h1>
@@ -98,7 +104,7 @@ function PerfilFuncionario() {
               <p className="dark:text-branco font-bold text-xl">
                 Email:{" "}
                 <span className="lg:text-xl font-normal text-lg">
-                  {dados.email}
+                  {dados.email_funcionario}
                 </span>{" "}
               </p>
               <label
@@ -123,8 +129,8 @@ function PerfilFuncionario() {
                 <input
                   type="text"
                   id="nome"
-                  name="nome"
-                  value={dados.nome}
+                  name="nome_funcionario"
+                  value={dados.nome_funcionario}
                   onChange={changeDados}
                   className="p-2 dark:text-branco dark:bg-transparent dark:border-slate-300  outline-none border-b-2"
                 />

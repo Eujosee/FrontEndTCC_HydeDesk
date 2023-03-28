@@ -1,70 +1,68 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## <img align="center" alt="Carneats" title="Carneats" src="/src/images/icon.png" width="160"/> 
 
-## Available Scripts
 
-In the project directory, you can run:
+<p align="center">
+  <a href="#-tecnologias">Tecnologias</a>&nbsp;|&nbsp;
+  <a href="#-projeto">Projeto</a>&nbsp;|&nbsp;
+  <a href="#-layout">Layout</a>
+</p>
 
-### `npm start`
+## 🚀 Tecnologias
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Esse projeto foi desenvolvido com as seguintes tecnologias:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- React  `Versão:18.2.0`
+- JavaScript     `Versão:EC6`
+- Axios           `Versão:1.3.2`
+- tailwindcss           `Versão:3.2.4`
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 💻 Projeto
 
-### `npm run build`
+O Hyde Desk é uma empresa fundada em 2023 com a intenção de facilitar a busca pela manutenção dentro de diversas empresas.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 🔖 Funções
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+#### Funcionario 
+<br>
+Permissão para abrir um chamado e vizualizar os demais<br>
+Login:881.870.650-01<br>
+Senha:senha123
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+<!-- <p align="center">
+  <img alt="Tela inicial" src="assets/home.png" width="300" height="600">
+</p> -->
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+#### Técnico
+<br>
+Permissão para aceitar chamdos e vizualizar os demais<br>
+Login:23.431.375/0001-01<br>
+Senha:senha123
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+<!-- <p align="center">
+  <img alt="Tela de participantes" src="assets/ingredientes.png"  width="270" height="600">
+</p> -->
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+#### Empresa
+<br>
+Cadastra e apaga funcionarios além de vizualizar todos os chamados<br>
+Login:juresvaldo123_<br>
+Senha:senha123
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+<!-- <p align="center">
+  <img alt="Tela de carnes" src="assets/preparo.png" width="270" height="600">
+</p> -->
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
+### [`Clique aqui para vizualizar o prototipo do projeto`](https://www.figma.com/file/3xKN9Vn4YH1X81rvFD3l1V/teste-de-hard-desk?node-id=0-1&t=LTfoPIScmKGwmaos-0)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## :memo: Rodando a aplicação
 
-### Analyzing the Bundle Size
+Instale as dependências com [![npm version](https://img.shields.io/npm/v/react-native-maps.svg?style=flat)](https://docs.npmjs.com/getting-started):
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```
+$ npm install 

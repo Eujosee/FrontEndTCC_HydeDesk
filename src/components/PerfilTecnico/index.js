@@ -11,14 +11,14 @@ function PerfilTecnico() {
   const [foto, setFoto] = useState("");
   const [changeFoto, setChangeFoto] = useState("");
   const [dados, setDados] = useState({
-    nome: "",
+    nome_tecnico: "",
     cpf: "",
-    email: "",
+    email_tecnico: "",
     especialidade: "",
     telefone: "",
     senha: "",
   });
-  console.log(changeFoto);
+  
   const changeDados = (e) => {
     setDados({
       ...dados,
@@ -41,9 +41,9 @@ function PerfilTecnico() {
         headers: { "content-type": "multipart/form-data" },
       };
       let formData = new FormData();
-      formData.append("nome", dados.nome);
+      formData.append("nome", dados.nome_tecnico);
       formData.append("cpf", dados.cpf.replace(/[^0-9]+/g, ""));
-      formData.append("email", dados.email);
+      formData.append("email", dados.email_tecnico);
       formData.append("telefone", dados.telefone.replace(/[^0-9]+/g, ""));
       formData.append("especialidade", dados.especialidade);
       formData.append("foto", changeFoto);
@@ -52,10 +52,13 @@ function PerfilTecnico() {
 
       try {
         const { data } = await api.put(
+          
           "/tecnicos/editar/" + id,
           formData,
           config
+          
         );
+        
         toast.success("Dados alterados com sucesso", {
           position: toast.POSITION.TOP_RIGHT,
         });
@@ -138,7 +141,7 @@ function PerfilTecnico() {
               <input
                 type="text"
                 id="nome"
-                name="nome"
+                name="nome_tecnico"
                 value={dados.nome_tecnico}
                 onChange={changeDados}
                 className="p-2 dark:text-branco dark:bg-transparent dark:border-slate-300  outline-none border-b-2"
@@ -167,7 +170,7 @@ function PerfilTecnico() {
               <input
                 type="email"
                 id="email"
-                name="email"
+                name="email_tecnico"
                 value={dados.email_tecnico}
                 onChange={changeDados}
                 className="p-2 dark:text-branco dark:bg-transparent dark:border-slate-300  outline-none border-b-2"
