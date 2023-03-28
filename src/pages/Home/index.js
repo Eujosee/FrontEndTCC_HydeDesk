@@ -9,6 +9,7 @@ import { BsChat } from "react-icons/bs";
 import ModalChatBot from "../../components/ModalChatBot";
 import { useState } from "react";
 import CardServicos from "../../components/CardServicos";
+import CardPlano from "../../components/CardPlano";
 
 function HomeComercial() {
 	const [modal, setModal] = useState(false);
@@ -22,17 +23,14 @@ function HomeComercial() {
 			<ModalChatBot open={modal} onClose={toggleModal} />
 			<Header />
 			<div className="flex flex-col w-full min-h-screen overflow-x-hidden dark:bg-preto ">
-				<div className="w-full">
-					<img className="w-full" src={ImagemFloppa1} alt="" />
+				<div className="flex items-center justify-center w-full h-[32rem] bg-gray-900">
+					<h1 className="dark:text-white text-3xl font-bold">Em andamento...</h1>
 				</div>
 				<div className="py-8 mb-10 flex flex-col justify-center items-center">
-					<h1 className="font-bold text-2xl dark:text-white">Soluções</h1>
+					<h1 className="font-bold text-4xl dark:text-white">Soluções</h1>
 					<div className="max-w-full">
 						<Carrossel />
 					</div>
-				</div>
-				<div className="w-full h-90">
-					<img className="w-full" src={ImagemFloppa2} alt="" />
 				</div>
 				
 				<div className="w-full flex flex-row justify-evenly items-center py-10 px-10 lg:py-24 bg-slate-200 dark:bg-gray-900">
@@ -53,26 +51,14 @@ function HomeComercial() {
 					/>
 				</div>
 				<div className=" py-8 flex flex-col justify-center items-center">
-					<h1 className="mb-5 font-bold text-2xl dark:text-white">
+					<h1 className="font-bold text-4xl dark:text-white">
 						Planos
 					</h1>
-					<div className="max-w-full md:w-3/4 md:p-x-10">
-						<div class="hidden md:grid md:grid-cols-2 md:gap-10 ">
-							<div className="flex justify-center bg-slate-300 shadow-md rounded-xl p-32">
-								<h1>card</h1>
-							</div>
-							<div className="flex justify-center bg-slate-300 shadow-md rounded-xl p-32">
-								<h1>card</h1>
-							</div>
-							<div className="flex justify-center bg-slate-300 shadow-md rounded-xl p-32">
-								<h1>card</h1>
-							</div>
-							<div className="flex justify-center bg-slate-300 shadow-md rounded-xl p-32">
-								<h1>card</h1>
-							</div>
-						</div>
-						<div className="[@media(min-width:768px)]:hidden">
-							<CardDiferenciais />
+					<div className="max-w-full lg:w-3/4 m-auto p-8">
+						<div class="flex flex-col flex-wrap md:flex-row gap-10 w-full justify-center items-center">
+							<CardPlano index={0}/>
+							<CardPlano index={1}/>
+							<CardPlano index={2}/>
 						</div>
 					</div>
 				</div>

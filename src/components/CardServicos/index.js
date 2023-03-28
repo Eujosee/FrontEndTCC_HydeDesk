@@ -9,9 +9,8 @@ const img = {
 
 
 function CardServicos({index}) {
-    console.log(img)
     return (
-        <div className="bg-branco dark:bg-gray-800 flex flex-col w-[90%] h-[40rem] lg:h-[35rem] mt-8 p-4 lg:w-[60rem] justify-center items-center rounded-xl lg:p-8"  >
+        <div className="bg-branco dark:bg-gray-800 flex flex-col w-[90%] h-[40rem] lg:h-[40rem] mt-8 p-4 lg:w-[70rem] justify-center items-center rounded-xl lg:p-8">
             <div className='w-full'>
                 <h1 className="text-azul-hyde font-bold pl-4 text-4xl text-start mb-2">{data[index].titulo}</h1>
             </div>
