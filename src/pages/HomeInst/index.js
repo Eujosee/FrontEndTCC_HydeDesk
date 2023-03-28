@@ -56,7 +56,7 @@ function HomeInstitucional() {
 						</div>
 					</div>
 				</div>
-				<div className="flex items-center w-full  h-[15rem] md:h-[20rem] lg:h-[36rem] overflow-hidden">
+				<div className="flex items-center w-full  h-[15rem] md:h-[20rem] lg:h-[50rem] overflow-hidden">
 					<img className="object-cover bottom-20 w-full" src={FotoTurma} alt="" />
 				</div>
 				<div className=" py-14 flex flex-col justify-center items-center">
@@ -98,7 +98,7 @@ function HomeInstitucional() {
 					{/* <a href="https://storyset.com/people">People illustrations by Storyset</a> */}
 				</div>
 				<button
-					className="fixed bottom-10 right-10 w-16 h-16 rounded-full
+					className="fixed bottom-10 right-12 w-16 h-16 rounded-full
                 bg-azul-hyde flex items-center justify-center shadow-md"
 					onClick={toggleModal}
 				>

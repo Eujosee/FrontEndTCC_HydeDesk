@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState, useEffect } from "react";
 import api from "../../api";
@@ -6,16 +6,21 @@ import api from "../../api";
 export default function ModalConclusao({ open, onClose, dataChamado }) {
   const [nomeTecnico, setNomeTecnico] = useState("");
   const id = JSON.parse(localStorage.getItem("Id"));
-  const [dadosConcluir, setDadosConcluir] = useState("");
-
+  
   useEffect(() => {
-    async function getDados() {
+    async function getNomeTecnico() {
+      if (id === null) {
+        return
+      }
+
       try {
         const { data } = await api.get("/tecnicos/" + id);
         setNomeTecnico(data.nome);
-      } catch (error) {
-        console.log(error);
-      }
+      } catch (error) {}
+    }
+
+    getNomeTecnico();
+  }, [id]);
 
       try {
         const response = await api.get(

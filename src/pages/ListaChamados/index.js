@@ -21,6 +21,7 @@ function ListaChamados() {
     status_chamado: "",
     empresa: "",
   });
+
   const type = JSON.parse(secureLocalStorage.getItem("Tipo"));
   const id = JSON.parse(secureLocalStorage.getItem("Id"));
 
@@ -108,6 +109,14 @@ function ListaChamados() {
   }
 
   async function getChamadoAceito() {
+    if (id === null || type === null) {
+      return;
+    }
+
+    if (type !== "tecnicos") {
+      return;
+    }
+
     try {
       const response = await api.get(
         `/chamados?status_chamado=andamento&tecnico_id=${id}`
@@ -201,17 +210,17 @@ function ListaChamados() {
     e.preventDefault();
     try {
       if (filtro.empresa !== "") {
-        if (type == "tecnicos") {
+        if (type === "tecnicos") {
           const { data } = await api.get(
             "/chamados?nome_empresa=" + filtro.empresa + "&empresa_id=" + id
           );
           setChamados(data);
-        } else if (type == "empresas") {
+        } else if (type === "empresas") {
           const { data } = await api.get(
             "/chamados?nome_funcionario=" + filtro.empresa + "&empresa_id=" + id
           );
           setChamados(data);
-        } else if (type == "funcionarios") {
+        } else if (type === "funcionarios") {
           const { data } = await api.get(
             "/chamados?cod_verificacao=" + filtro.empresa + "&empresa_id=" + id
           );
@@ -220,20 +229,24 @@ function ListaChamados() {
       }
     } catch (error) {}
   };
+
   useEffect(() => {
     getChamadoAceito();
-    (async () => {
+
+    async function getChamados() {
+      if (id === null || type === null) {
+        return;
+      }
+
       try {
         switch (type) {
           case "empresas":
             const { data } = await api.get("/chamados?empresa_id=" + id);
-
             setChamados(data);
             setLoading(false);
             break;
           case "funcionarios":
             const response = await api.get("/chamados?funcionario_id=" + id);
-            console.log(response.data);
             setChamados(response.data);
             setLoading(false);
             break;
@@ -248,8 +261,10 @@ function ListaChamados() {
       } catch (error) {
         setStatus("Erro ao buscar seus chamados!");
       }
-    })();
-  }, [id, type]);
+    }
+
+    getChamados();
+  }, [id, type]); // eslint-disable-line
 
   useEffect(() => {
     const totalItems = 8;
@@ -266,6 +281,7 @@ function ListaChamados() {
 
       setPaginationButtons(buttons);
     }
+
     calcPagination();
     genPagination(0, totalItems);
   }, [chamados]); // eslint-disable-line
@@ -320,12 +336,31 @@ function ListaChamados() {
               onChange={changeFiltro}
               required
             >
-              <option className="dark:text-branco dark:bg-gray-800 dark:hover:bg-gray-800" selected disabled>
+              <option
+                className="dark:text-branco dark:bg-gray-800 dark:hover:bg-gray-800"
+                selected
+                disabled
+              >
                 Selecione uma opção
               </option>
-              <option className="dark:text-branco dark:bg-gray-800 dark:hover:bg-gray-800" value="pendente">Pendente</option>
-              <option className="dark:text-branco dark:bg-gray-800 dark:hover:bg-gray-800" value="andamento">Em andamento</option>
-              <option className="dark:text-branco dark:bg-gray-800 dark:hover:bg-gray-100" value="concluido">Concluido</option>
+              <option
+                className="dark:text-branco dark:bg-gray-800 dark:hover:bg-gray-800"
+                value="pendente"
+              >
+                Pendente
+              </option>
+              <option
+                className="dark:text-branco dark:bg-gray-800 dark:hover:bg-gray-800"
+                value="andamento"
+              >
+                Em andamento
+              </option>
+              <option
+                className="dark:text-branco dark:bg-gray-800 dark:hover:bg-gray-100"
+                value="concluido"
+              >
+                Concluido
+              </option>
             </select>
           </div>
           <button
@@ -361,8 +396,7 @@ function ListaChamados() {
                 <th scope="col" className="px-6 py-4">
                   Status
                 </th>
-                <th scope="col" className="px-6 py-4">
-                </th>
+                <th scope="col" className="px-6 py-4"></th>
               </tr>
             </thead>
             <tbody>
@@ -406,7 +440,10 @@ function ListaChamados() {
           </table>
           {loading && (
             <div className="flex gap-2 items-center justify-center m-auto w-64 mt-10">
-              <AiOutlineLoading3Quarters size={25} className="icon dark:text-gray-50" />
+              <AiOutlineLoading3Quarters
+                size={25}
+                className="icon dark:text-gray-50"
+              />
               <p className="dark:text-gray-50"> Carregando...</p>
             </div>
           )}
