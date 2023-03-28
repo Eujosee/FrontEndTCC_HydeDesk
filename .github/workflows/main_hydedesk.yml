@@ -14,20 +14,20 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v2
 
       - name: Set up Node.js version
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v1
         with:
           node-version: '18.x'
 
       - name: npm install, build, and test
         run: |
-          npm install --legacy-peer-deps
+          npm install --force
           npm run build --if-present
 
       - name: Upload artifact for deployment job
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v2
         with:
           name: node-app
           path: .
@@ -51,5 +51,5 @@ jobs:
         with:
           app-name: 'hydedesk'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_0AC623DD094E4CC891EC5ADFB513CA56 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_E0D32A0582A44FE7A1AF3EC6560315FD }}
           package: .
