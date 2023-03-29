@@ -1,8 +1,9 @@
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
-import ImagemFloppa1 from "../../images/floppa1.png";
+// import ImagemFloppa1 from "../../images/floppa1.png";
 import ImagemFloppa2 from "../../images/floppa2.png";
 import Business from "../../images/Business-amico.svg";
+import Principal from "../../images/possivel-principal.jpg"
 import Carrossel from "../../components/CarroselProdutos";
 import CardDiferenciais from "../../components/CardDiferenciais";
 import { BsChat } from "react-icons/bs";
@@ -17,7 +18,6 @@ function HomeComercial() {
 	function toggleModal() {
 		setModal(!modal);
 	}
-
 	return (
 		<>
 			<ModalChatBot open={modal} onClose={toggleModal} />

@@ -88,7 +88,7 @@ function PerfilFuncionario() {
                 src={
                   changeFoto
                     ? URL.createObjectURL(foto)
-                    : "https://hdteste-teste.azurewebsites.net/" + foto
+                    : "https://hydedesk-api.azurewebsites.net/" + foto
                 }
                 alt="Foto de perfil"
                 className="rounded-full w-52 h-52"

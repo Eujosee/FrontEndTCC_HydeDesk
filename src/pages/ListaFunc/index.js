@@ -189,7 +189,7 @@ function ListaFunc() {
                   >
                     <td className="flex grow-0 flex-row items-center space-y-8 text-lg text-gray-900 dark:text-branco px-6 py-4 whitespace-nowrap">
                       <img
-                        src={"https://hdteste-teste.azurewebsites.net/" + item.foto}
+                        src={"https://hydedesk-api.azurewebsites.net/" + item.foto}
                         alt="Foto"
                         className="h-10 w-10 text-gray-600 mr-4 rounded-full"
                       />
