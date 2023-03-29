@@ -67,6 +67,3 @@ Instale as dependências com [![npm version](https://img.shields.io/npm/v/react-
 ```
 $ npm install 
 ```
-
-
-

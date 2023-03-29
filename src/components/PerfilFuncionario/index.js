@@ -71,7 +71,7 @@ function PerfilFuncionario() {
   }, [id]);
   return (
     <div className=" dark:bg-preto pb-20 pt-10">
-      <div className="flex flex-col w-full lg:flex-row items-center justify-center">
+      <div className="flex flex-col w-full h-screen lg:flex-row items-center justify-center">
         <div className="w-full px-5 md:px-10 lg:w-8/12 h-full dark:text-branco dark:border-white border-r-2 border-gray-900">
           <div>
             <h1 className="font-bold text-3xl">Meu perfil</h1>
