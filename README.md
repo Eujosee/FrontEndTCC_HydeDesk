@@ -26,8 +26,8 @@ O Hyde Desk é uma empresa fundada em 2023 com a intenção de facilitar a busca
 
 #### Funcionario
 
-Permissão para abrir um chamado e vizualizar os demais
-Login:881.870.650-01
+Permissão para abrir um chamado e visualizar os demais
+Login:felipin
 Senha:senha123
 
 <!-- <p align="center">
@@ -37,8 +37,8 @@ Senha:senha123
 
 #### Técnico
 
-Permissão para aceitar chamdos e vizualizar os demais
-Login:23.431.375/0001-01
+Permissão para aceitar chamdos e visualizar os demais
+Login:967.687.948-76
 Senha:senha123
 
 <!-- <p align="center">
@@ -47,8 +47,8 @@ Senha:senha123
 
 #### Empresa
 
-Cadastra e apaga funcionarios além de vizualizar todos os chamados
-Login:juresvaldo123_
+Cadastra e apaga funcionarios além de visualizar todos os chamados
+Login:53.643.641/0001-20
 Senha:senha123
 
 <!-- <p align="center">
@@ -58,7 +58,7 @@ Senha:senha123
 
 
 
-### [`Clique aqui para vizualizar o prototipo do projeto`](https://www.figma.com/file/3xKN9Vn4YH1X81rvFD3l1V/teste-de-hard-desk?node-id=0-1&t=LTfoPIScmKGwmaos-0)
+### [`Clique aqui para visualizar o prototipo do projeto`](https://www.figma.com/file/3xKN9Vn4YH1X81rvFD3l1V/teste-de-hard-desk?node-id=0-1&t=LTfoPIScmKGwmaos-0)
 
 ## :memo: Rodando a aplicação
 
@@ -68,12 +68,5 @@ Instale as dependências com [![npm version](https://img.shields.io/npm/v/react-
 $ npm install 
 ```
 
-Teste o aplicativo no seu celular usando o expo:
 
-```
-$ expo start 
-```
 
----
-
-Feito com ♥ by Cookeats :wave:

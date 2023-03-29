@@ -1,8 +1,9 @@
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
-import ImagemFloppa1 from "../../images/floppa1.png";
+// import ImagemFloppa1 from "../../images/floppa1.png";
 import ImagemFloppa2 from "../../images/floppa2.png";
 import Business from "../../images/Business-amico.svg";
+import Principal from "../../images/possivel-principal.jpg"
 import Carrossel from "../../components/CarroselProdutos";
 import CardDiferenciais from "../../components/CardDiferenciais";
 import { BsChat } from "react-icons/bs";
@@ -21,8 +22,8 @@ function HomeComercial() {
 				<ModalChatBot open={modal} onClose={toggleModal} />
 				<Header />
 				<div className="flex flex-col w-full min-h-screen overflow-x-hidden dark:bg-preto ">
-					<div className="w-full">
-						<img className="w-full" src={ImagemFloppa1} alt="" />
+					<div className="flex items-center justify-center w-full h-[15rem] lg:h-[32rem] blur-[1px] overflow-hidden relative">
+						<img className="w-full" src={Principal} alt="" />
 					</div>
 					<div className="py-14 flex flex-col justify-center items-center">
 						<h1 className="font-bold text-2xl dark:text-white">Produtos</h1>
@@ -58,7 +59,7 @@ function HomeComercial() {
 							alt="Duas pessoas dando as mãos ao fazerem negocíos"
 						/>
 					</div>
-					<div className=" py-14 flex flex-col justify-center items-center">
+					{/* <div className=" py-14 flex flex-col justify-center items-center">
 						<h1 className="mb-5 font-bold text-2xl dark:text-white">
 							Diferenciais
 						</h1>
@@ -81,7 +82,7 @@ function HomeComercial() {
 								<CardDiferenciais />
 							</div>
 						</div>
-					</div>
+					</div> */}
 					<div className="w-full flex flex-col justify-center items-center py-32 bg-slate-200 dark:bg-gray-900">
 						<p className="text-lg text-justify p-5 semi-bold dark:text-branco">
 							“Os clientes se lembram de um bom atendimento durante muito mais

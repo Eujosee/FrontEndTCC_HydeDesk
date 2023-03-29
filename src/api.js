@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "https://hdteste-teste.azurewebsites.net/",
+  baseURL: "https://hydedesk-api.azurewebsites.net/",
 });
 
 export default api;
