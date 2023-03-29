@@ -176,8 +176,8 @@ export default function Detalhes() {
 							{data[0].anexo ? (
 								<div className="flex flex-col w-full">
 									<img
-										src={"https://hdteste-teste.azurewebsites.net/" + data[0].anexo}
-										className="w-full h-60"
+										src={"https://hydedesk-api.azurewebsites.net/" + data[0].anexo}
+										className="w-full object-cover"
 										alt="anexo do chamado"
 									/>
 								</div>

@@ -73,7 +73,7 @@ function AbrirChamado() {
         Abrir um chamado
       </h1>
 
-      <div className="sm:mt-12 sm:flex sm:flex-col lg:grid lg:grid-cols-2 lg:gap-x-10 lg:gap-y-2">
+      <div className="mt-0 flex flex-col p-6 gap-y-5 lg:mt-12 lg:grid lg:grid-cols-2 lg:gap-x-10 lg:gap-y-2">
         <div>
           <label className="text-lg font-medium text-gray-900 dark:text-branco">Problema *</label>
           <select
@@ -91,7 +91,7 @@ function AbrirChamado() {
           </select>
         </div>
 
-        <div className="">
+        <div>
           <label className="text-lg font-medium text-gray-900  dark:text-branco">
             Prioridade *
           </label>
@@ -111,7 +111,7 @@ function AbrirChamado() {
           </select>
         </div>
 
-        <div className="">
+        <div>
           <label className="text-lg font-medium text-gray-900 dark:text-branco">
             Patrimônio *
           </label>
@@ -134,7 +134,7 @@ function AbrirChamado() {
           />
         </div>
         <div className="grid col-span-2">
-          <div className="mt-2 ">
+          <div>
             <label className="text-lg font-medium text-gray-900 dark:text-branco">
               Descrição
             </label>
@@ -147,7 +147,7 @@ function AbrirChamado() {
 
             />
           </div>
-          <div className="mt-1 ">
+          <div className="mt-6 md:mt-1 ">
             <div className="flex flex-row">
               <label className="text-lg font-medium text-gray-900 dark:text-branco">Anexo</label>
               <p

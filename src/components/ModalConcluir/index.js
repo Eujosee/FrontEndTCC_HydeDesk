@@ -18,7 +18,9 @@ export default function ModalSuspender({ open, onClose, id }) {
         let formData = new FormData()
         formData.append("anexo", imagem)
         formData.append("descricao", descricao)
-
+        
+        console.log(descricao)
+        console.log(imagem)
         try {
             const { data } = await api.put("/chamados/concluir/" + id, formData, config)
             console.log(data.message)

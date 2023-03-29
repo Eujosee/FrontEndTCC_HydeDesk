@@ -5,14 +5,8 @@ import { text } from "@fortawesome/fontawesome-svg-core";
 import { FaStar } from "react-icons/fa";
 import Rating from "../Estrelas"
 
-export default function ModalAvaliacao({ open, onClose, dataChamado }) {
-  // const [descricao, setDescricao] = useState();
-  // const [anexo, setAnexo] = useState();
-
-
-
+export default function ModalAvaliacao({ open, onClose}) {
   if (!open) return null;
-  let data = dataChamado;
 
   return (
     <Transition appear show={open} as={Fragment}>
@@ -30,7 +24,7 @@ export default function ModalAvaliacao({ open, onClose, dataChamado }) {
         </Transition.Child>
 
         <div className="fixed inset-0 overflow-y-auto">
-          <div className="flex min-h-full items-center justify-center p-4 text-center">
+          <div className="flex max-w-screen z-50 min-h-full items-center justify-center text-center">
             <Transition.Child
               as={Fragment}
               enter="ease-out duration-300"
@@ -40,22 +34,18 @@ export default function ModalAvaliacao({ open, onClose, dataChamado }) {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <Dialog.Panel className="w-full md:w-1/4 transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+              <Dialog.Panel className="flex flex-col transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
                 <Dialog.Title
                   as="h3"
                   className="flex justify-center text-lg font-medium leading-6 text-gray-900"
                 >
                   Avaliação
                 </Dialog.Title>
-                <div className="flex items-center justify-center">
-                  <div className="flex flex-col items-center h-1/2 font-Poppins justify-center p-8">
-                    <div className="flex items-center w-full media pt-4">
-                      <div className="w-full items-center flex ex-col space-y-4 data1">
+                    <div className="flex items-center w-full justify-center">
+                      <div className="w-full flex justify-center ">
                         <Rating />
                       </div>
                     </div>
-                  </div>
-                </div>
 
                 <div className="mt-4 space-x-5">
                   <button

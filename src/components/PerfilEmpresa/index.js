@@ -145,9 +145,9 @@ function PerfilEmpresa() {
                 Foto de perfil
               </h1>
               <img
-                src={changeFoto ? URL.createObjectURL(foto) : "https://hdteste-teste.azurewebsites.net/" + foto}
+                src={changeFoto ? URL.createObjectURL(foto) : "https://hydedesk-api.azurewebsites.net/" + foto}
                 alt="Foto de perfil"
-                className="rounded-full w-52 h-52"
+                className="rounded-full w-52 h-52 object-cover"
               />
             </div>
             <div className="flex items-center w-full justify-center flex-col px-6 space-y-4 lg:w-3/4 lg:items-start">

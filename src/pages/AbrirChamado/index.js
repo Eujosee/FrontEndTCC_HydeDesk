@@ -7,7 +7,7 @@ function Cadastro() {
 
   return (
 		<>
-			<div className="flex w-screen h-screen items-center dark:text-branco  dark:bg-preto  ">
+			<div className="flex w-screen min-h-screen md:h-screen items-center dark:text-branco  dark:bg-preto  ">
 				<div className="flex w-full items-center">
 					<div className="hidden w-2/6 h-screen lg:flex lg:flex-col bg-azul-claro-hyde dark:bg-azul-hyde justify-center items-center no-underline">
 						<Link to="/">
@@ -23,8 +23,8 @@ function Cadastro() {
 						/>
 					</div>
 					<div className="flex flex-col w-full h-full items-center overflow-y-auto">
-						<div className="flex w-full lg:mt-11 lg:px-20 px-10 items-start justify-start">
-							<Link className=" no-underline text-black dark:text-branco " to={"/"}>
+						<div className="flex w-full mt-10 lg:px-20 px-10 items-start justify-start">
+							<Link className=" no-underline text-black dark:text-branco " to="/lista-chamados">
 								<AiOutlineArrowLeft size={20} />
 							</Link>
 						</div>

@@ -82,7 +82,7 @@ export default function Dropdown({ item }) {
         onClose={() => setIsOpenConcluir(false)}
       />
 
-      <Menu as="div" className="relative z-50 inline-block text-left">
+      <Menu as="div" className="relative z-10 inline-block text-left">
         <Float placement="bottom-end" offset={4} portal>
           <div>
             <Menu.Button

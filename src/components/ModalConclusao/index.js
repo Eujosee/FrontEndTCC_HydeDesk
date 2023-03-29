@@ -2,25 +2,27 @@ import React, { useEffect } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
 import api from "../../api";
+import { AiOutlineArrowLeft } from "react-icons/ai";
 
 export default function ModalConclusao({ open, onClose, dataChamado}) {
   const [nomeTecnico, setNomeTecnico] = useState("");
   const id = JSON.parse(localStorage.getItem("Id"));
     
-  useEffect(() => {
-    async function getNomeTecnico() {
-      if (id === null) {
-        return
-      }
+  // useEffect(() => {
+  //   async function getNomeTecnico() {
+  //     if (id === null) {
+  //       return
+  //     }
 
-      try {
-        const { data } = await api.get("/tecnicos/" + id);
-        setNomeTecnico(data.nome);
-      } catch (error) {}
-    }
+  //     try {
+  //       const { data } = await api.get("/tecnicos/" + id);
+  //       setNomeTecnico(data.nome);
+        
+  //     } catch (error) {}
+  //   }
 
-    getNomeTecnico();
-  }, [id]);
+  //   getNomeTecnico();
+  // }, [id]);
 
   if (!open) return null;
 
@@ -59,68 +61,65 @@ export default function ModalConclusao({ open, onClose, dataChamado}) {
               <Dialog.Panel className="w-full md:w-1/2 transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
                 <Dialog.Title
                   as="h3"
-                  className="flex justify-center text-lg leading-6 text-gray-900 font-bold"
+                  className="flex text-lg items-center justify-center leading-6 text-gray-900 font-bold"
                 >
-                  Conclusão - {dateCall}
+                    <button className="md:hidden" onClick={onClose}>
+								      <AiOutlineArrowLeft size={20} />
+                    </button>
+                  <span className="ml-5 md:m-0 w-full ">Conclusão - {dateCall}</span>
                 </Dialog.Title>
-                <div className="flex w-full media pt-4">
-                  <div className="w-full flex flex-col space-y-4 data1">
-                    <div className=" w-full flex space-x-2">
-                      <div className="flex flex-col w-full ">
+                <div className="flex flex-col gap-y-4 md:grid md:grid-cols-2 md:gap-x-10 md:gap-y-4 w-full pt-4">
+                      <div className="flex flex-col">
                         <label className="font-medium text-gray-500">
                           Descrição
                         </label>
                         <input
                           type="text"
-                          className="bg-gray-300 rounded w-full  h-10 pl-4 shadow"
+                          className="focus:outline-none hover:border-b-azul-hyde border-b-2 p-2"
                           value={data.descricao}
                           disabled
                         />
                       </div>
-                      <div className="flex flex-col w-full">
+                      <div className="flex flex-col">
                         <label className="font-medium text-gray-500">
                           Tecnico Responsavel
                         </label>
                         <input
                           type="text"
-                          className="bg-gray-300 rounded w-full h-10 pl-4 shadow"
+                          className="focus:outline-none hover:border-b-azul-hyde border-b-2 p-2"
                           value={nomeTecnico}
                           disabled
                         />
                       </div>
-                      <div className="flex flex-col w-full">
+                      <div className="flex flex-col">
                         <label className="font-medium text-gray-500">
                           Avaliação
                         </label>
                         <input
                           type="text"
-                          className="bg-gray-300 rounded h-10 pl-4 shadow"
+                          className="focus:outline-none hover:border-b-azul-hyde border-b-2 p-2"
                           value=""
                           disabled
                         />
                       </div>    
-                    </div>
-
-                    <div className="flex">
-                      <div className="flex flex-col w-full pr-10">
+                    
+                      <div className="flex flex-col w-full">
                         <label className="font-medium text-gray-500">
                           Detalhes da Avaliação
                         </label>
-                        <textarea
-                          className="bg-gray-300 rounded h-60 pt-2 pl-4 shadow"
+                        <input
+                          className="focus:outline-none hover:border-b-azul-hyde border-b-2 p-2"
                           disabled
                         />
                       </div>
                       {data.anexo && (
-                        <div className="flex flex-col w-full  ">
+                        <div className="col-span-2">
                           <label className="font-medium text-gray-500">
                             Anexo:
                           </label>
-                          <img src="" className="w-full h-60" alt="" />
+                          <img src={"https://hydedesk-api.azurewebsites.net/" + data.anexo} className=" object-cover w-full overflow-auto" alt="" />
                         </div>
                       )}
-                    </div>
-                  </div>
                 </div>
               </Dialog.Panel>
             </Transition.Child>

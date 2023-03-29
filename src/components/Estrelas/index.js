@@ -1,7 +1,6 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Rating from "@mui/material/Rating";
-import Typography from "@mui/material/Typography";
 
 export default function BasicRating() {
   const [value, setValue] = React.useState(2);
@@ -12,20 +11,23 @@ export default function BasicRating() {
         "& > legend": { mt: 2 },
       }}
     >
-      <Rating
-        name="Avaliação"
-        value={value}
-        onChange={(event, newValue) => {
-          setValue(newValue);
-        }}
-      />
+      <div className="flex justify-center">
+        <Rating
+          name="Avaliação"
+          size="large"
+          value={value}
+          onChange={(event, newValue) => {
+            setValue(newValue);
+          }}
+        />
+      </div>
 
       {value < 3 && (
-        <div className="flex flex-col w-full">
+        <div className="flex justify-center flex-col pt-3">
           <label className="font-medium text-gray-500">
             Detalhes da Avaliação
           </label>
-          <textarea className="bg-gray-300 rounded h-36 pt-2 pl-4 shadow" />
+          <input className="w-80 focus:outline-none focus:border-b-azul-hyde border-b-2 p-2" />
         </div>
       )}
     </Box>
