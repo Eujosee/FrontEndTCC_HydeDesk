@@ -287,8 +287,8 @@ export default function Header() {
         <Dialog.Panel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white dark:bg-gray-800 px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
           <div className="flex items-center justify-between">
             <Link to="/" className="-m-1.5 p-1.5">
-              <h1 className="font-extrabold text-3xl w-auto text-azul-hyde">
-                Hyde<span className="dark:text-white">Desk</span>
+              <h1 className="font-extrabold text-3xl w-auto dark:text-branco">
+                Hyde<span className="text-azul-hyde">Desk</span>
               </h1>
             </Link>
             <button
