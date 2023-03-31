@@ -3,39 +3,46 @@ import { useState, useContext } from "react";
 import Imagemcad from "../../images/loginamico.svg"
 import api from "../../api";
 import { Context } from "../../Context/AuthContext";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Form() {
 	const navigate = useNavigate()
-  const [label, setLabel] = useState("tecnicos");
-  const [email, setEmail] = useState("");
-  const { handleLogin, status } = useContext(Context);
+	const [label, setLabel] = useState("tecnicos");
+	const [email, setEmail] = useState("");
+	const { handleLogin, status } = useContext(Context);
 
-  const handleChange = (event) => {
-    setLabel(event.target.value);
-  };
+	const handleChange = (event) => {
+		setLabel(event.target.value);
+	};
 
-  function goToConfirmarToken(values){
-	navigate("confirmar-token",	{state: {token: values, tipoTabela : label, email: email}} )
-  }
-  
-  async function receberEmail(){
-	const data = {
-		toemail: email,
-		tipoTabela: label
+	function goToConfirmarToken(values) {
+		navigate("confirmar-token", { state: { token: values, tipoTabela: label, email: email } })
 	}
-	try{
-		const response = await api.post("/email", data);
 
-		console.log(response)
-		if(response.data.token){
-			goToConfirmarToken(response.data.token)
+	async function receberEmail() {
+		const data = {
+			toemail: email,
+			tipoTabela: label
 		}
-	}catch(error){
-		console.log(error)
+		console.log(data)
+		try {
+			const response = await api.post("/email", data);
+
+			console.log(response)
+			if (response.data.token) {
+				goToConfirmarToken(response.data.token)
+			}
+		} catch (error) {
+			console.log(error)
+			toast.error("E-mail não cadastrado!", {
+				position: toast.POSITION.TOP_RIGHT
+			})
+		}
 	}
-  }
-  return (
+	return (
 		<div className="bg-white px-10 py-10 dark:bg-preto">
+			<ToastContainer />
 			<div>
 				<div className="sm:px-0 lg:px-8 mb-10 justify-center items-center">
 					<p className="font-semibold text-lg text-center dark:text-branco">
