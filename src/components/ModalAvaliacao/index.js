@@ -3,9 +3,9 @@ import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
 import { text } from "@fortawesome/fontawesome-svg-core";
 import { FaStar } from "react-icons/fa";
-import Rating from "../Estrelas"
+import Rating from "../Estrelas";
 
-export default function ModalAvaliacao({ open, onClose}) {
+export default function ModalAvaliacao({ open, onClose, dataChamado }) {
   if (!open) return null;
 
   return (
@@ -41,27 +41,10 @@ export default function ModalAvaliacao({ open, onClose}) {
                 >
                   Avaliação
                 </Dialog.Title>
-                    <div className="flex items-center w-full justify-center">
-                      <div className="w-full flex justify-center ">
-                        <Rating />
-                      </div>
-                    </div>
-
-                <div className="mt-4 space-x-5">
-                  <button
-                    type="button"
-                    className="inline-flex justify-center rounded-md border border-transparent bg-green-100 px-4 py-2 text-sm font-medium text-green-900 hover:bg-green-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-                    onClick={onClose}
-                  >
-                    Enviar
-                  </button>
-                  <button
-                    type="button"
-                    className="inline-flex justify-center rounded-md border border-transparent bg-red-100 px-4 py-2 text-sm font-medium text-red-900 hover:bg-red-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-                    onClick={onClose}
-                  >
-                    Cancelar
-                  </button>
+                <div className="flex items-center w-full justify-center">
+                  <div className="w-full flex justify-center ">
+                    <Rating id={dataChamado.id_chamado} />
+                  </div>
                 </div>
               </Dialog.Panel>
             </Transition.Child>

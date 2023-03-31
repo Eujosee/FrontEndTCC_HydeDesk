@@ -59,6 +59,7 @@ export default function Dropdown({ item }) {
       <ModalAvaliacao
         open={IsOpenAvaliacao}
         dataChamado={item}
+        
         onClose={() => setIsOpenAvaliacao(false)}
       />
       <ModalCancelar
