@@ -10,7 +10,7 @@ export default function CardPagamento() {
 
   return (
     <div className="w-full max-w-lg">
-      <div className="w-full mb-10">
+      <div className="w-full mb-5 md:mb-10">
         <label className="text-lg font-medium text-gray-900 dark:text-branco">
           Forma de pagamento
         </label>
@@ -38,9 +38,9 @@ export default function CardPagamento() {
 
       <div
         data-pag={pagamento}
-        className="data-[pag=Credito]:md:grid data-[pag=Debito]:md:grid hidden flex-col md:grid-cols-2 md:gap-x-5 md:gap-y-5"
+        className="data-[pag=Credito]:grid data-[pag=Debito]:grid hidden grid-cols-1 md:grid-cols-2 md:gap-x-5 gap-y-5"
       >
-        <div className="w-full col-span-2">
+        <div className="w-full md:col-span-2">
           <label className="text-lg font-medium text-gray-900 dark:text-branco">
             Número do cartão
           </label>
@@ -67,7 +67,7 @@ export default function CardPagamento() {
             type="int"
           />
         </div>
-        <div className="w-full col-span-2">
+        <div className="w-full md:col-span-2">
           <label className="text-lg font-medium text-gray-900 dark:text-branco">
             Nome do titular
           </label>
@@ -78,7 +78,7 @@ export default function CardPagamento() {
         </div>
         <div
           data-pag={pagamento}
-          className="w-full data-[pag=Debito]:col-span-2"
+          className="w-full data-[pag=Debito]:md:col-span-2"
         >
           <label className="text-lg font-medium text-gray-900 dark:text-branco">
             CPF
@@ -126,7 +126,7 @@ export default function CardPagamento() {
       >
         <img src={Qrcode} alt="QrCode" />
         <h1 className="text-lg font-semibold dark:text-gray-50">
-          Leia o código QR para realizar o pagamento!
+          Leia o QRcode para realizar o pagamento!
         </h1>
       </div>
     </div>
