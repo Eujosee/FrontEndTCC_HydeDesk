@@ -34,18 +34,25 @@ export default function ModalAvaliacao({ open, onClose, dataChamado }) {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <Dialog.Panel className="flex flex-col transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+              <Dialog.Panel className="flex flex-col transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all dark:bg-gray-800">
                 <Dialog.Title
                   as="h3"
-                  className="flex justify-center text-lg font-medium leading-6 text-gray-900"
+                  className="flex justify-center text-lg font-medium leading-6 text-gray-900 dark:text-gray-50"
                 >
                   Avaliação
                 </Dialog.Title>
                 <div className="flex items-center w-full justify-center">
                   <div className="w-full flex justify-center ">
-                    <Rating id={dataChamado.id_chamado} />
+                    <Rating id={dataChamado.id_chamado} onClose={onClose} />
                   </div>
                 </div>
+                <button
+                  type="button"
+                  className="inline-flex justify-center rounded-md border border-transparent bg-red-100 px-4 py-2 text-sm font-medium text-red-900 hover:bg-red-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                  onClick={onClose}
+                >
+                  Cancelar
+                </button>
               </Dialog.Panel>
             </Transition.Child>
           </div>

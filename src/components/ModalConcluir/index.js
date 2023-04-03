@@ -67,33 +67,33 @@ export default function ModalSuspender({ open, onClose, id }) {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+              <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all dark:bg-gray-800">
                 <Dialog.Title
                   as="h1"
-                  className="text-lg text-center font-semibold  text-gray-900"
+                  className="text-lg text-center font-semibold  text-gray-900 dark:text-gray-100"
                 >
                   Concluir atendimento
                 </Dialog.Title>
                 <div className="mt-2">
-                  <p className="text-sm text-gray-500 text-justify">
+                  <p className="text-sm text-gray-500 text-justify dark:text-gray-100">
                     Antes de concluir, nos informe os detalhes do serviço e, caso necessário, envie um anexo.
                   </p>
                 </div>
                 <form encType="multipart/form">
                 <div className="mt-5">
-                  <label className="text-md font-medium leading-6 text-gray-900">Detalhes</label>
+                  <label className="text-md font-medium leading-6 text-gray-900 dark:text-gray-100">Detalhes</label>
                   <input
                     type="text"
-                    className="focus:outline-none focus:border-azul-hyde border-b-2 w-full p-2"
+                    className="focus:outline-none focus:border-azul-hyde border-b-2 w-full p-2 dark:bg-transparent dark:text-gray-100"
                     placeholder="Detalhes"
                     onChange={(e) => [setDescricao(e.target.value)]}
                   />
                 </div>
                 <div className="mt-5">
-                  <label className="text-md font-medium leading-6 text-gray-900">Anexo</label>
+                  <label className="text-md font-medium leading-6 text-gray-900 dark:text-gray-100">Anexo</label>
                   <input
                     type="file"
-                    className="focus:outline-none focus:border-azul-hyde placeholder:text-sm border-b-2 w-full p-2"
+                    className="focus:outline-none focus:border-azul-hyde placeholder:text-sm border-b-2 w-full p-2 dark:text-gray-100"
                     ref={fileInput}
                     accept=".png, .jpg, .jpeg"
                     onChange={(e) => setImagem(e.target.files[0])}
