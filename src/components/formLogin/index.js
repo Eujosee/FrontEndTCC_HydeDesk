@@ -25,8 +25,6 @@ function Form() {
     }
   };
 
-  console.log(label)
-
   const handleChange = (event) => {
     setLabel(event.target.value);
   };

@@ -6,6 +6,7 @@ import Login from "./pages/Login";
 import Cadastro from "./pages/Cadastro";
 import CadastroFunc from "./pages/CadastroFunc";
 import Perfil from "./pages/Perfil";
+import Pagamento from "./pages/Pagamento";
 import RecuperarSenha from "./pages/RecuperaSenha";
 import Detalhes from "./pages/Detalhes";
 import ListaFunc from "./pages/ListaFunc";
@@ -37,6 +38,7 @@ const Rotas = () => {
           <Route path="/" element={<Home />} />
           <Route path="/institucional" element={<HomeInst />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/pagamento/:plano" element={<Pagamento />} />
           <Route
             path="/detalhes/:id"
             element={

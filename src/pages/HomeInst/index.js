@@ -9,10 +9,13 @@ import { Link } from "react-router-dom";
 import Imagemfinal from "../../images/Nerd-amico.svg";
 import { BsChat } from "react-icons/bs";
 import ModalChatBot from "../../components/ModalChatBot";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function HomeInstitucional() {
   const [modal, setModal] = useState(false);
+   useEffect(() => {
+     window.scrollTo(0, 0);
+   }, []);
 
 	function toggleModal() {
 		setModal(!modal);

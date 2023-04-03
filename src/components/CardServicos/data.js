@@ -8,16 +8,12 @@ export const data = [{
             texto: "Impressoras, scanners ou dispositivos de armazenamento externo.",
         },
         {
-            label: "Segurança:",
-            texto: "Sujeitos a problemas de segurança, como ataques de hackers ou malware.",
-        },
-        {
-            label: "Energia:",
-            texto: "Impressoras, scanners ou dispositivos de armazenamento externo.",
+            label: "Máquina não reconhece os periféricos:",
+            texto: "Você usou o seu computador ontem. Ele estava funcionando perfeitamente. Você o liga hoje e ele simplesmente não reconhece o seu teclado, seu mouse, webcam ou impressora. ",
         },
         {
             label: "Compatibilidade :",
-            texto: "Impressoras, scanners ou dispositivos de armazenamento externo.",
+            texto: "Diferentes componentes podem não ser compatíveis uns com os outros.",
         },
     ],
     img: 'hardware',
@@ -27,11 +23,11 @@ export const data = [{
     exemplos: [
         {
             label: "Crash:",
-            texto: "Um dos tipos de erro mais comuns e por vezes mais perigosos que podem ocorrer, em que o aplicativo para de funcionar.",
+            texto: "Um dos tipos de erro mais comuns e por vezes mais perigosos que podem ocorrer em que o aplicativo para de funcionar.",
         },
         {
-            label: "Erro funcional:",
-            texto: "Quando algo errado e o comportamento do software for diferente do esperado, chamamos isso de erro funcional.",
+            label: "Buffer Overflow:",
+            texto: "Quando o envio de dados para o sistema de gestão operacional é excessivo e além do limite, pode ocorrer o Buffer Overflow. O que é isso? É uma falha pode prejudicar o software da empresa e o armazenamento de dados da mesma.",
         },
         {
             label: "Bugs com a segurança:",
@@ -46,7 +42,7 @@ export const data = [{
     exemplos: [
         {
             label: "Problemas nos cabos:",
-            texto: "Pontos de conexão ruins e fios com defeito também podem comprometer a qualidade das conexões entre os componentes.",
+            texto: "Conexões mal feitas podem comprometer a conectividade do equipamento na rede.",
         },
         {
             label: "Rede Wi-Fi não se conecta:",
@@ -54,7 +50,7 @@ export const data = [{
         },
         {
             label: "Placa de Rede Defeituosa:",
-            texto: "Mesmo que você já tenha verificado os cabos e a wi-fi mas ainda não consegue se conectar, é possível que o problema esteja na placa de rede.",
+            texto: "Mesmo que você já tenha verificado os cabos e a rede wi-fi, mas ainda não consiga se conectar, é possível que o problema esteja na placa de rede.",
         },
     ],
     img: 'redes',
