@@ -1,5 +1,5 @@
-.icon{
-    animation: spin 1s linear infinite;
+.icon {
+  animation: spin 1s linear infinite;
 }
 
 @keyframes spin {
