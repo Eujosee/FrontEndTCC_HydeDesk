@@ -101,9 +101,9 @@ const router = createBrowserRouter([
   {
     path: "/cadastro-funcionario",
     element: (
-      <EmpresaPrivateRoutes>
+      
         <CadastroFuncionario />
-      </EmpresaPrivateRoutes>
+      
     ),
   },
   {
