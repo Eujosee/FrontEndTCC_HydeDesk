@@ -7,11 +7,13 @@ import "react-toastify/dist/ReactToastify.css";
 export default function ModalAceitar({ open, onClose, ids, navigate }) {
   if (!open) return null;
 
-  async function handleAceitar() {
+  async function handleAceitar(e) {
     e.preventDefault();
 
     try {
-      await api.put("/chamados/aceitar/" + ids.id_chamado, ids);
+      await api.put("/chamados/aceitar/" + ids.id_chamado, {
+        tecnico_id: ids.tecnico_id,
+      });
 
       toast.success("Chamado aceito com sucesso!");
 
