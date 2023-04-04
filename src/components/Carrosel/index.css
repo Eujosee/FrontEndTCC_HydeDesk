@@ -1,15 +1,15 @@
 .slick-slide > div {
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
 }
 
-.slick-dots li button:before{
-    color: #9ca3af;
-    opacity: 100%;
+.slick-dots li button:before {
+  color: #9ca3af;
+  opacity: 100%;
 }
 
 .slick-dots li.slick-active button:before {
-    color: #374151;
-    opacity: 100%;
+  color: #374151;
+  opacity: 100%;
 }
