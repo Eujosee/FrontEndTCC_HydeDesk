@@ -1,4 +1,4 @@
-import CardAbrirChamado from "../../components/CardAbrirChamado";
+import FormAbrirChamado from "../../components/FormAbrirChamado";
 import Imagem from "../../images/imageCAD.svg";
 import { Link } from "react-router-dom";
 import { AiOutlineArrowLeft } from "react-icons/ai";
@@ -31,7 +31,7 @@ export default function AbrirChamado() {
               </Link>
             </div>
             <div className="h-4/5">
-              <CardAbrirChamado />
+              <FormAbrirChamado />
             </div>
           </div>
         </div>

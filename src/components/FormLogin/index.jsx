@@ -31,7 +31,6 @@ function Form() {
 
   return (
     <div className="bg-white px-10 py-10 dark:bg-preto">
-      <div>
         <div className="sm:px-0 sm:shrink lg:px-8">
           <p className="font-semibold text-lg dark:text-branco">Entrar como:</p>
           <div className="flex flex-row">
@@ -97,6 +96,7 @@ function Form() {
                 ? label.toUpperCase()
                 : "Usuário"
             }
+            autoCapitalize="false"
             name="cpf"
             value={usuario}
             onChange={(e) => setUsuario(e.target.value)}
@@ -118,6 +118,7 @@ function Form() {
           </label>
           <input
             type="password"
+            autoCapitalize="false"
             className="focus:outline-none focus:border-azul-hyde dark:bg-preto dark:text-branco  border-b-2 w-full p-2"
             ref={senha}
             placeholder="Senha"
@@ -147,7 +148,6 @@ function Form() {
             <p className="ml-2 text-azul-hyde font-semibold mb-1">Cadastrar</p>
           </Link>
         </div>
-      </div>
     </div>
   );
 }

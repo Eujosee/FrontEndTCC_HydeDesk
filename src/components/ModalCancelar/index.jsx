@@ -5,7 +5,7 @@ import api from "../../services/api";
 export default function ModalCancelar({ open, onClose, id }) {
   if (!open) return null;
 
-  async function handleCancel() {
+  async function handleCancel(e) {
     e.preventDefault();
 
     try {

@@ -5,12 +5,31 @@ import Team from "../../images/Team-page-amico.svg";
 import CarrosselProdutos from "../../components/CarroselProdutos";
 import { BsChat } from "react-icons/bs";
 import ModalChatBot from "../../components/ModalChatBot";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import CardPlano from "../../components/CardPlano";
 import { Link } from "react-router-dom";
+import Typed from "typed.js";
+import "./index.css"
 
 export default function HomeComercial() {
   const [modal, setModal] = useState(false);
+  const el = useRef(null)
+
+  useEffect(() => {
+    const typed = new Typed(el.current, {
+      strings: ["Bem vindo à HydeDesk!"], // Strings to display
+      startDelay: 300,
+      typeSpeed: 80,
+      backSpeed: 100,
+      backDelay: 100,
+      loop: true,
+    });
+
+    // Destropying
+    return () => {
+      typed.destroy();
+    };
+  }, []);
 
   function toggleModal() {
     setModal(!modal);
@@ -26,9 +45,9 @@ export default function HomeComercial() {
       <Header />
       <div className="w-full flex flex-row justify-evenly items-center py-10 px-10 lg:py-24 bg-slate-200 dark:bg-gray-900">
         <div className="flex flex-col gap-y-6">
-          <h1 className="dark:text-white text-4xl font-semibold">
-            Bem vindo à <span className="text-azul-hyde">Hyde</span>Desk!
-          </h1>
+          <div className="flex flex-row">
+          <h1 ref={el} className="dark:text-white text-4xl font-semibold"></h1>
+          </div>
           <p className="max-w-lg text-lg leading-relaxed text-justify text-gray-600 dark:text-branco">
             Agradecemos pela sua visita e ficamos felizes em apresentar nosso
             projeto. Conheça mais sobre a história desse TCC e da nossa equipe

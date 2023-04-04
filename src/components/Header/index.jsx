@@ -1,4 +1,4 @@
-import { Fragment, useState, useContext } from "react";
+import { Fragment, useState, useContext, useEffect } from "react";
 import { Dialog, Disclosure, Popover, Transition } from "@headlessui/react";
 import {
   Bars3Icon,
@@ -14,6 +14,7 @@ import { Link } from "react-router-dom";
 import { Context } from "../../context/AuthContext";
 import secureLocalStorage from "react-secure-storage";
 import ButtonDark from "../ButtonDark";
+import api from "../../services/api";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -21,12 +22,34 @@ function classNames(...classes) {
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [foto, setFoto] = useState(null)
   const type = JSON.parse(secureLocalStorage.getItem("Tipo"));
+  const id = JSON.parse(secureLocalStorage.getItem("Id"))
+
+  useEffect(() => {
+    (async () => {
+      switch (type) {
+        case "empresas":
+           await api.get("/empresas/" + id).then(response => setFoto(response.data.foto))
+          break;
+        case "tecnicos":
+          await api.get("/tecnicos/" + id).then(response => setFoto(response.data.foto))
+          break;
+        case "funcionarios":
+          await api.get("/funcionarios/" + id).then(response => setFoto(response.data.foto))
+          break;
+        default:
+          break;
+      }
+    })()
+  },[])
+
+  console.log(foto)
 
   const { authenticated, handleLogout } = useContext(Context);
 
   return (
-    <header className="bg-white dark:bg-gray-800 sticky w-full z-10 top-0 left-0 shadow-md">
+    <header className="bg-white dark:bg-gray-800 sticky w-full z-50 top-0 left-0 shadow-md">
       <nav
         className="flex max-w-full items-center justify-between p-6 lg:px-8"
         aria-label="Global"
@@ -396,22 +419,24 @@ export default function Header() {
                 )}
               </div>
               {!authenticated ? (
-                <div className="py-6">
+                <div className="py-6 flex flex-row justify-between">
                   <Link
                     to="/login"
                     className="-mx-3 block rounded-lg py-2.5 px-3 text-base font-semibold leading-7 text-gray-900 dark:text-branco hover:bg-gray-50 dark:hover:bg-gray-900"
                   >
                     Login
                   </Link>
+                  <ButtonDark/>
                 </div>
               ) : (
-                <div className="py-6">
+                <div className="py-6 flex flex-row justify-between">
                   <button
-                    className="-mx-3 block rounded-lg py-2.5 px-3 text-base font-semibold leading-7 text-gray-900 dark:text-branco hover:bg-gray-50 dark:hover:bg-gray-900"
+                    className="-mx-3 rounded-lg py-2.5 px-3 text-base font-semibold leading-7 text-gray-900 dark:text-branco hover:bg-gray-50 dark:hover:bg-gray-900"
                     onClick={() => handleLogout()}
                   >
                     Sair
                   </button>
+                  <ButtonDark/>
                 </div>
               )}
             </div>

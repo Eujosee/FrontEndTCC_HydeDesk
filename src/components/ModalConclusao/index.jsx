@@ -122,7 +122,7 @@ export default function ModalConclusao({ open, onClose, dataChamado }) {
                         src={
                           "https://hydedesk-api.azurewebsites.net/" + data.anexo
                         }
-                        className=" object-cover w-full overflow-auto"
+                        className="object-scale-down h-60 w-full overflow-auto"
                         alt=""
                       />
                     </div>

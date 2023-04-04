@@ -42,8 +42,6 @@ export function AuthProvider({ children }) {
           toast.error(error.response.data.message, {
             position: toast.POSITION.TOP_RIGHT,
           });
-          // setStatus(error.response.data.message);
-          console.log(error);
         }
         break;
       case "cnpj":

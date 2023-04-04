@@ -3,12 +3,11 @@ import api from "../../services/api";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import secureLocalStorage from "react-secure-storage";
+import { data } from "autoprefixer";
 
-export default function CardAbrirChamado() {
+export default function FormAbrirChamado() {
   const id = JSON.parse(secureLocalStorage.getItem("Id"));
   const [imagem, setImagem] = useState("");
-  const [message, setMessage] = useState("");
-  const [messageErro, setMessageErro] = useState("");
   const [abrirChamado, setAbrirChamado] = useState({
     problema: "",
     prioridade: "",
@@ -17,7 +16,6 @@ export default function CardAbrirChamado() {
     descricao: "",
     funcionario_id: id,
   });
-  console.log(abrirChamado);
 
   const changeChamado = (e) => {
     setAbrirChamado({
@@ -47,12 +45,10 @@ export default function CardAbrirChamado() {
         toast.success(data.message, {
           position: toast.POSITION.TOP_RIGHT,
         });
-        setMessage(data);
       } catch (error) {
-        toast.success(error, {
+        toast.error(error.response.data.message, {
           position: toast.POSITION.TOP_RIGHT,
         });
-        setMessageErro(error);
       }
     } else {
       try {
@@ -61,7 +57,7 @@ export default function CardAbrirChamado() {
           position: toast.POSITION.TOP_RIGHT,
         });
       } catch (error) {
-        toast.success(error, {
+        toast.error(error.response.data.message, {
           position: toast.POSITION.TOP_RIGHT,
         });
       }
@@ -229,7 +225,6 @@ export default function CardAbrirChamado() {
         >
           Enviar
         </button>
-        <ToastContainer />
       </div>
     </>
   );

@@ -115,14 +115,6 @@ const data = [
     Linkedin: "https://www.linkedin.com/in/nathaly-ferreira-90073921b",
   },
   {
-    Foto: "https://drive.google.com/uc?id=1Pl4357FGEFsek886FwoiD67K9rxkozfD",
-    Nome: "Rafael Brambila",
-    Atuacao: "Front-end, Back-End, Banco de dados, Midia",
-    Github: "https://github.com/RafaelBrambila",
-    Linkedin: "https://www.linkedin.com/in/rafael-brambila-firmino-1448ba23a/ ",
-  },
-
-  {
     Foto: "https://drive.google.com/uc?id=113ziNEZQWGgIteRgC8hfNh8Id3FL6hLG",
     Nome: "Rafael Viera",
     Atuacao: "Front-End, Mobile e Ui/Ux Design",

@@ -190,7 +190,7 @@ export default function Detalhes() {
                     src={
                       "https://hydedesk-api.azurewebsites.net/" + data[0].anexo
                     }
-                    className="w-full object-cover"
+                    className="w-full h-60 object-scale-down"
                     alt="anexo do chamado"
                   />
                 </div>
