@@ -26,7 +26,7 @@ export default function HomeComercial() {
       <Header />
       <div className="w-full flex flex-row justify-evenly items-center py-10 px-10 lg:py-24 bg-slate-200 dark:bg-gray-900">
         <div className="flex flex-col gap-y-6">
-          <h1 className="text-white text-4xl font-semibold">
+          <h1 className="dark:text-white text-4xl font-semibold">
             Bem vindo à <span className="text-azul-hyde">Hyde</span>Desk!
           </h1>
           <p className="max-w-lg text-lg leading-relaxed text-justify text-gray-600 dark:text-branco">
