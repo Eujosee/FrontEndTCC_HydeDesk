@@ -74,7 +74,7 @@ export default function Detalhes() {
       if (!idTecnico) return;
 
       try {
-        const { data } = await api.get("/tecnicos/" + id);
+        const { data } = await api.get("/tecnicos/" + idTecnico);
         setUser({ nome_tecnico: data.nome_tecnico, tel: data.telefone });
       } catch (error) {
         console.log(error);
