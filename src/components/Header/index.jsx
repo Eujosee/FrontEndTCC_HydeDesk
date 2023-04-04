@@ -13,6 +13,7 @@ import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import { Link } from "react-router-dom";
 import { Context } from "../../context/AuthContext";
 import secureLocalStorage from "react-secure-storage";
+import ButtonDark from "../ButtonDark";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -279,6 +280,7 @@ export default function Header() {
               </Link>
             )}
           </div>
+          <ButtonDark/>
         </div>
       </nav>
       <Dialog
