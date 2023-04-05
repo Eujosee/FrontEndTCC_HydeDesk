@@ -11,7 +11,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
       - uses: actions/checkout@v2
@@ -21,16 +21,17 @@ jobs:
         with:
           node-version: '18.x'
 
-      - name: npm install, build
+      - name: npm install, build, and test
         run: |
           npm install
           npm run build --if-present
-
+          npm run test --if-present
+      
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
         with:
           name: node-app
-          path: dist/
+          path: .
 
   deploy:
     runs-on: ubuntu-latest
@@ -46,10 +47,10 @@ jobs:
           name: node-app
 
       - name: 'Deploy to Azure Web App'
-        id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
+        id: deploy-to-webapp
         with:
           app-name: 'hydedesk'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_B415591F04864574B2EB1D312C99776E }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_12C2DE1FC24947CEAF4BB4D8B057F480 }}
           package: .
