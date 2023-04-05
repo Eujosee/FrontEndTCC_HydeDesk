@@ -4,7 +4,6 @@ import api from "../../services/api";
 import { AiOutlineArrowLeft } from "react-icons/ai";
 import Box from "@mui/material/Box";
 import Rating from "@mui/material/Rating";
-import StarIcon from "@mui/icons-material/Star";
 
 export default function ModalConclusao({
   open,
