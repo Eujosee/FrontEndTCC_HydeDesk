@@ -2,6 +2,7 @@ import { createContext, useEffect, useState } from "react";
 import api from "../services/api";
 import { toast } from "react-toastify";
 import secureLocalStorage from "react-secure-storage";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 export const Context = createContext();
 
@@ -102,7 +103,17 @@ export function AuthProvider({ children }) {
   }
 
   if (loading) {
-    return <h1>Carregando</h1>;
+    return(
+      <>
+        <div className="flex w-full h-screen overflow-hidden gap-2 items-center justify-center m-auto dark:bg-preto">
+              <AiOutlineLoading3Quarters
+                size={25}
+                className="animate-spin text-gray-900 dark:text-gray-50"
+              />
+              <p className="text-gray-900 dark:text-gray-50"> Carregando...</p>
+            </div>
+      </>
+      ) 
   }
 
   return (

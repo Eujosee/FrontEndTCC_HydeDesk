@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import "./index.css";
-import { AiOutlineArrowLeft, AiOutlineConsoleSql } from "react-icons/ai";
+import { AiOutlineArrowLeft } from "react-icons/ai";
 import { useParams } from "react-router-dom";
 import api from "../../services/api";
 import InputMask from "react-input-mask";
@@ -84,7 +84,6 @@ export default function Detalhes() {
     getTecnico();
   }, [idTecnico]); // eslint-disable-line
 
-  // console.log(user)
 
   return (
     <>
@@ -118,7 +117,7 @@ export default function Detalhes() {
                 </label>
                 <p
                   data-type={data[0].status_chamado}
-                  className="first-letter:uppercase data-[type=pendente]:text-red-500 data-[type=andamento]:text-yellow-500 data-[type=concluido]:text-green-500 rounded  w-1/2 font-semibold text-xl"
+                  className="first-letter:uppercase data-[type=pendente]:text-red-500 data-[type=andamento]:text-yellow-500 data-[type=concluido]:text-green-500 data-[type=cancelado]:text-red-700 rounded  w-1/2 font-semibold text-xl"
                 >
                   {data[0].status_chamado}
                 </p>
@@ -132,7 +131,7 @@ export default function Detalhes() {
               </h1>
               <div className="grid grid-cols-2 gap-x-5 gap-y-5">
                 <div className="flex flex-col">
-                  <label className="font-medium text-gray-500">Problema:</label>
+                  <label className="font-medium text-gray-500 dark:text-gray-400">Problema:</label>
                   <input
                     type="text"
                     className="p-2 dark:text-white dark:bg-transparent bg-white dark:border-slate-300  outline-none border-b-2 hover:border-b-azul-hyde"
@@ -141,7 +140,7 @@ export default function Detalhes() {
                   />
                 </div>
                 <div className="flex flex-col">
-                  <label className="font-medium">Setor:</label>
+                  <label className="font-medium text-gray-500 dark:text-gray-400">Setor:</label>
                   <input
                     type="text"
                     className="p-2 dark:text-white dark:bg-transparent bg-white dark:border-slate-300  outline-none border-b-2 hover:border-b-azul-hyde"
@@ -151,7 +150,7 @@ export default function Detalhes() {
                 </div>
 
                 <div className="flex flex-col w-full">
-                  <label className="font-medium text-gray-500">
+                  <label className="font-medium text-gray-500 dark:text-gray-400">
                     Patrimonio:
                   </label>
                   <input
@@ -162,7 +161,7 @@ export default function Detalhes() {
                   />
                 </div>
                 <div className="flex flex-col w-full">
-                  <label className="font-medium text-gray-500">
+                  <label className="font-medium text-gray-500 dark:text-gray-400">
                     Prioridade:
                   </label>
                   <input
@@ -173,17 +172,17 @@ export default function Detalhes() {
                   />
                 </div>
                 <div className="flex flex-col w-full col-span-2">
-                  <label className="font-medium text-gray-500">
+                  <label className="font-medium text-gray-500 dark:text-gray-400">
                     Descrição:
                   </label>
-                  <textarea
+                  <input
                     className="p-2 dark:text-white dark:bg-transparent bg-white dark:border-slate-300  outline-none border-b-2 hover:border-b-azul-hyde"
                     value={data[0].descricao}
                     disabled
                   />
                 </div>
               </div>
-              <label className="font-medium text-gray-500 mt-6">Anexo:</label>
+              <label className="font-medium text-gray-500 dark:text-gray-400 mt-6">Anexo:</label>
               {data[0].anexo ? (
                 <div className="flex flex-col w-full">
                   <img
@@ -210,7 +209,7 @@ export default function Detalhes() {
                 </h1>
                 <div className="grid grid-cols-2 gap-x-5 gap-y-5">
                   <div className="flex flex-col">
-                    <label className="font-medium text-gray-500">Nome:</label>
+                    <label className="font-medium text-gray-500 dark:text-gray-400">Nome:</label>
                     <input
                       type="text"
                       className="p-2 dark:text-white dark:bg-transparent bg-white dark:border-slate-300  outline-none border-b-2 hover:border-b-azul-hyde"
@@ -219,7 +218,7 @@ export default function Detalhes() {
                     />
                   </div>
                   <div className="flex flex-col">
-                    <label className="font-medium text-gray-500">
+                    <label className="font-medium text-gray-500 dark:text-gray-400">
                       Telefone:
                     </label>
                     <input
@@ -237,7 +236,7 @@ export default function Detalhes() {
                 </div>
                 <div className="grid grid-cols-2 gap-x-5 gap-y-5">
                   <div className="flex flex-col">
-                    <label className=" font-medium text-gray-500">CEP *</label>
+                    <label className=" font-medium text-gray-500 dark:text-gray-400">CEP *</label>
                     <InputMask
                       className="p-2 dark:text-white dark:bg-transparent bg-white dark:border-slate-300  outline-none border-b-2 hover:border-b-azul-hyde"
                       placeholder="CEP"
@@ -248,7 +247,7 @@ export default function Detalhes() {
                     />
                   </div>
                   <div className="flex flex-col">
-                    <label className="font-medium text-gray-500">Rua</label>
+                    <label className="font-medium text-gray-500 dark:text-gray-400">Rua</label>
                     <input
                       className="p-2 dark:text-white dark:bg-transparent bg-white dark:border-slate-300  outline-none border-b-2 hover:border-b-azul-hyde"
                       placeholder="Rua"
@@ -258,7 +257,7 @@ export default function Detalhes() {
                     />
                   </div>
                   <div className="flex flex-col">
-                    <label className="font-medium text-gray-500">N°</label>
+                    <label className="font-medium text-gray-500 dark:text-gray-400">N°</label>
                     <input
                       className="p-2 dark:text-white dark:bg-transparent bg-white dark:border-slate-300  outline-none border-b-2 hover:border-b-azul-hyde"
                       placeholder="N°"
@@ -268,7 +267,7 @@ export default function Detalhes() {
                     />
                   </div>
                   <div className="flex flex-col">
-                    <label className="font-medium text-gray-500">Bairro</label>
+                    <label className="font-medium text-gray-500 dark:text-gray-400">Bairro</label>
                     <input
                       className="p-2 dark:text-white dark:bg-transparent bg-white dark:border-slate-300  outline-none border-b-2 hover:border-b-azul-hyde"
                       placeholder="Bairro"
@@ -278,7 +277,7 @@ export default function Detalhes() {
                     />
                   </div>
                   <div className="flex flex-col">
-                    <label className="font-medium text-gray-500">Cidade</label>
+                    <label className="font-medium text-gray-500 dark:text-gray-400">Cidade</label>
                     <input
                       className="p-2 dark:text-white dark:bg-transparent bg-white dark:border-slate-300  outline-none border-b-2 hover:border-b-azul-hyde"
                       placeholder="Cidade"
@@ -288,7 +287,7 @@ export default function Detalhes() {
                     />
                   </div>
                   <div className="flex flex-col">
-                    <label className="font-medium text-gray-500">UF</label>
+                    <label className="font-medium text-gray-500 dark:text-gray-400">UF</label>
                     <input
                       className="p-2 dark:text-white dark:bg-transparent bg-white dark:border-slate-300  outline-none border-b-2 hover:border-b-azul-hyde"
                       placeholder="Estado"
@@ -304,7 +303,7 @@ export default function Detalhes() {
                   </h1>
                   <div className="grid grid-cols-2 gap-x-5 gap-y-5">
                     <div className="flex flex-col">
-                      <label className="font-medium text-gray-500">Nome:</label>
+                      <label className="font-medium text-gray-500 dark:text-gray-400">Nome:</label>
                       <input
                         type="text"
                         className="p-2 dark:text-white dark:bg-transparent bg-white dark:border-slate-300  outline-none border-b-2 hover:border-b-azul-hyde"
@@ -313,7 +312,7 @@ export default function Detalhes() {
                       />
                     </div>
                     <div className="flex flex-col">
-                      <label className="font-medium text-gray-500">
+                      <label className="font-medium text-gray-500 dark:text-gray-400">
                         Telefone:
                       </label>
                       <InputMask
