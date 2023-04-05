@@ -31,7 +31,7 @@ const data = [
       {
         label: "Buffer Overflow:",
         texto:
-          "Quando o envio de dados para o sistema de gestão operacional é excessivo e além do limite, pode ocorrer o Buffer Overflow. O que é isso? É uma falha pode prejudicar o software da empresa e o armazenamento de dados da mesma.",
+          "Quando o envio de dados para o sistema de gestão operacional é excessivo e além do limite, pode ocorrer o Buffer Overflow. O que é isso? É uma falha que pode prejudicar o software da empresa e o armazenamento de dados da mesma.",
       },
       {
         label: "Bugs com a segurança:",
