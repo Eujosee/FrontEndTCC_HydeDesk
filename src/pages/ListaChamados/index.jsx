@@ -69,7 +69,7 @@ export default function ListaChamados() {
               </td>
               <td
                 data-type={item.status_chamado}
-                className="text-lg first-letter:uppercase data-[type=pendente]:text-red-500 data-[type=andamento]:text-yellow-500 data-[type=concluido]:text-green-500   font-bold px-6 py-4  whitespace-nowrap"
+                className="text-lg first-letter:uppercase data-[type=pendente]:text-red-500 data-[type=andamento]:text-yellow-500 data-[type=concluido]:text-green-500 data-[type=cancelado]:text-red-700  font-bold px-6 py-4  whitespace-nowrap"
               >
                 {item.status_chamado}
               </td>
@@ -469,14 +469,14 @@ export default function ListaChamados() {
           totalPages !== 1 &&
           chamadoAceito.length === 0 && (
             <div className="flex w-full justify-center mt-10 mb-10">
-              <div className="flex rounded-lg justify-center px-2 py-2 shadow-lg w-11/12 md:w-1/2 lg:w-1/3">
+              <div className="flex rounded-lg justify-center px-2 py-2 shadow-lg w-11/12 md:w-1/2 lg:w-1/3 dark:bg-gray-800">
                 <div className="flex align-center justify-center w-12 h-10">
                   <button
-                    className="flex item-center justify-center rounded-md item-center h-full w-full text-base font-semibold text-black hover:bg-slate-200"
+                    className="flex item-center justify-center rounded-md item-center h-full w-full text-base font-semibold text-black hover:bg-slate-200 dark:hover:bg-gray-900"
                     onClick={prevPage}
                   >
                     <ChevronLeftIcon
-                      className="h-full w-7"
+                      className="h-full w-7 dark:text-branco"
                       aria-hidden="true"
                     />
                   </button>
@@ -523,11 +523,11 @@ export default function ListaChamados() {
                 </div>
                 <div className="flex align-center justify-center w-12 h-10">
                   <button
-                    className="flex align-center justify-center rounded-md item-center h-full w-full text-base font-semibold text-black hover:bg-slate-200"
+                    className="flex align-center justify-center rounded-md item-center h-full w-full text-base font-semibold text-black hover:bg-slate-200 dark:hover:bg-gray-900"
                     onClick={nextPage}
                   >
                     <ChevronRightIcon
-                      className="h-full w-7"
+                      className="h-full w-7 dark:text-branco "
                       aria-hidden="true"
                     />
                   </button>

@@ -2,7 +2,6 @@ import { useState } from "react";
 import Box from "@mui/material/Box";
 import Rating from "@mui/material/Rating";
 import api from "../../services/api";
-//import StarIcon from "@mui/icons-material/Star";
 
 export default function BasicRating(id, onClose, dataChamado) {
   const [value, setValue] = useState(2);
@@ -18,6 +17,7 @@ export default function BasicRating(id, onClose, dataChamado) {
   async function postDados() {
     try {
       const response = await api.post("/chamados/avaliar/" + id.id, dados);
+      onClose()
       console.log(response);
     } catch (error) {
       console.log(error);
@@ -35,9 +35,6 @@ export default function BasicRating(id, onClose, dataChamado) {
           <Rating
             name="Avaliação"
             size="large"
-            // emptyIcon={
-            //   <StarIcon className={"dark:text-gray-100"} fontSize="inherit" />
-            // }
             value={value}
             onChange={(event, newValue) => {
               setValue(newValue);

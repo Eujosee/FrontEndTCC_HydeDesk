@@ -47,6 +47,8 @@ export default function Dropdown({ item }) {
   const [estaAvaliado, setEstaAvaliado] = useState(null);
   const [request, setRequest] = useState(true);
 
+  const [conclusao, setConclusao] = useState(null)
+
   async function getConcluido() {
     const response = await api.get(`/conclusoes?chamado_id=${item.id_chamado}`);
 
@@ -58,6 +60,7 @@ export default function Dropdown({ item }) {
       }
     }
 
+    setConclusao(response.data)
     setRequest(false);
   }
 
@@ -66,6 +69,7 @@ export default function Dropdown({ item }) {
       <ModalConclusao
         open={isOpenConclusao}
         dataChamado={item}
+        dataConclusao={conclusao}
         onClose={() => setIsOpenConclusao(false)}
       />
       <ModalAvaliacao
