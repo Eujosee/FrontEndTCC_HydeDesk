@@ -17,9 +17,9 @@ export default function HomeComercial() {
 
   useEffect(() => {
     const typed = new Typed(el.current, {
-      strings: ["Bem vindo à HydeDesk!"], // Strings to display
+      strings: ["Bem-vindo à HydeDesk!"], // Strings to display
       startDelay: 300,
-      typeSpeed: 80,
+      typeSpeed: 100,
       backSpeed: 100,
       backDelay: 100,
       loop: true,
