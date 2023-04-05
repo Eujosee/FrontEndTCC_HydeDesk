@@ -3,7 +3,7 @@ import Slider from "react-slick";
 import "./index.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import data from "./data";
+import data from "../../data/dataAlunos";
 
 export default function Carrossel() {
   const settings = {

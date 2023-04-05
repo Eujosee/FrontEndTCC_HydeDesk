@@ -1,4 +1,4 @@
-import data from "./data";
+import data from "../../data/dataServicos";
 
 import Hardware from "../../images/hardware.jpg";
 import Software from "../../images/software.jpg";
