@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import "./index.css";
-import { AiOutlineArrowLeft, AiOutlineConsoleSql } from "react-icons/ai";
+import { AiOutlineArrowLeft } from "react-icons/ai";
 import { useParams } from "react-router-dom";
 import api from "../../services/api";
 import InputMask from "react-input-mask";
@@ -84,7 +84,6 @@ export default function Detalhes() {
     getTecnico();
   }, [idTecnico]); // eslint-disable-line
 
-  // console.log(user)
 
   return (
     <>
@@ -118,7 +117,7 @@ export default function Detalhes() {
                 </label>
                 <p
                   data-type={data[0].status_chamado}
-                  className="first-letter:uppercase data-[type=pendente]:text-red-500 data-[type=andamento]:text-yellow-500 data-[type=concluido]:text-green-500 rounded  w-1/2 font-semibold text-xl"
+                  className="first-letter:uppercase data-[type=pendente]:text-red-500 data-[type=andamento]:text-yellow-500 data-[type=concluido]:text-green-500 data-[type=cancelado]:text-red-700 rounded  w-1/2 font-semibold text-xl"
                 >
                   {data[0].status_chamado}
                 </p>

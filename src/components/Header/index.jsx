@@ -22,29 +22,46 @@ function classNames(...classes) {
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [foto, setFoto] = useState(null)
+  const [foto, setFoto] = useState("");
   const type = JSON.parse(secureLocalStorage.getItem("Tipo"));
-  const id = JSON.parse(secureLocalStorage.getItem("Id"))
+  const id = JSON.parse(secureLocalStorage.getItem("Id"));
 
   useEffect(() => {
     (async () => {
-      switch (type) {
-        case "empresas":
-           await api.get("/empresas/" + id).then(response => setFoto(response.data.foto))
-          break;
-        case "tecnicos":
-          await api.get("/tecnicos/" + id).then(response => setFoto(response.data.foto))
-          break;
-        case "funcionarios":
-          await api.get("/funcionarios/" + id).then(response => setFoto(response.data.foto))
-          break;
-        default:
-          break;
-      }
-    })()
-  },[])
+      if (id) {
+        switch (type) {
+          case "tecnicos":
+            try {
+              const { data } = await api.get("/tecnicos/" + id);
+              setFoto(data.foto);
+            } catch (error) {
 
-  console.log(foto)
+            }
+            break
+            case "empresas":
+              try {
+                const { data } = await api.get("/empresas/" + id);
+                setFoto(data.foto);
+              } catch (error) {
+                
+              }
+              break
+            case "funcionarios":
+              try {
+                const { data } = await api.get("/funcionarios/" + id);
+                setFoto(data.foto);
+              } catch (error) {
+                
+              }
+              break
+          default:
+            break;
+        }
+      }
+    })();
+  }, [id,type]);
+
+  console.log(foto);
 
   const { authenticated, handleLogout } = useContext(Context);
 
@@ -78,19 +95,19 @@ export default function Header() {
           <Popover.Group className="hidden lg:flex lg:gap-x-12">
             <Link
               to="/"
-              className="text-md font-semibold leading-6 text-gray-900 dark:text-branco hover:text-azul-hyde"
+              className="text-md font-semibold leading-6 text-gray-900 dark:text-branco hover:text-azul-hyde dark:hover:text-azul-hyde"
             >
               Página Inicial
             </Link>
             <Link
               to="/institucional"
-              className="text-md font-semibold leading-6 text-gray-900 dark:text-branco hover:text-azul-hyde"
+              className="text-md font-semibold leading-6 text-gray-900 dark:text-branco hover:text-azul-hyde dark:hover:text-azul-hyde"
             >
               Sobre a Hyde
             </Link>
             {authenticated && (
               <Popover className="relative">
-                <Popover.Button className="flex items-center gap-x-1 text-md font-semibold leading-6 text-gray-900 dark:text-branco hover:text-azul-hyde">
+                <Popover.Button className="flex items-center gap-x-1 text-md font-semibold leading-6 text-gray-900 dark:text-branco hover:text-azul-hyde dark:hover:text-azul-hyde">
                   Chamados
                   <ChevronDownIcon
                     className="h-5 w-5 flex-none text-gray-400"
@@ -159,7 +176,7 @@ export default function Header() {
 
             {type === "empresas" && (
               <Popover className="relative">
-                <Popover.Button className="flex items-center gap-x-1 text-md font-semibold leading-6 text-gray-900 dark:text-branco hover:text-azul-hyde">
+                <Popover.Button className="flex items-center gap-x-1 text-md font-semibold leading-6 text-gray-900 dark:text-branco hover:text-azul-hyde dark:hover:text-azul-hyde">
                   Funcionários
                   <ChevronDownIcon
                     className="h-5 w-5 flex-none text-gray-400"
@@ -229,10 +246,10 @@ export default function Header() {
             {authenticated ? (
               <Popover className="relative">
                 <Popover.Button className="group flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900 ">
-                  <UserCircleIcon
-                    className="h-10 w-10 text-gray-900 dark:text-branco group-hover:text-azul-hyde"
-                    aria-hidden="true"
-                  />
+                {foto ? <img src={"https://hydedesk-api.azurewebsites.net/" + foto} alt="Foto" className="h-10 w-10 text-gray-600 group-hover:text-azul-hyde rounded-full" /> :<UserCircleIcon
+                            className="h-6 w-6 text-gray-600 group-hover:text-azul-hyde"
+                            aria-hidden="true"
+                          /> }
                   <ChevronDownIcon
                     className="h-5 w-5 flex-none text-gray-400"
                     aria-hidden="true"
@@ -252,10 +269,11 @@ export default function Header() {
                     <div className="p-4">
                       <div className="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-gray-50 dark:hover:bg-gray-900">
                         <div className="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 dark:bg-gray-800 group-hover:bg-white dark:group-hover:bg-gray-900">
-                          <UserCircleIcon
-                            className="h-6 w-6 text-gray-600 dark:text-branco group-hover:text-azul-hyde"
+                          {foto ? <img src={"https://hydedesk-api.azurewebsites.net/" + foto} alt="Foto" className="h-10 w-10 text-gray-600 group-hover:text-azul-hyde rounded-full" /> :<UserCircleIcon
+                            className="h-6 w-6 text-gray-600 group-hover:text-azul-hyde"
                             aria-hidden="true"
-                          />
+                          /> }
+
                         </div>
                         <div className="flex-auto">
                           <Link
@@ -303,7 +321,7 @@ export default function Header() {
               </Link>
             )}
           </div>
-          <ButtonDark/>
+          <ButtonDark />
         </div>
       </nav>
       <Dialog
@@ -426,7 +444,7 @@ export default function Header() {
                   >
                     Login
                   </Link>
-                  <ButtonDark/>
+                  <ButtonDark />
                 </div>
               ) : (
                 <div className="py-6 flex flex-row justify-between">
@@ -436,7 +454,7 @@ export default function Header() {
                   >
                     Sair
                   </button>
-                  <ButtonDark/>
+                  <ButtonDark />
                 </div>
               )}
             </div>
