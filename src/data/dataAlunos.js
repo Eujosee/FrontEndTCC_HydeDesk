@@ -97,7 +97,7 @@ const data = [
     Nome: "Matheus Viana",
     Atuacao: "Mobile, Front-End, Back-End e Ui/Ux Design",
     Github: "https://github.com/theuszer4",
-    Linkedin: "https://www.linkedin.com/in/matheus-viana- assunção-0327b423b/",
+    Linkedin: "https://www.linkedin.com/in/matheus-viana-assun%C3%A7%C3%A3o-0327b423b/",
   },
   {
     Foto: "https://drive.google.com/uc?id=117UR5Kx62v8i_jul4Ac4exSQEoGeokA2",
