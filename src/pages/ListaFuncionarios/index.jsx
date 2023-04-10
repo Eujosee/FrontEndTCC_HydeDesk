@@ -155,7 +155,7 @@ export default function ListaFuncionarios() {
                       className="dark:text-branco dark:bg-gray-800 dark:hover:bg-gray-800 "
                       value="Inativo"
                     >
-                      Inativo
+                      Desativado
                     </option>
                     <option
                       className="dark:text-branco dark:bg-gray-800 dark:hover:bg-gray-800"
