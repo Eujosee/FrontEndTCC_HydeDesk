@@ -30,7 +30,7 @@ export default function CardServicos({ index }) {
                   <p className="font-bold text-lg dark:text-branco">
                     {exemplo.label}
                   </p>
-                  <p className="text-gray-400 dark:text-gray-400">
+                  <p className="text-gray-400 dark:text-gray-400 text-justify">
                     {exemplo.texto}
                   </p>
                 </div>

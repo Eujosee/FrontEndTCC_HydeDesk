@@ -152,7 +152,7 @@ export default function FormAbrirChamado() {
             </option>
             <option
               className="text-gray-900 dark:text-branco dark:bg-gray-800"
-              value="Media"
+              value="Média"
             >
               Média
             </option>
