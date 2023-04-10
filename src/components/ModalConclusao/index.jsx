@@ -4,6 +4,7 @@ import api from "../../services/api";
 import { AiOutlineArrowLeft } from "react-icons/ai";
 import Box from "@mui/material/Box";
 import Rating from "@mui/material/Rating";
+import moment from "moment";
 
 export default function ModalConclusao({
   open,
@@ -28,7 +29,7 @@ export default function ModalConclusao({
 
     getNomeTecnico();
   }, [open]);
-
+  
   if (!open) return null;
 
   let data = dataChamado;
@@ -72,7 +73,7 @@ export default function ModalConclusao({
                     <AiOutlineArrowLeft size={20} />
                   </button>
                   <span className="ml-5 md:m-0 w-full dark:text-gray-50 ">
-                    Conclusão - {dateCall}
+                    Conclusão - {moment(dataConclusao[0].data_termino).format("DD/MM/YYYY - HH:mm")} h
                   </span>
                 </Dialog.Title>
                 <div className="flex flex-col gap-y-4 md:grid md:grid-cols-2 md:gap-x-10 md:gap-y-4 w-full pt-4">

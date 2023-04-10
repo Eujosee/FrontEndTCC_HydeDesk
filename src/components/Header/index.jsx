@@ -61,7 +61,6 @@ export default function Header() {
     })();
   }, [id,type]);
 
-  console.log(foto);
 
   const { authenticated, handleLogout } = useContext(Context);
 

@@ -15,14 +15,15 @@ export default function ListaFuncionarios() {
   const [funcionarios, setFuncionarios] = useState([]);
   const [status, setStatus] = useState("");
   const [loading, setLoading] = useState(true);
+  let [isOpen, setIsOpen] = useState(false);
+  let [dados, setDados] = useState("");
   const [filtro, setFiltro] = useState({
     status_empresa: "",
     nome: "",
   });
 
+  const type = JSON.parse(secureLocalStorage.getItem("Tipo"));
   const id = JSON.parse(secureLocalStorage.getItem("Id"));
-  let [isOpen, setIsOpen] = useState(false);
-  let [dados, setDados] = useState("");
 
   const abrirModal = (item) => {
     setDados(item);
@@ -35,60 +36,44 @@ export default function ListaFuncionarios() {
       [e.target.name]: e.target.value,
     });
   };
-
-  const handleFiltroName = async (e) => {
-    e.preventDefault();
+  // Busca todos os funcionários
+  async function getAllFuncionarios(e) {
     try {
-      if (filtro.nome !== "") {
-        const { data } = await api.get(
-          "/funcionarios?nome=" + filtro.nome + "&id_empresa=" + id
-        );
-        setFuncionarios(data);
-        console.log(data);
-      }
-    } catch (error) {}
-  };
-
-  const handleFiltro = async (e) => {
-    e.preventDefault();
-    try {
-      if (filtro.nome && filtro.status_empresa) {
-        const { data } = await api.get(
-          "/funcionarios?status_funcionario=" +
-            filtro.status_empresa +
-            "&nome=" +
-            filtro.nome +
-            "&id_empresa=" +
-            id
-        );
-        setFuncionarios(data);
-      } else if (filtro.status_empresa) {
-        const { data } = await api.get(
-          "/funcionarios?status_funcionario=" +
-            filtro.status_empresa +
-            "&id_empresa=" +
-            id
-        );
-        console.log(data);
-        setFuncionarios(data);
-      }
+      const { data } = await api.get("/funcionarios?id_empresa=" + id);
+      setFuncionarios(data);
+      return data;
     } catch (error) {
       setStatus("Erro ao buscar os funcionários!");
     }
+  }
+
+  // Busca funcionários por nome
+  const handleFiltroName = async (e) => {
+    e.preventDefault();
+    const todos = await getAllFuncionarios(e);
+    const filtrados = todos.filter((item) => item.nome_funcionario == filtro.nome);
+    setFuncionarios(filtrados);
+    setLoading(false);
   };
+
+  // Busca funcionários por status
+  const handleFiltro = async (e) => {
+    e.preventDefault();
+    const todos = await getAllFuncionarios(e);
+    const filtrados = todos.filter(item => item.status_funcionario == filtro.status_empresa);
+    if(filtro.status_empresa == "todos"){
+      setFuncionarios(todos);
+    }else{
+      setFuncionarios(filtrados);
+      setLoading(false);
+    }
+  };
+
+  // Busca funcionários quando a página é carregada
   useEffect(() => {
-    (async () => {
-      try {
-        if (id) {
-          const { data } = await api.get("/funcionarios?id_empresa=" + id);
-          setFuncionarios(data);
-          setLoading(false);
-        }
-      } catch (error) {
-        setStatus("Erro ao buscar os funcionários!");
-      }
-    })();
-  }, [id]);
+    getAllFuncionarios();
+    setLoading(false);
+  }, []);
 
   return (
     <>
@@ -102,7 +87,7 @@ export default function ListaFuncionarios() {
       />
       <ToastContainer />
       <div className="flex flex-col h-screen overflow-hidden dark:bg-preto">
-        <div className="mt-5 px-5 flex flex-col md:flex-row md:space-x-6">
+        <div className="ml-6 mt-5 px-5 flex flex-col md:flex-row md:space-x-6">
           <h1 className="text-3xl font-semibold lg:text-3xl dark:text-branco">
             Lista de funcionários
           </h1>
@@ -114,90 +99,111 @@ export default function ListaFuncionarios() {
           </Link>
         </div>
 
-        <div className="flex flex-col w-full mt-8 p-5 space-y-4 md:space-y-0 md:flex-row md:space-x-8">
-          <div className="w-full md:w-1/4 flex items-center relative">
-            <label className="dark:text-branco">Pesquisar:</label>
-            <input
-              className="focus:outline-none ml-2 focus:border-b-azul-hyde border-b-2 w-full p-2 dark:bg-transparent dark:text-branco"
-              placeholder="Nome completo"
-              name="nome"
-              onChange={changeFiltro}
-              required
-            />
-            <BiSearchAlt2
-              size={20}
-              className="absolute text-gray-400 right-3 cursor-pointer"
-              onClick={handleFiltroName}
-            />
-          </div>
-          <div className="flex flex-row items-center md:w-1/3">
-            <label className="dark:text-branco">Filtrar:</label>
-            <div className="w-full">
-              <select
-                className="focus:outline-none focus:border-b-azul-hyde ml-2 border-b-2 w-full p-2 dark:bg-transparent dark:text-branco"
-                name="status_empresa"
-                onChange={changeFiltro}
-                required
-              >
-                <option
-                  className="dark:text-branco dark:bg-gray-800 dark:hover:bg-gray-800"
-                  selected
-                  disabled
-                >
-                  Selecione uma opção
-                </option>
-                <option
-                  className="dark:text-branco dark:bg-gray-800 dark:hover:bg-gray-800"
-                  value="ativo"
-                >
-                  Ativo
-                </option>
-                <option
-                  className="dark:text-branco dark:bg-gray-800 dark:hover:bg-gray-800"
-                  value="inativo"
-                >
-                  Inativo
-                </option>
-              </select>
+        <div className="w-full lg:w-2/4 ml-6 px-3 flex flex-col gap-4">
+            <div className="w-full lg:w--full flex flex-col items-center">
+              <label htmlFor="empresa" className="dark:text-gray-50 w-full text-start ml-4">
+                Pesquisar:
+              </label>
+              <div className="w-full flex items-center gap-4 ">
+                <input
+                  className="focus:outline-none ml-2 dark:bg-transparent dark:text-gray-50 focus:border-b-azul-hyde border-b-2 w-full p-2"
+                  placeholder={
+                    type == "tecnicos"
+                      ? "Nome da empresa"
+                      : type == "empresas"
+                      ? "Nome do funcionário"
+                      : "Protocolo"
+                  }
+                  name="nome"
+                  onChange={changeFiltro}
+                  required
+                />
+                <BiSearchAlt2
+                  size={20}
+                  className=" text-gray-400  cursor-pointer"
+                  onClick={handleFiltroName}
+                />
+              </div>
             </div>
-          </div>
-          <button
-            className="rounded-md bg-azul-hyde px-3.5 py-1.5 text-base font-semibold leading-7 text-white shadow-sm hover:bg-cyan-600"
-            onClick={handleFiltro}
-          >
-            Pesquisar
-          </button>
-        </div>
+            <div className="flex flex-col items-center  lg:full">
+              <div className="w-full flex flex-col items-center">
+                <label htmlFor="status_empresa" className="dark:text-gray-50 w-full text-start ml-4 cursor-pointer">
+                  Filtrar:
+                </label>
+                <div className="w-full flex flex-1 gap-2 lg:gap-4 items-center ">
+                  <select
+                    className="focus:outline-none dark:bg-transparent  dark:text-gray-50 focus:border-b-azul-hyde ml-2 border-b-2  w-full p-2"
+                    name="status_empresa"
+                    onChange={changeFiltro}
+                    id="status_chamado"
+                    required
+                  >
+                    <option
+                      className="dark:text-branco dark:bg-gray-800 dark:hover:bg-gray-800"
+                      selected
+                      disabled
+                    >
+                      Selecione uma opção
+                    </option>
+                    <option
+                      className="dark:text-branco dark:bg-gray-800 dark:hover:bg-gray-800"
+                      value="todos"
+                    >
+                      Todos
+                    </option>
+                    <option
+                      className="dark:text-branco dark:bg-gray-800 dark:hover:bg-gray-800 "
+                      value="Inativo"
+                    >
+                      Desativado
+                    </option>
+                    <option
+                      className="dark:text-branco dark:bg-gray-800 dark:hover:bg-gray-800"
+                      value="Ativo"
+                    >
+                      Ativo
+                    </option>
+                    
+                  </select>
+                  <BiSearchAlt2
+                    size={20}
+                    className=" text-gray-400  cursor-pointer"
+                    onClick={handleFiltro}
+                    disabled={filtro.status_chamado === ""}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>  
 
-        <div className="mx-5 overflow-x-auto rounded-t-xl">
-          <table className="min-w-full">
-            <thead align="center">
+        <div className="mx-5 my-5 p-6 overflow-x-auto overflow-y-hidden">
+          <table className="max-w-full w-full  min-h-fit rounded-t-md ">
+            <thead align="start">
               <tr className="bg-azul-hyde text-slate-50 text-lg font-bold">
-                <th scope="col" className="px-6 py-4">
+                <th scope="col" className=" px-2 py-3 text-lg text-start">
                   Funcionário
                 </th>
-                <th scope="col" className="px-6 py-4">
+                <th scope="col" className="px-2 py-3 text-lg text-start">
                   Matrícula
                 </th>
-                <th scope="col" className="px-6 py-4">
+                <th scope="col" className="px-2 py-3 text-lg text-start">
                   Usuário
                 </th>
-                <th scope="col" className="px-6 py-4">
+                <th scope="col" className="px-2 py-3 text-lg text-start">
                   Email
                 </th>
-                <th scope="col" className="px-6 py-4 ">
+                <th scope="col" className="px-2 py-3 text-lg text-start ">
                   Status
                 </th>
-                <th scope="col" className="px-6 py-4">
+                <th scope="col" className="px-2 py-3 text-lg text-start whitespace-nowrap">
                   Ativar / Desativar
                 </th>
               </tr>
             </thead>
             <tbody>
               {funcionarios.map((item) => {
-                console.log(item);
                 return (
-                  <tr
+                  <tr key={item.id_funcionario}
                     align="center"
                     className="border-b odd:bg-white dark:odd:bg-gray-900 even:bg-slate-100 dark:even:bg-gray-800 font-medium hover:bg-slate-200 dark:hover:bg-gray-900"
                   >
