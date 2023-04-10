@@ -44,7 +44,6 @@ export default function PerfilFuncionario() {
           formData,
           config
         );
-        // console.log(data)
         toast.success("Dados alterada com sucesso", {
           position: toast.POSITION.TOP_RIGHT,
         });
@@ -57,9 +56,8 @@ export default function PerfilFuncionario() {
     }
   };
 
-  useEffect(() => {
-    (async () => {
-      const { data } = await api.get("/funcionarios?id_funcionario=" + id);
+  const buscarFunc = async () => {
+    const { data } = await api.get("/funcionarios?id_funcionario=" + id);
       console.log(data);
       setDados({
         nome_funcionario: data[0].nome_funcionario,
@@ -68,8 +66,13 @@ export default function PerfilFuncionario() {
         matricula: data[0].matricula,
       });
       setFoto(data[0].foto);
-    })();
-  }, [id]);
+      setChangeFoto("")
+  }
+
+  useEffect(() => {
+    buscarFunc()
+  }, []);
+
   return (
     <div className=" dark:bg-preto pb-20 pt-10">
       <div className="flex flex-col w-full h-screen lg:flex-row items-center justify-center">
@@ -159,7 +162,9 @@ export default function PerfilFuncionario() {
               Salvar mudanças
             </button>
             <ToastContainer />
-            <button className="p-2 w-1/2 lg:w-1/3 text-azul-hyde border border-azul-hyde hover:bg-azul-hyde hover:text-white font-medium rounded-md">
+            <button 
+            onClick={buscarFunc}
+            className="p-2 w-1/2 lg:w-1/3 text-azul-hyde border border-azul-hyde hover:bg-azul-hyde hover:text-white font-medium rounded-md">
               Cancelar
             </button>
           </div>

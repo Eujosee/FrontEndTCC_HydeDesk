@@ -26,7 +26,6 @@ export default function HomeInstitucional() {
       <div className="flex items-center justify-center w-full h-[15rem] lg:h-[32rem] overflow-hidden relative">
         <img className="object-cover" src={FotoInst} alt="" />
         {/* Foto de <a href="https://unsplash.com/@clark_fransa?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Arnold Francisca</a> na <a href="https://unsplash.com/pt-br/fotografias/f77Bh3inUpE?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a> */}
-
         <span className="font-extrabold text-5xl text-azul-hyde absolute">
           Hyde<span className="text-white">Desk</span>
         </span>

@@ -76,6 +76,7 @@ export default function PerfilEmpresa() {
       senha: data.senha,
     });
     setFoto(data.foto);
+    setChangeFoto("")
     try {
       const res = await fetch(`http://viacep.com.br/ws/${data.cep}/json/`);
       const json = await res.json();
@@ -300,7 +301,9 @@ export default function PerfilEmpresa() {
               Salvar mudanças
             </button>
             <ToastContainer />
-            <button className="p-2 w-1/2 lg:w-1/3 text-azul-hyde border border-azul-hyde hover:bg-azul-hyde hover:text-white font-medium rounded-md">
+            <button 
+            onClick={buscarEmpresa()}
+            className="p-2 w-1/2 lg:w-1/3 text-azul-hyde border border-azul-hyde hover:bg-azul-hyde hover:text-white font-medium rounded-md">
               Cancelar
             </button>
           </div>

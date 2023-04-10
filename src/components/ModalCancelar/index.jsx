@@ -46,12 +46,12 @@ export default function ModalCancelar({ open, onClose, id }) {
               <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all dark:bg-gray-800">
                 <Dialog.Title
                   as="h3"
-                  className="text-lg font-medium leading-6 text-gray-900"
+                  className="text-lg font-medium leading-6 text-gray-900 dark:text-gray-50"
                 >
                   Cancelar chamado
                 </Dialog.Title>
                 <div className="mt-2">
-                  <p className="text-sm text-gray-500">
+                  <p className="text-sm text-gray-400">
                     Tem certeza que deseja cancelar esse chamado?
                   </p>
                 </div>
@@ -62,7 +62,7 @@ export default function ModalCancelar({ open, onClose, id }) {
                     className="inline-flex justify-center rounded-md border border-transparent bg-green-100 px-4 py-2 text-sm font-medium text-green-900 hover:bg-green-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
                     onClick={(e) => handleCancel(e)}
                   >
-                    Cancelar
+                    Confirmar
                   </button>
                   <button
                     type="button"

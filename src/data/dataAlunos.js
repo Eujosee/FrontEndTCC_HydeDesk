@@ -3,8 +3,8 @@ const data = [
     Foto: "https://drive.google.com/uc?id=1xVgIiRpXhrhgr0E_hqtTLgcGiWqpSn74",
     Nome: " Sérgio Gal",
     Atuacao: "Professor orientador",
-    Github: "https://github.com/taima157",
-    Linkedin: "https://www.linkedin.com/in/gustavo-taima-075a9a21a",
+    Github: "https://github.com/professor-sergio",
+    Linkedin: "",
   },
   {
     Foto: "https://drive.google.com/uc?id=1xhZmlHXDDcPbXeJOL-uia6Lr_CPl3MMI",

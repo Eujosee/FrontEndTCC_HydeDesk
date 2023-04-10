@@ -65,7 +65,7 @@ export default function HomeComercial() {
         <img
           className="hidden lg:flex h-96 w-96"
           src={Team}
-          alt="Duas pessoas dando as mãos ao fazerem negocíos"
+          alt="Um time construindo uma web página"
         />
       </div>
       <div className="py-8 mb-10 flex flex-col justify-center items-center">

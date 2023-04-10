@@ -3,7 +3,7 @@ import { BsGithub } from "react-icons/bs";
 
 export default function CardTime({ item }) {
   return (
-    <div className="m-5 w-5/6  md:w-96 lg:m-auto lg:mb-10 flex flex-col justify-center bg-azul-hyde rounded-xl shadow-md ">
+    <div className="m-5 w-72 mb-10 md:w-80 flex flex-col justify-center bg-azul-hyde rounded-xl shadow-md ">
       <div className="flex py-10 justify-center items-center border-4 border-white rounded-full w-36 h-36 overflow-hidden m-auto my-10">
         <img className="object-cover" src={item.Foto} alt="foto" />
       </div>

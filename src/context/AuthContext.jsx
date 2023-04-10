@@ -15,8 +15,6 @@ export function AuthProvider({ children }) {
   useEffect(() => {
     const activeToken = localStorage.getItem("Token");
 
-    console.log(activeToken);
-
     if (activeToken) {
       api.defaults.headers.Authorization = `Bearer ${JSON.parse(activeToken)}`;
       setAuthenticated(true);
