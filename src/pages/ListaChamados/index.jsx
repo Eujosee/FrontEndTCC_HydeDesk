@@ -1,5 +1,6 @@
 // React
 import { useEffect, useState } from "react";
+import moment from "moment";
 
 // Components
 import Header from "../../components/Header";
@@ -22,6 +23,7 @@ export default function ListaChamados() {
   const [chamadoAceito, setChamadoAceito] = useState([]);
   const [status, setStatus] = useState("");
   const [loading, setLoading] = useState(true);
+  const [filtroData, setFiltroData] = useState();
 
   const [filtro, setFiltro] = useState({
     status_chamado: "",
@@ -38,44 +40,51 @@ export default function ListaChamados() {
     });
   };
 
-  // Paginação 
+  // Paginação
   const [pagination, setPagination] = useState(null);
 
   function genPagination(from, to) {
     setPagination(
-      chamados.map((item, index) => {
+      chamados.reverse().map((item, index) => {
         if (index >= from && index < to) {
           return (
             <tr
               key={item.id_chamado}
-              align="center"
+              align="start"
               className="border-b odd:bg-white dark:odd:bg-gray-900 even:bg-slate-100 dark:even:bg-gray-800 font-medium hover:bg-slate-200 dark:hover:bg-gray-900"
             >
               {type === "tecnicos" && (
-                <td className="text-lg text-gray-900 dark:text-branco  px-6 py-4 whitespace-nowrap">
+                <td className="text-md text-gray-900 dark:text-branco px-2 py-4 whitespace-nowrap">
                   {item.nome_empresa}
                 </td>
               )}
-              <td className="text-lg text-gray-900 dark:text-branco   px-6 py-4 whitespace-nowrap">
+              <td className="text-md text-start text-gray-900 dark:text-branco px-2 py-4 whitespace-nowrap">
                 {item.nome_funcionario}
               </td>
-              <td className="text-lg text-gray-900 dark:text-branco   px-6 py-4 whitespace-nowrap">
+              <td className=" flex flex-col text-md text-gray-900 dark:text-branco px-2 py-4 whitespace-nowrap ">
                 {item.problema}
+                <span className="text-sm text-gray-600 dark:text-gray-400 w-[10rem] truncate">
+                  {item.descricao}
+                </span>
               </td>
-              <td className="text-lg text-gray-900 dark:text-branco   px-6 py-4 whitespace-nowrap">
+
+              <td className="text-md text-gray-900 dark:text-branco   px-2 py-4 whitespace-nowrap">
                 {item.cod_verificacao}
               </td>
-              <td className="text-lg text-gray-900 dark:text-branco   px-6 py-4 whitespace-nowrap">
+              <td className="text-md text-gray-900 dark:text-branco   px-2 py-4 whitespace-nowrap">
                 {item.prioridade}
               </td>
               <td
                 data-type={item.status_chamado}
-                className="text-lg first-letter:uppercase data-[type=pendente]:text-red-500 data-[type=andamento]:text-yellow-500 data-[type=concluido]:text-green-500 data-[type=cancelado]:text-red-700  font-bold px-6 py-4  whitespace-nowrap"
+                className="text-md first-letter:uppercase data-[type=pendente]:text-red-500 data-[type=andamento]:text-yellow-500 data-[type=concluido]:text-green-500 data-[type=cancelado]:text-red-700  font-bold px-2 py-4  whitespace-nowrap"
               >
                 {item.status_chamado}
               </td>
+              <td className="text-md text-gray-900 dark:text-branco px-2 py-4 whitespace-nowrap">
+                {moment(item.data).format("DD/MM/YYYY")}
+              </td>
 
-              <td className="text-lg text-gray-900 font-light px-6 py-4 whitespace-nowrap ">
+              <td className="text-md text-gray-900 font-light px-2 py-4 whitespace-nowrap ">
                 <Dropdown item={item} />
               </td>
             </tr>
@@ -136,8 +145,9 @@ export default function ListaChamados() {
       console.log(error);
     }
   }
+
   // Busca todos os chamados
-  async function getAllChamados(){
+  async function getAllChamados() {
     try {
       switch (type) {
         case "empresas":
@@ -145,7 +155,7 @@ export default function ListaChamados() {
           setChamados(data);
           setLoading(false);
           return data;
-          
+
         case "funcionarios":
           const response = await api.get("/chamados?funcionario_id=" + id);
           setChamados(response.data);
@@ -168,21 +178,33 @@ export default function ListaChamados() {
   // Busca chamados por filtro
   const handleFiltro = async (e) => {
     e.preventDefault();
-    const todos = await getAllChamados()
-    const andamento = todos.filter((item) => item.status_chamado === "andamento");
-    const pendentes = todos.filter((item) => item.status_chamado === "pendente");
-    const concluidos = todos.filter((item) => item.status_chamado === "concluido");
-    
+    const todos = await getAllChamados();
+    const andamento = todos.filter(
+      (item) => item.status_chamado === "andamento"
+    );
+    const pendentes = todos.filter(
+      (item) => item.status_chamado === "pendente"
+    );
+    const concluidos = todos.filter(
+      (item) => item.status_chamado === "concluido"
+    );
+    const cancelados = todos.filter(
+      (item) => item.status_chamado === "cancelado"
+    );
+
     if (filtro.status_chamado === "pendente") {
       setChamados(pendentes);
       setLoading(false);
-    }else if(filtro.status_chamado === "andamento"){
+    } else if (filtro.status_chamado === "andamento") {
       setChamados(andamento);
       setLoading(false);
-    }else if(filtro.status_chamado === "concluido"){
+    } else if (filtro.status_chamado === "concluido") {
       setChamados(concluidos);
       setLoading(false);
-    }else{
+    } else if (filtro.status_chamado === "cancelado") {
+      setChamados(cancelados);
+      setLoading(false);
+    } else {
       setChamados(todos);
       setLoading(false);
     }
@@ -191,29 +213,32 @@ export default function ListaChamados() {
   // Busca chamados por filtro pelo protocolo
   const handleFiltroName = async (e) => {
     e.preventDefault();
-    try {
-      if (filtro.empresa !== "") {
-        if (type === "tecnicos") {
-          const { data } = await api.get(
-            "/chamados?nome_empresa=" + filtro.empresa + "&empresa_id=" + id
-          );
-          setChamados(data);
-        } else if (type === "empresas") {
-          const { data } = await api.get(
-            "/chamados?nome_funcionario=" + filtro.empresa + "&empresa_id=" + id
-          );
-          setChamados(data);
-        } else if (type === "funcionarios") {
-          const { data } = await api.get(
-            "/chamados?cod_verificacao=" + filtro.empresa + "&empresa_id=" + id
-          );
-          setChamados(data);
-        }
-      }
-    } catch (error) {}
+
+    const todos = await getAllChamados();
+    console.log(type);
+    if (type == "funcionarios") {
+      const protocolo = todos.filter(
+        (chamado) => chamado.cod_verificacao == filtro.empresa
+      );
+      setChamados(protocolo);
+      console.log(chamados);
+      setLoading(false);
+    } else if (type == "empresas") {
+      const nomeFuncionario = todos.filter(
+        (chamado) => chamado.protocolo == filtro.nome_funcionario
+      );
+      setChamados(nomeFuncionario);
+      setLoading(false);
+    } else if (type == "tecnicos") {
+      const nomeEmpresa = todos.filter(
+        (chamado) => chamado.protocolo == filtro.nome_empresa
+      );
+      setChamados(nomeEmpresa);
+      setLoading(false);
+    }
   };
 
-  // Buscar todos os chamados quando abre a página 
+  // Buscar todos os chamados quando abre a página
   useEffect(() => {
     getChamadoAceito();
     async function getChamados() {
@@ -221,7 +246,6 @@ export default function ListaChamados() {
         return;
       }
       getAllChamados();
-      
     }
     getChamados();
   }, []); // eslint-disable-line
@@ -251,7 +275,7 @@ export default function ListaChamados() {
     <>
       <Header />
       <div className="flex flex-col min-h-screen overflow-hidden dark:bg-preto">
-        <div className="mt-5 px-5 flex flex-col md:flex-row md:space-x-6">
+        <div className="mt-5 px-11 flex flex-col md:flex-row md:space-x-6">
           <h1 className="text-3xl font-semibold lg:text-3xl dark:text-branco">
             Lista de chamados
           </h1>
@@ -267,104 +291,141 @@ export default function ListaChamados() {
           )}
         </div>
 
-        <div className="flex flex-col w-full mt-8 p-5 space-y-4 lg:space-y-0 lg:flex-row lg:space-x-8">
-          <div className="w-full lg:w-1/3 flex items-center relative">
-            <label className="dark:text-gray-50">Pesquisar:</label>
-            <input
-              className="focus:outline-none ml-2 dark:bg-transparent dark:text-gray-50 focus:border-b-azul-hyde border-b-2 w-full p-2"
-              placeholder={
-                type == "tecnicos"
-                  ? "Nome da empresa"
-                  : type == "empresas"
-                  ? "Nome do funcionário"
-                  : "Protocolo"
-              }
-              name="empresa"
-              onChange={changeFiltro}
-              required
-            />
-            <BiSearchAlt2
-              size={20}
-              className="absolute text-gray-400 right-3 cursor-pointer"
-              onClick={handleFiltroName}
-            />
+        <div className="flex flex-col w-full mt-8 px-11 lg:space-y-0 lg:flex-row gap-4">
+          <div className="w-full lg:w-2/4 py-3">
+            <div className="w-full lg:w--full flex items-center relative">
+              <label className="dark:text-gray-50">Pesquisar:</label>
+              <input
+                className="focus:outline-none ml-2 dark:bg-transparent dark:text-gray-50 focus:border-b-azul-hyde border-b-2 w-full p-2"
+                placeholder={
+                  type == "tecnicos"
+                    ? "Nome da empresa"
+                    : type == "empresas"
+                    ? "Nome do funcionário"
+                    : "Protocolo"
+                }
+                name="empresa"
+                onChange={changeFiltro}
+                required
+              />
+              <BiSearchAlt2
+                size={20}
+                className="absolute text-gray-400 right-3 cursor-pointer"
+                onClick={handleFiltroName}
+              />
+            </div>
+            <div className="flex flex-col items-center justify-center lg:full">
+              <div className="w-full flex items-center justify-center">
+                <label className="dark:text-gray-50  mr-7 ">
+                  Filtrar:
+                </label>
+                <div className="flex flex-1 items-center">
+                <select
+                  className="focus:outline-none dark:bg-transparent  dark:text-gray-50 focus:border-b-azul-hyde ml-2 border-b-2  w-full p-2"
+                  name="status_chamado"
+                  onChange={changeFiltro}
+                  required
+                >
+                  <option
+                    className="dark:text-branco dark:bg-gray-800 dark:hover:bg-gray-800"
+                    selected
+                    disabled
+                  >
+                    Selecione uma opção
+                  </option>
+                  <option
+                    className="dark:text-branco dark:bg-gray-800 dark:hover:bg-gray-800"
+                    value="todos"
+                  >
+                    Todos
+                  </option>
+                  <option
+                    className="dark:text-branco dark:bg-gray-800 dark:hover:bg-gray-800"
+                    value="pendente"
+                  >
+                    Pendente
+                  </option>
+                  <option
+                    className="dark:text-branco dark:bg-gray-800 dark:hover:bg-gray-800"
+                    value="andamento"
+                  >
+                    Em andamento
+                  </option>
+                  <option
+                    className="dark:text-branco dark:bg-gray-800 dark:hover:bg-gray-100"
+                    value="concluido"
+                  >
+                    Concluido
+                  </option>
+                  <option
+                    className="dark:text-branco dark:bg-gray-800 dark:hover:bg-gray-100"
+                    value="cancelado"
+                  >
+                    Cancelado
+                  </option>
+                </select>
+                <BiSearchAlt2
+                size={20}
+                className=" text-gray-400  cursor-pointer"
+                onClick={handleFiltro}
+                disabled={filtro.status_chamado === ""}
+              />
+                </div>
+              </div>
+            </div>
           </div>
-          <div className="flex flex-row items-center lg:w-1/3">
-            <label className="dark:text-gray-50">Filtrar:</label>
-            <select
-              className="focus:outline-none dark:bg-transparent dark:text-gray-50 focus:border-b-azul-hyde ml-2 border-b-2 w-full p-2"
-              name="status_chamado"
-              onChange={changeFiltro}
-              required
+          <div className="w-ful lg:w-2/4 flex flex-col ">
+            <label
+              htmlFor="data"
+              className="dark:text-white w-full text-center"
             >
-              <option
-                className="dark:text-branco dark:bg-gray-800 dark:hover:bg-gray-800"
-                selected
-                disabled
-              >
-                Selecione uma opção
-              </option>
-              <option
-                className="dark:text-branco dark:bg-gray-800 dark:hover:bg-gray-800"
-                value="todos"
-              >
-                Todos
-              </option>
-              <option
-                className="dark:text-branco dark:bg-gray-800 dark:hover:bg-gray-800"
-                value="pendente"
-              >
-                Pendente
-              </option>
-              <option
-                className="dark:text-branco dark:bg-gray-800 dark:hover:bg-gray-800"
-                value="andamento"
-              >
-                Em andamento
-              </option>
-              <option
-                className="dark:text-branco dark:bg-gray-800 dark:hover:bg-gray-100"
-                value="concluido"
-              >
-                Concluido
-              </option>
-            </select>
+              Selecione uma data:
+            </label>
+            <div className="w-full flex items-center px-4 gap-4">
+              <input
+                type="date"
+                name="data"
+                id="data"
+                className="bg-transparent dark:text-white text-center dark:border-white border-b-2 flex-1"
+              />
+              <BiSearchAlt2
+                size={20}
+                className=" text-gray-400  cursor-pointer"
+              />
+            </div>
           </div>
-          <button
-            className="rounded-md bg-azul-hyde px-3.5 py-1.5 text-base font-semibold leading-7 text-white shadow-sm hover:bg-cyan-600 "
-            onClick={handleFiltro}
-            disabled={filtro.status_chamado === ""}
-          >
-            Pesquisar
-          </button>
         </div>
 
-        <div className="mx-5 my-5 overflow-x-auto overflow-y-hidden rounded-t-xl">
-          <table className="min-w-full min-h-fit">
-            <thead align="center">
-              <tr className="bg-azul-hyde text-slate-50 text-lg font-bold">
+        <div className="mx-5 my-5 p-6  overflow-x-auto overflow-y-hidden ">
+          <table className="max-w-full w-full  min-h-fit rounded-t-md ">
+            <thead align="start" cla>
+              <tr className="bg-azul-hyde  text-slate-50 text-lg font-bold ">
                 {type == "tecnicos" && (
-                  <th scope="col" className="px-6 py-4">
+                  <th scope="col" className=" py-3 text-lg text-start">
                     Empresa
                   </th>
                 )}
-                <th scope="col" className="px-6 py-4">
+                <th scope="col" className="px-2  py-3 text-lg text-start">
                   Funcionário
                 </th>
 
-                <th scope="col" className="px-6 py-4">
+                <th scope="col" className="px-2 py-3 text-lg text-start">
                   Problema
                 </th>
-                <th scope="col" className="px-6 py-4">
+
+                <th scope="col" className="px-2 py-3 text-lg text-start">
                   Protocolo
                 </th>
-                <th scope="col" className="px-6 py-4">
+                <th scope="col" className="px-2 py-3 text-lg text-start">
                   Prioridade
                 </th>
-                <th scope="col" className="px-6 py-4">
+                <th scope="col" className="px-2 py-3 text-lg text-start">
                   Status
                 </th>
-                <th scope="col" className="px-6 py-4"></th>
+                <th scope="col" className="px-2 py-3 text-lg text-start">
+                  Data de abertura
+                </th>
+                <th scope="col" className="px-2 py-3 text-lg text-start"></th>
               </tr>
             </thead>
             <tbody>
@@ -397,6 +458,12 @@ export default function ListaChamados() {
                     className="text-lg first-letter:uppercase data-[type=pendente]:text-red-500 data-[type=andamento]:text-yellow-500 data-[type=concluido]:text-green-500   font-bold px-6 py-4  whitespace-nowrap"
                   >
                     {chamadoAceito[0].status_chamado}
+                  </td>
+                  <td
+                    data-type={chamadoAceito[0].data}
+                    className="text-lg first-letter:uppercase data-[type=pendente]:text-red-500 data-[type=andamento]:text-yellow-500 data-[type=concluido]:text-green-500   font-bold px-6 py-4  whitespace-nowrap"
+                  >
+                    {chamadoAceito[0].data}
                   </td>
 
                   <td className="text-lg text-gray-900 font-light px-6 py-4 whitespace-nowrap ">
