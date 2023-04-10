@@ -38,6 +38,7 @@ export default function ListaChamados() {
     });
   };
 
+  // Paginação 
   const [pagination, setPagination] = useState(null);
 
   function genPagination(from, to) {
@@ -86,6 +87,7 @@ export default function ListaChamados() {
     );
   }
 
+  // Define a quantidade de itens por página
   const [currentPage, setCurrentPage] = useState(0);
   const [totalPages, setTotalPages] = useState(1);
   const [paginationButtons, setPaginationButtons] = useState(null);
@@ -114,6 +116,7 @@ export default function ListaChamados() {
     }
   }
 
+  // Busca todos os chamados aceitos
   async function getChamadoAceito() {
     if (id === null || type === null) {
       return;
@@ -133,85 +136,59 @@ export default function ListaChamados() {
       console.log(error);
     }
   }
+  // Busca todos os chamados
+  async function getAllChamados(){
+    try {
+      switch (type) {
+        case "empresas":
+          const { data } = await api.get("/chamados?empresa_id=" + id);
+          setChamados(data);
+          setLoading(false);
+          return data;
+          
+        case "funcionarios":
+          const response = await api.get("/chamados?funcionario_id=" + id);
+          setChamados(response.data);
+          setLoading(false);
+          return response.data;
+        case "tecnicos":
+          const res = await api.get("/chamados");
+          setChamados(res.data);
+          setLoading(false);
+          return res.data;
+          break;
+        default:
+          break;
+      }
+    } catch (error) {
+      setStatus("Erro ao buscar seus chamados!");
+    }
+  }
 
+  // Busca chamados por filtro
   const handleFiltro = async (e) => {
     e.preventDefault();
-    try {
-      if (filtro.status_chamado !== "") {
-        switch (type) {
-          case "empresas":
-            if (filtro.empresa && filtro.status_chamado) {
-              const { data } = await api.get(
-                "/chamados?empresa_id=" +
-                  id +
-                  "&status_chamado=" +
-                  filtro.status_chamado +
-                  "&nome_funcionario=" +
-                  filtro.empresa
-              );
-              setChamados(data);
-              setLoading(false);
-            } else {
-              const { data } = await api.get(
-                "/chamados?empresa_id=" +
-                  id +
-                  "&status_chamado=" +
-                  filtro.status_chamado
-              );
-              setChamados(data);
-              setLoading(false);
-            }
-            break;
-          case "funcionarios":
-            if (filtro.empresa && filtro.status_chamado) {
-              const response = await api.get(
-                "/chamados?funcionario_id=" +
-                  id +
-                  "&status_chamado=" +
-                  filtro.status_chamado +
-                  "&cod_verificacao=" +
-                  filtro.empresa
-              );
-              console.log(response.data);
-              setChamados(response.data);
-              setLoading(false);
-            } else {
-              const response = await api.get(
-                "/chamados?funcionario_id=" +
-                  id +
-                  "&status_chamado=" +
-                  filtro.status_chamado
-              );
-              console.log(response.data);
-              setChamados(response.data);
-              setLoading(false);
-            }
-            break;
-          case "tecnicos":
-            if (filtro.empresa && filtro.status_chamado) {
-              const res = await api.get(
-                "/chamados?status_chamado=" +
-                  filtro.status_chamado +
-                  "&nome_empresa=" +
-                  filtro.empresa
-              );
-              setChamados(res.data);
-              setLoading(false);
-            } else {
-              const res = await api.get(
-                "/chamados?status_chamado=" + filtro.status_chamado
-              );
-              setChamados(res.data);
-              setLoading(false);
-            }
-            break;
-          default:
-            break;
-        }
-      }
-    } catch (error) {}
+    const todos = await getAllChamados()
+    const andamento = todos.filter((item) => item.status_chamado === "andamento");
+    const pendentes = todos.filter((item) => item.status_chamado === "pendente");
+    const concluidos = todos.filter((item) => item.status_chamado === "concluido");
+    
+    if (filtro.status_chamado === "pendente") {
+      setChamados(pendentes);
+      setLoading(false);
+    }else if(filtro.status_chamado === "andamento"){
+      setChamados(andamento);
+      setLoading(false);
+    }else if(filtro.status_chamado === "concluido"){
+      setChamados(concluidos);
+      setLoading(false);
+    }else{
+      setChamados(todos);
+      setLoading(false);
+    }
   };
 
+  // Busca chamados por filtro pelo protocolo
   const handleFiltroName = async (e) => {
     e.preventDefault();
     try {
@@ -236,42 +213,20 @@ export default function ListaChamados() {
     } catch (error) {}
   };
 
+  // Buscar todos os chamados quando abre a página 
   useEffect(() => {
     getChamadoAceito();
-
     async function getChamados() {
       if (id === null || type === null) {
         return;
       }
-
-      try {
-        switch (type) {
-          case "empresas":
-            const { data } = await api.get("/chamados?empresa_id=" + id);
-            setChamados(data);
-            setLoading(false);
-            break;
-          case "funcionarios":
-            const response = await api.get("/chamados?funcionario_id=" + id);
-            setChamados(response.data);
-            setLoading(false);
-            break;
-          case "tecnicos":
-            const res = await api.get("/chamados");
-            setChamados(res.data);
-            setLoading(false);
-            break;
-          default:
-            break;
-        }
-      } catch (error) {
-        setStatus("Erro ao buscar seus chamados!");
-      }
+      getAllChamados();
+      
     }
-
     getChamados();
-  }, [id, type]); // eslint-disable-line
+  }, []); // eslint-disable-line
 
+  // Gerar a paginação
   useEffect(() => {
     const totalItems = 8;
     setCurrentPage(0);
@@ -351,6 +306,12 @@ export default function ListaChamados() {
               </option>
               <option
                 className="dark:text-branco dark:bg-gray-800 dark:hover:bg-gray-800"
+                value="todos"
+              >
+                Todos
+              </option>
+              <option
+                className="dark:text-branco dark:bg-gray-800 dark:hover:bg-gray-800"
                 value="pendente"
               >
                 Pendente
@@ -372,6 +333,7 @@ export default function ListaChamados() {
           <button
             className="rounded-md bg-azul-hyde px-3.5 py-1.5 text-base font-semibold leading-7 text-white shadow-sm hover:bg-cyan-600 "
             onClick={handleFiltro}
+            disabled={filtro.status_chamado === ""}
           >
             Pesquisar
           </button>
@@ -454,7 +416,7 @@ export default function ListaChamados() {
             </div>
           )}
 
-          {chamados.length < 1 && !loading && !status && (
+          {chamados?.length < 1 && !loading && !status && (
             <div className="flex gap-2 items-center justify-center m-auto w-64 mt-10">
               <p className="dark:text-branco"> Você não possui chamados.</p>
             </div>
