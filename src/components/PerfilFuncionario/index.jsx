@@ -3,6 +3,8 @@ import api from "../../services/api";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import secureLocalStorage from "react-secure-storage";
+import PieChart from "../../components/PieChart";
+import DoughnutChart from "../DoughnutChart";
 
 export default function PerfilFuncionario() {
   const id = JSON.parse(secureLocalStorage.getItem("Id"));
@@ -75,9 +77,9 @@ export default function PerfilFuncionario() {
 
   return (
     <div className=" dark:bg-preto pb-20 pt-10">
-      <div className="flex flex-col w-full h-screen lg:flex-row items-center justify-center">
-        <div className="w-full px-5 md:px-10 lg:w-8/12 h-full dark:text-branco dark:border-white border-r-2 border-gray-900">
-          <div>
+      <div className="flex flex-col w-full h-fit lg:h-screen lg:flex-row items-center justify-center gap-y-10">
+        <div className="w-full px-5 md:px-10 lg:w-8/12 h-full dark:text-branco lg:dark:border-white lg:border-r-2 lg:border-gray-900">
+          <div className="text-center lg:text-start">
             <h1 className="font-bold text-3xl">Meu perfil</h1>
             <p className="text-gray-600 dark:text-gray-400">
               Gerencie suas informações
@@ -169,7 +171,11 @@ export default function PerfilFuncionario() {
             </button>
           </div>
         </div>
-        <div className="lg:w-4/12 sm:w-full  h-full"></div>
+        <div className="lg:w-4/12 w-full p-6 h-full items-center gap-y-6 flex flex-col">
+            <h1 className="font-bold text-3xl dark:text-gray-50">Dashboard</h1>
+          <PieChart/>
+          <DoughnutChart/>
+        </div>
       </div>
     </div>
   );

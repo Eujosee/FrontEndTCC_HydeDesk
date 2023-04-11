@@ -17,7 +17,6 @@ import ListaFuncionarios from "../pages/ListaFuncionarios";
 import CadastroFuncionario from "../pages/CadastroFuncionario";
 import AbrirChamado from "../pages/AbrirChamado";
 import Detalhes from "../pages/Detalhes";
-import DashBoard from "../pages/DashBoard";
 
 import { useContext } from "react";
 import { Context } from "../context/AuthContext";
@@ -114,10 +113,6 @@ const router = createBrowserRouter([
         <Perfil />
       </PrivateRoutes>
     ),
-  },
-  {
-    path: "/dashboard",
-    element: <DashBoard/>,
   },
   {
     path: "*",
