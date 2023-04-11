@@ -195,7 +195,7 @@ export default function ListaFuncionarios() {
                 <th scope="col" className="px-2 py-3 text-lg text-start ">
                   Status
                 </th>
-                <th scope="col" className="px-2 py-3 text-lg text-start whitespace-nowrap">
+                <th scope="col" className="px-2 py-3 text-lg text-center whitespace-nowrap">
                   Ativar / Desativar
                 </th>
               </tr>
@@ -204,10 +204,10 @@ export default function ListaFuncionarios() {
               {funcionarios.map((item) => {
                 return (
                   <tr key={item.id_funcionario}
-                    align="center"
+                    align="start"
                     className="border-b odd:bg-white dark:odd:bg-gray-900 even:bg-slate-100 dark:even:bg-gray-800 font-medium hover:bg-slate-200 dark:hover:bg-gray-900"
                   >
-                    <td className="flex grow-0 flex-row items-center space-y-8 text-lg text-gray-900 dark:text-branco px-6 py-4 whitespace-nowrap">
+                    <td className="flex grow-0 flex-row items-center space-y-8 text-lg text-gray-900 dark:text-branco px-2 py-4 whitespace-nowrap">
                       <img
                         src={
                           "https://hydedesk-api.azurewebsites.net/" + item.foto
@@ -217,22 +217,22 @@ export default function ListaFuncionarios() {
                       />
                       {item.nome_funcionario}
                     </td>
-                    <td className="text-lg text-gray-900 dark:text-branco px-6 py-4 whitespace-nowrap">
+                    <td className="text-lg text-gray-900 dark:text-branco px-2 py-4 whitespace-nowrap">
                       {item.matricula}
                     </td>
-                    <td className="text-lg text-gray-900 dark:text-branco px-6 py-4 whitespace-nowrap">
+                    <td className="text-lg text-gray-900 dark:text-branco px-2 py-4 whitespace-nowrap">
                       {item.usuario}
                     </td>
-                    <td className="text-lg text-gray-900 dark:text-branco px-6 py-4 whitespace-nowrap">
+                    <td className="text-lg text-gray-900 dark:text-branco px-2 py-4 whitespace-nowrap">
                       {item.email_funcionario}
                     </td>
                     <td
                       data-type={item.status_funcionario}
-                      className="text-lg data-[type=Desativado]:text-red-500 data-[type=Ativo]:text-green-500 font-bold px-6 py-4  whitespace-nowrap"
+                      className="text-lg data-[type=Desativado]:text-red-500 data-[type=Ativo]:text-green-500 font-bold px-2 py-4  whitespace-nowrap"
                     >
                       {item.status_funcionario}
                     </td>
-                    <td className="text-lg text-azul-hyde px-6 py-4 whitespace-nowrap">
+                    <td className="text-lg text-azul-hyde px-2 py-4 whitespace-nowrap text-center">
                       <button onClick={() => abrirModal(item)}>
                         <PencilSquareIcon className="h-6 w-6" />
                       </button>
