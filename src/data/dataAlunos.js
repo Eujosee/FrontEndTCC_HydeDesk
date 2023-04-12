@@ -1,10 +1,9 @@
 const data = [
   {
     Foto: "https://drive.google.com/uc?id=1xVgIiRpXhrhgr0E_hqtTLgcGiWqpSn74",
-    Nome: " Sérgio Gal",
+    Nome: "Sérgio Gal",
     Atuacao: "Professor orientador",
-    Github: "https://github.com/professor-sergio",
-    Linkedin: "",
+    Lattes: "http://lattes.cnpq.br/2723447655986934",
   },
   {
     Foto: "https://drive.google.com/uc?id=1xhZmlHXDDcPbXeJOL-uia6Lr_CPl3MMI",

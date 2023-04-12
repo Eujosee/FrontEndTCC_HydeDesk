@@ -84,7 +84,7 @@ export default function FormFunc() {
           {imagem ? (
             <>
               <img
-                className="w-40 h-40 rounded-full"
+                className="w-40 h-40 object-cover rounded-full"
                 src={URL.createObjectURL(imagem)}
                 alt="sua foto"
               />
@@ -95,7 +95,7 @@ export default function FormFunc() {
                 <AiFillCamera
                   size={50}
                   color="#f8f8ff    "
-                  className="absolute bottom-[-0.2rem] bg-azul-hyde   p-2 rounded-full"
+                  className="absolute bottom-[-0.2rem] hover:cursor-pointer bg-azul-hyde   p-2 rounded-full"
                 />
               </label>
             </>
@@ -112,7 +112,7 @@ export default function FormFunc() {
                 <AiFillCamera
                   size={50}
                   color="#f8f8ff  "
-                  className="absolute bottom-[-0.2rem] bg-azul-hyde  p-2 rounded-full"
+                  className="absolute bottom-[-0.2rem] hover:cursor-pointer bg-azul-hyde  p-2 rounded-full"
                 />
               </label>
             </>

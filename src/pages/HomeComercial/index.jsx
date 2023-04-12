@@ -96,15 +96,25 @@ export default function HomeComercial() {
         <h1 className="font-bold text-4xl dark:text-white">Planos</h1>
         <div className="max-w-full lg:w-3/4 m-auto p-8">
           <div className="flex flex-col flex-wrap gap-10 w-full justify-center items-center md:flex-row">
-            <Link className="flex justify-center" to={"/pagamento/" + 0}>
+            <div className="flex flex-col items-center">
               <CardPlano key="1" index={0} />
-            </Link>
-            <Link className="flex justify-center" to={"/pagamento/" + 1}>
-              <CardPlano key="2" index={1} />
-            </Link>
-            <Link className="flex justify-center" to={"/pagamento/" + 2}>
-              <CardPlano key="3" index={2} />
-            </Link>
+              <Link className="flex mt-6 lg:w-full hover:bg-cyan-600 text-white font-semibold py-2.5 px-10 rounded-md bg-azul-hyde justify-center" to={"/pagamento/" + 0}>
+                Comprar
+              </Link>
+            </div>
+            <div className="flex flex-col items-center">
+              <CardPlano key="1" index={1} />
+              <Link className="flex mt-6 lg:w-full hover:bg-cyan-600 text-white font-semibold py-2.5 px-10 rounded-md bg-azul-hyde justify-center" to={"/pagamento/" + 1}>
+                Comprar
+              </Link>
+            </div>
+            <div className="flex flex-col items-center">
+              <CardPlano key="1" index={2} />
+              <Link className="flex mt-6 lg:w-full hover:bg-cyan-600 text-white font-semibold py-2.5 px-10 rounded-md bg-azul-hyde justify-center" to={"/pagamento/" + 2}>
+                Comprar
+              </Link>
+            </div>
+           
           </div>
         </div>
       </div>

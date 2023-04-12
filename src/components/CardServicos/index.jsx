@@ -4,6 +4,8 @@ import Hardware from "../../images/hardware.jpg";
 import Software from "../../images/software.jpg";
 import Redes from "../../images/redes.jpg";
 
+import "./index.css"
+
 const img = {
   hardware: Hardware,
   software: Software,
@@ -12,7 +14,7 @@ const img = {
 
 export default function CardServicos({ index }) {
   return (
-    <div className="bg-branco dark:bg-gray-800 flex flex-col w-[90%] h-[46rem] lg:h-[40rem] mt-8 p-4 lg:w-[70rem] justify-center items-center rounded-xl lg:p-8">
+    <div className="bg-branco dark:bg-gray-800 flex flex-col w-[90%] h-fit lg:h-[40rem] mt-8 p-4 lg:w-[70rem] justify-center items-center rounded-xl lg:p-8">
       <div className="w-full">
         <h1 className="text-azul-hyde font-bold pl-4 text-4xl text-start mb-2">
           {data[index].titulo}

@@ -46,7 +46,7 @@ export default function PerfilFuncionario() {
           formData,
           config
         );
-        toast.success("Dados alterada com sucesso", {
+        toast.success("Dados alterados com sucesso", {
           position: toast.POSITION.TOP_RIGHT,
         });
       } catch (error) {

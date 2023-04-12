@@ -29,19 +29,20 @@ export default function Footer() {
               </li>
             </ul>
           </div>
+          
           <div>
             <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
-              Produto
+              Importante
             </h2>
             <ul className="text-gray-600 dark:text-gray-400">
               <li className="mb-4">
-                <Link to="/" className="hover:underline ">
-                  Serviços
-                </Link>
+                <a href="https://expo.dev/artifacts/eas/kzLZCdBY8zwe7WhRC9MNGC.apk" className="hover:underline ">
+                  Baixar App
+                </a>
               </li>
               <li>
-                <Link to="/" className="hover:underline">
-                  Benefícios
+                <Link to="#" className="hover:underline">
+                  Manual do usuário
                 </Link>
               </li>
             </ul>

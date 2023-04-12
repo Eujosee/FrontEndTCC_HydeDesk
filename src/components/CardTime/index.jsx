@@ -1,5 +1,5 @@
-import { BsLinkedin } from "react-icons/bs";
-import { BsGithub } from "react-icons/bs";
+import { BsLinkedin, BsGithub } from "react-icons/bs";
+import { AiOutlinePaperClip } from "react-icons/ai"
 
 export default function CardTime({ item }) {
   return (
@@ -18,12 +18,21 @@ export default function CardTime({ item }) {
           </p>
         </div>
         <div className="mb-4 space-x-5 flex flex-row justify-center text-azul-hyde">
+        {item.Nome == "Sérgio Gal" ? (
+          <a href={item.Lattes} target="_blank" rel="noreferrer">
+            <AiOutlinePaperClip size={30}/>
+          </a>
+          
+        ) :
+          <>
           <a href={item.Linkedin} target="_blank" rel="noreferrer">
-            <BsLinkedin size={30} />
-          </a>
-          <a href={item.Github} target="_blank" rel="noreferrer">
-            <BsGithub size={30} />
-          </a>
+              <BsLinkedin size={30} />
+            </a>
+            <a href={item.Github} target="_blank" rel="noreferrer">
+              <BsGithub size={30} />
+            </a>
+          </>
+        }
         </div>
       </div>
     </div>

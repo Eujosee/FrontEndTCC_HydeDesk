@@ -60,7 +60,7 @@ export default function HomeInstitucional() {
       <div className="flex items-center w-full  h-[15rem] md:h-[20rem] lg:h-[50rem] overflow-hidden">
         <img className="object-cover bottom-20 w-full" src={FotoTurma} alt="" />
       </div>
-      <div className=" py-14 flex flex-col justify-center items-center">
+      <div className="pb-8 lg:py-14 flex flex-col justify-center items-center">
         <h1 className="mb-10 font-bold text-2xl dark:text-branco">
           Conheça nosso time
         </h1>

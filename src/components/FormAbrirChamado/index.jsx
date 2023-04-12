@@ -113,9 +113,9 @@ export default function FormAbrirChamado() {
             </option>
             <option
               className="text-gray-900 dark:text-branco dark:bg-gray-800"
-              value="Redes"
+              value="Infraestrutura"
             >
-              Redes
+              Infraestrutura
             </option>
             <option
               className="text-gray-900 dark:text-branco dark:bg-gray-800"

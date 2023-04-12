@@ -1,5 +1,3 @@
-
-
 .slick-dots li button:before {
   color: #9ca3af;
   opacity: 100%;
@@ -23,6 +21,14 @@
   right: 3% !important;
   z-index: 1;
 }
+
+@media (max-width:640px) {
+  .slick-next {
+    right: 7% !important;
+    z-index: 1;
+  }
+}
+
 .slick-next::before{
   color: #94a3b8 !important;
   font-size: 35px !important;
