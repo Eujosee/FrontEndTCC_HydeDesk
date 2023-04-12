@@ -132,7 +132,7 @@ export default function FormTec() {
           {imagem ? (
             <>
               <img
-                className="w-40 h-40 rounded-full"
+                className="w-40 h-40 object-cover rounded-full"
                 src={URL.createObjectURL(imagem)}
                 alt="sua foto"
               />
@@ -143,7 +143,7 @@ export default function FormTec() {
                 <AiFillCamera
                   size={50}
                   color="#f8f8ff    "
-                  className="absolute bottom-[-0.2rem] bg-azul-hyde  p-2 rounded-full"
+                  className="absolute bottom-[-0.2rem] hover:cursor-pointer bg-azul-hyde  p-2 rounded-full"
                 />
               </label>
             </>
@@ -157,7 +157,7 @@ export default function FormTec() {
                 <AiFillCamera
                   size={50}
                   color="#f8f8ff"
-                  className="absolute bottom-[-0.2rem] bg-azul-hyde p-2 rounded-full"
+                  className="absolute bottom-[-0.2rem] hover:cursor-pointer bg-azul-hyde p-2 rounded-full"
                 />
               </label>
             </>
@@ -233,11 +233,9 @@ export default function FormTec() {
               required
             >
               <option selected>Selecione uma opção</option>
-              <option value="Desenvolvedor">Desenvolvedor</option>
+              <option value="Software">Software</option>
               <option value="Infraestrutura">Infraestrutura</option>
-              <option value="Sistemas operacionais">
-                Sistemas operacionais
-              </option>
+              <option value="Hardware">Hardware</option>
             </select>
           </div>
           <div className="mt-1 hidden">

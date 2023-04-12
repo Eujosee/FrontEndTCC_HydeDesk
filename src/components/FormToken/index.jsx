@@ -4,11 +4,6 @@ import { useState, useRef } from "react";
 export default function FormToken() {
   const [inputValues, setInputValues] = useState([
     { value: "", ref: useRef(null) },
-    // { value: "", ref: useRef(null) },
-    // { value: "", ref: useRef(null) },
-    // { value: "", ref: useRef(null) },
-    // { value: "", ref: useRef(null) },
-    //  { value: "", ref: useRef(null) },
   ]);
 
   const { state } = useLocation();

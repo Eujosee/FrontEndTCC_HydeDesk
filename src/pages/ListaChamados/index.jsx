@@ -81,7 +81,7 @@ export default function ListaChamados() {
               </td>
               <td
                 data-type={item.status_chamado}
-                className="text-md first-letter:uppercase data-[type=pendente]:text-red-500 data-[type=andamento]:text-yellow-500 data-[type=concluido]:text-green-500 data-[type=cancelado]:text-red-700  font-bold px-2 py-4  whitespace-nowrap"
+                className="text-lg first-letter:uppercase data-[type=cancelado]:line-through  data-[type=pendente]:text-red-500 data-[type=andamento]:text-yellow-500 data-[type=concluido]:text-green-500 data-[type=cancelado]:text-red-900 font-bold px-6 py-4  whitespace-nowrap"
               >
                 {item.status_chamado}
               </td>
