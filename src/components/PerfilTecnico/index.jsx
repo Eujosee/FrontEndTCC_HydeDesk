@@ -148,7 +148,7 @@ export default function PerfilTecnico() {
                 name="nome_tecnico"
                 value={dados.nome_tecnico}
                 onChange={changeDados}
-                className="p-2 dark:text-branco dark:bg-transparent dark:border-slate-300  outline-none border-b-2"
+                className="p-2 focus:border-azul-hyde dark:text-branco dark:bg-transparent dark:border-slate-300 dark:focus:border-azul-hyde  outline-none border-b-2"
               />
             </div>
             <div className="flex flex-col relative">
@@ -162,7 +162,7 @@ export default function PerfilTecnico() {
                 mask="999.999.999-99"
                 value={dados.cpf}
                 onChange={changeDados}
-                className="p-2 dark:text-branco dark:bg-transparent dark:border-slate-300  outline-none border-b-2"
+                className="p-2  dark:text-branco dark:bg-transparent dark:border-slate-300 dark:hover:border-azul-hyde  outline-none border-b-2"
                 disabled
               />
               <LockClosedIcon className="h-4 w-4 text-gray-400 absolute top-9 right-3" />
@@ -177,7 +177,7 @@ export default function PerfilTecnico() {
                 name="email_tecnico"
                 value={dados.email_tecnico}
                 onChange={changeDados}
-                className="p-2 dark:text-branco dark:bg-transparent dark:border-slate-300  outline-none border-b-2"
+                className="p-2 focus:border-azul-hyde dark:text-branco dark:bg-transparent dark:border-slate-300  dark:focus:border-azul-hyde outline-none border-b-2"
               />
             </div>
             <div className="flex flex-col">
@@ -225,7 +225,7 @@ export default function PerfilTecnico() {
                 mask="(99) 99999-9999"
                 value={dados.telefone}
                 onChange={changeDados}
-                className="p-2 dark:text-branco dark:bg-transparent dark:border-slate-300  outline-none border-b-2"
+                className="p-2 focus:border-azul-hyde dark:text-branco dark:bg-transparent dark:border-slate-300 dark:focus:border-azul-hyde  outline-none border-b-2"
               />
             </div>
             <div className="flex flex-col relative">
@@ -238,7 +238,7 @@ export default function PerfilTecnico() {
                 name="telefone"
                 value={dados.matricula}
                 onChange={changeDados}
-                className="p-2 dark:text-branco dark:bg-transparent dark:border-slate-300  outline-none border-b-2"
+                className="p-2  hover:border-azul-hyde dark:text-branco dark:bg-transparent dark:border-slate-300 dark:hover:border-azul-hyde  outline-none border-b-2"
                 disabled
               />
               <LockClosedIcon className="h-4 w-4 text-gray-400 absolute top-9 right-3" />

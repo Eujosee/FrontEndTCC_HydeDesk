@@ -7,10 +7,9 @@ export default function ModalCancelar({ open, onClose, id }) {
 
   async function handleCancel(e) {
     e.preventDefault();
-
     try {
       const { data } = await api.put("/chamados/cancelar/" + id);
-      console.log(data.message);
+      console.log(data);
       onClose();
     } catch (error) {
       console.log(error.message);

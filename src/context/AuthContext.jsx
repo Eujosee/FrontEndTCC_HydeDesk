@@ -97,7 +97,6 @@ export function AuthProvider({ children }) {
     secureLocalStorage.removeItem("Id");
     secureLocalStorage.removeItem("Tipo");
     api.defaults.headers.Authorization = undefined;
-    window.location.href = "/";
   }
 
   if (loading) {

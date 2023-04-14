@@ -96,13 +96,13 @@ export default function Header() {
               to="/"
               className="text-md font-semibold leading-6 text-gray-900 dark:text-branco hover:text-azul-hyde dark:hover:text-azul-hyde"
             >
-              Página Inicial
+              Home
             </Link>
             <Link
               to="/institucional"
               className="text-md font-semibold leading-6 text-gray-900 dark:text-branco hover:text-azul-hyde dark:hover:text-azul-hyde"
             >
-              Sobre a Hyde
+              Sobre
             </Link>
             {authenticated && (
               <Popover className="relative">
@@ -356,13 +356,13 @@ export default function Header() {
                   to="/"
                   className="-mx-3 block rounded-lg py-2 px-3 text-base font-semibold leading-7 text-gray-900 dark:text-branco hover:bg-gray-50 dark:hover:bg-gray-900"
                 >
-                  Página Inicial
+                 Home
                 </Link>
                 <Link
                   to="/institucional"
                   className="-mx-3 block rounded-lg py-2 px-3 text-base font-semibold leading-7 text-gray-900 dark:text-branco hover:bg-gray-50 dark:hover:bg-gray-900"
                 >
-                  Sobre a Hyde
+                  Sobre
                 </Link>
                 {authenticated && (
                   <Disclosure as="div" className="-mx-3">

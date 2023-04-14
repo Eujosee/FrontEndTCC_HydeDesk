@@ -54,39 +54,39 @@ export default function ListaChamados() {
               className="border-b odd:bg-white dark:odd:bg-gray-900 even:bg-slate-100 dark:even:bg-gray-800 font-medium hover:bg-slate-200 dark:hover:bg-gray-900"
             >
               {type === "tecnicos" && (
-                <td className="text-md text-gray-900 dark:text-branco px-2 py-4 whitespace-nowrap">
+                <td className="text-md  text-gray-900 dark:text-branco lg:px-2 px-6 py-4 whitespace-nowrap">
                   {item.nome_empresa}
                 </td>
               )}
               {type === "empresas" && (
-                <td className="text-md text-start text-gray-900 dark:text-branco px-2 py-4 whitespace-nowrap">
+                <td className="text-md  text-start text-gray-900 dark:text-branco lg:px-2 px-6 py-4 whitespace-nowrap">
                   {item.nome_funcionario}
                 </td>
               )}
-              <td className=" flex flex-col text-md text-gray-900 dark:text-branco px-2 py-4 whitespace-nowrap ">
+              <td className=" flex flex-col text-md  text-gray-900 dark:text-branco lg:px-2 px-6 py-4 whitespace-nowrap ">
                 {item.problema}
                 <span className="text-sm text-gray-600 dark:text-gray-400 w-[10rem] truncate">
                   {item.descricao}
                 </span>
               </td>
 
-              <td className="text-md text-gray-900 dark:text-branco   px-2 py-4 whitespace-nowrap">
+              <td className="text-md  text-gray-900 dark:text-branco  lg:px-2 px-6 py-4 whitespace-nowrap">
                 {item.cod_verificacao}
               </td>
-              <td className="text-md text-gray-900 dark:text-branco   px-2 py-4 whitespace-nowrap">
+              <td data-type={item.prioridade} className="text-md  text-gray-900 lg:px-2 px-6 py-4 whitespace-nowrap font-bold data-[type=Alta]:text-red-500 data-[type=Média]:text-yellow-500 data-[type=Baixa]:text-green-500">
                 {item.prioridade}
               </td>
-              <td className="text-md text-gray-900 dark:text-branco px-2 py-4 whitespace-nowrap">
+              <td className="text-md  text-gray-900 dark:text-branco lg:px-2 px-6 py-4 whitespace-nowrap">
                 {moment(item.data).format("DD/MM/YYYY")}
               </td>
               <td
                 data-type={item.status_chamado}
-                className="text-lg first-letter:uppercase data-[type=cancelado]:line-through  data-[type=pendente]:text-red-500 data-[type=andamento]:text-yellow-500 data-[type=concluido]:text-green-500 data-[type=cancelado]:text-red-900 font-bold px-6 py-4  whitespace-nowrap"
+                className="text-md  first-letter:uppercase data-[type=cancelado]:line-through  data-[type=pendente]:text-red-500 data-[type=andamento]:text-yellow-500 data-[type=concluido]:text-green-500 data-[type=cancelado]:text-red-900 font-bold lg:px-2 px-6 py-4  whitespace-nowrap"
               >
                 {item.status_chamado}
               </td>
 
-              <td className="text-md text-gray-900 font-light px-2 py-4 whitespace-nowrap ">
+              <td className="text-md  text-gray-900 font-light lg:px-2 px-6 py-4 whitespace-nowrap ">
                 <Dropdown item={item} />
               </td>
             </tr>
@@ -137,10 +137,14 @@ export default function ListaChamados() {
       return;
     }
 
+    console.log(id)
+
     try {
       const response = await api.get(
         `/chamados?status_chamado=andamento&tecnico_id=${id}`
       );
+
+      console.log(response.data)
 
       setChamadoAceito(response.data);
     } catch (error) {
@@ -164,7 +168,7 @@ export default function ListaChamados() {
           setLoading(false);
           return response.data;
         case "tecnicos":
-          const res = await api.get("/chamados?status_chamado=andamento");
+          const res = await api.get("/chamados?status_chamado=pendente");
           setChamados(res.data);
           setLoading(false);
           return res.data;
@@ -304,7 +308,8 @@ export default function ListaChamados() {
             </Link>
           )}
         </div>
-
+        
+        {!chamadoAceito.length  && (
         <div className="flex flex-col w-full mt-8 px-11 lg:space-y-0 lg:flex-row gap-4">
           <div className="w-full lg:w-2/4 py-3 flex flex-col gap-4">
             <div className="w-full lg:w--full flex flex-col items-center gap-">
@@ -415,38 +420,40 @@ export default function ListaChamados() {
           </div>
         </div>
 
+        )}
+
         <div className="mx-5 my-5 p-6 overflow-x-auto overflow-y-hidden">
           <table className="max-w-full w-full min-h-fit rounded-t-md">
             <thead align="start" >
               <tr className="bg-azul-hyde  text-slate-50 text-lg font-bold">
                 {type == "tecnicos" && (
-                  <th scope="col" className=" py-3 text-lg text-start">
+                  <th scope="col" className="lg:px-2 px-6 py-3 text-lg text-start">
                     Empresa
                   </th>
                 )}
                 {type == "empresas" && (
-                  <th scope="col" className="px-2  py-3 text-lg text-start">
+                  <th scope="col" className="lg:px-2 px-6  py-3 text-lg text-start">
                     Funcionário
                   </th>
                 )}
 
-                <th scope="col" className="px-2 py-3 text-lg text-start">
+                <th scope="col" className="lg:px-2 px-6 py-3 text-lg text-start">
                   Problema
                 </th>
 
-                <th scope="col" className="px-2 py-3 text-lg text-start">
+                <th scope="col" className="lg:px-2 px-6 py-3 text-lg text-start">
                   Protocolo
                 </th>
-                <th scope="col" className="px-2 py-3 text-lg text-start">
+                <th scope="col" className="lg:px-2 px-6 py-3 text-lg text-start">
                   Prioridade
                 </th>
-                <th scope="col" className="px-2 py-3 text-lg text-start">
+                <th scope="col" className="lg:px-2 px-6 py-3 text-lg text-start">
                   Data de abertura
                 </th>
-                <th scope="col" className="px-2 py-3 text-lg text-start">
+                <th scope="col" className="lg:px-2 px-6 py-3 text-lg text-start">
                   Status
                 </th>
-                <th scope="col" className="px-2 py-3 text-lg text-start"></th>
+                <th scope="col" className="lg:px-2 px-6 py-3 text-lg text-start"></th>
               </tr>
             </thead>
             <tbody>
@@ -454,40 +461,43 @@ export default function ListaChamados() {
                 pagination
               ) : (
                 <tr
-                  align="center"
+                  align="start"
                   className="border-b odd:bg-white dark:odd:bg-preto even:bg-slate-100 dark:even:bg-gray-900 font-medium hover:bg-slate-200"
                 >
                   {type === "tecnicos" && (
-                    <td className="text-lg text-gray-900 dark:text-branco  px-6 py-4 whitespace-nowrap">
+                    <td className="text-md text-gray-900 dark:text-branco  lg:px-6 px-2 py-4 whitespace-nowrap">
                       {chamadoAceito[0].nome_empresa}
                     </td>
                   )}
-                  <td className="text-lg text-gray-900 dark:text-branco px-6 py-4 whitespace-nowrap">
-                    {chamadoAceito[0].nome_funcionario}
-                  </td>
-                  <td className="text-lg text-gray-900 dark:text-branco px-6 py-4 whitespace-nowrap">
+                  {type === "empresas" && (
+                    <td className="text-md text-gray-900 dark:text-branco lg:px-6 px-2 py-4 whitespace-nowrap">
+                      {chamadoAceito[0].nome_funcionario}
+                    </td>
+                  )
+                  }
+                  <td className="text-md text-gray-900 dark:text-branco lg:px-6 px-2 py-4 whitespace-nowrap">
                     {chamadoAceito[0].problema}
                   </td>
-                  <td className="text-lg text-gray-900 dark:text-branco px-6 py-4 whitespace-nowrap">
+                  <td className="text-md text-gray-900 dark:text-branco lg:px-6 px-2 py-4 whitespace-nowrap">
                     {chamadoAceito[0].cod_verificacao}
                   </td>
-                  <td className="text-lg text-gray-900 dark:text-branco px-6 py-4 whitespace-nowrap">
+                  <td data-type={chamadoAceito[0].prioridade} className="text-md text-gray-900  lg:px-6 px-2 py-4 whitespace-nowrap font-bold data-[type=Alta]:text-red-500 data-[type=Média]:text-yellow-500 data-[type=Baixa]:text-green-500">
                     {chamadoAceito[0].prioridade}
                   </td>
                   <td
                     data-type={chamadoAceito[0].data}
-                    className="text-lg first-letter:uppercase data-[type=pendente]:text-red-500 data-[type=andamento]:text-yellow-500 data-[type=concluido]:text-green-500   font-bold px-6 py-4  whitespace-nowrap"
+                    className="text-md first-letter:uppercase dark:text-gray-50 data-[type=pendente]:text-red-500 data-[type=andamento]:text-yellow-500 data-[type=concluido]:text-green-500 lg:px-6 px-2 py-4 whitespace-nowrap"
                   >
-                    {chamadoAceito[0].data}
+                    {moment(chamadoAceito[0].data).format("DD/MM/YYYY")}
                   </td>
                   <td
                     data-type={chamadoAceito[0].status_chamado}
-                    className="text-lg first-letter:uppercase data-[type=pendente]:text-red-500 data-[type=andamento]:text-yellow-500 data-[type=concluido]:text-green-500   font-bold px-6 py-4  whitespace-nowrap"
+                    className="text-md first-letter:uppercase data-[type=cancelado]:line-through  data-[type=pendente]:text-red-500 data-[type=andamento]:text-yellow-500 data-[type=concluido]:text-green-500 data-[type=cancelado]:text-red-900 font-bold px-2 py-4  whitespace-nowrap"
                   >
                     {chamadoAceito[0].status_chamado}
                   </td>
 
-                  <td className="text-lg text-gray-900 font-light px-6 py-4 whitespace-nowrap ">
+                  <td className="text-md text-gray-900 font-light px-2 py-4 whitespace-nowrap ">
                     <Dropdown item={chamadoAceito[0]} />
                   </td>
                 </tr>

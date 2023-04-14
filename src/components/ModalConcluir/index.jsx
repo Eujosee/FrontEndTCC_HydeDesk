@@ -9,7 +9,7 @@ export default function ModalConcluir({ open, onClose, id }) {
   var dados = {};
   if (!open) return null;
 
-  async function handleConcluir() {
+  async function handleConcluir(e) {
     e.preventDefault();
 
     if (imagem) {
@@ -20,8 +20,6 @@ export default function ModalConcluir({ open, onClose, id }) {
       formData.append("anexo", imagem);
       formData.append("descricao", descricao);
 
-      console.log(descricao);
-      console.log(imagem);
       try {
         const { data } = await api.put(
           "/chamados/concluir/" + id,
@@ -29,7 +27,7 @@ export default function ModalConcluir({ open, onClose, id }) {
           config
         );
         console.log(data.message);
-        onClose();
+        window.location.reload()
       } catch (error) {
         console.log(error);
       }
@@ -39,7 +37,7 @@ export default function ModalConcluir({ open, onClose, id }) {
         descricao: descricao,
       };
       const { data } = await api.put("/chamados/concluir/" + id, dados);
-      onClose();
+      window.location.reload()
     } catch (error) {
       console.log(error);
     }

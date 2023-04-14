@@ -60,7 +60,6 @@ export default function PerfilFuncionario() {
 
   const buscarFunc = async () => {
     const { data } = await api.get("/funcionarios?id_funcionario=" + id);
-      console.log(data);
       setDados({
         nome_funcionario: data[0].nome_funcionario,
         email_funcionario: data[0].email_funcionario,
@@ -173,8 +172,8 @@ export default function PerfilFuncionario() {
         </div>
         <div className="lg:w-4/12 w-full p-6 h-full items-center gap-y-6 flex flex-col">
             <h1 className="font-bold text-3xl dark:text-gray-50">Dashboard</h1>
-          <PieChart/>
-          <DoughnutChart/>
+          <PieChart id={id} type={"funcionario"}/>
+          <DoughnutChart id={id} type={"funcionario"}/>
         </div>
       </div>
     </div>

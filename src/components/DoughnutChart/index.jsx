@@ -6,15 +6,19 @@ import { useState } from "react";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-export default function DoughnutChart() {
+export default function DoughnutChart({id, type}) {
     const dataStatus = []
     const [dataChart, setDataChart] = useState({})
     useEffect(() => {
         (async () => {
-            const { data } = await api.get("/chamados")
-            getStatusData(data)
-
-       
+            if (type === "funcionario"){
+                const { data } = await api.get("/chamados?funcionario_id=" + id)
+                getStatusData(data)
+            }else{
+                const { data } = await api.get("/chamados?empresa_id=" + id)
+                getStatusData(data)
+            }
+            
                 setDataChart({
                     labels: ['Hardware', 'Software', 'Redes'],
                     datasets:[

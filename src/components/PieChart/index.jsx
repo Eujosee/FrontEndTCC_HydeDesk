@@ -1,20 +1,23 @@
 import { useEffect } from "react";
 import api from "../../services/api";
-import { Doughnut, Pie } from "react-chartjs-2";
+import { Pie } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { useState } from "react";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-export default function PieChart() {
+export default function PieChart({id, type}) {
     const dataStatus = []
     const [dataChart, setDataChart] = useState({})
     useEffect(() => {
         (async () => {
-            const { data } = await api.get("/chamados")
-            getStatusData(data)
-
-       
+            if (type === "funcionario"){
+                const { data } = await api.get("/chamados?funcionario_id=" + id)
+                getStatusData(data)
+            }else{
+                const { data } = await api.get("/chamados?empresa_id=" + id)
+                getStatusData(data)
+            }
                 setDataChart({
                     labels: ['Concluido', 'Pendente', 'Andamento', 'Cancelado'],
                     datasets:[
