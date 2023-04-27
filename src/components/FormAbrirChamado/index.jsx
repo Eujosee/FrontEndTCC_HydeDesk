@@ -58,7 +58,7 @@ export default function FormAbrirChamado() {
         toast.success(data.message, {
           position: toast.POSITION.TOP_RIGHT,
         });
-        resetForm();
+        window.location.reload();
       } catch (error) {
         toast.error(error.response.data.message, {
           position: toast.POSITION.TOP_RIGHT,
@@ -70,7 +70,7 @@ export default function FormAbrirChamado() {
         toast.success(data.message, {
           position: toast.POSITION.TOP_RIGHT,
         });
-        resetForm();
+        window.location.reload();
       } catch (error) {
         toast.error(error.response.data.message, {
           position: toast.POSITION.TOP_RIGHT,
