@@ -24,10 +24,12 @@ export default function FormAbrirChamado() {
       patrimonio: "",
       setor: "",
       descricao: "",
+      funcionario_id: id,
     })
     setImagem("")
   }
 
+  console.log(imagem)
   // salvar os dados na const abrirChamado
   const changeChamado = (e) => {
     setAbrirChamado({
@@ -51,14 +53,14 @@ export default function FormAbrirChamado() {
         formData.append("problema", abrirChamado.problema);
         formData.append("setor", abrirChamado.setor);
         formData.append("descricao", abrirChamado.descricao);
-        formData.append("anexo", imagem);
+        formData.append("anexo", imagem[0]);
         formData.append("funcionario_id", id);
 
         const { data } = await api.post("/chamados/criar", formData, config);
         toast.success(data.message, {
           position: toast.POSITION.TOP_RIGHT,
         });
-        window.location.reload();
+        resetForm()
       } catch (error) {
         toast.error(error.response.data.message, {
           position: toast.POSITION.TOP_RIGHT,
@@ -70,7 +72,7 @@ export default function FormAbrirChamado() {
         toast.success(data.message, {
           position: toast.POSITION.TOP_RIGHT,
         });
-        window.location.reload();
+        resetForm()
       } catch (error) {
         toast.error(error.response.data.message, {
           position: toast.POSITION.TOP_RIGHT,
@@ -101,7 +103,7 @@ export default function FormAbrirChamado() {
             <option
               className="text-gray-900 dark:text-branco dark:bg-gray-800"
               selected
-              disabled
+              value=""
             >
               Selecione uma opção
             </option>
@@ -140,7 +142,7 @@ export default function FormAbrirChamado() {
             <option
               className="text-gray-900 dark:text-branco dark:bg-gray-800"
               selected
-              disabled
+              value=""
             >
               Selecione uma opção
             </option>
@@ -219,14 +221,14 @@ export default function FormAbrirChamado() {
               className="focus:outline-none focus:border-azul-hyde border-b-2 w-full  p-2 mb-2 dark:bg-transparent"
               placeholder="Escolher arquivo"
               name="anexo"
-              onChange={(e) => setImagem(e.target.files[0])}
+              value=""
+              onChange={(e) => setImagem(e.target.files)}
               accept=".png, .jpg, .jpeg"
-              required
             />
             {imagem ? (
               <>
                 <img
-                  src={URL.createObjectURL(imagem)}
+                  src={URL.createObjectURL(imagem[0])}
                   alt="Foto de anexo"
                   className="w-56 h-56"
                 />
