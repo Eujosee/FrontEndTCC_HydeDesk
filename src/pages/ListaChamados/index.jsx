@@ -1,7 +1,6 @@
 // React
 import { useEffect, useState } from "react";
 import moment from "moment";
-
 // Components
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
@@ -23,11 +22,11 @@ export default function ListaChamados() {
   const [chamadoAceito, setChamadoAceito] = useState([]);
   const [status, setStatus] = useState("");
   const [loading, setLoading] = useState(true);
-  const [filtroData, setFiltroData] = useState();
 
   const [filtro, setFiltro] = useState({
     status_chamado: "",
     empresa: "",
+    data: "",
   });
 
   const type = JSON.parse(secureLocalStorage.getItem("Tipo"));
@@ -73,7 +72,10 @@ export default function ListaChamados() {
               <td className="text-md  text-gray-900 dark:text-branco  lg:px-2 px-6 py-4 whitespace-nowrap">
                 {item.cod_verificacao}
               </td>
-              <td data-type={item.prioridade} className="text-md  text-gray-900 lg:px-2 px-6 py-4 whitespace-nowrap font-bold data-[type=Alta]:text-red-500 data-[type=Média]:text-yellow-500 data-[type=Baixa]:text-green-500">
+              <td
+                data-type={item.prioridade}
+                className="text-md  text-gray-900 lg:px-2 px-6 py-4 whitespace-nowrap font-bold data-[type=Alta]:text-red-500 data-[type=Média]:text-yellow-500 data-[type=Baixa]:text-green-500"
+              >
                 {item.prioridade}
               </td>
               <td className="text-md  text-gray-900 dark:text-branco lg:px-2 px-6 py-4 whitespace-nowrap">
@@ -137,14 +139,14 @@ export default function ListaChamados() {
       return;
     }
 
-    console.log(id)
+    console.log(id);
 
     try {
       const response = await api.get(
         `/chamados?status_chamado=andamento&tecnico_id=${id}`
       );
 
-      console.log(response.data)
+      console.log(response.data);
 
       setChamadoAceito(response.data);
     } catch (error) {
@@ -172,7 +174,6 @@ export default function ListaChamados() {
           setChamados(res.data);
           setLoading(false);
           return res.data;
-          break;
         default:
           break;
       }
@@ -181,47 +182,95 @@ export default function ListaChamados() {
     }
   }
 
-  // Busca chamados por filtro
-  const handleFiltro = async (e) => {
-    e.preventDefault();
+  // Buscar chamados pelo status ou por status e data
+  const handleFiltro = async () => {
     const todos = await getAllChamados();
-    const andamento = todos.filter(
-      (item) => item.status_chamado === "andamento"
-    );
-    const pendentes = todos.filter(
-      (item) => item.status_chamado === "pendente"
-    );
-    const concluidos = todos.filter(
-      (item) => item.status_chamado === "concluido"
-    );
-    const cancelados = todos.filter(
-      (item) => item.status_chamado === "cancelado"
-    );
-
-    if (filtro.status_chamado === "pendente") {
-      setChamados(pendentes);
-      setLoading(false);
-    } else if (filtro.status_chamado === "andamento") {
-      setChamados(andamento);
-      setLoading(false);
-    } else if (filtro.status_chamado === "concluido") {
-      setChamados(concluidos);
-      setLoading(false);
-    } else if (filtro.status_chamado === "cancelado") {
-      setChamados(cancelados);
-      setLoading(false);
+    if (filtro.status_chamado === "") return;
+    if (filtro.data !== "") {
+      const andamentoData = todos
+        .filter((item) => item.status_chamado === "andamento")
+        .filter((item) => item.data.split("T")[0] === filtro.data);
+      const pendentesData = todos
+        .filter((item) => item.status_chamado === "pendente")
+        .filter((item) => item.data.split("T")[0] === filtro.data);
+      const concluidosData = todos
+        .filter((item) => item.status_chamado === "concluido")
+        .filter((item) => item.data.split("T")[0] === filtro.data);
+      const canceladosData = todos
+        .filter((item) => item.status_chamado === "cancelado")
+        .filter((item) => item.data.split("T")[0] === filtro.data);
+      const todosData = todos.filter(
+        (item) => item.data.split("T")[0] === filtro.data
+      );
+      switch (filtro.status_chamado) {
+        case "pendente":
+          setChamados(pendentesData);
+          setLoading(false);
+          break;
+        case "andamento":
+          setChamados(andamentoData);
+          setLoading(false);
+          break;
+        case "concluido":
+          setChamados(concluidosData);
+          setLoading(false);
+          break;
+        case "cancelado":
+          setChamados(canceladosData);
+          setLoading(false);
+          break;
+        case "todos":
+          setChamados(todosData);
+          setLoading(false);
+          break;
+        default:
+          break;
+      }
     } else {
-      setChamados(todos);
-      setLoading(false);
+      const andamento = todos.filter(
+        (item) => item.status_chamado === "andamento"
+      );
+      const pendentes = todos.filter(
+        (item) => item.status_chamado === "pendente"
+      );
+      const concluidos = todos.filter(
+        (item) => item.status_chamado === "concluido"
+      );
+      const cancelados = todos.filter(
+        (item) => item.status_chamado === "cancelado"
+      );
+      switch (filtro.status_chamado) {
+        case "pendente":
+          setChamados(pendentes);
+          setLoading(false);
+          break;
+        case "andamento":
+          setChamados(andamento);
+          setLoading(false);
+          break;
+        case "concluido":
+          setChamados(concluidos);
+          setLoading(false);
+          break;
+        case "cancelado":
+          setChamados(cancelados);
+          setLoading(false);
+          break;
+        case "todos":
+          setChamados(todos);
+          setLoading(false);
+          break;
+        default:
+          break;
+      }
     }
   };
 
   // Busca chamados por filtro pelo protocolo
   const handleFiltroName = async (e) => {
     e.preventDefault();
-
     const todos = await getAllChamados();
-    console.log(type);
+
     if (type == "funcionarios") {
       const protocolo = todos.filter(
         (chamado) => chamado.cod_verificacao == filtro.empresa
@@ -244,29 +293,58 @@ export default function ListaChamados() {
     }
   };
 
-  // Busca chamados por filtro pela data
-  const handleFiltroData = async (e) => {
-    e.preventDefault();
+  // Buscar chamados por filtro pela data ou pela data e status
+  const handleFiltroData = async () => {
     const todos = await getAllChamados();
-    const data = todos.filter(
-      (item) => item.data.split("T")[0] === filtro.data
-    );
-    
-    setChamados(data);
-    setLoading(false);
-  };
-
-  // Buscar todos os chamados quando abre a página
-  useEffect(() => {
-    getChamadoAceito();
-    async function getChamados() {
-      if (id === null || type === null) {
-        return;
+    if (filtro.data === "") return;
+    if (filtro.status_chamado !== "") {
+      const andamentoData = todos
+        .filter((item) => item.status_chamado === "andamento")
+        .filter((item) => item.data.split("T")[0] === filtro.data);
+      const pendentesData = todos
+        .filter((item) => item.status_chamado === "pendente")
+        .filter((item) => item.data.split("T")[0] === filtro.data);
+      const concluidosData = todos
+        .filter((item) => item.status_chamado === "concluido")
+        .filter((item) => item.data.split("T")[0] === filtro.data);
+      const canceladosData = todos
+        .filter((item) => item.status_chamado === "cancelado")
+        .filter((item) => item.data.split("T")[0] === filtro.data);
+        const todosData = todos.filter(
+          (item) => item.data.split("T")[0] === filtro.data
+        );
+      switch (filtro.status_chamado) {
+        case "pendente":
+          setChamados(pendentesData);
+          setLoading(false);
+          break;
+        case "andamento":
+          setChamados(andamentoData);
+          setLoading(false);
+          break;
+        case "concluido":
+          setChamados(concluidosData);
+          setLoading(false);
+          break;
+        case "cancelado":
+          setChamados(canceladosData);
+          setLoading(false);
+          break;
+          case "todos":
+            setChamados(todosData)
+            setLoading(false)
+          break;
+          default:
+            break;
       }
-      getAllChamados();
+    } else {
+      const data = todos.filter(
+        (item) => item.data.split("T")[0] === filtro.data
+      );
+      setChamados(data);
+      setLoading(false);
     }
-    getChamados();
-  }, []); // eslint-disable-line
+  };
 
   // Gerar a paginação
   useEffect(() => {
@@ -289,6 +367,28 @@ export default function ListaChamados() {
     genPagination(0, totalItems);
   }, [chamados]); // eslint-disable-line
 
+  // Buscar todos os chamados quando abre a página
+  useEffect(() => {
+    getChamadoAceito();
+    async function getChamados() {
+      if (id === null || type === null) {
+        return;
+      }
+      getAllChamados();
+    }
+    getChamados();
+  }, []); // eslint-disable-line
+
+  // Filtro de status
+  useEffect(() => {
+    handleFiltro();
+  }, [filtro.status_chamado]);
+
+  // Filtro de data
+  useEffect(() => {
+    handleFiltroData();
+  }, [filtro.data]);
+
   return (
     <>
       <Header />
@@ -308,152 +408,175 @@ export default function ListaChamados() {
             </Link>
           )}
         </div>
-        
-        {!chamadoAceito.length  && (
-        <div className="flex flex-col w-full mt-8 px-11 lg:space-y-0 lg:flex-row gap-4">
-          <div className="w-full lg:w-2/4 py-3 flex flex-col gap-4">
-            <div className="w-full lg:w--full flex flex-col items-center gap-">
-              <label htmlFor="empresa" className="dark:text-gray-50 w-full text-start ml-4">
-                Pesquisar:
-              </label>
-              <div className="w-full flex items-center gap-4 ">
-                <input
-                  className="focus:outline-none ml-2 dark:bg-transparent dark:text-gray-50 focus:border-b-azul-hyde border-b-2 w-full p-2"
-                  placeholder={
-                    type == "tecnicos"
-                      ? "Nome da empresa"
-                      : type == "empresas"
-                      ? "Nome do funcionário"
-                      : "Protocolo"
-                  }
-                  name="empresa"
-                  onChange={changeFiltro}
-                  id="empresa"
-                  required
-                />
-                <BiSearchAlt2
-                  size={20}
-                  className=" text-gray-400  cursor-pointer"
-                  onClick={handleFiltroName}
-                />
-              </div>
-            </div>
-            <div className="flex flex-col items-center  lg:full">
-              <div className="w-full flex flex-col items-center">
-                <label htmlFor="status_chamado" className="dark:text-gray-50 w-full text-start ml-4 cursor-pointer">
-                  Filtrar:
+
+        {!chamadoAceito.length && (
+          <div className="flex flex-col w-full mt-8 px-11 lg:space-y-0 lg:flex-row gap-4">
+            <div className="w-full lg:w-2/4 py-3 flex flex-col gap-4">
+              <div className="w-full lg:w--full flex flex-col items-center gap-">
+                <label
+                  htmlFor="empresa"
+                  className="dark:text-gray-50 w-full text-start ml-4"
+                >
+                  Pesquisar:
                 </label>
-                <div className="w-full flex flex-1 gap-4 items-center">
-                  <select
-                    className="focus:outline-none dark:bg-transparent  dark:text-gray-50 focus:border-b-azul-hyde ml-2 border-b-2  w-full p-2"
-                    name="status_chamado"
+                <div className="w-full flex items-center gap-4 ">
+                  <input
+                    className="focus:outline-none ml-2 dark:bg-transparent dark:text-gray-50 border-b-azul-hyde border-b-2 w-full p-2"
+                    placeholder={
+                      type == "tecnicos"
+                        ? "Nome da empresa"
+                        : type == "empresas"
+                        ? "Nome do funcionário"
+                        : "Protocolo"
+                    }
+                    name="empresa"
                     onChange={changeFiltro}
-                    id="status_chamado"
+                    id="empresa"
                     required
-                  >
-                    <option
-                      className="dark:text-branco dark:bg-gray-800 dark:hover:bg-gray-800"
-                      selected
-                      disabled
-                    >
-                      Selecione uma opção
-                    </option>
-                    <option
-                      className="dark:text-branco dark:bg-gray-800 dark:hover:bg-gray-800"
-                      value="todos"
-                    >
-                      Todos
-                    </option>
-                    <option
-                      className="dark:text-branco dark:bg-gray-800 dark:hover:bg-gray-800"
-                      value="pendente"
-                    >
-                      Pendente
-                    </option>
-                    <option
-                      className="dark:text-branco dark:bg-gray-800 dark:hover:bg-gray-800"
-                      value="andamento"
-                    >
-                      Em andamento
-                    </option>
-                    <option
-                      className="dark:text-branco dark:bg-gray-800 dark:hover:bg-gray-100"
-                      value="concluido"
-                    >
-                      Concluido
-                    </option>
-                    <option
-                      className="dark:text-branco dark:bg-gray-800 dark:hover:bg-gray-100"
-                      value="cancelado"
-                    >
-                      Cancelado
-                    </option>
-                  </select>
+                  />
                   <BiSearchAlt2
                     size={20}
                     className=" text-gray-400  cursor-pointer"
-                    onClick={handleFiltro}
-                    disabled={filtro.status_chamado === ""}
+                    onClick={handleFiltroName}
                   />
                 </div>
               </div>
+              <div className="flex flex-col items-center  lg:full">
+                <div className="w-full flex flex-col items-center">
+                  <label
+                    htmlFor="status_chamado"
+                    className="dark:text-gray-50 w-full text-start ml-4 cursor-pointer"
+                  >
+                    Status do chamado:
+                  </label>
+                  <div className="w-full flex flex-1 gap-4 items-center">
+                    <select
+                      className="focus:outline-none dark:bg-transparent  dark:text-gray-50 border-b-azul-hyde ml-2 border-b-2  w-full p-2"
+                      name="status_chamado"
+                      onChange={changeFiltro}
+                      id="status_chamado"
+                      required
+                    >
+                      <option
+                        className="dark:text-branco dark:bg-gray-800 dark:hover:bg-gray-800"
+                        selected
+                        disabled
+                      >
+                        Selecione uma opção
+                      </option>
+                      <option
+                        className="dark:text-branco dark:bg-gray-800 dark:hover:bg-gray-800"
+                        value="todos"
+                      >
+                        Todos
+                      </option>
+                      <option
+                        className="dark:text-branco dark:bg-gray-800 dark:hover:bg-gray-800"
+                        value="pendente"
+                      >
+                        Pendente
+                      </option>
+                      <option
+                        className="dark:text-branco dark:bg-gray-800 dark:hover:bg-gray-800"
+                        value="andamento"
+                      >
+                        Em andamento
+                      </option>
+                      <option
+                        className="dark:text-branco dark:bg-gray-800 dark:hover:bg-gray-100"
+                        value="concluido"
+                      >
+                        Concluido
+                      </option>
+                      <option
+                        className="dark:text-branco dark:bg-gray-800 dark:hover:bg-gray-100"
+                        value="cancelado"
+                      >
+                        Cancelado
+                      </option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="w-ful lg:w-2/4 flex flex-col justify-end py-2.5 gap-3">
+              <label
+                htmlFor="data"
+                className="dark:text-white w-full ml-4 cursor-pointer"
+              >
+                Selecione uma data:
+              </label>
+              <div className="w-full flex items-center px-4 gap-4">
+                <input
+                  type="date"
+                  name="data"
+                  id="data"
+                  className="bg-transparent dark:text-white text-center  border-b-2 flex-1 border-b-azul-hyde"
+                  onChange={(e) =>
+                    setFiltro({ ...filtro, data: e.target.value })
+                  }
+                />
+              </div>
             </div>
           </div>
-          <div className="w-ful lg:w-2/4 flex flex-col justify-end py-2.5 gap-3">
-            <label htmlFor="data" className="dark:text-white w-full ml-4 cursor-pointer">
-              Selecione uma data:
-            </label>
-            <div className="w-full flex items-center px-4 gap-4">
-              <input
-                type="date"
-                name="data"
-                id="data"
-                className="bg-transparent dark:text-white text-center dark:border-white border-b-2 flex-1 "
-                onChange={(e) => setFiltro({ ...filtro, data: e.target.value })}
-              />
-              <BiSearchAlt2
-                size={20}
-                className=" text-gray-400  cursor-pointer"
-                onClick={handleFiltroData}
-              />
-            </div>
-          </div>
-        </div>
-
         )}
 
         <div className="mx-5 my-5 p-6 overflow-x-auto overflow-y-hidden">
           <table className="max-w-full w-full min-h-fit rounded-t-md">
-            <thead align="start" >
+            <thead align="start">
               <tr className="bg-azul-hyde  text-slate-50 text-lg font-bold">
                 {type == "tecnicos" && (
-                  <th scope="col" className="lg:px-2 px-6 py-3 text-lg text-start">
+                  <th
+                    scope="col"
+                    className="lg:px-2 px-6 py-3 text-lg text-start"
+                  >
                     Empresa
                   </th>
                 )}
                 {type == "empresas" && (
-                  <th scope="col" className="lg:px-2 px-6  py-3 text-lg text-start">
+                  <th
+                    scope="col"
+                    className="lg:px-2 px-6  py-3 text-lg text-start"
+                  >
                     Funcionário
                   </th>
                 )}
 
-                <th scope="col" className="lg:px-2 px-6 py-3 text-lg text-start">
+                <th
+                  scope="col"
+                  className="lg:px-2 px-6 py-3 text-lg text-start"
+                >
                   Problema
                 </th>
 
-                <th scope="col" className="lg:px-2 px-6 py-3 text-lg text-start">
+                <th
+                  scope="col"
+                  className="lg:px-2 px-6 py-3 text-lg text-start"
+                >
                   Protocolo
                 </th>
-                <th scope="col" className="lg:px-2 px-6 py-3 text-lg text-start">
+                <th
+                  scope="col"
+                  className="lg:px-2 px-6 py-3 text-lg text-start"
+                >
                   Prioridade
                 </th>
-                <th scope="col" className="lg:px-2 px-6 py-3 text-lg text-start">
+                <th
+                  scope="col"
+                  className="lg:px-2 px-6 py-3 text-lg text-start"
+                >
                   Data de abertura
                 </th>
-                <th scope="col" className="lg:px-2 px-6 py-3 text-lg text-start">
+                <th
+                  scope="col"
+                  className="lg:px-2 px-6 py-3 text-lg text-start"
+                >
                   Status
                 </th>
-                <th scope="col" className="lg:px-2 px-6 py-3 text-lg text-start"></th>
+                <th
+                  scope="col"
+                  className="lg:px-2 px-6 py-3 text-lg text-start"
+                ></th>
               </tr>
             </thead>
             <tbody>
@@ -473,15 +596,17 @@ export default function ListaChamados() {
                     <td className="text-md text-gray-900 dark:text-branco lg:px-6 px-2 py-4 whitespace-nowrap">
                       {chamadoAceito[0].nome_funcionario}
                     </td>
-                  )
-                  }
+                  )}
                   <td className="text-md text-gray-900 dark:text-branco lg:px-6 px-2 py-4 whitespace-nowrap">
                     {chamadoAceito[0].problema}
                   </td>
                   <td className="text-md text-gray-900 dark:text-branco lg:px-6 px-2 py-4 whitespace-nowrap">
                     {chamadoAceito[0].cod_verificacao}
                   </td>
-                  <td data-type={chamadoAceito[0].prioridade} className="text-md text-gray-900  lg:px-6 px-2 py-4 whitespace-nowrap font-bold data-[type=Alta]:text-red-500 data-[type=Média]:text-yellow-500 data-[type=Baixa]:text-green-500">
+                  <td
+                    data-type={chamadoAceito[0].prioridade}
+                    className="text-md text-gray-900  lg:px-6 px-2 py-4 whitespace-nowrap font-bold data-[type=Alta]:text-red-500 data-[type=Média]:text-yellow-500 data-[type=Baixa]:text-green-500"
+                  >
                     {chamadoAceito[0].prioridade}
                   </td>
                   <td

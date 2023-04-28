@@ -1,14 +1,18 @@
+// Components
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
+import ModalFuncionario from "../../components/ModalFuncionario";
+// Icones
 import { PencilSquareIcon } from "@heroicons/react/24/outline";
-import { Link, useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { BiSearchAlt2 } from "react-icons/bi";
-import ModalFuncionario from "../../components/ModalFuncionario";
-import api from "../../services/api";
+// React
+import { Link, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 import secureLocalStorage from "react-secure-storage";
 import { ToastContainer, toast } from "react-toastify";
+// Api
+import api from "../../services/api";
 
 export default function ListaFuncionarios() {
   const navigate = useNavigate();
@@ -36,6 +40,7 @@ export default function ListaFuncionarios() {
       [e.target.name]: e.target.value,
     });
   };
+
   // Busca todos os funcionários
   async function getAllFuncionarios(e) {
     try {
@@ -58,7 +63,7 @@ export default function ListaFuncionarios() {
 
   // Busca funcionários por status
   const handleFiltro = async (e) => {
-    e.preventDefault();
+    
     const todos = await getAllFuncionarios(e);
     const filtrados = todos.filter(item => item.status_funcionario == filtro.status_empresa);
     if(filtro.status_empresa == "todos"){
@@ -74,6 +79,10 @@ export default function ListaFuncionarios() {
     getAllFuncionarios();
     setLoading(false);
   }, []);
+
+  useEffect(() => {
+    handleFiltro()
+  }, [filtro.status_empresa])
 
   return (
     <>
@@ -106,7 +115,7 @@ export default function ListaFuncionarios() {
               </label>
               <div className="w-full flex items-center gap-4 ">
                 <input
-                  className="focus:outline-none ml-2 dark:bg-transparent dark:text-gray-50 focus:border-b-azul-hyde border-b-2 w-full p-2"
+                  className="focus:outline-none ml-2 dark:bg-transparent dark:text-gray-50 border-b-azul-hyde border-b-2 w-full p-2"
                   placeholder={
                     type == "tecnicos"
                       ? "Nome da empresa"
@@ -132,7 +141,7 @@ export default function ListaFuncionarios() {
                 </label>
                 <div className="w-full flex flex-1 gap-2 lg:gap-4 items-center ">
                   <select
-                    className="focus:outline-none dark:bg-transparent  dark:text-gray-50 focus:border-b-azul-hyde ml-2 border-b-2  w-full p-2"
+                    className="focus:outline-none dark:bg-transparent  dark:text-gray-50 border-b-azul-hyde ml-2 border-b-2  w-full p-2"
                     name="status_empresa"
                     onChange={changeFiltro}
                     id="status_chamado"
@@ -165,12 +174,6 @@ export default function ListaFuncionarios() {
                     </option>
                     
                   </select>
-                  <BiSearchAlt2
-                    size={20}
-                    className=" text-gray-400  cursor-pointer"
-                    onClick={handleFiltro}
-                    disabled={filtro.status_chamado === ""}
-                  />
                 </div>
               </div>
             </div>

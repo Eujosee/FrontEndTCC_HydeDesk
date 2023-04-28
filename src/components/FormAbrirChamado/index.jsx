@@ -29,7 +29,6 @@ export default function FormAbrirChamado() {
     setImagem("")
   }
 
-  console.log(imagem)
   // salvar os dados na const abrirChamado
   const changeChamado = (e) => {
     setAbrirChamado({
