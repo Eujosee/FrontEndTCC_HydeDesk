@@ -1,7 +1,7 @@
 import React from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment } from "react";
-import BasicRating from "../Estrelas";
+import BasicRating from "../BasicRating";
 
 export default function ModalAvaliacao({ open, onClose, dataChamado }) {
   if (!open) return null;
