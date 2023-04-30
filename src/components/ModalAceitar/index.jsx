@@ -15,18 +15,10 @@ export default function ModalAceitar({ open, onClose, ids, navigate }) {
         tecnico_id: ids.tecnico_id,
       });
 
-      toast.success("Chamado aceito com sucesso!");
-
-      setTimeout(() => {
-        onClose();
-        navigate(0);
-      }, 5000);
+      window.location.reload()
     } catch (error) {
       console.log(error);
       toast.error(error.response.data.message);
-      setTimeout(() => {
-        onClose();
-      }, 5000);
     }
   }
 

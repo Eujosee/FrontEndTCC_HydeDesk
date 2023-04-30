@@ -8,7 +8,7 @@ export default function ModalChatBot({ open, onClose }) {
 
   return (
     <Transition appear show={open} as={Fragment}>
-      <Dialog as="div" className="relative z-10" onClose={onClose}>
+      <Dialog as="div" className="relative z-50" onClose={onClose}>
         <Transition.Child
           as={Fragment}
           enter="ease-out duration-300"
@@ -37,11 +37,11 @@ export default function ModalChatBot({ open, onClose }) {
                     url="https://web.powerva.microsoft.com/environments/Default-b1051c4b-3b94-41ab-9441-e73a72342fdd/bots/new_bot_3e41221dd72148d4b5c14612de784c07/webchat"
                     width="540px"
                     height="720px"
-                    id=""
                     className="bg-white w-screen h-screen"
                     display="block"
                     position="relative"
                   />
+                  
                 </Dialog.Panel>
 
                 {/* MOBILE */}
@@ -70,7 +70,6 @@ export default function ModalChatBot({ open, onClose }) {
                             url="https://web.powerva.microsoft.com/environments/Default-b1051c4b-3b94-41ab-9441-e73a72342fdd/bots/new_bot_3e41221dd72148d4b5c14612de784c07/webchat"
                             width="540px"
                             height="720px"
-                            id=""
                             className="bg-white w-screen h-screen"
                             display="block"
                             position="relative"

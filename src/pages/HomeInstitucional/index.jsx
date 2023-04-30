@@ -26,7 +26,6 @@ export default function HomeInstitucional() {
       <div className="flex items-center justify-center w-full h-[15rem] lg:h-[32rem] overflow-hidden relative">
         <img className="object-cover" src={FotoInst} alt="" />
         {/* Foto de <a href="https://unsplash.com/@clark_fransa?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Arnold Francisca</a> na <a href="https://unsplash.com/pt-br/fotografias/f77Bh3inUpE?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a> */}
-
         <span className="font-extrabold text-5xl text-azul-hyde absolute">
           Hyde<span className="text-white">Desk</span>
         </span>
@@ -61,7 +60,7 @@ export default function HomeInstitucional() {
       <div className="flex items-center w-full  h-[15rem] md:h-[20rem] lg:h-[50rem] overflow-hidden">
         <img className="object-cover bottom-20 w-full" src={FotoTurma} alt="" />
       </div>
-      <div className=" py-14 flex flex-col justify-center items-center">
+      <div className="pb-8 lg:py-14 flex flex-col justify-center items-center">
         <h1 className="mb-10 font-bold text-2xl dark:text-branco">
           Conheça nosso time
         </h1>

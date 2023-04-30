@@ -1,12 +1,12 @@
 import { useEffect } from "react";
 import api from "../../services/api";
-import { Pie } from "react-chartjs-2";
+import { Doughnut } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { useState } from "react";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-export default function PieChart({id, type}) {
+export default function DoughnutChart({id, type}) {
     const dataStatus = []
     const [dataChart, setDataChart] = useState({})
     useEffect(() => {
@@ -18,23 +18,22 @@ export default function PieChart({id, type}) {
                 const { data } = await api.get("/chamados?empresa_id=" + id)
                 getStatusData(data)
             }
+            
                 setDataChart({
-                    labels: ['Concluido', 'Pendente', 'Andamento', 'Cancelado'],
+                    labels: ['Hardware', 'Software', 'Redes'],
                     datasets:[
                         {
-                            label:'Nº de chamados',
+                            label:'Quantidade',
                             data: dataStatus,
                             backgroundColor: [
-                                'rgba(75, 192, 192, 1)',
-                                'rgba(255, 99, 132, 1)',
-                                'rgba(255, 206, 86, 1)',
                                 'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(255, 99, 132, 1)',
                             ],
                             borderColor: [
-                                'rgba(75, 192, 192, 1)',
-                                'rgba(255, 99, 132, 1)',
-                                'rgba(255, 206, 86, 1)',
                                 'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(255, 99, 132, 1)',
                               ],
                               borderWidth: 1,
                         },
@@ -47,39 +46,35 @@ export default function PieChart({id, type}) {
     console.log(dataChart)
 
     function getStatusData(data) {
-        let concluido = 0
-        let pendente = 0
-        let andamento = 0
-        let cancelado = 0
+        let hardware = 0
+        let software = 0
+        let redes = 0
         data.map((item) => {
-            switch (item.status_chamado) {
-                case "concluido":
-                    concluido++
+            switch (item.problema) {
+                case "Hardware":
+                    hardware++
                     break;
-                case "pendente":
-                    pendente++
+                case "Software":
+                    software++
                     break;
-                case "andamento":
-                    andamento++
-                    break;
-                case "cancelado":
-                    cancelado++
+                case "Redes":
+                    redes++
                     break;
                 default:
                     break;
             }
         })
-        return dataStatus.push(concluido, pendente, andamento, cancelado)
+        return dataStatus.push(hardware, software, redes)
         
     }
     return(
         <>
         <div className="w-full h-full lg:w-3/5 lg:h-2/5 p-6  ring-1 ring-gray-900/5 shadow-lg rounded-xl flex flex-col items-center justify-center dark:bg-gray-800">
-            <h1 className="font-medium text-xl dark:text-gray-50">Status dos chamados</h1>
+            <h1 className="font-medium text-xl dark:text-gray-50">Principais problemas</h1>
             {
                 // verifica se os dados estão setados antes de exibir o gráfico
                 dataStatus && dataChart?.datasets ? (
-                    <Pie data={dataChart}
+                    <Doughnut data={dataChart}
                     options={{
                         plugins: {
                             datalabels: {

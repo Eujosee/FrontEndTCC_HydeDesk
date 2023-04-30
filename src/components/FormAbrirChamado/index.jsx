@@ -3,7 +3,6 @@ import api from "../../services/api";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import secureLocalStorage from "react-secure-storage";
-import { data } from "autoprefixer";
 
 export default function FormAbrirChamado() {
   const id = JSON.parse(secureLocalStorage.getItem("Id"));
@@ -17,6 +16,20 @@ export default function FormAbrirChamado() {
     funcionario_id: id,
   });
 
+  // resetar o formulario após o envio dos dados
+  const resetForm = () => {
+    setAbrirChamado({
+      problema: "",
+      prioridade: "",
+      patrimonio: "",
+      setor: "",
+      descricao: "",
+      funcionario_id: id,
+    })
+    setImagem("")
+  }
+
+  // salvar os dados na const abrirChamado
   const changeChamado = (e) => {
     setAbrirChamado({
       ...abrirChamado,
@@ -24,6 +37,7 @@ export default function FormAbrirChamado() {
     });
   };
   
+  // configuração do headers da api
   const config = {
     headers: { "content-type": "multipart/form-data" },
   };
@@ -38,13 +52,14 @@ export default function FormAbrirChamado() {
         formData.append("problema", abrirChamado.problema);
         formData.append("setor", abrirChamado.setor);
         formData.append("descricao", abrirChamado.descricao);
-        formData.append("anexo", imagem);
+        formData.append("anexo", imagem[0]);
         formData.append("funcionario_id", id);
 
         const { data } = await api.post("/chamados/criar", formData, config);
         toast.success(data.message, {
           position: toast.POSITION.TOP_RIGHT,
         });
+        resetForm()
       } catch (error) {
         toast.error(error.response.data.message, {
           position: toast.POSITION.TOP_RIGHT,
@@ -56,6 +71,7 @@ export default function FormAbrirChamado() {
         toast.success(data.message, {
           position: toast.POSITION.TOP_RIGHT,
         });
+        resetForm()
       } catch (error) {
         toast.error(error.response.data.message, {
           position: toast.POSITION.TOP_RIGHT,
@@ -79,13 +95,14 @@ export default function FormAbrirChamado() {
           <select
             className="focus:outline-none focus:border-azul-hyde border-b-2 w-full p-2 dark:bg-transparent"
             name="problema"
+            value={abrirChamado.problema}
             onChange={changeChamado}
             required
           >
             <option
               className="text-gray-900 dark:text-branco dark:bg-gray-800"
               selected
-              disabled
+              value=""
             >
               Selecione uma opção
             </option>
@@ -97,9 +114,9 @@ export default function FormAbrirChamado() {
             </option>
             <option
               className="text-gray-900 dark:text-branco dark:bg-gray-800"
-              value="Redes"
+              value="Infraestrutura"
             >
-              Redes
+              Infraestrutura
             </option>
             <option
               className="text-gray-900 dark:text-branco dark:bg-gray-800"
@@ -117,13 +134,14 @@ export default function FormAbrirChamado() {
           <select
             className="focus:outline-none focus:border-azul-hyde border-b-2 w-full p-2 dark:bg-transparent"
             name="prioridade"
+            value={abrirChamado.prioridade}
             onChange={changeChamado}
             required
           >
             <option
               className="text-gray-900 dark:text-branco dark:bg-gray-800"
               selected
-              disabled
+              value=""
             >
               Selecione uma opção
             </option>
@@ -135,7 +153,7 @@ export default function FormAbrirChamado() {
             </option>
             <option
               className="text-gray-900 dark:text-branco dark:bg-gray-800"
-              value="Media"
+              value="Média"
             >
               Média
             </option>
@@ -155,6 +173,7 @@ export default function FormAbrirChamado() {
           <input
             className="focus:outline-none focus:border-azul-hyde border-b-2 w-full p-2 dark:bg-transparent"
             placeholder="Informe o patrimônio"
+            value={abrirChamado.patrimonio}
             onChange={changeChamado}
             name="patrimonio"
           />
@@ -166,6 +185,7 @@ export default function FormAbrirChamado() {
           <input
             className="focus:outline-none focus:border-azul-hyde border-b-2 w-full p-2 dark:bg-transparent"
             placeholder="Informe o setor"
+            value={abrirChamado.setor}
             onChange={changeChamado}
             name="setor"
           />
@@ -178,6 +198,7 @@ export default function FormAbrirChamado() {
             <input
               className="focus:outline-none focus:border-azul-hyde border-b-2 w-full p-2 dark:bg-transparent"
               placeholder="Descreva o seu problema"
+              value={abrirChamado.descricao}
               onChange={changeChamado}
               name="descricao"
             />
@@ -199,14 +220,14 @@ export default function FormAbrirChamado() {
               className="focus:outline-none focus:border-azul-hyde border-b-2 w-full  p-2 mb-2 dark:bg-transparent"
               placeholder="Escolher arquivo"
               name="anexo"
-              onChange={(e) => setImagem(e.target.files[0])}
+              value=""
+              onChange={(e) => setImagem(e.target.files)}
               accept=".png, .jpg, .jpeg"
-              required
             />
             {imagem ? (
               <>
                 <img
-                  src={URL.createObjectURL(imagem)}
+                  src={URL.createObjectURL(imagem[0])}
                   alt="Foto de anexo"
                   className="w-56 h-56"
                 />

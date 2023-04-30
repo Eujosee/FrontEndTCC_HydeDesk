@@ -5,14 +5,12 @@ import api from "../../services/api";
 export default function ModalSuspender({ open, onClose, id, navigate }) {
   if (!open) return null;
 
-  async function handleSuspender() {
+  async function handleSuspender(e) {
     e.preventDefault();
 
     try {
       const { data } = await api.put("/chamados/suspender/" + id);
-      console.log(data.message);
-      onClose();
-      navigate(0);
+      window.location.reload()
     } catch (error) {
       console.log(error.message);
     }

@@ -10,22 +10,17 @@ export default function BasicRating(id, onClose, dataChamado) {
     num_avaliacao: value,
     desc_avaliacao: descricao,
   };
-
-  console.log(id.id);
-
-  console.log(dados);
   async function postDados() {
     try {
       const response = await api.post("/chamados/avaliar/" + id.id, dados);
       onClose()
-      console.log(response);
     } catch (error) {
       console.log(error);
     }
   }
 
   return (
-    <div onClose={onClose}>
+    <div>
       <Box
         sx={{
           "& > legend": { mt: 2 },

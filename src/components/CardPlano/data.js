@@ -29,7 +29,7 @@ const data = [
     itens: [
       "Número máximo de funcionários: 65",
       "Horário de atendimento: 24h",
-      "7 (sete) dias por semana, inclusive feriados",
+      "7 dias por semana, inclusive feriados",
       "Assistência online",
       "Prazo de atendimento: 5h",
       "Todos os tipos de manutenção",

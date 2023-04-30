@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import "./index.css";
-import { AiOutlineArrowLeft } from "react-icons/ai";
+import { AiOutlineArrowLeft, AiOutlineLoading3Quarters } from "react-icons/ai";
 import { useParams } from "react-router-dom";
 import api from "../../services/api";
 import InputMask from "react-input-mask";
@@ -88,7 +88,7 @@ export default function Detalhes() {
   return (
     <>
       <Header />
-      {!loading && (
+      {!loading ? (
         <div className="flex flex-col w-full h-1/4 p-8 dark:bg-preto">
           <div className="mb-5">
             <AiOutlineArrowLeft
@@ -182,9 +182,9 @@ export default function Detalhes() {
                   />
                 </div>
               </div>
-              <label className="font-medium text-gray-500 dark:text-gray-400 mt-6">Anexo:</label>
               {data[0].anexo ? (
                 <div className="flex flex-col w-full">
+                  <label className="font-medium text-gray-500 dark:text-gray-400 mt-6">Anexo:</label>
                   <img
                     src={
                       "https://hydedesk-api.azurewebsites.net/" + data[0].anexo
@@ -194,12 +194,7 @@ export default function Detalhes() {
                   />
                 </div>
               ) : (
-                <input
-                  type="text"
-                  className="p-2 bg-white "
-                  value="Este chamado não possui anexo."
-                  disabled
-                />
+                ""
               )}
             </div>
             <div className="flex flex-col w-full lg:w-1/2 sm:w-auto mt-5 rounded-lg">
@@ -328,6 +323,16 @@ export default function Detalhes() {
             </div>
           </div>
         </div>
+      ) : (
+        <>
+        <div className="flex w-full h-screen overflow-hidden gap-2 items-center justify-center m-auto dark:bg-preto">
+              <AiOutlineLoading3Quarters
+                size={25}
+                className="animate-spin text-gray-900 dark:text-gray-50"
+              />
+              <p className="text-gray-900 dark:text-gray-50"> Carregando...</p>
+            </div>
+        </>
       )}
       <Footer />
     </>

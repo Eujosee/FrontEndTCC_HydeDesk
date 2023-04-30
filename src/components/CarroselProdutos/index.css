@@ -13,3 +13,21 @@
   color: #374151;
   opacity: 100%;
 }
+
+.slick-prev {
+  left: 3% !important;
+  z-index: 1;
+}
+.slick-prev::before{
+  color: #94a3b8 !important;
+  font-size: 35px !important;
+}
+
+.slick-next {
+  right: 3% !important;
+  z-index: 1;
+}
+.slick-next::before{
+  color: #94a3b8 !important;
+  font-size: 35px !important;
+}
