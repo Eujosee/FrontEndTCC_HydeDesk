@@ -43,8 +43,6 @@ export default function DoughnutChart({id, type}) {
         })()
     }, [])
 
-    console.log(dataChart)
-
     function getStatusData(data) {
         let hardware = 0
         let software = 0

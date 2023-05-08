@@ -236,8 +236,9 @@ export default function FormTec() {
 							onChange={(e) => [handleUser(e), setStatusErro("")]}
 							value={user.especialidade}
 							required
+							
 						>
-							<option selected>Selecione uma opção</option>
+							<option value="" disabled>Selecione uma opção</option>
 							<option value="Software">Software</option>
 							<option value="Infraestrutura">Infraestrutura</option>
 							<option value="Hardware">Hardware</option>

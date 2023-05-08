@@ -128,6 +128,7 @@ export default function HomeComercial() {
         className="fixed bottom-10 right-12 w-16 h-16 rounded-full
             bg-azul-hyde flex items-center justify-center"
         onClick={toggleModal}
+        aria-label="Abrir Chatbot"
       >
         <BsChat size={30} className="text-white" />
       </button>

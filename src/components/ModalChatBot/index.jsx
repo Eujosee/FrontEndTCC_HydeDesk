@@ -1,6 +1,5 @@
 import ReactDOM from "react-dom";
 import { GrFormClose } from "react-icons/gr";
-import "./index.css";
 
 export default function ModalChatBot({ open, onClose }) {
   document.body.style.overflow = "auto";
@@ -13,9 +12,11 @@ export default function ModalChatBot({ open, onClose }) {
 		botAvatarInitials: "HD",
 		accent: "#00809d",
 		botAvatarBackgroundColor: "#FFFFFF",
-		botAvatarImage:
-			"https://learn.microsoft.com/azure/bot-service/v4sdk/media/logo_bot.svg",
+		botAvatarImage:"https://learn.microsoft.com/azure/bot-service/v4sdk/media/logo_bot.svg",
 		userAvatarImage: "https://avatars.githubusercontent.com/u/661465",
+		bubbleBorderRadius: 10,
+		bubbleFromUserBorderRadius: 10,
+		sendBoxButtonShadeBorderRadius: 10,
 	};
 
 	var theURL =
@@ -84,8 +85,8 @@ export default function ModalChatBot({ open, onClose }) {
 	return ReactDOM.createPortal(
 		<div className="fixed top-0 z-50 w-full h-screen flex flex-row overflow-x-hidden">
 			<div onClick={onClose} className="md:w-full md:flex-1 bg-black bg-opacity-50" />
-			<div className="w-full md:w-1/3 max-h-full overflow-y-hidden">
-				<div className="p-5 bg-azul-hyde flex flex-row items-center w-full sticky z-50">
+			<div className="w-full md:w-1/3 max-h-full overflow-y-auto">
+				<div className="p-4 bg-azul-hyde flex flex-row items-center w-full sticky z-50">
 					<button
 						onClick={onClose}
 						className="flex md:hidden justify-start absolute z-50 bg-white rounded-full p-2"
@@ -99,7 +100,7 @@ export default function ModalChatBot({ open, onClose }) {
 				<div
 					id="webchat"
 					role="main"
-					className="w-full h-[93%] text-justify tracking-normal text-md focus:outline-none z-50 relative inset-0"
+					className="w-full h-full text-justify tracking-normal text-md focus:outline-none z-50 relative inset-0"
 				></div>
 			</div>
 		</div>,

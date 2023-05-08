@@ -20,16 +20,16 @@ export default function CardTime({ item }) {
         <div className="mb-4 space-x-5 flex flex-row justify-center text-azul-hyde">
         {item.Nome == "Sérgio Gal" ? (
           <a href={item.Lattes} target="_blank" rel="noreferrer">
-            <AiOutlinePaperClip size={30}/>
+            <AiOutlinePaperClip size={30} alt="Ir para o Lattes"/>
           </a>
           
         ) :
           <>
           <a href={item.Linkedin} target="_blank" rel="noreferrer">
-              <BsLinkedin size={30} />
+              <BsLinkedin size={30} alt="Ir para o LinkedIN"/>
             </a>
             <a href={item.Github} target="_blank" rel="noreferrer">
-              <BsGithub size={30} />
+              <BsGithub size={30} alt="Ir para o Github"/>
             </a>
           </>
         }
