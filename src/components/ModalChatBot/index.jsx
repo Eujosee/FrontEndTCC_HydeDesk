@@ -100,7 +100,7 @@ export default function ModalChatBot({ open, onClose }) {
 				<div
 					id="webchat"
 					role="main"
-					className="w-full h-full text-justify tracking-normal text-md focus:outline-none z-50 relative inset-0"
+					className="w-full h-screen text-justify tracking-normal text-md focus:outline-none z-50 relative inset-0"
 				></div>
 			</div>
 		</div>,
