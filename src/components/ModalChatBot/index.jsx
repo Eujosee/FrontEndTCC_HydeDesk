@@ -85,7 +85,7 @@ export default function ModalChatBot({ open, onClose }) {
 	return ReactDOM.createPortal(
 		<div className="fixed top-0 z-50 w-full h-screen flex flex-row overflow-x-hidden">
 			<div onClick={onClose} className="md:w-full md:flex-1 bg-black bg-opacity-50" />
-			<div className="w-full md:w-1/3 max-h-full overflow-y-auto">
+			<div className="w-full md:w-1/3 max-h-screen overflow-y-auto">
 				<div className="p-4 bg-azul-hyde flex flex-row items-center w-full sticky z-50">
 					<button
 						onClick={onClose}
@@ -100,7 +100,7 @@ export default function ModalChatBot({ open, onClose }) {
 				<div
 					id="webchat"
 					role="main"
-					className="w-full h-screen text-justify tracking-normal text-md focus:outline-none z-50 relative inset-0"
+					className="w-full text-justify tracking-normal text-md focus:outline-none z-50 relative inset-0"
 				></div>
 			</div>
 		</div>,
