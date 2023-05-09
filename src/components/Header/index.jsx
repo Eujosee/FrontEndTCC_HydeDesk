@@ -34,33 +34,26 @@ export default function Header() {
             try {
               const { data } = await api.get("/tecnicos/" + id);
               setFoto(data.foto);
-            } catch (error) {
-
-            }
-            break
-            case "empresas":
-              try {
-                const { data } = await api.get("/empresas/" + id);
-                setFoto(data.foto);
-              } catch (error) {
-                
-              }
-              break
-            case "funcionarios":
-              try {
-                const { data } = await api.get("/funcionarios/" + id);
-                setFoto(data.foto);
-              } catch (error) {
-                
-              }
-              break
+            } catch (error) {}
+            break;
+          case "empresas":
+            try {
+              const { data } = await api.get("/empresas/" + id);
+              setFoto(data.foto);
+            } catch (error) {}
+            break;
+          case "funcionarios":
+            try {
+              const { data } = await api.get("/funcionarios/" + id);
+              setFoto(data.foto);
+            } catch (error) {}
+            break;
           default:
             break;
         }
       }
     })();
-  }, [id,type]);
-
+  }, [id, type]);
 
   const { authenticated, handleLogout } = useContext(Context);
 
@@ -104,6 +97,16 @@ export default function Header() {
             >
               Sobre
             </Link>
+            {(type === "empresas" || type === "funcionarios") && (
+
+                <Link
+                  to="/dashboard"
+                  className="text-md font-semibold leading-6 text-gray-900 dark:text-branco hover:text-azul-hyde dark:hover:text-azul-hyde"
+                >
+                  Dashboard
+                </Link>
+
+            )}
             {authenticated && (
               <Popover className="relative">
                 <Popover.Button className="flex items-center gap-x-1 text-md font-semibold leading-6 text-gray-900 dark:text-branco hover:text-azul-hyde dark:hover:text-azul-hyde">
@@ -240,15 +243,22 @@ export default function Header() {
               </Popover>
             )}
           </Popover.Group>
-
           <div className="hidden lg:flex lg:justify-end">
             {authenticated ? (
               <Popover className="relative">
                 <Popover.Button className="group flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900 ">
-                {foto ? <img src={"https://hydedesk-api.azurewebsites.net/" + foto} alt="Foto" className="h-10 w-10 text-gray-600 group-hover:text-azul-hyde rounded-full" /> :<UserCircleIcon
-                            className="h-6 w-6 text-gray-600 group-hover:text-azul-hyde"
-                            aria-hidden="true"
-                          /> }
+                  {foto ? (
+                    <img
+                      src={"https://hydedesk-api.azurewebsites.net/" + foto}
+                      alt="Foto"
+                      className="h-10 w-10 text-gray-600 group-hover:text-azul-hyde rounded-full"
+                    />
+                  ) : (
+                    <UserCircleIcon
+                      className="h-6 w-6 text-gray-600 group-hover:text-azul-hyde"
+                      aria-hidden="true"
+                    />
+                  )}
                   <ChevronDownIcon
                     className="h-5 w-5 flex-none text-gray-400"
                     aria-hidden="true"
@@ -268,11 +278,20 @@ export default function Header() {
                     <div className="p-4">
                       <div className="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-gray-50 dark:hover:bg-gray-900">
                         <div className="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 dark:bg-gray-800 group-hover:bg-white dark:group-hover:bg-gray-900">
-                          {foto ? <img src={"https://hydedesk-api.azurewebsites.net/" + foto} alt="Foto" className="h-10 w-10 text-gray-600 group-hover:text-azul-hyde rounded-full" /> :<UserCircleIcon
-                            className="h-6 w-6 text-gray-600 group-hover:text-azul-hyde"
-                            aria-hidden="true"
-                          /> }
-
+                          {foto ? (
+                            <img
+                              src={
+                                "https://hydedesk-api.azurewebsites.net/" + foto
+                              }
+                              alt="Foto"
+                              className="h-10 w-10 text-gray-600 group-hover:text-azul-hyde rounded-full"
+                            />
+                          ) : (
+                            <UserCircleIcon
+                              className="h-6 w-6 text-gray-600 group-hover:text-azul-hyde"
+                              aria-hidden="true"
+                            />
+                          )}
                         </div>
                         <div className="flex-auto">
                           <Link
@@ -356,7 +375,7 @@ export default function Header() {
                   to="/"
                   className="-mx-3 block rounded-lg py-2 px-3 text-base font-semibold leading-7 text-gray-900 dark:text-branco hover:bg-gray-50 dark:hover:bg-gray-900"
                 >
-                 Home
+                  Home
                 </Link>
                 <Link
                   to="/institucional"
