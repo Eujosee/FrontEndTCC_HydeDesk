@@ -67,7 +67,7 @@ export default function FormTec() {
   });
 
   const validFileExtensions = {
-    image: ["jpg", "gif", "png", "jpeg", "svg", "webp"],
+    image: ["jpg", "gif", "png", "jpeg"],
   };
 
   function isValidFileType(fileName, fileType) {
@@ -136,8 +136,6 @@ export default function FormTec() {
   };
 
   const handleCad = async (dataFomulario) => {
-    console.log(dataFomulario.anexo[0]);
-
     setLoading(true);
 
     try {
@@ -150,7 +148,7 @@ export default function FormTec() {
         dataFomulario.telefone.replace(/[^0-9]+/g, "")
       );
       formData.append("especialidade", dataFomulario.especialidade);
-      formData.append("foto", dataFomulario.anexo[0]);
+      formData.append("foto", imagem);
       formData.append("senha", dataFomulario.senha);
       formData.append("confirmsenha", dataFomulario.confirmsenha);
 
@@ -262,7 +260,7 @@ export default function FormTec() {
           </div>
           <div className="mt-2">
             <label className="text-lg font-medium text-gray-900 dark:text-branco">
-              Telefone *
+              Telefone Celular *
             </label>
             <InputMask
               className="focus:outline-none focus:border-azul-hyde border-b-2 w-full  p-2 dark:bg-preto dark:text-branco"

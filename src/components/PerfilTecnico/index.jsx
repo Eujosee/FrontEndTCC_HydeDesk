@@ -35,7 +35,7 @@ export default function PerfilTecnico() {
     const { data } = await api.get("/tecnicos/" + id);
     setDados(data);
     setFoto(data.foto);
-    setChangeFoto("")
+    setChangeFoto("");
   };
 
   const handleEdit = async (e) => {
@@ -252,9 +252,10 @@ export default function PerfilTecnico() {
               Salvar mudanças
             </button>
             <ToastContainer />
-            <button 
-            onClick={buscarTecnico()}
-            className="p-2 w-1/2 lg:w-1/3 text-azul-hyde border border-azul-hyde hover:bg-azul-hyde hover:text-white font-medium rounded-md">
+            <button
+              onClick={buscarTecnico}
+              className="p-2 w-1/2 lg:w-1/3 text-azul-hyde border border-azul-hyde hover:bg-azul-hyde hover:text-white font-medium rounded-md"
+            >
               Cancelar
             </button>
           </div>
