@@ -9,56 +9,102 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
+
 export default function DashboardAreaChart({ chamados }) {
-  const [data, setData] = useState([{
-    name: "",
-    uv: 0,
-  }]);
+  const [data, setData] = useState(null);
   const datahj = moment().format("YYYYMMDD");
-  const [lastDays, setlastDays] = useState([]);
-  const teste = [];
-  useEffect(() => {
-    function QuantidadeChamados() {
-      if (chamados != undefined) {
-        for (let i = 0; i < 7; i++) {
-          teste.push(moment(datahj).subtract(i, "days").format("DD/MM"));
-        }
-        const lastDaysLocal = [];
-        teste.forEach((item1, index) => {
-          chamados.forEach((item2) => {
-            if (item1 == moment(item2.data).format("DD/MM")) {
-              lastDaysLocal.push(chamados[index]);
-            }
-          });
+
+  function QuantidadeChamados({ count, interval, calendarFormat }) {
+    const dataGraphic = [];
+
+    if (chamados != undefined) {
+      for (let i = 0; i < count; i++) {
+        dataGraphic.push({
+          name: moment(datahj).subtract(i, interval).format(calendarFormat),
+          uv: 0,
         });
-        console.log(lastDaysLocal)
-        setlastDays(lastDaysLocal);
-        lastDays.forEach((item, index) =>{
-            console.log(moment(lastDays[index].data).format('DD/MM'))
-            setData([...data, {name: moment(lastDays[index].data).format('DD/MM'), uv: lastDays.lenght}])
-        })
-        console.log(lastDaysLocal);
       }
+
+      dataGraphic.reverse();
+
+      chamados.forEach((chamado) => {
+        const dataChamado = moment(chamado.data).format(calendarFormat);
+
+        dataGraphic.forEach((item) => {
+          if (item.name === dataChamado) {
+            item.uv += 1;
+          }
+        });
+      });
+
+      setData(dataGraphic);
     }
-    QuantidadeChamados();
+  }
+
+  useEffect(() => {
+    QuantidadeChamados({
+      count: 8,
+      interval: "days",
+      calendarFormat: "DD/MM/YYYY",
+    });
   }, [chamados]);
+
+  if (data === null) return <div></div>;
+
   return (
-    <AreaChart
-      width={500}
-      height={400}
-      data={data}
-      margin={{
-        top: 10,
-        right: 30,
-        left: 0,
-        bottom: 0,
-      }}
-    >
-      <CartesianGrid strokeDasharray="3 3" />
-      <XAxis dataKey="name" />
-      <YAxis />
-      <Tooltip />
-      <Area type="monotone" dataKey="uv" stroke="#8884d8" fill="#8884d8" />
-    </AreaChart>
+    <div>
+      <div className="flex gap-6">
+        <button
+          onClick={() => {
+            QuantidadeChamados({
+              count: 8,
+              interval: "days",
+              calendarFormat: "DD/MM/YYYY",
+            });
+          }}
+        >
+          Últimos 7 dias
+        </button>
+        <button
+          onClick={() => {
+            QuantidadeChamados({
+              count: 8,
+              interval: "months",
+              calendarFormat: "MM/YYYY",
+            });
+          }}
+        >
+          Últimos meses
+        </button>
+        <button
+          onClick={() => {
+            QuantidadeChamados({
+              count: 8,
+              interval: "years",
+              calendarFormat: "YYYY",
+            });
+          }}
+        >
+          Anual
+        </button>
+      </div>
+      <AreaChart
+        width={500}
+        height={400}
+        data={data}
+        margin={{
+          top: 10,
+          right: 30,
+          left: 0,
+          bottom: 0,
+        }}
+      >
+        <CartesianGrid strokeDasharray="3 3" />
+        <XAxis dataKey="name" />
+        <YAxis />
+        <Tooltip />
+        <Area type="monotone" dataKey="uv" stroke="#8884d8" fill="#8884d8" />
+      </AreaChart>
+    </div>
   );
 }

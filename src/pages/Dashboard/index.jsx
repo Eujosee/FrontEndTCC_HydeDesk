@@ -5,6 +5,7 @@ import secureLocalStorage from "react-secure-storage";
 import Header from "../../components/Header";
 import DashboardPie from "../../components/DashboardPie";
 import DashboardAreaChart from "../../components/AreaChart";
+
 export default function Dashboard() {
   const [dados, setDados] = useState();
 
