@@ -3,10 +3,12 @@ import { useCallback, useState, useEffect } from "react";
 import api from "../../services/api";
 import secureLocalStorage from "react-secure-storage";
 import Header from "../../components/Header";
+
 import DashboardPie from "../../components/DashboardPie";
 import DashboardAreaChart from "../../components/AreaChart";
 import DashboardBarChart from "../../components/DashboardBarChart";
 import DashboardFuncionario from "../../components/DashboardFuncionario";
+import DashboardBarPrioridade from "../../components/DashboardBarPrioridade";
 
 export default function Dashboard() {
   const id = secureLocalStorage.getItem("Id");
@@ -35,9 +37,20 @@ export default function Dashboard() {
     }
   }
 
+  async function getConclusoes() {
+    try {
+      const response = await api.get(`/conclusoes?id_empresa=${id}`); 
+
+      console.log(response.data)
+    } catch(error) {
+      console.log(error)
+    }
+  }
+
   useEffect(() => {
     getChamados();
     getFuncionarios();
+    getConclusoes()
   }, []);
   return (
     <div>
@@ -53,6 +66,7 @@ export default function Dashboard() {
               funcionarios={funcionarios}
             />
           )}
+          <DashboardBarPrioridade chamados={chamados} />
         </div>
       )}
     </div>
