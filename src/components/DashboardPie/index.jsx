@@ -45,7 +45,6 @@ export default function DashboardPie({ chamados }) {
 
   useEffect(() => {
     function getChamados() {
-      console.log(chamados)
       if (chamados != undefined) {
         const andamento = chamados.filter(
           (chamado) => chamado.status_chamado === "andamento"
