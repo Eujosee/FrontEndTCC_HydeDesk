@@ -17,7 +17,7 @@ import ListaFuncionarios from "../pages/ListaFuncionarios";
 import CadastroFuncionario from "../pages/CadastroFuncionario";
 import AbrirChamado from "../pages/AbrirChamado";
 import Detalhes from "../pages/Detalhes";
-
+import Dashboard from "../pages/Dashboard";
 import { useContext } from "react";
 import { Context } from "../context/AuthContext";
 import secureLocalStorage from "react-secure-storage";
@@ -30,9 +30,12 @@ function PrivateRoutes({ children }) {
 
 function EmpresaPrivateRoutes({ children }) {
   const type = JSON.parse(secureLocalStorage.getItem("Tipo"));
-  return type == "empresas" ? children : <Navigate to="/login" />;
+  return type == "empresas" ? children : <Navigate to="/" />;
 }
-
+function DashboardPrivateRoutes({ children }) {
+  const type = JSON.parse(secureLocalStorage.getItem("Tipo"));
+  return type == "funcionarios" || type === "empresas" ? children : <Navigate to="/" />;
+}
 const router = createBrowserRouter([
   {
     path: "/",
@@ -113,6 +116,14 @@ const router = createBrowserRouter([
         <Perfil />
       </PrivateRoutes>
     ),
+  },
+  {
+    path: "/dashboard",
+    element:(
+      <DashboardPrivateRoutes>
+        <Dashboard/>
+      </DashboardPrivateRoutes>
+    )
   },
   {
     path: "*",
