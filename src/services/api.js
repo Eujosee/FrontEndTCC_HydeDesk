@@ -1,7 +1,9 @@
 import axios from "axios";
 
+console.log(import.meta.env.VITE_REACT_API)
+
 const api = axios.create({
-  baseURL: "http://localhost:4001/",
+  baseURL: import.meta.env.VITE_REACT_API,
 });
 
 export default api;

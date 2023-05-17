@@ -9,6 +9,8 @@ export default defineConfig({
     compression()
   ],
   define: {
-    "process.env": {},
+    "process.env": {
+      API: "3.84.53.201:8080"
+    },
   },
 });
