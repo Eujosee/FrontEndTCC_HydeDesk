@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
     <meta name="keywords" content="help desk, helpdesk, manutenção, software, assitência técnica, hyde desk, hydedesk ,hardware, infraestrutura, redes, network"/>
-  <meta name="description" content="O HydeDesk é um sistema inovador de suporte técnico empresarial criado por alunos da escola SENAI Suíço-Brasileira. Com recursos para gerenciamento de TI, sua empresa pode manter sua infraestrutura funcionando sem interrupções. Acesse nossa página comercial e conheça mais sobre a plataforma!"/>
+    <meta name="description" content="O HydeDesk é um sistema inovador de suporte técnico empresarial criado por alunos da escola SENAI Suíço-Brasileira. Com recursos para gerenciamento de TI, sua empresa pode manter sua infraestrutura funcionando sem interrupções. Acesse nossa página comercial e conheça mais sobre a plataforma!"/>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -24,6 +24,7 @@
       type="text/css"
       href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css"
     />
+    <link rel="manifest" href="/manifest.json">
     <script>
       if (
         localStorage.getItem('color-theme') === 'dark' ||
@@ -39,9 +40,7 @@
   </head>
   <body>
     <div id="root"></div>
-    <div id="portal">
-    </div>
-    <script src="https://cdn.botframework.com/botframework-webchat/latest/webchat.js"></script>
+    <div id="portal"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

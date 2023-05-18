@@ -7,11 +7,12 @@ import api from "../../services/api";
 export default function ModalChatBot({ open, onClose }) {
   document.body.style.overflow = "auto";
   if (!open) return null;
-  document.body.style.overflow = "hidden";
+  document.body.style.overflow = "hidden"; 
 
   const [foto, setFoto] = useState("");
   const id = JSON.parse(secureLocalStorage.getItem("Id"));
   const type = JSON.parse(secureLocalStorage.getItem("Tipo"));
+  const [scriptLoaded, setScriptLoaded] = useState(false)
 
   useEffect(() => {
     (async () => {
@@ -48,82 +49,104 @@ export default function ModalChatBot({ open, onClose }) {
     })();
   }, [id,type]);
 
-  const styleOptions = {
-    // Add styleOptions to customize Web Chat canvas
-    hideUploadButton: true,
-    botAvatarInitials: "HD",
-    accent: "#00809d",
-    botAvatarImage:
-      "https://learn.microsoft.com/azure/bot-service/v4sdk/media/logo_bot.svg",
-  	userAvatarImage: !foto ? "https://learn.microsoft.com/azure/bot-service/v4sdk/media/logo_bot.svg" : foto,
-  	userAvatarInitials: "Eu",
-    bubbleBorderRadius: 10,
-    bubbleFromUserBorderRadius: 10,
-	suggestedActionBorderRadius: 10,
-  };
-
-  var theURL =
-    "https://defaultb1051c4b3b9441ab9441e73a72342f.dd.environment.api.powerplatform.com/powervirtualagents/botsbyschema/new_bot_3e41221dd72148d4b5c14612de784c07/directline/token?api-version=2022-03-01-preview";
-
-  var environmentEndPoint = theURL.slice(
-    0,
-    theURL.indexOf("/powervirtualagents")
-  );
-  var apiVersion = theURL.slice(theURL.indexOf("api-version")).split("=")[1];
-  var regionalChannelSettingsURL = `${environmentEndPoint}/powervirtualagents/regionalchannelsettings?api-version=${apiVersion}`;
-
-  var directline;
-  fetch(regionalChannelSettingsURL)
-    .then((response) => {
-      return response.json();
-    })
-    .then((data) => {
-      directline = data.channelUrlsById.directline;
-    })
-    .catch((err) => console.error("An error occurred: " + err));
-
-  const store = window.WebChat.createStore(
-    {},
-    ({ dispatch }) =>
-      (next) =>
-      (action) => {
-        if (action.type === "DIRECT_LINE/CONNECT_FULFILLED") {
-          dispatch({
-            meta: {
-              method: "keyboard",
-            },
-            payload: {
-              activity: {
-                channelData: {
-                  postBack: true,
-                },
-                name: "startConversation",
-                type: "event",
-              },
-            },
-            type: "DIRECT_LINE/POST_ACTIVITY",
-          });
-        }
-        return next(action);
+  useEffect(() => {
+    function carregarScript() {
+      var script = document.createElement('script');
+      script.src = 'https://cdn.botframework.com/botframework-webchat/latest/webchat.js';
+      script.async = true;
+      script.defer = true;
+      script.onload = () => {
+        setScriptLoaded(true)
       }
-  );
+      document.body.appendChild(script);
+    }
+    carregarScript()
+  }, [])
 
-  fetch(theURL)
-    .then((response) => response.json())
-    .then((conversationInfo) => {
-      window.WebChat.renderWebChat(
-        {
-          directLine: window.WebChat.createDirectLine({
-            domain: `${directline}v3/directline`,
-            token: conversationInfo.token,
-          }),
-          store: store,
-          styleOptions,
-        },
-        document.getElementById("webchat")
+  useEffect(() => {
+    function criarWebChat(){
+      const styleOptions = {
+        // Add styleOptions to customize Web Chat canvas
+        hideUploadButton: true,
+        botAvatarInitials: "HD",
+        accent: "#00809d",
+        botAvatarImage:
+          "https://learn.microsoft.com/azure/bot-service/v4sdk/media/logo_bot.svg",
+        userAvatarImage: !foto ? "https://learn.microsoft.com/azure/bot-service/v4sdk/media/logo_bot.svg" : foto,
+        userAvatarInitials: "Eu",
+        bubbleBorderRadius: 10,
+        bubbleFromUserBorderRadius: 10,
+      suggestedActionBorderRadius: 10,
+      };
+    
+      var theURL =
+        "https://defaultb1051c4b3b9441ab9441e73a72342f.dd.environment.api.powerplatform.com/powervirtualagents/botsbyschema/new_bot_3e41221dd72148d4b5c14612de784c07/directline/token?api-version=2022-03-01-preview";
+    
+      var environmentEndPoint = theURL.slice(
+        0,
+        theURL.indexOf("/powervirtualagents")
       );
-    })
-    .catch((err) => console.error("An error occurred: " + err));
+      var apiVersion = theURL.slice(theURL.indexOf("api-version")).split("=")[1];
+      var regionalChannelSettingsURL = `${environmentEndPoint}/powervirtualagents/regionalchannelsettings?api-version=${apiVersion}`;
+    
+      var directline;
+      fetch(regionalChannelSettingsURL)
+        .then((response) => {
+          return response.json();
+        })
+        .then((data) => {
+          directline = data.channelUrlsById.directline;
+        })
+        .catch((err) => console.error("An error occurred: " + err));
+    
+      const store = window.WebChat.createStore(
+        {},
+        ({ dispatch }) =>
+          (next) =>
+          (action) => {
+            if (action.type === "DIRECT_LINE/CONNECT_FULFILLED") {
+              dispatch({
+                meta: {
+                  method: "keyboard",
+                },
+                payload: {
+                  activity: {
+                    channelData: {
+                      postBack: true,
+                    },
+                    name: "startConversation",
+                    type: "event",
+                  },
+                },
+                type: "DIRECT_LINE/POST_ACTIVITY",
+              });
+            }
+            return next(action);
+          }
+      );
+    
+      fetch(theURL)
+        .then((response) => response.json())
+        .then((conversationInfo) => {
+          window.WebChat.renderWebChat(
+            {
+              directLine: window.WebChat.createDirectLine({
+                domain: `${directline}v3/directline`,
+                token: conversationInfo.token,
+              }),
+              store: store,
+              styleOptions,
+            },
+            document.getElementById("webchat")
+          );
+        })
+        .catch((err) => console.error("An error occurred: " + err));
+
+    }
+    scriptLoaded && criarWebChat()
+  }, [scriptLoaded])
+
+  
 
   return ReactDOM.createPortal(
     <div className="fixed top-0 z-50 w-full h-screen  overflow-x-hidden">
@@ -141,11 +164,14 @@ export default function ModalChatBot({ open, onClose }) {
           </h1>
         </div>
         <div className="w-full h-full md:h-[35em] overflow-y-auto">
-          <div
-            id="webchat"
-            role="main"
-            className="w-full h-full text-justify text-sm"
-          ></div>
+          {scriptLoaded && (
+            <div
+              id="webchat"
+              role="main"
+              className="w-full h-full text-justify text-sm"
+            ></div>
+
+          )}
         </div>
       </div>
     </div>,
