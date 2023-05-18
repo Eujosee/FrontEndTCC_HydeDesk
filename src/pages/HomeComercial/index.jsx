@@ -2,7 +2,7 @@ import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import Business from "../../images/Business-amico.svg";
 import Team from "../../images/Team-page-amico.svg";
-import CarrosselProdutos from "../../components/CarroselProdutos";
+import CardServicos from "../../components/CardServicos";
 import { BsChat } from "react-icons/bs";
 import ModalChatBot from "../../components/ModalChatBot";
 import { useState, useEffect, useRef } from "react";
@@ -69,9 +69,11 @@ export default function HomeComercial() {
         />
       </div>
       <div className="py-8 mb-10 flex flex-col justify-center items-center">
-        <h1 className="font-bold text-4xl dark:text-white">Soluções</h1>
-        <div className="max-w-full">
-          <CarrosselProdutos />
+        <h1 className="font-bold text-4xl dark:text-white mb-10">Soluções</h1>
+        <div className="max-w-full grid lg:grid-cols-3 gap-10 px-10">
+          <CardServicos index={0}/>
+          <CardServicos index={1}/>
+          <CardServicos index={2}/>
         </div>
       </div>
 

@@ -10,7 +10,7 @@ const data = [
     img: "software",
   },
   {
-    titulo: "Redes",
+    titulo: "Infraestrutura",
     descricao: "Configuramos redes, identificamos e resolvemos problemas de conectividade, garantindo que sua infraestrutura de rede esteja estável e funcione sem interrupções.",
     img: "redes",
   },

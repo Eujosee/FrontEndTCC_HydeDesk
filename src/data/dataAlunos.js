@@ -29,7 +29,7 @@ const data = [
   {
     Foto: "https://drive.google.com/uc?id=1bRJnpwobWdYpWqHovuKPIX9qbWNotymv",
     Nome: "Mateus Henrique",
-    Atuacao: "Tech Lead de Infra",
+    Atuacao: "Tech Lead de Infra e Banco de dados",
     Github: "https://github.com/Mateus2611",
     Linkedin: "https://linkedin.com/in/mateushenriqueas",
   },

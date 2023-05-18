@@ -1,3 +1,9 @@
+.slick-slide > div {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
 .slick-dots li button:before {
   color: #9ca3af;
   opacity: 100%;
