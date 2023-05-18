@@ -4,8 +4,6 @@ import Hardware from "../../images/hardware.jpg";
 import Software from "../../images/software.jpg";
 import Redes from "../../images/redes.jpg";
 
-import "./index.css"
-
 const img = {
   hardware: Hardware,
   software: Software,
