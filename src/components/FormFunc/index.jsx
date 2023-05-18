@@ -14,16 +14,7 @@ export default function FormFunc() {
   const [statusErro, setStatusErro] = useState("");
   const [imagem, setImagem] = useState(null);
   const id = JSON.parse(secureLocalStorage.getItem("Id"));
-
-  const [user, setUser] = useState({
-    nome: "",
-    matricula: "",
-    usuario: "",
-    email: "",
-    senha: "",
-    confirmsenha: "",
-  });
-
+  
   const [loading, setLoading] = useState(false);
 
   const yupSchema = yup.object().shape({

@@ -4,10 +4,7 @@ import compression from "vite-plugin-compression";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [
-    react(), 
-    compression()
-  ],
+  plugins: [react(), compression()],
   define: {
     "process.env": {},
   },
