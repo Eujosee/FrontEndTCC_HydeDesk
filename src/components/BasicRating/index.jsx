@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 import Rating from "@mui/material/Rating";
 import api from "../../services/api";
 
-export default function BasicRating(id, onClose, dataChamado) {
+export default function BasicRating({id, onClose}) {
   const [value, setValue] = useState(2);
   const [descricao, setDescricao] = useState(null);
   const dados = {
@@ -14,6 +14,7 @@ export default function BasicRating(id, onClose, dataChamado) {
     try {
       const response = await api.post("/chamados/avaliar/" + id.id, dados);
       onClose()
+    
     } catch (error) {
       console.log(error);
     }
@@ -58,6 +59,9 @@ export default function BasicRating(id, onClose, dataChamado) {
           onClick={postDados}
         >
           Enviar
+        </button>
+        <button onClick={onClose}>
+          oi
         </button>
       </div>
     </div>

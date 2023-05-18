@@ -6,6 +6,7 @@ import BasicRating from "../BasicRating";
 export default function ModalAvaliacao({ open, onClose, dataChamado }) {
   if (!open) return null;
 
+  console.log(onClose)
   return (
     <Transition appear show={open} as={Fragment}>
       <Dialog as="div" className="relative z-10" onClose={onClose}>

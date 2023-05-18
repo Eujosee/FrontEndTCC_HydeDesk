@@ -13,9 +13,9 @@ export default function CardPlano({ index }) {
         R$325<span className="text-xl">/mês</span>
       </h2>
       <ul className="space-y-3">
-        {data[index].itens.map((item) => {
+        {data[index].itens.map((item, index) => {
           return (
-            <li className="flex items-center gap-x-2 break-words tracking-wide">
+            <li key={index} className="flex items-center gap-x-2 break-words tracking-wide">
               <AiOutlineCheck size={20} />
               <span>{item}</span>
             </li>
