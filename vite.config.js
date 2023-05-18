@@ -22,8 +22,26 @@ export default defineConfig({
         language: 'pt-br',
         icons: [
           {
-            src: 'icon.png',
+            src: 'hyde_144.png',
             sizes: '144x144',
+            type: 'image/png',
+            purpose: 'any',
+          },
+          {
+            src: 'hyde_180.png',
+            sizes: '180x180',
+            type: 'image/png',
+            purpose: 'any',
+          },
+          {
+            src: 'hyde_192.png',
+            sizes: '192x192',
+            type: 'image/png',
+            purpose: 'any',
+          },
+          {
+            src: 'hyde_512.png',
+            sizes: '512x512',
             type: 'image/png',
             purpose: 'any maskable',
           },

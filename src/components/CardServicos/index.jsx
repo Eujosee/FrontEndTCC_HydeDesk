@@ -21,7 +21,7 @@ export default function CardServicos({ index }) {
         </h1>
       </div>
       <div className="flex flex-row items-center">
-        <div className="w-full lg:w-1/2 h-full p-4 flex flex-col">
+        {/* <div className="w-full lg:w-1/2 h-full p-4 flex flex-col">
           <h2 className="text-lg font-bold mb-5 text-gray-800 dark:text-branco">
             Exemplos de problemas:
           </h2>
@@ -39,12 +39,12 @@ export default function CardServicos({ index }) {
               );
             })}
           </div>
-        </div>
+        </div> */}
         <div className="hidden lg:flex w-1/2 h-full bg-cover bg-center p-4">
           <img
             src={img[data[index].img]}
             alt=""
-            className="w-full h-[25rem] rounded-2xl "
+            className="w-full min-h-full bg-cover rounded-2xl"
           ></img>
         </div>
       </div>

@@ -3,19 +3,19 @@ const data = [
     titulo: "Hardware",
     exemplos: [
       {
-        label: "Conectividade:",
+        label: "Computador não liga:",
         texto:
-          "Impressoras, scanners ou dispositivos de armazenamento externo.",
+          "Verificar as conexões de energia, testar a fonte de alimentação, verificar se há problemas com o botão de energia ou componentes defeituosos.",
       },
       {
-        label: "Máquina não reconhece os periféricos:",
+        label: "Tela do computador está distorcida:",
         texto:
-          "Você usou o seu computador ontem. Ele estava funcionando perfeitamente. Você o liga hoje e ele simplesmente não reconhece o seu teclado, seu mouse, webcam ou impressora. ",
+          "Verificar a conexão do cabo de vídeo, atualizar os drivers de vídeo, ajustar as configurações de resolução da tela.",
       },
       {
-        label: "Compatibilidade :",
+        label: "Impressora não imprime corretamente:",
         texto:
-          "Diferentes componentes podem não ser compatíveis uns com os outros.",
+          "Verificar os cartuchos de tinta ou toner, limpar os cabeçotes de impressão, garantir que a impressora esteja configurada corretamente.",
       },
     ],
     img: "hardware",

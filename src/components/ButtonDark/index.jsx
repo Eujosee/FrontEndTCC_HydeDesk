@@ -30,7 +30,7 @@ export default function ButtonDark () {
 
     return (
         <div className={`${isDarkTheme ? 'bg-gray-800' : 'bg-white/50'} flex items-center justify-center`}>
-            <button id="theme-toggle" onClick={switchTheme} type="button"
+            <button aria-label="trocar tema" id="theme-toggle" onClick={switchTheme} type="button" ar
                     className={`${isDarkTheme ? 'text-gray-300 border-gray-300' : 'text-gray-800 border-gray-500'} border-2 rounded-lg text-sm p-2`}>
                 <svg id="theme-toggle-dark-icon"
                      className={`${isDarkTheme ? 'hidden' : ''} w-5 h-5`} fill="currentColor"
