@@ -22,7 +22,7 @@ export default function CardServicos({ index }) {
             <img
               src={img[data[index].img]}
               alt={data[index].titulo}
-              className="rounded-2xl"
+              className="rounded-2xl w-full h-full"
             ></img>
           </div>
             <span className="text-gray-400 dark:text-gray-200 text-lg">
