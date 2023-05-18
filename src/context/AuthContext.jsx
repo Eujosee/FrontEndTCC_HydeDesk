@@ -97,20 +97,21 @@ export function AuthProvider({ children }) {
     secureLocalStorage.removeItem("Id");
     secureLocalStorage.removeItem("Tipo");
     api.defaults.headers.Authorization = undefined;
+    window.location.href = "/login";
   }
 
   if (loading) {
-    return(
+    return (
       <>
         <div className="flex w-full h-screen overflow-hidden gap-2 items-center justify-center m-auto dark:bg-preto">
-              <AiOutlineLoading3Quarters
-                size={25}
-                className="animate-spin text-gray-900 dark:text-gray-50"
-              />
-              <p className="text-gray-900 dark:text-gray-50"> Carregando...</p>
-            </div>
+          <AiOutlineLoading3Quarters
+            size={25}
+            className="animate-spin text-gray-900 dark:text-gray-50"
+          />
+          <p className="text-gray-900 dark:text-gray-50"> Carregando...</p>
+        </div>
       </>
-      ) 
+    );
   }
 
   return (

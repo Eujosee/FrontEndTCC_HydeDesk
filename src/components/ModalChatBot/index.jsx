@@ -22,32 +22,26 @@ export default function ModalChatBot({ open, onClose }) {
             try {
               const { data } = await api.get("/tecnicos/" + id);
               setFoto(data.foto);
-            } catch (error) {
-
-            }
-            break
-            case "empresas":
-              try {
-                const { data } = await api.get("/empresas/" + id);
-                setFoto(data.foto);
-              } catch (error) {
-                
-              }
-              break
-            case "funcionarios":
-              try {
-                const { data } = await api.get("/funcionarios/" + id);
-                setFoto(data.foto);
-              } catch (error) {
-                
-              }
-              break
+            } catch (error) {}
+            break;
+          case "empresas":
+            try {
+              const { data } = await api.get("/empresas/" + id);
+              setFoto(data.foto);
+            } catch (error) {}
+            break;
+          case "funcionarios":
+            try {
+              const { data } = await api.get("/funcionarios/" + id);
+              setFoto(data.foto);
+            } catch (error) {}
+            break;
           default:
             break;
         }
       }
     })();
-  }, [id,type]);
+  }, [id, type]);
 
   useEffect(() => {
     function carregarScript() {
@@ -150,8 +144,11 @@ export default function ModalChatBot({ open, onClose }) {
 
   return ReactDOM.createPortal(
     <div className="fixed top-0 z-50 w-full h-screen  overflow-x-hidden">
-		<div onClick={onClose} className="w-full h-full absolute bg-black bg-opacity-25"></div>
-      <div className="absolute w-full h-full md:h-fit md:bottom-10 md:right-10 md:w-1/5 bg-white rounded-t-xl">
+      <div
+        onClick={onClose}
+        className="w-full h-full absolute bg-black bg-opacity-25"
+      ></div>
+      <div className="absolute w-full h-full md:h-fit md:bottom-10 md:right-10  md:w-1/4 lg:w-1/5 bg-white rounded-t-xl">
         <div className="p-4 bg-azul-hyde flex flex-row items-center w-full sticky md:rounded-t-md">
           <button
             onClick={onClose}
