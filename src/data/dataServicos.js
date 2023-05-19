@@ -11,7 +11,7 @@ const data = [
   },
   {
     titulo: "Infraestrutura",
-    descricao: "Configuramos redes, identificamos e resolvemos problemas de conectividade, garantindo que sua infraestrutura de rede esteja estável e funcione sem interrupções.",
+    descricao: "Configuramos redes, identificamos e resolvemos problemas de conectividade, garantindo que sua infraestrutura esteja estável.",
     img: "redes",
   },
 

@@ -70,7 +70,7 @@ export default function HomeComercial() {
       </div>
       <div className="py-8 mb-10 flex flex-col justify-center items-center">
         <h1 className="font-bold text-4xl dark:text-white mb-10">Soluções</h1>
-        <div className="max-w-full grid lg:grid-cols-3 gap-10 px-10">
+        <div className="max-w-full grid lg:grid-cols-3 gap-10 px-10 justify-center">
           <CardServicos index={0}/>
           <CardServicos index={1}/>
           <CardServicos index={2}/>

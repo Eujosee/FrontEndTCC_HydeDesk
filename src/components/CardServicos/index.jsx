@@ -12,7 +12,7 @@ const img = {
 
 export default function CardServicos({ index }) {
   return (
-    <div className="ring-1 ring-black/20 dark:bg-gray-800 flex flex-col items-center justify-center p-10 rounded-xl shadow-xl">
+    <div className="ring-1 ring-black/20 dark:bg-gray-800 flex flex-col items-center justify-stretch p-10 rounded-xl shadow-xl">
         <h1 className="text-gray-900 dark:text-branco font-bold text-4xl mb-2">
           {data[index].titulo}
         </h1>
