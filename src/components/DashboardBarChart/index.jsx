@@ -10,7 +10,10 @@ import {
   Legend,
 } from "recharts";
 
+
 export default function DashboardBarChart({ chamados }) {
+  const [color, setColor] = useState(localStorage.getItem('color-theme'))
+
   const [data, setData] = useState([
     {
       name: "Software",
@@ -51,13 +54,16 @@ export default function DashboardBarChart({ chamados }) {
       data={data}
       margin={{
         top: 5,
-        right: 30,
-        left: 20,
+        right: 50,
         bottom: 5,
       }}
     >
       <CartesianGrid strokeDasharray="3 3" />
-      <XAxis dataKey="name" />
+      {color == "dark" ? 
+        <XAxis dataKey="name" stroke="#fff"/>
+        :
+        <XAxis dataKey="name" stroke="#000"/>
+      }
       <YAxis />
       <Tooltip />
       <Legend />

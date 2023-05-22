@@ -7,6 +7,7 @@ import {
   CartesianGrid,
   Tooltip,
   Legend,
+  ResponsiveContainer
 } from "recharts";
 import moment from "moment";
 import ptBrLocal from "moment/locale/pt-br";
@@ -82,37 +83,42 @@ export default function DashboardBarPrioridade({ chamados }) {
         <button onClick={() => setPrioridade("Média")}>Média</button>
         <button onClick={() => setPrioridade("Alta")}>Alta</button>
       </div>
-      <BarChart
-        width={1000}
-        height={300}
-        data={data}
-        margin={{
-          top: 5,
-          right: 30,
-          left: 20,
-          bottom: 5,
-        }}
-      >
-        <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="name" />
-        <YAxis padding={{ top: 50 }} hide={true} />
-        <Tooltip />
-        <Legend />
-        <Bar
-          dataKey="uv"
-          fill={
-            prioridade === "Baixa"
-              ? "#22C55E"
-              : prioridade === "Média"
-              ? "#EAB308"
-              : "#EF4444"
-          }
-          background={{ fill: "#E4E8EF" }}
-          minPointSize={10}
-          legendType="none"
-          label={{ position: "top" }}
-        ></Bar>
-      </BarChart>
+      <div className="w-full h-full">
+        <ResponsiveContainer width="100%" height={250}>
+
+        <BarChart
+          // width={650}
+          // height={250}
+          data={data}
+          margin={{
+            top: 5,
+            right: 30,
+            left: 20,
+            bottom: 5,
+          }}
+        >
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="name" />
+          <YAxis padding={{ top: 50 }} hide={true} />
+          <Tooltip />
+          <Legend />
+          <Bar
+            dataKey="uv"
+            fill={
+              prioridade === "Baixa"
+                ? "#22C55E"
+                : prioridade === "Média"
+                ? "#EAB308"
+                : "#EF4444"
+            }
+            background={{ fill: "#E4E8EF" }}
+            minPointSize={10}
+            legendType="none"
+            label={{ position: "top" }}
+          ></Bar>
+        </BarChart>
+        </ResponsiveContainer>
+      </div>
     </div>
   );
 }

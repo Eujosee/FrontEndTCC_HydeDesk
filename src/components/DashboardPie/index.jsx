@@ -69,9 +69,9 @@ export default function DashboardPie({ chamados }) {
     getChamados();
   }, [chamados]);
   return (
-    <div>
-      <div>
-        <PieChart width={400} height={400}>
+      <div >
+      
+        <PieChart  width={400} height={400}>
           <Pie
             data={data}
             cx={200}
@@ -81,16 +81,16 @@ export default function DashboardPie({ chamados }) {
             outerRadius={80}
             fill="#8884d8"
             dataKey="value"
-          >
+            >
             {data.map((entry, index) => (
               <Cell
-                key={`cell-${index}`}
+              key={`cell-${index}`}
                 fill={COLORS[index % COLORS.length]}
               />
             ))}
           </Pie>
         </PieChart>
+      
       </div>
-    </div>
   );
 }
