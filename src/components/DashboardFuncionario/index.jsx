@@ -46,7 +46,7 @@ export default function DashboardFuncionario({ chamados, funcionarios }) {
             <tr key={data.id_funcionario}>
               <td>
                 <img
-                  src={`http://localhost:8080/${data.foto}`}
+                  src={`https://rei0mqdqxi.execute-api.us-east-1.amazonaws.com/${data.foto}`}
                   alt="teste"
                   className="w-20 h-20 object-cover"
                 />

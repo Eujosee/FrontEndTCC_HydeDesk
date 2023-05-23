@@ -249,7 +249,7 @@ export default function Header() {
                 <Popover.Button className="group flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900 ">
                   {foto ? (
                     <img
-                      src={"https://hydedesk-api.azurewebsites.net/" + foto}
+                      src={"https://rei0mqdqxi.execute-api.us-east-1.amazonaws.com/" + foto}
                       alt="Foto"
                       className="h-10 w-10 text-gray-600 group-hover:text-azul-hyde rounded-full"
                     />
@@ -281,7 +281,7 @@ export default function Header() {
                           {foto ? (
                             <img
                               src={
-                                "https://hydedesk-api.azurewebsites.net/" + foto
+                                "https://rei0mqdqxi.execute-api.us-east-1.amazonaws.com/" + foto
                               }
                               alt="Foto"
                               className="h-10 w-10 text-gray-600 group-hover:text-azul-hyde rounded-full"
