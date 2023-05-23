@@ -12,24 +12,6 @@ export default function ModalConclusao({
   dataChamado,
   dataConclusao,
 }) {
-  const [nomeTecnico, setNomeTecnico] = useState("");
-
-  useEffect(() => {
-    async function getNomeTecnico() {
-      if (!open) return;
-
-      try {
-        const response = await api.get(`/tecnicos/${dataChamado.tecnico_id}`);
-
-        setNomeTecnico(response.data.nome_tecnico);
-      } catch (error) {
-        console.log(error);
-      }
-    }
-
-    getNomeTecnico();
-  }, [open]);
-  
   if (!open) return null;
 
   let data = dataChamado;
@@ -73,7 +55,11 @@ export default function ModalConclusao({
                     <AiOutlineArrowLeft size={20} />
                   </button>
                   <span className="ml-5 md:m-0 w-full dark:text-gray-50 ">
-                    Conclusão - {moment(dataConclusao[0].data_termino).format("DD/MM/YYYY - HH:mm")} h
+                    Conclusão -{" "}
+                    {moment(dataConclusao.data_termino).format(
+                      "DD/MM/YYYY - HH:mm"
+                    )}{" "}
+                    h
                   </span>
                 </Dialog.Title>
                 <div className="flex flex-col gap-y-4 md:grid md:grid-cols-2 md:gap-x-10 md:gap-y-4 w-full pt-4">
@@ -84,7 +70,7 @@ export default function ModalConclusao({
                     <input
                       type="text"
                       className="focus:outline-none hover:border-b-azul-hyde border-b-2 p-2 bg-transparent dark:text-gray-50"
-                      value={data.descricao}
+                      value={dataConclusao.descricao}
                       disabled
                     />
                   </div>
@@ -95,12 +81,12 @@ export default function ModalConclusao({
                     <input
                       type="text"
                       className="focus:outline-none hover:border-b-azul-hyde border-b-2 p-2 bg-transparent dark:text-gray-50"
-                      value={nomeTecnico}
+                      value={dataConclusao.nome_tecnico}
                       disabled
                     />
                   </div>
 
-                  {dataConclusao[0].num_avaliacao && (
+                  {dataConclusao.num_avaliacao && (
                     <>
                       <div className="flex flex-col">
                         <label className="font-medium text-gray-500 dark:text-gray-300">
@@ -118,21 +104,21 @@ export default function ModalConclusao({
                               // emptyIcon={
                               //   <StarIcon className={"dark:text-gray-100"} fontSize="inherit" />
                               // }
-                              defaultValue={dataConclusao[0].num_avaliacao}
+                              defaultValue={dataConclusao.num_avaliacao}
                               readOnly
                             />
                           </div>
                         </Box>
                       </div>
 
-                      {dataConclusao[0].desc_avaliacao && (
+                      {dataConclusao.desc_avaliacao && (
                         <div className={`flex flex-col w-full`}>
                           <label className="font-medium text-gray-500 dark:text-gray-300">
                             Detalhes da Avaliação
                           </label>
                           <input
                             className="focus:outline-none hover:border-b-azul-hyde border-b-2 p-2 bg-transparent dark:text-gray-50"
-                            value={dataConclusao[0].desc_avaliacao}
+                            value={dataConclusao.desc_avaliacao}
                             disabled
                           />
                         </div>
@@ -140,14 +126,15 @@ export default function ModalConclusao({
                     </>
                   )}
 
-                  {data.anexo && (
+                  {dataConclusao.anexo && (
                     <div className="col-span-2">
                       <label className="font-medium text-gray-500 dark:text-gray-300">
                         Anexo:
                       </label>
                       <img
                         src={
-                          "https://hydedesk-api.azurewebsites.net/" + data.anexo
+                          "https://hydedesk-api.azurewebsites.net/" +
+                          dataConclusao.anexo
                         }
                         className="object-scale-down h-60  overflow-auto"
                         alt=""

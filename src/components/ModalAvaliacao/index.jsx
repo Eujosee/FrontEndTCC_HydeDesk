@@ -6,7 +6,7 @@ import BasicRating from "../BasicRating";
 export default function ModalAvaliacao({ open, onClose, dataChamado }) {
   if (!open) return null;
 
-  console.log(onClose)
+  console.log(onClose);
   return (
     <Transition appear show={open} as={Fragment}>
       <Dialog as="div" className="relative z-10" onClose={onClose}>
@@ -33,7 +33,7 @@ export default function ModalAvaliacao({ open, onClose, dataChamado }) {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <Dialog.Panel className="flex flex-col transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all dark:bg-gray-800">
+              <Dialog.Panel className="flex flex-col transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all dark:bg-gray-800 w-[80%] sm:w-96">
                 <Dialog.Title
                   as="h3"
                   className="flex justify-center text-lg font-medium leading-6 text-gray-900 dark:text-gray-50"
@@ -41,7 +41,7 @@ export default function ModalAvaliacao({ open, onClose, dataChamado }) {
                   Avaliação
                 </Dialog.Title>
                 <div className="flex items-center w-full justify-center">
-                  <div className="w-full flex justify-center ">
+                  <div className="w-full flex justify-center">
                     <BasicRating
                       id={dataChamado.id_chamado}
                       onClose={onClose}
