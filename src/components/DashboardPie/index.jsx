@@ -69,28 +69,35 @@ export default function DashboardPie({ chamados }) {
     getChamados();
   }, [chamados]);
   return (
-      <div >
-      
-        <PieChart  width={400} height={400}>
-          <Pie
-            data={data}
-            cx={200}
-            cy={200}
-            labelLine={false}
-            label={renderCustomizedLabel}
-            outerRadius={80}
-            fill="#8884d8"
-            dataKey="value"
-            >
-            {data.map((entry, index) => (
-              <Cell
-              key={`cell-${index}`}
-                fill={COLORS[index % COLORS.length]}
-              />
-            ))}
-          </Pie>
+      <div className="flex w-full h-full justify-center items-center">
+        {/* <div className="bg-[#22C55E] w-[10px] h-[10px]"></div>
+        <div></div>
+        <div></div>
+        <div></div> */}
+        <ResponsiveContainer width="100%" height={400}>
+          <PieChart  
+          width={400} height={300}
+          >
+            <Pie
+              data={data}
+              cx={200}
+              cy={200}
+              labelLine={false}
+              label={renderCustomizedLabel}
+              outerRadius={100}
+              fill="#8884d8"
+              dataKey="value"
+              >
+              {data.map((entry, index) => (
+                <Cell
+                key={`cell-${index}`}
+                  fill={COLORS[index % COLORS.length]}
+                />
+              ))}
+            </Pie>
+
         </PieChart>
-      
+        </ResponsiveContainer>
       </div>
   );
 }

@@ -77,13 +77,13 @@ export default function DashboardBarPrioridade({ chamados }) {
   }, [prioridade]);
 
   return (
-    <div>
+    <div className="w-full h-full">
       <div className="flex gap-5">
         <button onClick={() => setPrioridade("Baixa")}>Baixa</button>
         <button onClick={() => setPrioridade("Média")}>Média</button>
         <button onClick={() => setPrioridade("Alta")}>Alta</button>
       </div>
-      <div className="w-full h-full">
+      
         <ResponsiveContainer width="100%" height={250}>
 
         <BarChart
@@ -118,7 +118,6 @@ export default function DashboardBarPrioridade({ chamados }) {
           ></Bar>
         </BarChart>
         </ResponsiveContainer>
-      </div>
     </div>
   );
 }

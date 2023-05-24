@@ -110,11 +110,10 @@ export default function Dashboard() {
   }, [chamados, conclusoes]);
 
   return (
-    <div className="dark:bg-gray-900 bg-gray-100">
+    <div className="w-full min-h-screen dark:bg-gray-900 bg-gray-100">
       <Header />
       {chamados && (
-        <div className="mx-10 mt-4 mb-0">
-
+        <div className="p-6">
           <div className="flex flex-col md:flex-row mb-6 gap-y-4 gap-x-10">
             <div className="flex flex-col p-6 rounded-lg bg-white dark:bg-gray-800 shadow-sm">
               <p className="dark:text-gray-50">Tempo médio de conclusão</p>
@@ -126,28 +125,30 @@ export default function Dashboard() {
             </div> 
           </div>
 
-          <div className="grid lg:grid-cols-3 gap-10 mb-6">
-            <div className="flex justify-center items-center bg-white dark:bg-gray-800 rounded-lg shadow-sm">
+          <div className="w-full grid lg:grid-cols-3 gap-10 mb-6">
+          {/* <div className="flex flex-wrap justify-evenly items-stretch gap-10 mb-6"> */}
+            <div className="flex justify-center items-center bg-white dark:bg-gray-800 rounded-lg shadow-sm overflow-auto">
               <DashboardPie chamados={chamados} />
             </div>
-            <div className="flex justify-center items-center bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6">
+            <div className="flex justify-center items-center bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6 overflow-auto">
               <DashboardAreaChart chamados={chamados} />
             </div>
-            <div className="flex justify-center items-center bg-white dark:bg-gray-800 rounded-lg shadow-sm">
+            <div className="flex justify-center items-center bg-white dark:bg-gray-800 rounded-lg shadow-sm overflow-auto">
               <DashboardBarChart chamados={chamados} />
             </div>
           </div>
 
-          <div className="grid xl:grid-cols-2 gap-10 justify-between">
+          <div className="grid lg:grid-cols-2 gap-10 lg:justify-between">
+          {/* <div className="flex flex-row gap-10 justify-between"> */}
             {funcionarios && (
-              <div className="flex justify-center items-center bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6">
+              <div className="flex justify-center items-center bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6 overflow-auto">
                 <DashboardFuncionario
                   chamados={chamados}
                   funcionarios={funcionarios}
                 />
               </div>
             )}
-            <div className="flex w-full justify-center items-center bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6">
+            <div className="flex w-full justify-center items-center bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6 overflow-auto">
               <DashboardBarPrioridade chamados={chamados} />
             </div>
           </div>

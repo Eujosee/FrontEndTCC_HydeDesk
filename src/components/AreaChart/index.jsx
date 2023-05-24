@@ -91,7 +91,7 @@ export default function DashboardAreaChart({ chamados }) {
           Anual
         </button>
       </div>
-      <div className="w-full h-full">
+      <div className="w-[500px] max-w-full h-full">
         <ResponsiveContainer width="100%" height={300}>
           <AreaChart
             // width={500}
