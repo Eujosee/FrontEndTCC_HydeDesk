@@ -1,8 +1,9 @@
 import React from "react";
-import { useCallback, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import api from "../../services/api";
 import secureLocalStorage from "react-secure-storage";
 import Header from "../../components/Header";
+import Footer from "../../components/Footer";
 import moment from "moment";
 
 import DashboardPie from "../../components/DashboardPie";
@@ -110,30 +111,50 @@ export default function Dashboard() {
   }, [chamados, conclusoes]);
 
   return (
-    <div>
+    <div className="w-full min-h-screen dark:bg-gray-900 bg-gray-100">
       <Header />
       {chamados && (
-        <div>
-          <DashboardPie chamados={chamados} />
-          <DashboardAreaChart chamados={chamados} />
-          <DashboardBarChart chamados={chamados} />
-          <div>
-            <p>Tempo médio de conclusão</p>
-            {mediaConclusao}h
+        <div className="p-6">
+          <div className="flex flex-col md:flex-row mb-6 gap-y-4 gap-x-10">
+            <div className="flex flex-col p-6 rounded-lg bg-white dark:bg-gray-800 shadow-sm">
+              <p className="dark:text-gray-50">Tempo médio de conclusão</p>
+              <span className="dark:text-gray-50 font-bold text-xl">{isNaN(mediaConclusao) ? "Não há dados disponíveis" : mediaConclusao}</span>
+            </div>
+            <div className="flex flex-col p-6 rounded-lg bg-white dark:bg-gray-800 shadow-sm">
+              <p className="dark:text-gray-50">Avaliação média</p>
+              <span className="dark:text-gray-50 font-bold text-xl">{isNaN(mediaAvaliacao) ? "Não há dados disponíveis" : mediaAvaliacao}</span>
+            </div> 
           </div>
-          <div>
-            <p>Avaliação média</p>
-            {mediaAvaliacao}
+
+          <div className="w-full grid lg:grid-cols-3 gap-10 mb-6">
+            <div className="flex justify-center items-center bg-white dark:bg-gray-800 rounded-lg shadow-sm overflow-auto">
+              <DashboardPie chamados={chamados} />
+            </div>
+            <div className="flex justify-center items-center bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6 overflow-auto">
+              <DashboardAreaChart chamados={chamados} />
+            </div>
+            <div className="flex justify-center items-center bg-white dark:bg-gray-800 rounded-lg shadow-sm overflow-auto">
+              <DashboardBarChart chamados={chamados} />
+            </div>
           </div>
-          {funcionarios && (
-            <DashboardFuncionario
-              chamados={chamados}
-              funcionarios={funcionarios}
-            />
-          )}
-          <DashboardBarPrioridade chamados={chamados} />
+
+          <div className="grid lg:grid-cols-2 gap-10 lg:justify-between">
+            {funcionarios && (
+              <div className="flex justify-center items-center bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6 
+              overflow-auto">
+                <DashboardFuncionario
+                  chamados={chamados}
+                  funcionarios={funcionarios}
+                />
+              </div>
+            )}
+            <div className="flex w-full justify-center items-center bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6 overflow-auto">
+              <DashboardBarPrioridade chamados={chamados} />
+            </div>
+          </div>
         </div>
       )}
+      <Footer/>
     </div>
   );
 }

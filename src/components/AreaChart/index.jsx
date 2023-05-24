@@ -52,9 +52,10 @@ export default function DashboardAreaChart({ chamados }) {
   if (data === null) return <div></div>;
 
   return (
-    <div>
+    <div className=" flex flex-col w-full h-full justify-center">
       <div className="flex gap-6">
         <button
+        className="dark:text-gray-50"
           onClick={() => {
             QuantidadeChamados({
               count: 8,
@@ -66,6 +67,7 @@ export default function DashboardAreaChart({ chamados }) {
           Últimos 7 dias
         </button>
         <button
+        className="dark:text-gray-50"
           onClick={() => {
             QuantidadeChamados({
               count: 8,
@@ -77,6 +79,7 @@ export default function DashboardAreaChart({ chamados }) {
           Últimos meses
         </button>
         <button
+        className="dark:text-gray-50"
           onClick={() => {
             QuantidadeChamados({
               count: 8,
@@ -88,23 +91,25 @@ export default function DashboardAreaChart({ chamados }) {
           Anual
         </button>
       </div>
-      <AreaChart
-        width={500}
-        height={400}
-        data={data}
-        margin={{
-          top: 10,
-          right: 30,
-          left: 0,
-          bottom: 0,
-        }}
-      >
-        <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="name" />
-        <YAxis />
-        <Tooltip />
-        <Area type="monotone" dataKey="uv" stroke="#8884d8" fill="#8884d8" />
-      </AreaChart>
+        <ResponsiveContainer width="100%" height={300}>
+          <AreaChart
+            // width={500}
+            // height={300}
+            data={data}
+            margin={{
+              top: 10,
+              right: 30,
+              left: 0,
+              bottom: 0,
+            }}
+          >
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="name" />
+            <YAxis />
+            <Tooltip />
+            <Area type="monotone" dataKey="uv" stroke="#8884d8" fill="#8884d8" />
+          </AreaChart>
+        </ResponsiveContainer>
     </div>
   );
 }

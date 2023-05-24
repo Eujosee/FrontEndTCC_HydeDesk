@@ -8,9 +8,13 @@ import {
   CartesianGrid,
   Tooltip,
   Legend,
+  ResponsiveContainer,
 } from "recharts";
 
+
 export default function DashboardBarChart({ chamados }) {
+  const [color, setColor] = useState(localStorage.getItem('color-theme'))
+
   const [data, setData] = useState([
     {
       name: "Software",
@@ -45,27 +49,34 @@ export default function DashboardBarChart({ chamados }) {
   }, []);
 
   return (
-    <BarChart
-      width={500}
-      height={300}
-      data={data}
-      margin={{
-        top: 5,
-        right: 30,
-        left: 20,
-        bottom: 5,
-      }}
-    >
-      <CartesianGrid strokeDasharray="3 3" />
-      <XAxis dataKey="name" />
-      <YAxis />
-      <Tooltip />
-      <Legend />
-      <Bar dataKey="uv" fill="#000" legendType="none" >
-        <Cell key="cell-0" fill="#FF5252" />
-        <Cell key="cell-1" fill="#FBC02D" />
-        <Cell key="cell-2" fill="#F57C00" />
-      </Bar>
-    </BarChart>
+    <div className="flex w-full max-w-full h-full justify-center items-center">
+      <ResponsiveContainer width="100%" height={300}>
+        <BarChart
+          // width={500}
+          // height={300}
+          data={data}
+          margin={{
+            top: 40,
+            right: 50,
+            bottom: 5,
+          }}
+        >
+          <CartesianGrid strokeDasharray="3 3" />
+          {color == "dark" ? 
+            <XAxis dataKey="name" stroke="#fff"/>
+            :
+            <XAxis dataKey="name" stroke="#000"/>
+          }
+          <YAxis />
+          <Tooltip />
+          <Legend />
+          <Bar dataKey="uv" fill="#000" legendType="none" >
+            <Cell key="cell-0" fill="#FF5252" />
+            <Cell key="cell-1" fill="#FBC02D" />
+            <Cell key="cell-2" fill="#F57C00" />
+          </Bar>
+        </BarChart>
+      </ResponsiveContainer>
+    </div>
   );
 }
