@@ -187,7 +187,7 @@ export default function Detalhes() {
                   <label className="font-medium text-gray-500 dark:text-gray-400 mt-6">Anexo:</label>
                   <img
                     src={
-                      "https://hydedesk-api.azurewebsites.net/" + data[0].anexo
+                      "https://rei0mqdqxi.execute-api.us-east-1.amazonaws.com/" + data[0].anexo
                     }
                     className="w-full h-60 object-scale-down"
                     alt="anexo do chamado"

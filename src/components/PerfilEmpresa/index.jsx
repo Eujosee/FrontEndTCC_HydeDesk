@@ -188,7 +188,7 @@ export default function PerfilEmpresa() {
                     src={
                       changeFoto
                         ? URL.createObjectURL(changeFoto)
-                        : "http://localhost:8080/" + dados.foto
+                        : "https://rei0mqdqxi.execute-api.us-east-1.amazonaws.com/" + dados.foto
                     }
                     alt="Foto de perfil"
                     className="rounded-full w-52 h-52 object-cover"
