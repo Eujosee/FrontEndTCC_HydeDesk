@@ -52,7 +52,7 @@ export default function DashboardAreaChart({ chamados }) {
   if (data === null) return <div></div>;
 
   return (
-    <div>
+    <div className=" flex flex-col w-full h-full justify-center">
       <div className="flex gap-6">
         <button
         className="dark:text-gray-50"
@@ -91,7 +91,6 @@ export default function DashboardAreaChart({ chamados }) {
           Anual
         </button>
       </div>
-      <div className="w-full h-full">
         <ResponsiveContainer width="100%" height={300}>
           <AreaChart
             // width={500}
@@ -111,8 +110,6 @@ export default function DashboardAreaChart({ chamados }) {
             <Area type="monotone" dataKey="uv" stroke="#8884d8" fill="#8884d8" />
           </AreaChart>
         </ResponsiveContainer>
-
-      </div>
     </div>
   );
 }
