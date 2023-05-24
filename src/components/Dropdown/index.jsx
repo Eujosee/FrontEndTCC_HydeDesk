@@ -47,20 +47,21 @@ export default function Dropdown({ item }) {
   const [estaAvaliado, setEstaAvaliado] = useState(null);
   const [request, setRequest] = useState(true);
 
-  const [conclusao, setConclusao] = useState(null)
+  const [conclusao, setConclusao] = useState(null);
 
   async function getConcluido() {
     const response = await api.get(`/conclusoes?chamado_id=${item.id_chamado}`);
 
-    if (response.data.length > 0) {
+    if (response.data.length !== 0) {
       setEstaConcluido(true);
+
+      setConclusao(response.data[0]);
 
       if (response.data[0].num_avaliacao !== null) {
         setEstaAvaliado(true);
       }
     }
 
-    setConclusao(response.data)
     setRequest(false);
   }
 
