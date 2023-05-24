@@ -39,11 +39,11 @@ export default function DashboardFuncionario({ chamados, funcionarios }) {
   }, []);
 
   return (
-    <table>
+    <table className="w-full overflow-auto">
       {dataFuncionario &&
         dataFuncionario.map((data) => {
           return (
-            <tr key={data.id_funcionario}>
+            <tr key={data.id_funcionario} >
               <td>
                 <img
                   src={`https://rei0mqdqxi.execute-api.us-east-1.amazonaws.com/${data.foto}`}

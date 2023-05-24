@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import api from "../../services/api";
 import secureLocalStorage from "react-secure-storage";
 import Header from "../../components/Header";
+import Footer from "../../components/Footer";
 import moment from "moment";
 
 import DashboardPie from "../../components/DashboardPie";
@@ -126,7 +127,6 @@ export default function Dashboard() {
           </div>
 
           <div className="w-full grid lg:grid-cols-3 gap-10 mb-6">
-          {/* <div className="flex flex-wrap justify-evenly items-stretch gap-10 mb-6"> */}
             <div className="flex justify-center items-center bg-white dark:bg-gray-800 rounded-lg shadow-sm overflow-auto">
               <DashboardPie chamados={chamados} />
             </div>
@@ -139,9 +139,9 @@ export default function Dashboard() {
           </div>
 
           <div className="grid lg:grid-cols-2 gap-10 lg:justify-between">
-          {/* <div className="flex flex-row gap-10 justify-between"> */}
             {funcionarios && (
-              <div className="flex justify-center items-center bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6 overflow-auto">
+              <div className="flex justify-center items-center bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6 
+              overflow-auto">
                 <DashboardFuncionario
                   chamados={chamados}
                   funcionarios={funcionarios}
@@ -154,6 +154,7 @@ export default function Dashboard() {
           </div>
         </div>
       )}
+      <Footer/>
     </div>
   );
 }

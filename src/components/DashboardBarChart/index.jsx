@@ -56,7 +56,7 @@ export default function DashboardBarChart({ chamados }) {
           // height={300}
           data={data}
           margin={{
-            top: 5,
+            top: 40,
             right: 50,
             bottom: 5,
           }}

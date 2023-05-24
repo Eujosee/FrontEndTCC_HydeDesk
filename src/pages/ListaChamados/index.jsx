@@ -480,7 +480,7 @@ export default function ListaChamados() {
                         className="dark:text-branco dark:bg-gray-800 dark:hover:bg-gray-800"
                         value="andamento"
                       >
-                        Em andamento
+                        Andamento
                       </option>
                       <option
                         className="dark:text-branco dark:bg-gray-800 dark:hover:bg-gray-100"

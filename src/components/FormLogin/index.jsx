@@ -173,12 +173,15 @@ function Form() {
             <p className="dark:text-branco font-semibold ">Esqueceu a senha?</p>
             <p className="ml-2 text-azul-hyde font-semibold">Recuperar</p>
           </Link>
-          <Link className="no-underline flex  " to="/cadastro">
-            <p className="dark:text-branco font-semibold mb-1">
-              Não possui uma conta?
-            </p>
-            <p className="ml-2 text-azul-hyde font-semibold mb-1">Cadastrar</p>
-          </Link>
+          {label !== "usuario" ?
+            <Link className="no-underline flex  " to="/cadastro">
+              <p className="dark:text-branco font-semibold mb-1">
+                Não possui uma conta?
+              </p>
+              <p className="ml-2 text-azul-hyde font-semibold mb-1">Cadastrar</p>
+            </Link> : 
+            <p className="dark:text-branco font-semibold mb-1 max-w-sm">Caso não possua uma conta, peça para um supervisor cadastrar</p>
+          }
         </div>
       </form>
 

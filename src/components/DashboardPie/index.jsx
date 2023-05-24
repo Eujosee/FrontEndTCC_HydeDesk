@@ -69,22 +69,38 @@ export default function DashboardPie({ chamados }) {
     getChamados();
   }, [chamados]);
   return (
-      <div className="flex w-full h-full justify-center items-center">
-        {/* <div className="bg-[#22C55E] w-[10px] h-[10px]"></div>
-        <div></div>
-        <div></div>
-        <div></div> */}
+      <div className="flex flex-col xl:flex-row w-full h-full justify-center items-center">
+        <div className="w-full flex flex-wrap xl:flex-col  gap-y-2 gap-x-4 p-4">
+          <div className="flex items-center">
+            <div className="bg-[#22C55E] w-[20px] h-[20px] rounded mr-2"></div>
+            <span className="text-lg font-semibold">Concluído</span>
+          </div>
+          <div className="flex items-center">
+            <div className="bg-[#E2CD08] w-[20px] h-[20px] rounded mr-2"></div>
+            <span className="text-lg font-semibold">Andamento</span>
+          </div>
+          <div className="flex items-center">
+            <div className="bg-[#23AFFF] w-[20px] h-[20px] rounded mr-2"></div>
+            <span className="text-lg font-semibold">Pendente</span>
+          </div>
+          <div className="flex items-center">
+            <div className="bg-[#EF4444] w-[20px] h-[20px] rounded mr-2"></div>
+            <span className="text-lg font-semibold">Cancelado</span>
+          </div>
+        </div>
         <ResponsiveContainer width="100%" height={400}>
           <PieChart  
-          width={400} height={300}
+          // width={400} height={300}
           >
             <Pie
               data={data}
-              cx={200}
-              cy={200}
               labelLine={false}
               label={renderCustomizedLabel}
               outerRadius={100}
+              margin={{
+                top: 40,
+                
+              }}
               fill="#8884d8"
               dataKey="value"
               >
