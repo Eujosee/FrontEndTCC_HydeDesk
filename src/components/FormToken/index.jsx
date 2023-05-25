@@ -1,5 +1,6 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { useState, useRef } from "react";
+import bcrypt from 'bcryptjs'
 
 export default function FormToken() {
   const [inputValues, setInputValues] = useState([
@@ -17,14 +18,16 @@ export default function FormToken() {
     inputValues.forEach((item) => {
       tokenCompare += item.value;
     });
-
-    if (tokenCompare === token) {
-      navigate("trocar-senha", {
-        state: { tipoTabela: tipoTabela, email: email },
-      });
-    } else {
-      console.log("O token não é igual");
-    }
+    bcrypt.compare( tokenCompare, token, async (err, valid) => {
+      if (err) {
+        return;
+      }
+      if(valid){
+        navigate("trocar-senha", {
+          state: { tipoTabela: tipoTabela, email: email },
+        });
+      }
+    } )
   }
 
   return (

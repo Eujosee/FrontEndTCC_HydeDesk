@@ -26,11 +26,9 @@ export default function FormRecuperar() {
       toemail: email,
       tipoTabela: label,
     };
-    console.log(data);
     try {
       const response = await api.post("/email", data);
-
-      console.log(response);
+      console.log(response.data)
       if (response.data.token) {
         goToConfirmarToken(response.data.token);
       }
