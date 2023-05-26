@@ -139,8 +139,7 @@ export default function Dashboard() {
 
           <div className="grid lg:grid-cols-2 gap-10 lg:justify-between">
             {funcionarios && (
-              <div className="flex justify-center items-center bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6 
-              overflow-auto">
+              <div className="flex justify-center items-center bg-white dark:bg-gray-800 rounded-lg shadow-sm overflow-auto">
                 <DashboardFuncionario
                   chamados={chamados}
                   funcionarios={funcionarios}

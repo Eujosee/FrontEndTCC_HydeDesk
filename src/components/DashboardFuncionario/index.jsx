@@ -32,36 +32,43 @@ export default function DashboardFuncionario({ chamados, funcionarios }) {
   }, []);
 
   return (
-    <div className="min-w-full min-h-full flex items-center justify-center overflow-auto">
-    <table className="w-full">
-      {dataFuncionario ?
-        dataFuncionario.map((data) => {
-          return (
-            <tr key={data.id_funcionario}  className="flex items-center gap-x-10">
-              <td className="w-24 h-[70px] md:w-20 md:h-20">
-                <img
-                  src={`https://rei0mqdqxi.execute-api.us-east-1.amazonaws.com/${data.foto}`}
-                  alt="teste"
-                  className="max-w-full h-full object-cover rounded-full"
-                />
-              </td>
-              <td>
-                <p className="font-semibold dark:text-white">{data.nome}</p>
-                <p className="text-sm dark:text-gray-200">Nome completo</p>
-              </td>
-              <td>
-                <p className="font-semibold dark:text-white">{data.matricula}</p>
-                <p className="text-sm dark:text-gray-200">Matricula</p>
-              </td>
-              <td>
-                <p className="font-semibold dark:text-white">{data.total_chamado}</p>
-                <p className="text-sm dark:text-gray-200">Total chamados</p>
-              </td>
-            </tr>
-          );
-        }) : 
-        <span className="dark:text-gray-50 font-bold text-xl w-full">Não há dados disponíveis</span>
-        }
+    <div className="w-full h-full p-6 mx-5 overflow-auto">
+    <table className="w-full h-full ">
+      <thead align="start">
+        <tr>
+          <th scope="col" className="lg:px-2 px-6 py-2 text-start dark:text-white">Nome completo</th>
+          <th scope="col" className="lg:px-2 px-6 py-2 text-start dark:text-white">Matrícula</th>
+          <th scope="col" className="lg:px-2 px-6 py-2 text-start dark:text-white">Total chamados</th>
+        </tr>
+      </thead>
+      <tbody>
+        {dataFuncionario ?
+          dataFuncionario.map((data) => {
+            return (
+              <tr key={data.id_funcionario} align="start">
+                <td className="lg:px-2 px-6 min-w-[10rem]  items-center">
+                  <div className="flex flex-row items-center">
+                    <img
+                      src={`https://rei0mqdqxi.execute-api.us-east-1.amazonaws.com/${data.foto}`}
+                      alt="teste"
+                      className="w-16 h-16 mr-4 object-cover rounded-full"
+                    />
+                    <p className="font-semibold dark:text-white">{data.nome}</p>
+
+                  </div>
+                </td>
+                <td className="lg:px-2 px-6 ">
+                  <p className="font-semibold dark:text-white">{data.matricula}</p>
+                </td>
+                <td className="lg:px-2 px-6 ">
+                  <p className="font-semibold dark:text-white">{data.total_chamado}</p>
+                </td>
+              </tr>
+            );
+          }) : 
+          <span className="dark:text-gray-50 font-bold text-xl w-full">Não há dados disponíveis</span>
+          }
+      </tbody>
     </table>
     </div>
   );
