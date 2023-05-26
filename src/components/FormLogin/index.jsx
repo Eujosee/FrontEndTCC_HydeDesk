@@ -17,7 +17,7 @@ function Form() {
     [label]: yup
       .string()
       .required(
-        `Informe o ${label === "usuario" ? "usuário" : label.toUpperCase()}.`
+        `Informe o ${label === "usuario" ? "usuário" : label.toUpperCase().trim()}.`
       ),
     senha: yup.string().required("Informe a senha."),
   });
