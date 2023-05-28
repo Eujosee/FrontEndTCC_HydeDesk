@@ -191,7 +191,6 @@ export default function FormEmp() {
   };
 
   const handleCad = async (dataFomulario) => {
-    console.log(dataFomulario);
 
     setLoading(true);
 
@@ -211,7 +210,6 @@ export default function FormEmp() {
       formData.append("confirmarsenha", dataFomulario.confirmarsenha);
 
       const { data } = await api.post("/empresas/cadastro", formData, config);
-      console.log(data);
       setLoading(false);
       toast.success("Cadastro realizado com sucesso!", {
         position: toast.POSITION.TOP_RIGHT,

@@ -89,8 +89,6 @@ export default function PerfilFuncionario() {
     document.location.reload();
   };
 
-  console.log(changeFoto);
-
   return (
     <div className=" dark:bg-preto pb-20 pt-10">
       {dados !== null ? (

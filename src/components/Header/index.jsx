@@ -386,7 +386,7 @@ export default function Header() {
                 {type !== "tecnicos" && (
                     <Link  to="/dashboard"
                     className="-mx-3 block rounded-lg py-2 px-3 text-base font-semibold leading-7 text-gray-900 dark:text-branco hover:bg-gray-50 dark:hover:bg-gray-900">
-                    DashBoard
+                    Dashboard
                     </Link>
                 )}
                 {authenticated && (

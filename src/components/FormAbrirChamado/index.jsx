@@ -31,7 +31,7 @@ export default function FormAbrirChamado() {
     reset,
   } = useForm({ resolver: yupResolver(yupSchema) });
 
-  console.log(errors);
+
 
   function handleReset() {
     setImagem(null);

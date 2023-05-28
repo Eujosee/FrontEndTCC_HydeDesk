@@ -57,8 +57,6 @@ export default function FormToken() {
                     })
                   );
 
-                  console.log(e.target.value);
-
                   if (e.target.value !== "") {
                     let position = index + 1;
 

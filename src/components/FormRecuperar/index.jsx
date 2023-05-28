@@ -28,7 +28,6 @@ export default function FormRecuperar() {
     };
     try {
       const response = await api.post("/email", data);
-      console.log(response.data)
       if (response.data.token) {
         goToConfirmarToken(response.data.token);
       }

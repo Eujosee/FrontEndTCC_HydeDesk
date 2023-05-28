@@ -39,13 +39,12 @@ export default function FormNovaSenha() {
 
   const { tipoTabela, email } = state;
   async function compararSenhas(data) {
-    console.log(data)
       try {
         const response = await api.put(
           `/${tipoTabela}/redefinir-senha/${email}`,
           data
         );
-        console.log(response.data)
+
         if (response.data) {
           navigate("/");
         }

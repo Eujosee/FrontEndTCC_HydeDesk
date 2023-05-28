@@ -49,8 +49,6 @@ export default function Dashboard() {
     conclusoes.forEach((conclusao) => {
       chamados.forEach((chamado) => {
         if (chamado.id_chamado === conclusao.chamado_id) {
-          // console.log("data chamado", chamado.data);
-          // console.log("data termino", conclusao.data_termino);
 
           const diferenca = moment(conclusao.data_termino).diff(
             moment(chamado.data)

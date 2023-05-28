@@ -27,7 +27,6 @@ export default function Detalhes() {
     async function getDetalhe() {
       try {
         const { data } = await api.get("/chamados/" + id);
-        console.log(data);
         setData(data);
         const dataHora = data[0].data.split("T");
         let d = dataHora[0];

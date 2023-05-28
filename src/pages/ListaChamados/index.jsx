@@ -139,14 +139,10 @@ export default function ListaChamados() {
       return;
     }
 
-    console.log(id);
-
     try {
       const response = await api.get(
         `/chamados?status_chamado=andamento&tecnico_id=${id}`
       );
-
-      console.log(response.data);
 
       setChamadoAceito(response.data);
     } catch (error) {
@@ -276,7 +272,6 @@ export default function ListaChamados() {
         (chamado) => chamado.cod_verificacao == filtro.empresa
       );
       setChamados(protocolo);
-      console.log(chamados);
       setLoading(false);
     } else if (type == "empresas") {
       const nomeFuncionario = todos.filter(

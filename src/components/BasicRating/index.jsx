@@ -66,7 +66,6 @@ export default function BasicRating({ id, onClose }) {
             size="large"
             value={value}
             onChange={(event, newValue) => {
-              console.log(newValue);
               if (newValue !== null) {
                 setValue(newValue);
               } else {
