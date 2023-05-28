@@ -6,6 +6,7 @@ import { AiOutlineArrowLeft, AiOutlineLoading3Quarters } from "react-icons/ai";
 import { useParams } from "react-router-dom";
 import api from "../../services/api";
 import InputMask from "react-input-mask";
+import Loading from "../../components/Loading";
 
 export default function Detalhes() {
   const { id } = useParams();
@@ -324,15 +325,7 @@ export default function Detalhes() {
           </div>
         </div>
       ) : (
-        <>
-        <div className="flex w-full h-screen overflow-hidden gap-2 items-center justify-center m-auto dark:bg-preto">
-              <AiOutlineLoading3Quarters
-                size={25}
-                className="animate-spin text-gray-900 dark:text-gray-50"
-              />
-              <p className="text-gray-900 dark:text-gray-50"> Carregando...</p>
-            </div>
-        </>
+       <Loading/>
       )}
       <Footer />
     </>

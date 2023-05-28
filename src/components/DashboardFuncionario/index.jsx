@@ -3,13 +3,6 @@ import { useState, useEffect } from "react";
 export default function DashboardFuncionario({ chamados, funcionarios }) {
   const [dataFuncionario, setDataFuncionario] = useState(null);
 
-  // {
-  //   foto,
-  //   nome,
-  //   matricula,
-  //   total_chamados,
-  // }
-
   function handleData() {
     const dataLocal = [];
 
@@ -39,33 +32,37 @@ export default function DashboardFuncionario({ chamados, funcionarios }) {
   }, []);
 
   return (
-    <table className="w-full overflow-auto">
-      {dataFuncionario &&
+    <div className="min-w-full min-h-full flex items-center justify-center overflow-auto">
+    <table className="w-full">
+      {dataFuncionario ?
         dataFuncionario.map((data) => {
           return (
-            <tr key={data.id_funcionario} >
-              <td>
+            <tr key={data.id_funcionario}  className="flex items-center gap-x-10">
+              <td className="w-24 h-[70px] md:w-20 md:h-20">
                 <img
                   src={`https://rei0mqdqxi.execute-api.us-east-1.amazonaws.com/${data.foto}`}
                   alt="teste"
-                  className="w-20 h-20 object-cover"
+                  className="max-w-full h-full object-cover rounded-full"
                 />
               </td>
-              <td className="px-10">
-                <p className="font-semibold">{data.nome}</p>
-                <p className="text-sm">Nome completo</p>
+              <td>
+                <p className="font-semibold dark:text-white">{data.nome}</p>
+                <p className="text-sm dark:text-gray-200">Nome completo</p>
               </td>
-              <td className="px-10">
-                <p className="font-semibold">{data.matricula}</p>
-                <p className="text-sm">Matricula</p>
+              <td>
+                <p className="font-semibold dark:text-white">{data.matricula}</p>
+                <p className="text-sm dark:text-gray-200">Matricula</p>
               </td>
-              <td className="px-10">
-                <p className="font-semibold">{data.total_chamado}</p>
-                <p className="text-sm">Total chamados</p>
+              <td>
+                <p className="font-semibold dark:text-white">{data.total_chamado}</p>
+                <p className="text-sm dark:text-gray-200">Total chamados</p>
               </td>
             </tr>
           );
-        })}
+        }) : 
+        <span className="dark:text-gray-50 font-bold text-xl w-full">Não há dados disponíveis</span>
+        }
     </table>
+    </div>
   );
 }

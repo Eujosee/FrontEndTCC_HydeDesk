@@ -251,7 +251,7 @@ export default function Header() {
                     <img
                       src={"https://rei0mqdqxi.execute-api.us-east-1.amazonaws.com/" + foto}
                       alt="Foto"
-                      className="h-10 w-10 text-gray-600 group-hover:text-azul-hyde rounded-full"
+                      className="h-10 w-10 text-gray-600 group-hover:text-azul-hyde rounded-full object-cover"
                     />
                   ) : (
                     <UserCircleIcon

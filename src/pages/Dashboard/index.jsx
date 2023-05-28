@@ -11,6 +11,7 @@ import DashboardAreaChart from "../../components/AreaChart";
 import DashboardBarChart from "../../components/DashboardBarChart";
 import DashboardFuncionario from "../../components/DashboardFuncionario";
 import DashboardBarPrioridade from "../../components/DashboardBarPrioridade";
+import Loading from "../../components/Loading";
 
 export default function Dashboard() {
   const id = secureLocalStorage.getItem("Id");
@@ -113,16 +114,16 @@ export default function Dashboard() {
   return (
     <div className="w-full min-h-screen dark:bg-gray-900 bg-gray-100">
       <Header />
-      {chamados && (
+      {chamados ? (
         <div className="p-6">
           <div className="flex flex-col md:flex-row mb-6 gap-y-4 gap-x-10">
             <div className="flex flex-col p-6 rounded-lg bg-white dark:bg-gray-800 shadow-sm">
               <p className="dark:text-gray-50">Tempo médio de conclusão</p>
-              <span className="dark:text-gray-50 font-bold text-xl">{isNaN(mediaConclusao) ? "Não há dados disponíveis" : mediaConclusao}</span>
+              <span className="dark:text-gray-50 font-bold text-xl">{isNaN(mediaConclusao) || mediaConclusao == 0 ? "Não há dados disponíveis" : mediaConclusao}</span>
             </div>
             <div className="flex flex-col p-6 rounded-lg bg-white dark:bg-gray-800 shadow-sm">
               <p className="dark:text-gray-50">Avaliação média</p>
-              <span className="dark:text-gray-50 font-bold text-xl">{isNaN(mediaAvaliacao) ? "Não há dados disponíveis" : mediaAvaliacao}</span>
+              <span className="dark:text-gray-50 font-bold text-xl">{isNaN(mediaAvaliacao) || mediaAvaliacao == 0 ? "Não há dados disponíveis" : mediaAvaliacao}</span>
             </div> 
           </div>
 
@@ -153,7 +154,9 @@ export default function Dashboard() {
             </div>
           </div>
         </div>
-      )}
+      ) :
+      <Loading/>
+      }
       <Footer/>
     </div>
   );

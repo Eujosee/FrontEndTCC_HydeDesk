@@ -1,5 +1,5 @@
 import moment from "moment/moment";
-import React, { PureComponent, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   AreaChart,
   Area,
@@ -11,6 +11,7 @@ import {
 } from "recharts";
 
 export default function DashboardAreaChart({ chamados }) {
+  const [color, setColor] = useState(localStorage.getItem('color-theme'))
   const [data, setData] = useState(null);
   const datahj = moment().format("YYYYMMDD");
 
@@ -49,13 +50,13 @@ export default function DashboardAreaChart({ chamados }) {
     });
   }, [chamados]);
 
-  if (data === null) return <div></div>;
+  if (data === null) return <div><span className="dark:text-gray-50 font-bold text-xl">Não há dados disponíveis</span></div>;
 
   return (
     <div className=" flex flex-col w-full h-full justify-center">
       <div className="flex gap-6">
         <button
-        className="dark:text-gray-50"
+        className="dark:text-white hover:text-azul-hyde dark:hover:text-azul-hyde"
           onClick={() => {
             QuantidadeChamados({
               count: 8,
@@ -67,7 +68,7 @@ export default function DashboardAreaChart({ chamados }) {
           Últimos 7 dias
         </button>
         <button
-        className="dark:text-gray-50"
+        className="dark:text-white hover:text-azul-hyde dark:hover:text-azul-hyde"
           onClick={() => {
             QuantidadeChamados({
               count: 8,
@@ -79,7 +80,7 @@ export default function DashboardAreaChart({ chamados }) {
           Últimos meses
         </button>
         <button
-        className="dark:text-gray-50"
+        className="dark:text-white hover:text-azul-hyde dark:hover:text-azul-hyde"
           onClick={() => {
             QuantidadeChamados({
               count: 8,
@@ -93,8 +94,6 @@ export default function DashboardAreaChart({ chamados }) {
       </div>
         <ResponsiveContainer width="100%" height={300}>
           <AreaChart
-            // width={500}
-            // height={300}
             data={data}
             margin={{
               top: 10,
@@ -104,8 +103,16 @@ export default function DashboardAreaChart({ chamados }) {
             }}
           >
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="name" />
-            <YAxis />
+            {color == "dark" ? 
+            <XAxis dataKey="name" stroke="#fff"/>
+            :
+            <XAxis dataKey="name" stroke="#000"/>
+            }
+            {color == "dark" ? 
+            <YAxis stroke="#fff"/>
+            :
+            <YAxis stroke="#000"/>
+            }
             <Tooltip />
             <Area type="monotone" dataKey="uv" stroke="#8884d8" fill="#8884d8" />
           </AreaChart>

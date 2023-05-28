@@ -2,8 +2,6 @@
 import { useState } from "react";
 
 // Icons
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEllipsis } from "@fortawesome/free-solid-svg-icons";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import {
   StarIcon,
@@ -12,6 +10,7 @@ import {
   XCircleIcon,
   CheckCircleIcon,
   ClipboardDocumentCheckIcon,
+  EllipsisHorizontalIcon
 } from "@heroicons/react/24/outline";
 
 // Components
@@ -110,7 +109,7 @@ export default function Dropdown({ item }) {
               }}
             >
               {" "}
-              <FontAwesomeIcon className="text-azul-hyde" icon={faEllipsis} />
+              <EllipsisHorizontalIcon/>
             </Menu.Button>
           </div>
 
