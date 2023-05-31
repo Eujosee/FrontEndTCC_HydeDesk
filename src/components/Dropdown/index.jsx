@@ -109,7 +109,10 @@ export default function Dropdown({ item }) {
               }}
             >
               {" "}
-              <EllipsisHorizontalIcon/>
+              <EllipsisHorizontalIcon  className="h-6 w-6 text-azul-hyde"
+               aria-hidden="true"
+              aria-label="Abrir menu de opções"
+              />
             </Menu.Button>
           </div>
 
