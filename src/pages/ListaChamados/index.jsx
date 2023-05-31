@@ -618,7 +618,7 @@ export default function ListaChamados() {
                   </td>
 
                   <td className="text-md text-gray-900 font-light px-2 py-4 whitespace-nowrap ">
-                    <Dropdown item={chamadoAceito[0]} />
+                    <Dropdown item={chamadoAceito[0]} className="w-6 h-6 text-azul-hyde" />
                   </td>
                 </tr>
               )}
