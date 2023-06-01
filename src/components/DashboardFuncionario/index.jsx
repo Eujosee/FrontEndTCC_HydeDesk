@@ -32,7 +32,6 @@ export default function DashboardFuncionario({ chamados, funcionarios }) {
   }, []);
 
   return (
-<<<<<<< HEAD
     <table className="w-full overflow-auto">
       {dataFuncionario &&
         dataFuncionario.map((data) => {
@@ -60,7 +59,6 @@ export default function DashboardFuncionario({ chamados, funcionarios }) {
             </tr>
           );
         })}
-=======
     <div className="w-full h-full p-6 mx-5 overflow-auto">
     <table className="w-full h-full ">
       <thead align="start">
@@ -98,7 +96,6 @@ export default function DashboardFuncionario({ chamados, funcionarios }) {
           <span className="dark:text-gray-50 font-bold text-xl w-full">Não há dados disponíveis</span>
           }
       </tbody>
->>>>>>> 9f52e9f47a5c44203c010eb2d886a470e0c30b06
     </table>
     </div>
   );
