@@ -133,7 +133,7 @@ export default function ModalConclusao({
                       </label>
                       <img
                         src={
-                          "https://rei0mqdqxi.execute-api.us-east-1.amazonaws.com/" +
+                          "https://hjb33fpoxg.execute-api.us-east-1.amazonaws.com/" +
                           dataConclusao.anexo
                         }
                         className="object-scale-down h-60  overflow-auto"

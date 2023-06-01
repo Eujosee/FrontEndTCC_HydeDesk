@@ -32,6 +32,35 @@ export default function DashboardFuncionario({ chamados, funcionarios }) {
   }, []);
 
   return (
+<<<<<<< HEAD
+    <table className="w-full overflow-auto">
+      {dataFuncionario &&
+        dataFuncionario.map((data) => {
+          return (
+            <tr key={data.id_funcionario} >
+              <td>
+                <img
+                  src={`https://hjb33fpoxg.execute-api.us-east-1.amazonaws.com/${data.foto}`}
+                  alt="teste"
+                  className="w-20 h-20 object-cover"
+                />
+              </td>
+              <td className="px-10">
+                <p className="font-semibold">{data.nome}</p>
+                <p className="text-sm">Nome completo</p>
+              </td>
+              <td className="px-10">
+                <p className="font-semibold">{data.matricula}</p>
+                <p className="text-sm">Matricula</p>
+              </td>
+              <td className="px-10">
+                <p className="font-semibold">{data.total_chamado}</p>
+                <p className="text-sm">Total chamados</p>
+              </td>
+            </tr>
+          );
+        })}
+=======
     <div className="w-full h-full p-6 mx-5 overflow-auto">
     <table className="w-full h-full ">
       <thead align="start">
@@ -69,6 +98,7 @@ export default function DashboardFuncionario({ chamados, funcionarios }) {
           <span className="dark:text-gray-50 font-bold text-xl w-full">Não há dados disponíveis</span>
           }
       </tbody>
+>>>>>>> 9f52e9f47a5c44203c010eb2d886a470e0c30b06
     </table>
     </div>
   );

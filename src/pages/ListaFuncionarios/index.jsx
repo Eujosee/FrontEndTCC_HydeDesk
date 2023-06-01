@@ -213,7 +213,7 @@ export default function ListaFuncionarios() {
                     <td className="flex grow-0 flex-row items-center space-y-8 text-lg text-gray-900 dark:text-branco px-2 py-4 whitespace-nowrap">
                       <img
                         src={
-                          "https://rei0mqdqxi.execute-api.us-east-1.amazonaws.com/" + item.foto
+                          "https://hjb33fpoxg.execute-api.us-east-1.amazonaws.com/" + item.foto
                         }
                         alt="Foto"
                         className="h-10 w-10 text-gray-600 mr-4 rounded-full"
