@@ -2,7 +2,7 @@ import { createContext, useEffect, useState } from "react";
 import api from "../services/api";
 import { toast } from "react-toastify";
 import secureLocalStorage from "react-secure-storage";
-import { AiOutlineLoading3Quarters } from "react-icons/ai";
+import Loading from "../components/Loading";
 
 export const Context = createContext();
 
@@ -34,9 +34,6 @@ export function AuthProvider({ children }) {
           api.defaults.headers.Authorization = `Bearer ${data.token}`;
           setAuthenticated(true);
           window.location.href = "/";
-          toast.success("Login realizado com sucesso!", {
-            position: toast.POSITION.TOP_RIGHT,
-          });
         } catch (error) {
           toast.error(error.response.data.message, {
             position: toast.POSITION.TOP_RIGHT,
@@ -52,9 +49,6 @@ export function AuthProvider({ children }) {
           api.defaults.headers.Authorization = `Bearer ${data.token}`;
           setAuthenticated(true);
           window.location.href = "/";
-          toast.success("Login realizado com sucesso!", {
-            position: toast.POSITION.TOP_RIGHT,
-          });
         } catch (error) {
           toast.error(error.response.data.message, {
             position: toast.POSITION.TOP_RIGHT,
@@ -74,9 +68,6 @@ export function AuthProvider({ children }) {
           api.defaults.headers.Authorization = `Bearer ${data.token}`;
           setAuthenticated(true);
           window.location.href = "/";
-          toast.success("Login realizado com sucesso!", {
-            position: toast.POSITION.TOP_RIGHT,
-          });
         } catch (error) {
           toast.error(error.response.data.message, {
             position: toast.POSITION.TOP_RIGHT,
@@ -102,15 +93,7 @@ export function AuthProvider({ children }) {
 
   if (loading) {
     return (
-      <>
-        <div className="flex w-full h-screen overflow-hidden gap-2 items-center justify-center m-auto dark:bg-preto">
-          <AiOutlineLoading3Quarters
-            size={25}
-            className="animate-spin text-gray-900 dark:text-gray-50"
-          />
-          <p className="text-gray-900 dark:text-gray-50"> Carregando...</p>
-        </div>
-      </>
+      <Loading/>
     );
   }
 

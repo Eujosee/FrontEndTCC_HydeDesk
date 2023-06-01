@@ -9,6 +9,7 @@ import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import Loading from "../Loading";
 
 export default function PerfilEmpresa() {
   const id = JSON.parse(secureLocalStorage.getItem("Id"));
@@ -168,8 +169,9 @@ export default function PerfilEmpresa() {
 
   return (
     <div className="dark:bg-preto pb-20 pt-10">
+      {dados !== null ? (
       <div className="flex flex-col w-full lg:flex-row items-center justify-center">
-        <div className="w-full px-5 md:px-10 lg:w-8/12 h-full dark:text-branco dark:border-white border-r-2 border-gray-900">
+        <div className="w-full px-5 md:px-10 lg:w-8/12 h-full dark:text-branco ">
           <div>
             <h1 className="font-bold text-3xl">Meu perfil</h1>
             <p className="text-gray-600 dark:text-gray-400">
@@ -177,7 +179,6 @@ export default function PerfilEmpresa() {
             </p>
           </div>
 
-          {dados !== null && (
             <form encType="multipart/form" onSubmit={handleSubmit(handleEdit)}>
               <div className="flex lg:w-full mt-6 space-y-2 flex-wrap lg:flex-row sm:flex-col sm:mb-4">
                 <div className="flex flex-col items-center w-full lg:justify-center lg:w-1/4">
@@ -368,10 +369,10 @@ export default function PerfilEmpresa() {
                 </button>
               </div>
             </form>
-          )}
         </div>
-        <div className="lg:w-4/12 sm:w-full  h-full"></div>
       </div>
+          ) : <Loading/>
+          }
     </div>
   );
 }

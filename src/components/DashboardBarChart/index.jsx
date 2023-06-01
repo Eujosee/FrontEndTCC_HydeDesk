@@ -52,8 +52,6 @@ export default function DashboardBarChart({ chamados }) {
     <div className="flex w-full max-w-full h-full justify-center items-center">
       <ResponsiveContainer width="100%" height={300}>
         <BarChart
-          // width={500}
-          // height={300}
           data={data}
           margin={{
             top: 40,
@@ -67,6 +65,12 @@ export default function DashboardBarChart({ chamados }) {
             :
             <XAxis dataKey="name" stroke="#000"/>
           }
+          {color == "dark" ? 
+            <YAxis stroke="#fff"/>
+            :
+            <YAxis stroke="#000"/>
+          }
+          
           <YAxis />
           <Tooltip />
           <Legend />
