@@ -36,14 +36,14 @@ export default function Footer() {
             </h2>
             <ul className="text-gray-600 dark:text-gray-400">
               <li className="mb-4">
-                <a href="https://expo.dev/artifacts/eas/kzLZCdBY8zwe7WhRC9MNGC.apk" className="hover:underline ">
+                <a href="https://drive.google.com/file/d/16EVH_Mh_pwE1O04rOQr6E_Nugj85tUaS/view?usp=drive_link" target="_blank" rel="noreferrer" className="hover:underline ">
                   Baixar App
                 </a>
               </li>
               <li>
-                <Link to="#" className="hover:underline">
+                <a href="/Manual - Sistema Hyde Desk.pdf" download className="hover:underline">
                   Manual do usuário
-                </Link>
+                </a>
               </li>
             </ul>
           </div>
