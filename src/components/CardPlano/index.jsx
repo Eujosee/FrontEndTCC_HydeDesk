@@ -10,7 +10,7 @@ export default function CardPlano({ index }) {
         className="data-[type=Bronze]:bg-amber-600 data-[type=Prata]:bg-stone-400 data-[type=Ouro]:bg-yellow-500 w-full h-[4px]"
       ></span>
       <h2 className="text-2xl my-4">
-        R$325<span className="text-xl">/mês</span>
+        R${data[index].preco}<span className="text-xl">/mês</span>
       </h2>
       <ul className="space-y-3">
         {data[index].itens.map((item, index) => {

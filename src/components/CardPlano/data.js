@@ -2,6 +2,7 @@ const data = [
   {
     id: 0,
     tipo: "Bronze",
+    preco: "325",
     itens: [
       "Número máximo de funcionários: 15",
       "Horário de atendimento: 8h às 17h",
@@ -14,6 +15,7 @@ const data = [
   {
     id: 1,
     tipo: "Prata",
+    preco: "600",
     itens: [
       "Número máximo de funcionários: 30",
       "Horário de atendimento: 8h às 17h",
@@ -26,6 +28,7 @@ const data = [
   {
     id: 2,
     tipo: "Ouro",
+    preco: "900",
     itens: [
       "Número máximo de funcionários: 65",
       "Horário de atendimento: 24h",
