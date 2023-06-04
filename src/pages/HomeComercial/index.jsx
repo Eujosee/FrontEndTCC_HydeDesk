@@ -69,8 +69,8 @@ export default function HomeComercial() {
         />
       </div>
       <div className="py-8 mb-10 flex flex-col justify-center items-center">
-        <h1 className="font-bold text-4xl dark:text-white mb-10">Soluções</h1>
-        <div className="max-w-full grid lg:grid-cols-3 gap-10 px-10 justify-center">
+        <h1 className="font-bold text-4xl dark:text-white mb-4">Soluções</h1>
+        <div className="max-w-full grid lg:grid-cols-3 gap-6 px-10 justify-center">
           <CardServicos index={0}/>
           <CardServicos index={1}/>
           <CardServicos index={2}/>
@@ -96,29 +96,11 @@ export default function HomeComercial() {
       </div>
       <div className=" py-8 flex flex-col justify-center items-center">
         <h1 className="font-bold text-4xl dark:text-white">Planos</h1>
-        <div className="max-w-full lg:w-3/4 m-auto p-8">
-          <div className="flex flex-col flex-wrap gap-10 w-full justify-center items-center md:flex-row">
-            <div className="flex flex-col items-center">
-              <CardPlano key="1" index={0} />
-              <Link className="flex mt-6 lg:w-full hover:bg-cyan-600 text-white font-semibold py-2.5 px-10 rounded-md bg-azul-hyde justify-center" to={"/pagamento/" + 0}>
-                Comprar
-              </Link>
-            </div>
-            <div className="flex flex-col items-center">
+          <div className="grid md:grid-cols-3 gap-6 w-full justify-items-center items-stretch mt-4 px-10">  
+              <CardPlano key="0" index={0} />
               <CardPlano key="1" index={1} />
-              <Link className="flex mt-6 lg:w-full hover:bg-cyan-600 text-white font-semibold py-2.5 px-10 rounded-md bg-azul-hyde justify-center" to={"/pagamento/" + 1}>
-                Comprar
-              </Link>
-            </div>
-            <div className="flex flex-col items-center">
-              <CardPlano key="1" index={2} />
-              <Link className="flex mt-6 lg:w-full hover:bg-cyan-600 text-white font-semibold py-2.5 px-10 rounded-md bg-azul-hyde justify-center" to={"/pagamento/" + 2}>
-                Comprar
-              </Link>
-            </div>
-           
+              <CardPlano key="2" index={2} /> 
           </div>
-        </div>
       </div>
       <div className="w-full flex flex-col justify-center items-center py-32 bg-slate-200 dark:bg-gray-900">
         <p className="text-lg text-justify p-5 semi-bold dark:text-branco">

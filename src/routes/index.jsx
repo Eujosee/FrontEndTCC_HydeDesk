@@ -12,7 +12,6 @@ import RecuperarSenha from "../pages/RecuperarSenha";
 import ConfirmarToken from "../pages/ConfirmarToken";
 import MudarSenha from "../pages/MudarSenha";
 import PageNotFound from "../pages/PageNotFound";
-import Pagamento from "../pages/Pagamento";
 import ListaFuncionarios from "../pages/ListaFuncionarios";
 import CadastroFuncionario from "../pages/CadastroFuncionario";
 import AbrirChamado from "../pages/AbrirChamado";
@@ -44,10 +43,6 @@ const router = createBrowserRouter([
   {
     path: "/institucional",
     element: <HomeInstitucional />,
-  },
-  {
-    path: "/pagamento/:plano",
-    element: <Pagamento />,
   },
   {
     path: "/login",

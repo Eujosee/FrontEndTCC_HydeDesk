@@ -148,7 +148,7 @@ export default function ModalChatBot({ open, onClose }) {
         onClick={onClose}
         className="w-full h-full absolute bg-black bg-opacity-25"
       ></div>
-      <div className="absolute w-full h-full md:h-fit md:bottom-10 md:right-10  md:w-1/4 lg:w-1/5 bg-white rounded-t-xl">
+      <div className="absolute w-full h-full md:h-fit md:bottom-10 md:right-10 md:w-1/3 lg:w-1/4 bg-white rounded-t-xl">
         <div className="p-4 bg-azul-hyde flex flex-row items-center w-full sticky md:rounded-t-md">
           <button
             onClick={onClose}
