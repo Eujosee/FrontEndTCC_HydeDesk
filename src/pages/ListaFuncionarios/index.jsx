@@ -52,6 +52,7 @@ export default function ListaFuncionarios() {
     }
   }
 
+
   // Busca funcionários por nome
   const handleFiltroName = async (e) => {
     e.preventDefault();
@@ -81,6 +82,8 @@ export default function ListaFuncionarios() {
   }, []);
 
   useEffect(() => {
+    if (!filtro.status_empresa) return
+    
     handleFiltro()
   }, [filtro.status_empresa])
 
@@ -151,6 +154,7 @@ export default function ListaFuncionarios() {
                       className="dark:text-branco dark:bg-gray-800 dark:hover:bg-gray-800"
                       selected
                       disabled
+                      value="none"
                     >
                       Selecione uma opção
                     </option>
@@ -254,7 +258,6 @@ export default function ListaFuncionarios() {
               <p className="dark:text-branco"> Carregando...</p>
             </div>
           )}
-
           {funcionarios.length < 1 && !loading && !status && (
             <div className="flex gap-2 items-center justify-center m-auto w-64 mt-10">
               <p className="dark:text-branco"> Você não possui funcionários.</p>
