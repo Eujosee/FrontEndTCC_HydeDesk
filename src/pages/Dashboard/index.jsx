@@ -49,7 +49,6 @@ export default function Dashboard() {
     conclusoes.forEach((conclusao) => {
       chamados.forEach((chamado) => {
         if (chamado.id_chamado === conclusao.chamado_id) {
-
           const diferenca = moment(conclusao.data_termino).diff(
             moment(chamado.data)
           );
@@ -68,7 +67,16 @@ export default function Dashboard() {
 
   async function getChamados() {
     try {
-      const response = await api.get(`/chamados?id_empresa=${id}`);
+      let endpoint = "";
+
+      if (tipo === `"empresas"`) {
+        endpoint = `/chamados?id_empresa=${id}`;
+      } else {
+        endpoint = `/chamados?funcionario_id=${id}`;
+      }
+
+      const response = await api.get(endpoint);
+
       setChamados(response.data);
     } catch (error) {
       console.log(error);
@@ -86,7 +94,15 @@ export default function Dashboard() {
 
   async function getConclusoes() {
     try {
-      const response = await api.get(`/conclusoes?id_empresa=${id}`);
+      let endpoint = "";
+
+      if (tipo === `"empresas"`) {
+        endpoint = `/conclusoes?id_empresa=${id}`;
+      } else {
+        endpoint = `/conclusoes?funcionario_id=${id}`;
+      }
+
+      const response = await api.get(endpoint);
 
       calcMediaAvaliacao(response.data);
       setConclusoes(response.data);
@@ -97,8 +113,10 @@ export default function Dashboard() {
 
   async function handleGet() {
     await getChamados();
-    getFuncionarios();
-    getConclusoes();
+    if (tipo === `"empresas"`) {
+      await getFuncionarios();
+    }
+    await getConclusoes();
   }
 
   useEffect(() => {
@@ -117,12 +135,20 @@ export default function Dashboard() {
           <div className="flex flex-col md:flex-row mb-6 gap-y-4 gap-x-10">
             <div className="flex flex-col p-6 rounded-lg bg-white dark:bg-gray-800 shadow-sm">
               <p className="dark:text-gray-50">Tempo médio de conclusão</p>
-              <span className="dark:text-gray-50 font-bold text-xl">{isNaN(mediaConclusao) || mediaConclusao == 0 ? "Não há dados disponíveis" : mediaConclusao}</span>
+              <span className="dark:text-gray-50 font-bold text-xl">
+                {isNaN(mediaConclusao) || mediaConclusao == 0
+                  ? "Não há dados disponíveis"
+                  : `${mediaConclusao}h`}
+              </span>
             </div>
             <div className="flex flex-col p-6 rounded-lg bg-white dark:bg-gray-800 shadow-sm">
               <p className="dark:text-gray-50">Avaliação média</p>
-              <span className="dark:text-gray-50 font-bold text-xl">{isNaN(mediaAvaliacao) || mediaAvaliacao == 0 ? "Não há dados disponíveis" : mediaAvaliacao}</span>
-            </div> 
+              <span className="dark:text-gray-50 font-bold text-xl">
+                {isNaN(mediaAvaliacao) || mediaAvaliacao == 0
+                  ? "Não há dados disponíveis"
+                  : mediaAvaliacao}
+              </span>
+            </div>
           </div>
 
           <div className="w-full grid lg:grid-cols-3 gap-10 mb-6">
@@ -138,23 +164,27 @@ export default function Dashboard() {
           </div>
 
           <div className="grid lg:grid-cols-2 gap-10 lg:justify-between">
-            {funcionarios && (
-              <div className="flex justify-center items-center bg-white dark:bg-gray-800 rounded-lg shadow-sm overflow-auto">
-                <DashboardFuncionario
-                  chamados={chamados}
-                  funcionarios={funcionarios}
-                />
-              </div>
+            {tipo !== null && tipo == `"empresas"` && (
+              <>
+                {funcionarios && (
+                  <div className="flex justify-center items-center bg-white dark:bg-gray-800 rounded-lg shadow-sm overflow-auto">
+                    <DashboardFuncionario
+                      chamados={chamados}
+                      funcionarios={funcionarios}
+                    />
+                  </div>
+                )}
+              </>
             )}
             <div className="flex w-full justify-center items-center bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6 overflow-auto">
               <DashboardBarPrioridade chamados={chamados} />
             </div>
           </div>
         </div>
-      ) :
-      <Loading/>
-      }
-      <Footer/>
+      ) : (
+        <Loading />
+      )}
+      <Footer />
     </div>
   );
 }
